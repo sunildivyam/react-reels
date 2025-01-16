@@ -68,9 +68,9 @@ export const RemotionRoot: React.FC = () => {
             "title": "सपने वो नहीं जो हम सोते वक्त देखते हैं, सपने वो हैं जो हमें सोने नहीं देते।",
             "translation": "Dreams are not what we see while sleeping, dreams are what keep us awake.",
             "filter": "ForestFilter",
-            "video": "reel2.mp4",
-            "img": "",
-            "music": "bansuri.mp3"
+            // "video": "reel1.mp4",
+            "img": "images/s2 (1).webp",
+            "music": "mlp7-ghatam1.mp3"
           }
         }
       />

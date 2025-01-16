@@ -59,12 +59,30 @@ export const saveToJsonFile = async (json: Array<QuoteReelType>, fileName: strin
   await fs.promises.writeFile(filePath, JSON.stringify(json, null, 2), 'utf-8')
 }
 
+const toUniqueArray = (items: Array<any>): Array<any> => {
+  const map = new Map();
+  items.forEach(item => {
+    map.set(item.name, item);
+  });
+  return Array.from(map.values());
+};
+
 export const prepareJson = async () => {
   try {
     const { images, videos, musics } = await readDataFromDirectories();
-    const updatedJson = await getUpdatedJson(json as Array<QuoteReelType>, images, videos, musics);
+    const quotes = toUniqueArray(json);
+    const updatedJson = await getUpdatedJson(quotes as Array<QuoteReelType>, images, videos, musics);
     await saveToJsonFile(updatedJson, './final-quotes.json');
     console.log('Updated file saved');
+    console.log('SUMMARY:');
+    console.log(`
+      OriginalQuotes: ${json.length}
+      Duplicate Quotes: ${json.length - quotes.length} REMOVED
+      Quotes: ${quotes.length}
+      Videos: ${videos.length}
+      Images: ${images.length}
+      Music: ${musics.length}
+      `);
   } catch (error) {
     console.log(error);
   }

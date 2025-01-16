@@ -6,43 +6,43 @@
     "filter": "ForestFilter",
     "video": "videos/reel1.mp4",
     "img": "",
-    "music": "music/1.mp3"
+    "music": "music/01-Acoustic-Inspirational-Full-Track.mp3"
   },
   {
     "name": "what-is-gone-is-gone-what-is-to-come-will-come",
     "title": "जो बीत गया सो बीत गया, जो आना है वो आएगा।",
     "translation": "What is gone is gone, what is to come will come.",
     "filter": "ForestFilter",
-    "video": "videos/reel2.mp4",
-    "img": "",
-    "music": "music/2.mp3"
+    "video": "",
+    "img": "images/1.jpg",
+    "music": "music/01-Amazing-Full-Track-1.mp3"
   },
   {
     "name": "not-giving-up-is-victory",
     "title": "हार नहीं मानना ही जीत है।",
     "translation": "Not giving up is victory.",
     "filter": "ForestFilter",
-    "video": "videos/reel3.mp4",
-    "img": "",
-    "music": "music/3.mp3"
+    "video": "",
+    "img": "images/2.jpg",
+    "music": "music/01-Bilateral-Tranquility-Variation-1.mp3"
   },
   {
     "name": "dreams-are-not-what-we-see-while-sleeping-dreams-are-what-keep-us-awake",
     "title": "सपने वो नहीं जो हम सोते वक्त देखते हैं, सपने वो हैं जो हमें सोने नहीं देते।",
     "translation": "Dreams are not what we see while sleeping, dreams are what keep us awake.",
     "filter": "ForestFilter",
-    "video": "videos/reel4.mp4",
-    "img": "",
-    "music": "music/4.mp3"
+    "video": "",
+    "img": "images/Designer (1).jpeg",
+    "music": "music/01-Inspire-Full-Track.mp3"
   },
   {
     "name": "the-biggest-enemy-in-life-is-our-own-fear",
     "title": "जीवन में सबसे बड़ा दुश्मन होता है खुद का डर।",
     "translation": "The biggest enemy in life is our own fear.",
     "filter": "ForestFilter",
-    "video": "videos/shri-laxmi-tree.mp4",
-    "img": "",
-    "music": "music/5.mp3"
+    "video": "",
+    "img": "images/Designer (10).jpeg",
+    "music": "music/01-Inspiring-Upbeat-Ambient-Full-Track.mp3"
   },
   {
     "name": "those-who-fear-do-not-win",
@@ -50,8 +50,8 @@
     "translation": "Those who fear do not win.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/1.jpg",
-    "music": "music/bansuri.mp3"
+    "img": "images/Designer (11).jpeg",
+    "music": "music/03-Bilateral-Harp.mp3"
   },
   {
     "name": "change-yourself-the-world-will-change-itself",
@@ -59,8 +59,8 @@
     "translation": "Change yourself, the world will change itself.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/2.jpg",
-    "music": "music/BeachSerenity.mp3"
+    "img": "images/Designer (12).jpeg",
+    "music": "music/04-Bilateral-Stillness.mp3"
   },
   {
     "name": "there-is-no-shortcut-to-success",
@@ -68,8 +68,8 @@
     "translation": "There is no shortcut to success.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/3.jpg",
-    "music": "music/1.mp3"
+    "img": "images/Designer (2).jpeg",
+    "music": "music/05-Bilateral-Eternal.mp3"
   },
   {
     "name": "the-fruit-of-hard-work-is-never-bad",
@@ -77,8 +77,8 @@
     "translation": "The fruit of hard work is never bad.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/4.webp",
-    "music": "music/2.mp3"
+    "img": "images/Designer (3).jpeg",
+    "music": "music/06-Transient.mp3"
   },
   {
     "name": "if-you-cannot-change-anything-change-your-attitude",
@@ -86,8 +86,8 @@
     "translation": "If you cannot change anything, change your attitude.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/5.jpeg",
-    "music": "music/3.mp3"
+    "img": "images/Designer (4).jpeg",
+    "music": "music/07-Bright-Ambient.mp3"
   },
   {
     "name": "the-biggest-gift-in-life-is-today",
@@ -95,8 +95,8 @@
     "translation": "The biggest gift in life is today.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/6.jpg",
-    "music": "music/4.mp3"
+    "img": "images/Designer (5).jpeg",
+    "music": "music/08-Spring-Sunrise.mp3"
   },
   {
     "name": "the-secret-to-happiness-is-to-feel-small-joys",
@@ -104,8 +104,8 @@
     "translation": "The secret to happiness is to feel small joys.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/wallpaper.jpg",
-    "music": "music/5.mp3"
+    "img": "images/Designer (6).jpeg",
+    "music": "music/09-BLESSING.mp3"
   },
   {
     "name": "the-greatest-power-in-the-world-is-love",
@@ -113,8 +113,8 @@
     "translation": "The greatest power in the world is love.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/1.jpg",
-    "music": "music/bansuri.mp3"
+    "img": "images/Designer (7).jpeg",
+    "music": "music/14-BLOSSOM.mp3"
   },
   {
     "name": "forgiveness-is-not-weakness-but-a-courageous-act",
@@ -122,8 +122,8 @@
     "translation": "Forgiveness is not weakness but a courageous act.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/2.jpg",
-    "music": "music/BeachSerenity.mp3"
+    "img": "images/Designer (8).jpeg",
+    "music": "music/19-EARTH.mp3"
   },
   {
     "name": "never-give-up-in-life-because-failure-is-the-key-to-success",
@@ -131,8 +131,8 @@
     "translation": "Never give up in life, because failure is the key to success.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/3.jpg",
-    "music": "music/1.mp3"
+    "img": "images/Designer (9).jpeg",
+    "music": "music/24-FLOATING.mp3"
   },
   {
     "name": "walk-the-path-that-scares-you",
@@ -140,8 +140,8 @@
     "translation": "Walk the path that scares you.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/4.webp",
-    "music": "music/2.mp3"
+    "img": "images/Designer.jpeg",
+    "music": "music/29-MOTION.mp3"
   },
   {
     "name": "the-biggest-enemy-in-life-is-our-own-ego",
@@ -149,8 +149,8 @@
     "translation": "The biggest enemy in life is our own ego.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/5.jpeg",
-    "music": "music/3.mp3"
+    "img": "images/pixlr-image-generator-0afa6a7f-2c41-4d3f-8f16-4a1a77a2aa39.png",
+    "music": "music/34-MOVEMENT.mp3"
   },
   {
     "name": "those-who-help-others-get-help-themselves",
@@ -158,8 +158,8 @@
     "translation": "Those who help others get help themselves.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/6.jpg",
-    "music": "music/4.mp3"
+    "img": "images/pixlr-image-generator-1548900a-0664-4170-9251-ae55f6f94175.png",
+    "music": "music/39-REPLENISH.mp3"
   },
   {
     "name": "the-biggest-gift-in-life-is-time",
@@ -167,8 +167,8 @@
     "translation": "The biggest gift in life is time.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/wallpaper.jpg",
-    "music": "music/5.mp3"
+    "img": "images/pixlr-image-generator-29bc2f29-58ac-4094-80b9-a49f49b6f88c.png",
+    "music": "music/44-SANCTUARY.mp3"
   },
   {
     "name": "time-heals-everything",
@@ -176,8 +176,8 @@
     "translation": "Time heals everything.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/1.jpg",
-    "music": "music/bansuri.mp3"
+    "img": "images/pixlr-image-generator-357de142-4108-4403-92bb-54bffaf9196d.png",
+    "music": "music/49-THE-DEEP.mp3"
   },
   {
     "name": "the-greatest-joy-in-life-is-making-others-happy",
@@ -185,8 +185,8 @@
     "translation": "The greatest joy in life is making others happy.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/2.jpg",
-    "music": "music/BeachSerenity.mp3"
+    "img": "images/pixlr-image-generator-3830c857-9bd7-4d5d-b281-fa3ac6075f75.png",
+    "music": "music/54-TIMING.mp3"
   },
   {
     "name": "be-kind-because-kindness-is-the-greatest-virtue",
@@ -194,8 +194,8 @@
     "translation": "Be kind, because kindness is the greatest virtue.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/3.jpg",
-    "music": "music/1.mp3"
+    "img": "images/pixlr-image-generator-386262e2-eecf-4841-98c6-1b91d390677a.png",
+    "music": "music/59-TUNING.mp3"
   },
   {
     "name": "victory-is-in-the-mind",
@@ -203,8 +203,8 @@
     "translation": "Victory is in the mind.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/4.webp",
-    "music": "music/2.mp3"
+    "img": "images/pixlr-image-generator-442e1390-b9dc-4199-ba45-2dec9bded90f.png",
+    "music": "music/Africa-Free-No-Copyright-Music-by-Liborio-Conti-01-Africa-With-Voices-Full-Track (1).mp3"
   },
   {
     "name": "be-a-support-to-those-who-have-no-support",
@@ -212,8 +212,8 @@
     "translation": "Be a support to those who have no support.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/5.jpeg",
-    "music": "music/3.mp3"
+    "img": "images/pixlr-image-generator-49ace496-de4b-49f7-867d-8572fff20bd1.png",
+    "music": "music/Africa-Free-No-Copyright-Music-by-Liborio-Conti-01-Africa-With-Voices-Full-Track.mp3"
   },
   {
     "name": "the-biggest-enemy-in-life-is-our-own-laziness",
@@ -221,8 +221,8 @@
     "translation": "The biggest enemy in life is our own laziness.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/6.jpg",
-    "music": "music/4.mp3"
+    "img": "images/pixlr-image-generator-55400be9-2358-4811-aa29-8e8ee8af374e.png",
+    "music": "music/Africa-Free-No-Copyright-Music-by-Liborio-Conti-02-Africa-Without-Voices-Full-Track.mp3"
   },
   {
     "name": "those-who-listen-to-others-are-successful",
@@ -230,8 +230,8 @@
     "translation": "Those who listen to others are successful.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/wallpaper.jpg",
-    "music": "music/5.mp3"
+    "img": "images/pixlr-image-generator-5af5be69-8024-4c8e-b8fd-5969065a0d54.png",
+    "music": "music/Africa.mp3"
   },
   {
     "name": "the-biggest-gift-in-life-is-health",
@@ -239,8 +239,8 @@
     "translation": "The biggest gift in life is health.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/1.jpg",
-    "music": "music/bansuri.mp3"
+    "img": "images/pixlr-image-generator-5afffd41-cef3-4c8c-9b9c-a7311f45b195.png",
+    "music": "music/AmbientLight.mp3"
   },
   {
     "name": "a-healthy-mind-resides-in-a-healthy-body",
@@ -248,8 +248,8 @@
     "translation": "A healthy mind resides in a healthy body.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/2.jpg",
-    "music": "music/BeachSerenity.mp3"
+    "img": "images/pixlr-image-generator-610d5afb-4b77-48db-a4f3-fe0c5d149a5b.png",
+    "music": "music/BeachAmbient.mp3"
   },
   {
     "name": "the-biggest-enemy-in-life-is-our-own-anger",
@@ -257,8 +257,8 @@
     "translation": "The biggest enemy in life is our own anger.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/3.jpg",
-    "music": "music/1.mp3"
+    "img": "images/pixlr-image-generator-6579869f-365a-4849-8c08-5372a31534ce.png",
+    "music": "music/BeachSerenity.mp3"
   },
   {
     "name": "count-to-ten-before-getting-angry",
@@ -266,8 +266,8 @@
     "translation": "Count to ten before getting angry.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/4.webp",
-    "music": "music/2.mp3"
+    "img": "images/pixlr-image-generator-6c706754-59f1-4ff9-ac35-b90337f6a4a5.png",
+    "music": "music/Bright-And-Clear-No-Copyright-Music-01-Bright-And-Clear.mp3"
   },
   {
     "name": "the-biggest-enemy-in-life-is-our-own-greed",
@@ -275,8 +275,8 @@
     "translation": "The biggest enemy in life is our own greed.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/5.jpeg",
-    "music": "music/3.mp3"
+    "img": "images/pixlr-image-generator-6e37b139-773d-4f7d-a735-f2af5f0d633f.png",
+    "music": "music/ByTheFire.mp3"
   },
   {
     "name": "be-the-change-you-want-to-see-in-the-world",
@@ -284,17 +284,8 @@
     "translation": "Be the change you want to see in the world.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/6.jpg",
-    "music": "music/4.mp3"
-  },
-  {
-    "name": "dreams-are-not-what-we-see-while-sleeping-dreams-are-what-keep-us-awake",
-    "title": "सपने वो नहीं जो हम सोते वक्त देखते हैं, सपने वो हैं जो हमें सोने नहीं देते।",
-    "translation": "Dreams are not what we see while sleeping, dreams are what keep us awake.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/wallpaper.jpg",
-    "music": "music/5.mp3"
+    "img": "images/pixlr-image-generator-72e681e4-bbdc-46c3-876d-4bae74bbd81b.png",
+    "music": "music/Calmness.mp3"
   },
   {
     "name": "challenges-come-in-life-but-facing-them-is-life",
@@ -302,8 +293,8 @@
     "translation": "Challenges come in life, but facing them is life.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/1.jpg",
-    "music": "music/bansuri.mp3"
+    "img": "images/pixlr-image-generator-81723aba-8297-46fb-8674-f8aafac20797.png",
+    "music": "music/Cinelax.mp3"
   },
   {
     "name": "slowly-everything-happens",
@@ -311,8 +302,8 @@
     "translation": "Slowly, everything happens.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/2.jpg",
-    "music": "music/BeachSerenity.mp3"
+    "img": "images/pixlr-image-generator-84e3d85a-8d61-4baa-acd5-a2d543a848c2.png",
+    "music": "music/DeeperMeaning.mp3"
   },
   {
     "name": "those-who-chase-their-dreams-are-successful",
@@ -320,8 +311,8 @@
     "translation": "Those who chase their dreams are successful.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/3.jpg",
-    "music": "music/1.mp3"
+    "img": "images/pixlr-image-generator-85d9247c-7be1-4e70-ae6c-15aa2810033f.png",
+    "music": "music/Emotional-Piano-Free-Royalty-Free-Relaxing-Music-by-Liborio-Conti-01-I-Believe.mp3"
   },
   {
     "name": "the-greatest-teacher-in-life-is-experience",
@@ -329,8 +320,8 @@
     "translation": "The greatest teacher in life is experience.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/4.webp",
-    "music": "music/2.mp3"
+    "img": "images/pixlr-image-generator-86ada711-b2b0-4c72-9993-d8752481386a.png",
+    "music": "music/Evolving-Pads-Free-Relaxing-Royalty-Free-Music-by-Liborio-Conti-01-Evolving-Pads.mp3"
   },
   {
     "name": "those-who-work-hard-are-successful",
@@ -338,8 +329,8 @@
     "translation": "Those who work hard are successful.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/5.jpeg",
-    "music": "music/3.mp3"
+    "img": "images/pixlr-image-generator-8fd24161-05eb-4625-a196-3e64fa0f21a9.png",
+    "music": "music/Forestal.mp3"
   },
   {
     "name": "the-greatest-wealth-in-life-is-contentment",
@@ -347,8 +338,8 @@
     "translation": "The greatest wealth in life is contentment.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/6.jpg",
-    "music": "music/4.mp3"
+    "img": "images/pixlr-image-generator-92547b1c-4d4c-40b3-9fdb-93b981b456c9.png",
+    "music": "music/Forever.mp3"
   },
   {
     "name": "those-who-focus-on-their-goals-are-successful",
@@ -356,8 +347,8 @@
     "translation": "Those who focus on their goals are successful.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/wallpaper.jpg",
-    "music": "music/5.mp3"
+    "img": "images/pixlr-image-generator-9400997d-c2d9-4919-9fcd-1a7cb8ea02d8.png",
+    "music": "music/ForgottonPlace.mp3"
   },
   {
     "name": "the-greatest-joy-in-life-is-self-contentment",
@@ -365,8 +356,8 @@
     "translation": "The greatest joy in life is self-contentment.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/1.jpg",
-    "music": "music/bansuri.mp3"
+    "img": "images/pixlr-image-generator-9416f316-12dc-47b0-b988-e265e63f4807.png",
+    "music": "music/Frozen-in-Time.mp3"
   },
   {
     "name": "those-who-believe-in-themselves-are-successful",
@@ -374,8 +365,8 @@
     "translation": "Those who believe in themselves are successful.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/2.jpg",
-    "music": "music/BeachSerenity.mp3"
+    "img": "images/pixlr-image-generator-94d632db-efb2-48aa-aaca-2b4ac6f66189.png",
+    "music": "music/Good-Morning-Sunshine-No-Copyright-Music.com-01-Good-Morning-Sunshine.mp3"
   },
   {
     "name": "the-greatest-friend-in-life-is-self-confidence",
@@ -383,8 +374,8 @@
     "translation": "The greatest friend in life is self-confidence.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/3.jpg",
-    "music": "music/1.mp3"
+    "img": "images/pixlr-image-generator-9627eafb-493c-4b11-8d6a-1167d2f0987c.png",
+    "music": "music/Happy-Sun-No-Copyright-Music.com-01-Happy-Sun.mp3"
   },
   {
     "name": "those-who-utilize-their-time-are-successful",
@@ -392,8 +383,8 @@
     "translation": "Those who utilize their time are successful.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/4.webp",
-    "music": "music/2.mp3"
+    "img": "images/pixlr-image-generator-96750dbf-8d36-4dfb-915c-596ca29ec5fe.png",
+    "music": "music/Horizon.mp3"
   },
   {
     "name": "the-greatest-enemy-in-life-is-laziness",
@@ -401,8 +392,8 @@
     "translation": "The greatest enemy in life is laziness.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/5.jpeg",
-    "music": "music/3.mp3"
+    "img": "images/pixlr-image-generator-a9159561-5471-496f-ab28-f5f4dc395692.png",
+    "music": "music/Inspiring-Ambient-No-Copyright-Music-01-Inspiring-Ambient.mp3"
   },
   {
     "name": "those-who-love-their-work-are-successful",
@@ -410,8 +401,8 @@
     "translation": "Those who love their work are successful.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/6.jpg",
-    "music": "music/4.mp3"
+    "img": "images/pixlr-image-generator-ab3e6c44-d678-46c8-996a-3dabb8b0a906.png",
+    "music": "music/Just-Relax-No-Copyright-Music-01-Just-Relax.mp3"
   },
   {
     "name": "the-greatest-gift-in-life-is-family",
@@ -419,8 +410,8 @@
     "translation": "The greatest gift in life is family.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/wallpaper.jpg",
-    "music": "music/5.mp3"
+    "img": "images/pixlr-image-generator-af27549b-c806-49cf-b98d-7c37689e16fb.png",
+    "music": "music/Light-And-Balanced-No-Copyright-Music-01-Light-And-Balanced.mp3"
   },
   {
     "name": "those-who-are-honest-in-their-work-are-successful",
@@ -428,8 +419,8 @@
     "translation": "Those who are honest in their work are successful.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/1.jpg",
-    "music": "music/bansuri.mp3"
+    "img": "images/pixlr-image-generator-b10a01e5-a69a-4d46-a833-854f10a658ad.png",
+    "music": "music/Mandolin.mp3"
   },
   {
     "name": "the-greatest-wealth-in-life-is-knowledge",
@@ -437,8 +428,8 @@
     "translation": "The greatest wealth in life is knowledge.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/2.jpg",
-    "music": "music/BeachSerenity.mp3"
+    "img": "images/pixlr-image-generator-b7a8883c-e02f-438b-b02f-cab417a228ff.png",
+    "music": "music/NatureAmbience.mp3"
   },
   {
     "name": "those-who-utilize-their-knowledge-are-successful",
@@ -446,8 +437,8 @@
     "translation": "Those who utilize their knowledge are successful.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/3.jpg",
-    "music": "music/1.mp3"
+    "img": "images/pixlr-image-generator-bb502cab-7bac-49ff-bed3-4484aad62fc6.png",
+    "music": "music/Nature´s-Call.mp3"
   },
   {
     "name": "the-greatest-joy-in-life-is-doing-good-for-others",
@@ -455,8 +446,8 @@
     "translation": "The greatest joy in life is doing good for others.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/4.webp",
-    "music": "music/2.mp3"
+    "img": "images/pixlr-image-generator-bb6e6c9a-168a-425e-8fc1-287028617172.png",
+    "music": "music/Noisescape.mp3"
   },
   {
     "name": "those-who-understand-themselves-are-successful",
@@ -464,8 +455,8 @@
     "translation": "Those who understand themselves are successful.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/5.jpeg",
-    "music": "music/3.mp3"
+    "img": "images/pixlr-image-generator-bde7b34d-84ae-4811-8d54-c4388b4772ff.png",
+    "music": "music/OnAPianoAcloudNatureSounds.mp3"
   },
   {
     "name": "the-greatest-gift-in-life-is-time",
@@ -473,8 +464,8 @@
     "translation": "The greatest gift in life is time.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/6.jpg",
-    "music": "music/4.mp3"
+    "img": "images/pixlr-image-generator-c4e2b7bb-d1ff-4db3-9a29-5adad9174392.png",
+    "music": "music/OnAPianoCloud.mp3"
   },
   {
     "name": "those-who-utilize-their-time-wisely-are-successful",
@@ -482,8 +473,8 @@
     "translation": "Those who utilize their time wisely are successful.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/wallpaper.jpg",
-    "music": "music/5.mp3"
+    "img": "images/pixlr-image-generator-c8583a13-5d89-45a9-8b2f-9b0a6e5a6167.png",
+    "music": "music/Peaceful-Sleep-Music-Free-Royalty-Free-Music-by-Liborio-Conti-01-Peaceful-Sleep-Music.mp3"
   },
   {
     "name": "the-greatest-joy-in-life-is-helping-others",
@@ -491,62 +482,8 @@
     "translation": "The greatest joy in life is helping others.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/1.jpg",
-    "music": "music/bansuri.mp3"
-  },
-  {
-    "name": "those-who-believe-in-themselves-are-successful",
-    "title": "जो लोग अपने आप पर विश्वास करते हैं, वही सफल होते हैं।",
-    "translation": "Those who believe in themselves are successful.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/2.jpg",
-    "music": "music/BeachSerenity.mp3"
-  },
-  {
-    "name": "the-greatest-wealth-in-life-is-contentment",
-    "title": "जीवन में सबसे बड़ा धन होता है संतोष।",
-    "translation": "The greatest wealth in life is contentment.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/3.jpg",
-    "music": "music/1.mp3"
-  },
-  {
-    "name": "those-who-focus-on-their-goals-are-successful",
-    "title": "जो लोग अपने लक्ष्य पर ध्यान केंद्रित करते हैं, वही सफल होते हैं।",
-    "translation": "Those who focus on their goals are successful.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/4.webp",
-    "music": "music/2.mp3"
-  },
-  {
-    "name": "the-greatest-joy-in-life-is-self-contentment",
-    "title": "जीवन में सबसे बड़ा सुख होता है आत्म-संतोष।",
-    "translation": "The greatest joy in life is self-contentment.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/5.jpeg",
-    "music": "music/3.mp3"
-  },
-  {
-    "name": "those-who-love-their-work-are-successful",
-    "title": "जो लोग अपने काम से प्यार करते हैं, वही सफल होते हैं।",
-    "translation": "Those who love their work are successful.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/6.jpg",
-    "music": "music/4.mp3"
-  },
-  {
-    "name": "the-greatest-gift-in-life-is-family",
-    "title": "जीवन में सबसे बड़ा उपहार होता है परिवार।",
-    "translation": "The greatest gift in life is family.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/wallpaper.jpg",
-    "music": "music/5.mp3"
+    "img": "images/pixlr-image-generator-cab1b292-05ed-498a-b4b1-a9a452d6a6a5.png",
+    "music": "music/Pure-Ambient-No-Copyright-Music-01-Pure-Ambient.mp3"
   },
   {
     "name": "those-who-respect-their-family-are-successful",
@@ -554,17 +491,8 @@
     "translation": "Those who respect their family are successful.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/1.jpg",
-    "music": "music/bansuri.mp3"
-  },
-  {
-    "name": "the-greatest-joy-in-life-is-helping-others",
-    "title": "जीवन में सबसे बड़ा सुख होता है दूसरों की मदद करना।",
-    "translation": "The greatest joy in life is helping others.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/2.jpg",
-    "music": "music/BeachSerenity.mp3"
+    "img": "images/pixlr-image-generator-d02251b9-41eb-41c5-8b7e-c2b62367ff6d.png",
+    "music": "music/Reflections-No-Copyright-Music-01-Reflections.mp3"
   },
   {
     "name": "those-who-respect-their-friends-are-successful",
@@ -572,8 +500,8 @@
     "translation": "Those who respect their friends are successful.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/3.jpg",
-    "music": "music/1.mp3"
+    "img": "images/pixlr-image-generator-e3c5630b-7379-494a-93ef-36ab59445f80.png",
+    "music": "music/RelaxingMoment.mp3"
   },
   {
     "name": "the-greatest-wealth-in-life-is-health",
@@ -581,8 +509,8 @@
     "translation": "The greatest wealth in life is health.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/4.webp",
-    "music": "music/2.mp3"
+    "img": "images/pixlr-image-generator-e92d9096-269b-449c-9151-e7051ed9dc54.png",
+    "music": "music/Rio-Samba-Free-No-Copyright-Music-by-Liborio-Conti-01-Rio-Samba-Full-Track.mp3"
   },
   {
     "name": "those-who-take-care-of-their-health-are-successful",
@@ -590,8 +518,8 @@
     "translation": "Those who take care of their health are successful.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/5.jpeg",
-    "music": "music/3.mp3"
+    "img": "images/pixlr-image-generator-ea5d7d89-61c0-4336-83cd-e955a489faeb.png",
+    "music": "music/SerenityInTheWoods.mp3"
   },
   {
     "name": "the-greatest-joy-in-life-is-seeing-others-happy",
@@ -599,8 +527,8 @@
     "translation": "The greatest joy in life is seeing others happy.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/6.jpg",
-    "music": "music/4.mp3"
+    "img": "images/pixlr-image-generator-eb880562-2f02-4ec2-bbe9-b1a8d6b3a973.png",
+    "music": "music/Skyline-Free-No-Copyright-Music-by-Liborio-Conti-01-Skyline-Full-Track.mp3"
   },
   {
     "name": "those-who-listen-to-their-mind-are-successful",
@@ -608,8 +536,8 @@
     "translation": "Those who listen to their mind are successful.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/wallpaper.jpg",
-    "music": "music/5.mp3"
+    "img": "images/pixlr-image-generator-f6ca4eda-c6df-4ae8-85bf-a0b8ffc4bec7.png",
+    "music": "music/SoftAndFragile.mp3"
   },
   {
     "name": "the-greatest-gift-in-life-is-love",
@@ -617,8 +545,8 @@
     "translation": "The greatest gift in life is love.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/1.jpg",
-    "music": "music/bansuri.mp3"
+    "img": "images/pixlr-image-generator-f8dcdc84-24c5-4d1b-a53b-682fd557a983.png",
+    "music": "music/Summer-Pack-No-Copyright-Music-01-Summer-FULL-TRACK.mp3"
   },
   {
     "name": "those-who-listen-to-their-heart-are-successful",
@@ -626,8 +554,8 @@
     "translation": "Those who listen to their heart are successful.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/2.jpg",
-    "music": "music/BeachSerenity.mp3"
+    "img": "images/pixlr-image-generator-fb0dd7e6-7755-4100-b0b9-3e5090f456a1.png",
+    "music": "music/Sunny-Skies-No-Copyright-Music.com-01-Sunny-Skies.mp3"
   },
   {
     "name": "the-greatest-joy-in-life-is-serving-others",
@@ -635,8 +563,8 @@
     "translation": "The greatest joy in life is serving others.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/3.jpg",
-    "music": "music/1.mp3"
+    "img": "images/s2 (1).webp",
+    "music": "music/TheCalling.mp3"
   },
   {
     "name": "mother-and-motherland-are-greater-than-heaven",
@@ -644,7 +572,7 @@
     "translation": "Mother and motherland are greater than heaven.",
     "filter": "ForestFilter",
     "video": "",
-    "img": "images/4.webp",
-    "music": "music/2.mp3"
+    "img": "images/s2.webp",
+    "music": "music/TibetanBowls.mp3"
   }
 ]
