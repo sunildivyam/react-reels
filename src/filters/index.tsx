@@ -2,7 +2,7 @@ import { AbsoluteFill } from "remotion";
 
 
 /**
- * Keep Adding overlay filters here, and use filter name in the data of dynamicReels
+ * Keep Adding overlay filters here, and use filter name in the data of quoteReels
  */
 export interface FilterType {
   [key: string]: React.FC

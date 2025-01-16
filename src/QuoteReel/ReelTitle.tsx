@@ -134,7 +134,7 @@ const ReelTitle: React.FC<ReelTitleProps> = ({ title, translation }) => {
               textShadow: '4px -12px 1px black',
               borderRadius: '0.5em',
               padding: '0.5em',
-              margin: '0.5em',
+              margin: '0.2em',
               fontSize: '7em',
               textAlign: 'center'
             }}

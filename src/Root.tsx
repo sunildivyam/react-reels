@@ -1,11 +1,11 @@
 import './tailwind.css';
 import { Composition } from "remotion";
 import { reelSchema } from './Reel/Reel';
-import quotes from './data/quotes.json';
+import quotes from './QuoteReel/data/quotes.json';
 import { Video } from './Video/Video'
 import { MyAudio } from './MyAudio/MyAudio';
 import { TransitionVideo } from './TransitionVideo/TransitionVideo';
-import { calculateMetadata, DynamicReel } from './DynamicReel';
+import { calculateMetadata, QuoteReel } from './QuoteReel';
 
 // Each <Composition> is an entry in the sidebar!
 
@@ -55,8 +55,8 @@ export const RemotionRoot: React.FC = () => {
       />
 
       <Composition
-        id='dynamicReel'
-        component={DynamicReel}
+        id='quoteReel'
+        component={QuoteReel}
         durationInFrames={30 * 30}
         fps={30}
         width={1080}

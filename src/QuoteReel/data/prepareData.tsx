@@ -1,4 +1,4 @@
-import { DynamicReelType } from "../DynamicReel";
+import { QuoteReelType } from "../QuoteReel";
 import json from './quotes.json';
 
 import fs from 'fs';
@@ -15,9 +15,9 @@ const getFilesFromDirectory = async (directoryPath: string): Promise<string[]> =
 };
 
 export const readDataFromDirectories = async (): Promise<{ images: string[], videos: string[], musics: string[] }> => {
-  const imagesDirectory = path.join(__dirname, '../../public/images');
-  const videosDirectory = path.join(__dirname, '../../public/videos');
-  const musicDirectory = path.join(__dirname, '../../public/music');
+  const imagesDirectory = path.join(__dirname, '../../../public/images');
+  const videosDirectory = path.join(__dirname, '../../../public/videos');
+  const musicDirectory = path.join(__dirname, '../../../public/music');
 
   const [images, videos, musics] = await Promise.all([
     getFilesFromDirectory(imagesDirectory),
@@ -28,7 +28,7 @@ export const readDataFromDirectories = async (): Promise<{ images: string[], vid
   return { images, videos, musics };
 };
 
-export const getUpdatedJson = (json: Array<DynamicReelType>, images: Array<string>, videos: Array<string>, musics: Array<string>) => {
+export const getUpdatedJson = (json: Array<QuoteReelType>, images: Array<string>, videos: Array<string>, musics: Array<string>) => {
   const updatedJson = json.map((item, index) => {
     let video = '';
     let img = '';
@@ -54,7 +54,7 @@ export const getUpdatedJson = (json: Array<DynamicReelType>, images: Array<strin
   return updatedJson;
 }
 
-export const saveToJsonFile = async (json: Array<DynamicReelType>, fileName: string) => {
+export const saveToJsonFile = async (json: Array<QuoteReelType>, fileName: string) => {
   const filePath = path.join(__dirname, fileName);
   await fs.promises.writeFile(filePath, JSON.stringify(json, null, 2), 'utf-8')
 }
@@ -62,7 +62,7 @@ export const saveToJsonFile = async (json: Array<DynamicReelType>, fileName: str
 export const prepareJson = async () => {
   try {
     const { images, videos, musics } = await readDataFromDirectories();
-    const updatedJson = await getUpdatedJson(json as Array<DynamicReelType>, images, videos, musics);
+    const updatedJson = await getUpdatedJson(json as Array<QuoteReelType>, images, videos, musics);
     await saveToJsonFile(updatedJson, './final-quotes.json');
     console.log('Updated file saved');
   } catch (error) {

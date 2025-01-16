@@ -5,7 +5,7 @@ import ReelTitle from "./ReelTitle";
 import { ReelVideo } from "./ReelVideo";
 import { OverlayFilters } from "../filters";
 
-export type DynamicReelType = {
+export type QuoteReelType = {
   name: string;
   title: string;
   translation: string;
@@ -16,7 +16,7 @@ export type DynamicReelType = {
 }
 
 
-export const DynamicReel: React.FC<DynamicReelType> = ({ title, img, music, video, filter, translation }) => {
+export const QuoteReel: React.FC<QuoteReelType> = ({ title, img, music, video, filter, translation }) => {
   const { durationInFrames } = useVideoConfig();
   const OverlayFilter = OverlayFilters[filter || ''];
 

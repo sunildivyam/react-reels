@@ -1,11 +1,11 @@
 import path from "path";
 import { bundle } from "@remotion/bundler";
 import { selectComposition, renderMedia } from "@remotion/renderer";
-import quotes from "./data/final-quotes.json";
-import { DynamicReelType } from "./DynamicReel";
+import quotes from "./QuoteReel/data/final-quotes.json";
+import { QuoteReelType } from "./QuoteReel";
 
 const renderOne = async (
-  dynamicReel: DynamicReelType,
+  quoteReel: QuoteReelType,
   bundleLocation: string,
   compositionId: string,
 ) => {
@@ -18,17 +18,17 @@ const renderOne = async (
     // in the composition list. Use this if you want to dynamically set the duration or
     // dimensions of the video.
     serveUrl: bundleLocation,
-    inputProps: dynamicReel,
+    inputProps: quoteReel,
     id: compositionId,
   });
 
-  const outputLocation = `out/${dynamicReel.name}.mp4`;
+  const outputLocation = `out/${quoteReel.name}.mp4`;
   await renderMedia({
     composition,
     serveUrl: bundleLocation,
     codec: "h264",
     outputLocation,
-    inputProps: dynamicReel,
+    inputProps: quoteReel,
     onProgress: (progress) => {
       // prints the info in same line
       process.stdout.write(
@@ -41,7 +41,7 @@ const renderOne = async (
 
 const start = async () => {
   // The composition you want to render
-  const compositionId = "dynamicReel";
+  const compositionId = "quoteReel";
 
   // You only have to do this once, you can reuse the bundle.
   const entry = "src/index.ts";
@@ -53,10 +53,10 @@ const start = async () => {
   });
 
   for (const element of quotes) {
-    const singleDynamicReel = { ...element };
-    await renderOne(singleDynamicReel, bundleLocation, compositionId).catch(
+    const singleQuoteReel = { ...element };
+    await renderOne(singleQuoteReel, bundleLocation, compositionId).catch(
       (error) => {
-        console.error(`Skipped: ${singleDynamicReel.name}`, error);
+        console.error(`Skipped: ${singleQuoteReel.name}`, error);
       },
     );
   }

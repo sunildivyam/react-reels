@@ -1,6 +1,6 @@
 import { AbsoluteFill, CalculateMetadataFunction, interpolate, OffthreadVideo, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { parseMedia } from '@remotion/media-parser';
-import { DynamicReelType } from "./DynamicReel";
+import { QuoteReelType } from "./QuoteReel";
 import { useCallback, useRef } from "react";
 import { getImageFilter } from "../filters";
 
@@ -9,7 +9,7 @@ type ReelVideoProps = {
   filter: string;
 }
 
-export const calculateMetadata: CalculateMetadataFunction<DynamicReelType> = async ({ props }) => {
+export const calculateMetadata: CalculateMetadataFunction<QuoteReelType> = async ({ props }) => {
   const fps = 30;
 
   if (props.video) {
