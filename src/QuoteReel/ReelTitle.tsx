@@ -88,9 +88,9 @@ const ReelTitle: React.FC<ReelTitleProps> = ({ title, translation }) => {
       <AbsoluteFill>
         <p
           style={{
-            backgroundColor: 'rgba(60, 60, 60, 0.4)',
+            // backgroundColor: 'rgba(60, 60, 60, 0.4)',
             color: 'rgba(255,255,255, 1)',
-            textShadow: '4px -5px 1px rgb(255, 242, 0)',
+            textShadow: '3px -3px 1px rgb(255, 242, 0)',
             borderRadius: '0.5em',
             padding: '0.5em',
             margin: '0.5em',
@@ -129,7 +129,7 @@ const ReelTitle: React.FC<ReelTitleProps> = ({ title, translation }) => {
         {
           phrases.map(w => <p
             style={{
-              backgroundColor: 'rgba(0, 0, 0, 0.2)',
+              // backgroundColor: 'rgba(0, 0, 0, 0.2)',
               color: 'rgb(225, 255, 0)',
               textShadow: '4px -12px 1px black',
               borderRadius: '0.5em',
