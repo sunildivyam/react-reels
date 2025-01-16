@@ -32,9 +32,9 @@
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
     "lint": "eslint src --ext ts,tsx,js,jsx && tsc",
-    "render-from-data": "ts-node ./src/render.ts --exit-child",
-    "render": "remotion render quoteReel out/quote-reel.mp4",
-    "prepareData": "ts-node ./src/QuoteReel/data/prepareData.tsx"
+    "prepareQuoteReels": "ts-node ./src/QuoteReel/data/prepareData.tsx",
+    "renderQuoteReels": "ts-node ./src/render.ts --exit-child",
+    "renderQuoteReel": "remotion render quoteReel out/quote-reel.mp4"
   },
   "sideEffects": [
     "*.css"
