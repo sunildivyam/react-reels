@@ -1,7 +1,7 @@
 import './tailwind.css';
 import { Composition } from "remotion";
 import { reelSchema } from './Reel/Reel';
-import { quotes } from './data/Quotes';
+import quotes from './data/quotes.json';
 import { Video } from './Video/Video'
 import { MyAudio } from './MyAudio/MyAudio';
 import { TransitionVideo } from './TransitionVideo/TransitionVideo';
@@ -64,12 +64,13 @@ export const RemotionRoot: React.FC = () => {
         calculateMetadata={calculateMetadata}
         defaultProps={
           {
-            name: 'wallpaper',
-            img: 'wallpaper.jpg',
-            // video: 'reel2.mp4',
-            music: 'bansuri.mp3',
-            filter: 'ForestFilter',
-            title: "जीवन का सफ़र कभी आसान नहीं होता, लेकिन उस सफ़र में मिलने वाले अनुभव ही हमें मजबूत बनाते हैं। जीवन के सफ़र में खुशियाँ भी मिलेंगी और दुख भी, लेकिन हमें हर परिस्थिति का सामना करते हुए आगे बढ़ना है।",
+            "name": "dreams-are-not-what-we-see-while-sleeping-dreams-are-what-keep-us-awake",
+            "title": "सपने वो नहीं जो हम सोते वक्त देखते हैं, सपने वो हैं जो हमें सोने नहीं देते।",
+            "translation": "Dreams are not what we see while sleeping, dreams are what keep us awake.",
+            "filter": "ForestFilter",
+            "video": "reel2.mp4",
+            "img": "",
+            "music": "bansuri.mp3"
           }
         }
       />

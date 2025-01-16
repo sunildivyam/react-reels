@@ -1,7 +1,7 @@
 import path from "path";
 import { bundle } from "@remotion/bundler";
 import { selectComposition, renderMedia } from "@remotion/renderer";
-import { quotes } from "./data/Quotes";
+import quotes from "./data/final-quotes.json";
 import { DynamicReelType } from "./DynamicReel";
 
 const renderOne = async (

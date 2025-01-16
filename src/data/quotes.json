@@ -1,0 +1,362 @@
+[
+  {
+    "name": "life-is-a-journey-not-a-destination",
+    "title": "जीवन एक यात्रा है, गंतव्य नहीं।",
+    "translation": "Life is a journey, not a destination."
+  },
+  {
+    "name": "what-is-gone-is-gone-what-is-to-come-will-come",
+    "title": "जो बीत गया सो बीत गया, जो आना है वो आएगा।",
+    "translation": "What is gone is gone, what is to come will come."
+  },
+  {
+    "name": "not-giving-up-is-victory",
+    "title": "हार नहीं मानना ही जीत है।",
+    "translation": "Not giving up is victory."
+  },
+  {
+    "name": "dreams-are-not-what-we-see-while-sleeping-dreams-are-what-keep-us-awake",
+    "title": "सपने वो नहीं जो हम सोते वक्त देखते हैं, सपने वो हैं जो हमें सोने नहीं देते।",
+    "translation": "Dreams are not what we see while sleeping, dreams are what keep us awake."
+  },
+  {
+    "name": "the-biggest-enemy-in-life-is-our-own-fear",
+    "title": "जीवन में सबसे बड़ा दुश्मन होता है खुद का डर।",
+    "translation": "The biggest enemy in life is our own fear."
+  },
+  {
+    "name": "those-who-fear-do-not-win",
+    "title": "जो डरता है वो जीता नहीं।",
+    "translation": "Those who fear do not win."
+  },
+  {
+    "name": "change-yourself-the-world-will-change-itself",
+    "title": "खुद को बदल लो, दुनिया खुद बदल जाएगी।",
+    "translation": "Change yourself, the world will change itself."
+  },
+  {
+    "name": "there-is-no-shortcut-to-success",
+    "title": "सफलता का कोई शॉर्टकट नहीं होता।",
+    "translation": "There is no shortcut to success."
+  },
+  {
+    "name": "the-fruit-of-hard-work-is-never-bad",
+    "title": "मेहनत का फल कभी खराब नहीं होता।",
+    "translation": "The fruit of hard work is never bad."
+  },
+  {
+    "name": "if-you-cannot-change-anything-change-your-attitude",
+    "title": "अगर आप कुछ भी नहीं बदल सकते तो अपना नजरिया बदल डालो।",
+    "translation": "If you cannot change anything, change your attitude."
+  },
+  {
+    "name": "the-biggest-gift-in-life-is-today",
+    "title": "जीवन में सबसे बड़ा उपहार है आज का दिन।",
+    "translation": "The biggest gift in life is today."
+  },
+  {
+    "name": "the-secret-to-happiness-is-to-feel-small-joys",
+    "title": "खुश रहने का राज है छोटी-छोटी खुशियों को महसूस करना।",
+    "translation": "The secret to happiness is to feel small joys."
+  },
+  {
+    "name": "the-greatest-power-in-the-world-is-love",
+    "title": "दुनिया में सबसे बड़ी ताकत है प्यार।",
+    "translation": "The greatest power in the world is love."
+  },
+  {
+    "name": "forgiveness-is-not-weakness-but-a-courageous-act",
+    "title": "माफ़ करना कमज़ोरी नहीं बल्कि हिम्मत का काम है।",
+    "translation": "Forgiveness is not weakness but a courageous act."
+  },
+  {
+    "name": "never-give-up-in-life-because-failure-is-the-key-to-success",
+    "title": "जीवन में कभी हार नहीं माननी चाहिए, क्योंकि असफलता सफलता की कुंजी है।",
+    "translation": "Never give up in life, because failure is the key to success."
+  },
+  {
+    "name": "walk-the-path-that-scares-you",
+    "title": "जिस रास्ते पर चलने से डर लगता है, उसी रास्ते पर चलना चाहिए।",
+    "translation": "Walk the path that scares you."
+  },
+  {
+    "name": "the-biggest-enemy-in-life-is-our-own-ego",
+    "title": "जीवन में सबसे बड़ा दुश्मन होता है खुद का अहंकार।",
+    "translation": "The biggest enemy in life is our own ego."
+  },
+  {
+    "name": "those-who-help-others-get-help-themselves",
+    "title": "जो लोग दूसरों की मदद करते हैं, उनकी मदद खुद हो जाती है।",
+    "translation": "Those who help others get help themselves."
+  },
+  {
+    "name": "the-biggest-gift-in-life-is-time",
+    "title": "जीवन में सबसे बड़ा उपहार है समय।",
+    "translation": "The biggest gift in life is time."
+  },
+  {
+    "name": "time-heals-everything",
+    "title": "समय सब कुछ ठीक कर देता है।",
+    "translation": "Time heals everything."
+  },
+  {
+    "name": "the-greatest-joy-in-life-is-making-others-happy",
+    "title": "जीवन में सबसे बड़ी खुशी है दूसरों को खुश करना।",
+    "translation": "The greatest joy in life is making others happy."
+  },
+  {
+    "name": "be-kind-because-kindness-is-the-greatest-virtue",
+    "title": "दयालु बनो, क्योंकि दयालुता सबसे बड़ा गुण है।",
+    "translation": "Be kind, because kindness is the greatest virtue."
+  },
+  {
+    "name": "victory-is-in-the-mind",
+    "title": "मन के हारे हार है, मन के जीते जीत है।",
+    "translation": "Victory is in the mind."
+  },
+  {
+    "name": "be-a-support-to-those-who-have-no-support",
+    "title": "जिसका कोई सहारा नहीं, उसका सहारा बनो।",
+    "translation": "Be a support to those who have no support."
+  },
+  {
+    "name": "the-biggest-enemy-in-life-is-our-own-laziness",
+    "title": "जीवन में सबसे बड़ा दुश्मन होता है खुद का आलस्य।",
+    "translation": "The biggest enemy in life is our own laziness."
+  },
+  {
+    "name": "those-who-listen-to-others-are-successful",
+    "title": "जो लोग दूसरों की बात सुनते हैं, वही सफल होते हैं।",
+    "translation": "Those who listen to others are successful."
+  },
+  {
+    "name": "the-biggest-gift-in-life-is-health",
+    "title": "जीवन में सबसे बड़ा उपहार है स्वास्थ्य।",
+    "translation": "The biggest gift in life is health."
+  },
+  {
+    "name": "a-healthy-mind-resides-in-a-healthy-body",
+    "title": "स्वस्थ शरीर में ही स्वस्थ मन का वास होता है।",
+    "translation": "A healthy mind resides in a healthy body."
+  },
+  {
+    "name": "the-biggest-enemy-in-life-is-our-own-anger",
+    "title": "जीवन में सबसे बड़ा दुश्मन होता है खुद का गुस्सा।",
+    "translation": "The biggest enemy in life is our own anger."
+  },
+  {
+    "name": "count-to-ten-before-getting-angry",
+    "title": "गुस्सा करने से पहले दस तक गिनती गिनो।",
+    "translation": "Count to ten before getting angry."
+  },
+  {
+    "name": "the-biggest-enemy-in-life-is-our-own-greed",
+    "title": "जीवन में सबसे बड़ा दुश्मन होता है खुद का लालच।",
+    "translation": "The biggest enemy in life is our own greed."
+  },
+  {
+    "name": "be-the-change-you-want-to-see-in-the-world",
+    "title": "अगर आप दुनिया में जो बदलाव देखना चाहते हैं, वह बदलाव आप ही बनिए।",
+    "translation": "Be the change you want to see in the world."
+  },
+  {
+    "name": "dreams-are-not-what-we-see-while-sleeping-dreams-are-what-keep-us-awake",
+    "title": "सपने वो नहीं जो हम सोते वक्त देखते हैं, सपने वो हैं जो हमें सोने नहीं देते।",
+    "translation": "Dreams are not what we see while sleeping, dreams are what keep us awake."
+  },
+  {
+    "name": "challenges-come-in-life-but-facing-them-is-life",
+    "title": "जीवन में चुनौतियां आती हैं, लेकिन उनका सामना करना ही जीवन है।",
+    "translation": "Challenges come in life, but facing them is life."
+  },
+  {
+    "name": "slowly-everything-happens",
+    "title": "धीरे धीरे रे मना, धीरे सब कुछ होय, माली सींचे सौ घड़ा, ऋतु आए फल होय।",
+    "translation": "Slowly, everything happens."
+  },
+  {
+    "name": "those-who-chase-their-dreams-are-successful",
+    "title": "जो लोग अपने सपनों का पीछा करते हैं, वही सफल होते हैं।",
+    "translation": "Those who chase their dreams are successful."
+  },
+  {
+    "name": "the-greatest-teacher-in-life-is-experience",
+    "title": "जीवन में सबसे बड़ा शिक्षक होता है अनुभव।",
+    "translation": "The greatest teacher in life is experience."
+  },
+  {
+    "name": "those-who-work-hard-are-successful",
+    "title": "जो लोग मेहनत करते हैं, वही सफल होते हैं।",
+    "translation": "Those who work hard are successful."
+  },
+  {
+    "name": "the-greatest-wealth-in-life-is-contentment",
+    "title": "जीवन में सबसे बड़ा धन होता है संतोष।",
+    "translation": "The greatest wealth in life is contentment."
+  },
+  {
+    "name": "those-who-focus-on-their-goals-are-successful",
+    "title": "जो लोग अपने लक्ष्य पर ध्यान केंद्रित करते हैं, वही सफल होते हैं।",
+    "translation": "Those who focus on their goals are successful."
+  },
+  {
+    "name": "the-greatest-joy-in-life-is-self-contentment",
+    "title": "जीवन में सबसे बड़ा सुख होता है आत्म-संतोष।",
+    "translation": "The greatest joy in life is self-contentment."
+  },
+  {
+    "name": "those-who-believe-in-themselves-are-successful",
+    "title": "जो लोग अपने आप पर विश्वास करते हैं, वही सफल होते हैं।",
+    "translation": "Those who believe in themselves are successful."
+  },
+  {
+    "name": "the-greatest-friend-in-life-is-self-confidence",
+    "title": "जीवन में सबसे बड़ा मित्र होता है आत्मविश्वास।",
+    "translation": "The greatest friend in life is self-confidence."
+  },
+  {
+    "name": "those-who-utilize-their-time-are-successful",
+    "title": "जो लोग अपने समय का सदुपयोग करते हैं, वही सफल होते हैं।",
+    "translation": "Those who utilize their time are successful."
+  },
+  {
+    "name": "the-greatest-enemy-in-life-is-laziness",
+    "title": "जीवन में सबसे बड़ा शत्रु होता है आलस्य।",
+    "translation": "The greatest enemy in life is laziness."
+  },
+  {
+    "name": "those-who-love-their-work-are-successful",
+    "title": "जो लोग अपने काम से प्यार करते हैं, वही सफल होते हैं।",
+    "translation": "Those who love their work are successful."
+  },
+  {
+    "name": "the-greatest-gift-in-life-is-family",
+    "title": "जीवन में सबसे बड़ा उपहार होता है परिवार।",
+    "translation": "The greatest gift in life is family."
+  },
+  {
+    "name": "those-who-are-honest-in-their-work-are-successful",
+    "title": "जो लोग अपने काम में ईमानदारी रखते हैं, वही सफल होते हैं।",
+    "translation": "Those who are honest in their work are successful."
+  },
+  {
+    "name": "the-greatest-wealth-in-life-is-knowledge",
+    "title": "जीवन में सबसे बड़ा धन होता है ज्ञान।",
+    "translation": "The greatest wealth in life is knowledge."
+  },
+  {
+    "name": "those-who-utilize-their-knowledge-are-successful",
+    "title": "जो लोग अपने ज्ञान का सदुपयोग करते हैं, वही सफल होते हैं।",
+    "translation": "Those who utilize their knowledge are successful."
+  },
+  {
+    "name": "the-greatest-joy-in-life-is-doing-good-for-others",
+    "title": "जीवन में सबसे बड़ा सुख होता है दूसरों की भलाई करना।",
+    "translation": "The greatest joy in life is doing good for others."
+  },
+  {
+    "name": "those-who-understand-themselves-are-successful",
+    "title": "जो लोग अपने आप को समझते हैं, वही सफल होते हैं।",
+    "translation": "Those who understand themselves are successful."
+  },
+  {
+    "name": "the-greatest-gift-in-life-is-time",
+    "title": "जीवन में सबसे बड़ा उपहार होता है समय।",
+    "translation": "The greatest gift in life is time."
+  },
+  {
+    "name": "those-who-utilize-their-time-wisely-are-successful",
+    "title": "जो लोग अपने समय का सही उपयोग करते हैं, वही सफल होते हैं।",
+    "translation": "Those who utilize their time wisely are successful."
+  },
+  {
+    "name": "the-greatest-joy-in-life-is-helping-others",
+    "title": "जीवन में सबसे बड़ा सुख होता है दूसरों की मदद करना।",
+    "translation": "The greatest joy in life is helping others."
+  },
+  {
+    "name": "those-who-believe-in-themselves-are-successful",
+    "title": "जो लोग अपने आप पर विश्वास करते हैं, वही सफल होते हैं।",
+    "translation": "Those who believe in themselves are successful."
+  },
+  {
+    "name": "the-greatest-wealth-in-life-is-contentment",
+    "title": "जीवन में सबसे बड़ा धन होता है संतोष।",
+    "translation": "The greatest wealth in life is contentment."
+  },
+  {
+    "name": "those-who-focus-on-their-goals-are-successful",
+    "title": "जो लोग अपने लक्ष्य पर ध्यान केंद्रित करते हैं, वही सफल होते हैं।",
+    "translation": "Those who focus on their goals are successful."
+  },
+  {
+    "name": "the-greatest-joy-in-life-is-self-contentment",
+    "title": "जीवन में सबसे बड़ा सुख होता है आत्म-संतोष।",
+    "translation": "The greatest joy in life is self-contentment."
+  },
+  {
+    "name": "those-who-love-their-work-are-successful",
+    "title": "जो लोग अपने काम से प्यार करते हैं, वही सफल होते हैं।",
+    "translation": "Those who love their work are successful."
+  },
+  {
+    "name": "the-greatest-gift-in-life-is-family",
+    "title": "जीवन में सबसे बड़ा उपहार होता है परिवार।",
+    "translation": "The greatest gift in life is family."
+  },
+  {
+    "name": "those-who-respect-their-family-are-successful",
+    "title": "जो लोग अपने परिवार का सम्मान करते हैं, वही सफल होते हैं।",
+    "translation": "Those who respect their family are successful."
+  },
+  {
+    "name": "the-greatest-joy-in-life-is-helping-others",
+    "title": "जीवन में सबसे बड़ा सुख होता है दूसरों की मदद करना।",
+    "translation": "The greatest joy in life is helping others."
+  },
+  {
+    "name": "those-who-respect-their-friends-are-successful",
+    "title": "जो लोग अपने दोस्तों का सम्मान करते हैं, वही सफल होते हैं।",
+    "translation": "Those who respect their friends are successful."
+  },
+  {
+    "name": "the-greatest-wealth-in-life-is-health",
+    "title": "जीवन में सबसे बड़ा धन होता है स्वास्थ्य।",
+    "translation": "The greatest wealth in life is health."
+  },
+  {
+    "name": "those-who-take-care-of-their-health-are-successful",
+    "title": "जो लोग अपने स्वास्थ्य का ध्यान रखते हैं, वही सफल होते हैं।",
+    "translation": "Those who take care of their health are successful."
+  },
+  {
+    "name": "the-greatest-joy-in-life-is-seeing-others-happy",
+    "title": "जीवन में सबसे बड़ा सुख होता है दूसरों को खुश देखना।",
+    "translation": "The greatest joy in life is seeing others happy."
+  },
+  {
+    "name": "those-who-listen-to-their-mind-are-successful",
+    "title": "जो लोग अपने मन की सुनते हैं, वही सफल होते हैं।",
+    "translation": "Those who listen to their mind are successful."
+  },
+  {
+    "name": "the-greatest-gift-in-life-is-love",
+    "title": "जीवन में सबसे बड़ा उपहार होता है प्रेम।",
+    "translation": "The greatest gift in life is love."
+  },
+  {
+    "name": "those-who-listen-to-their-heart-are-successful",
+    "title": "जो लोग अपने दिल की सुनते हैं, वही सफल होते हैं।",
+    "translation": "Those who listen to their heart are successful."
+  },
+  {
+    "name": "the-greatest-joy-in-life-is-serving-others",
+    "title": "जीवन में सबसे बड़ा सुख होता है दूसरों की सेवा करना।",
+    "translation": "The greatest joy in life is serving others."
+  },
+  {
+    "name": "mother-and-motherland-are-greater-than-heaven",
+    "title": "जननी जन्मभूमिश्च स्वर्गादपि गरीयसी।",
+    "translation": "Mother and motherland are greater than heaven."
+  }
+]

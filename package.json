@@ -33,7 +33,8 @@
     "upgrade": "remotion upgrade",
     "lint": "eslint src --ext ts,tsx,js,jsx && tsc",
     "render-from-data": "ts-node ./src/render.ts --exit-child",
-    "render": "remotion render dynamicReel out/dynamic-reel.mp4"
+    "render": "remotion render dynamicReel out/dynamic-reel.mp4",
+    "prepareData": "ts-node ./src/data/prepareData.tsx"
   },
   "sideEffects": [
     "*.css"

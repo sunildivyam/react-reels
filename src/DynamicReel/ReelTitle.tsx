@@ -3,6 +3,7 @@ import { AbsoluteFill, Easing, interpolate, Sequence, useCurrentFrame, useVideoC
 
 interface ReelTitleProps {
   title: string;
+  translation: string;
 }
 
 const WORDS_DURATION_PART = 5;
@@ -18,11 +19,11 @@ const generatePhrases = (text: string, chars: Array<string>) => {
   return result.map(part => part.trim()).filter(part => part);
 }
 
-const ReelTitle: React.FC<ReelTitleProps> = ({ title }) => {
+const ReelTitle: React.FC<ReelTitleProps> = ({ title, translation }) => {
   const frame = useCurrentFrame();
   const { fps, durationInFrames } = useVideoConfig();
 
-  const phrases = generatePhrases(title, ['। ', '. ', ', ']);
+  const phrases = generatePhrases(translation, ['। ', '. ', ', ']);
   const words = title.split(' ');
 
   const wordsEndFrame = durationInFrames / WORDS_DURATION_PART;
@@ -89,10 +90,11 @@ const ReelTitle: React.FC<ReelTitleProps> = ({ title }) => {
           style={{
             backgroundColor: 'rgba(60, 60, 60, 0.4)',
             color: 'rgba(255,255,255, 1)',
+            textShadow: '4px -5px 1px rgb(255, 242, 0)',
             borderRadius: '0.5em',
             padding: '0.5em',
             margin: '0.5em',
-            fontSize: '5em',
+            fontSize: '6em',
             textAlign: 'center',
             transform: `scale(${titleScale}) translateY(${titleMoveY}%)`,
             opacity: titleOpacity
@@ -127,12 +129,13 @@ const ReelTitle: React.FC<ReelTitleProps> = ({ title }) => {
         {
           phrases.map(w => <p
             style={{
-              backgroundColor: 'rgba(0, 0, 0, 0.4)',
+              backgroundColor: 'rgba(0, 0, 0, 0.2)',
               color: 'rgb(225, 255, 0)',
+              textShadow: '4px -12px 1px black',
               borderRadius: '0.5em',
               padding: '0.5em',
               margin: '0.5em',
-              fontSize: '5em',
+              fontSize: '7em',
               textAlign: 'center'
             }}
           >{w}</p>)
