@@ -23,7 +23,6 @@ const renderOne = async (
   });
 
   const outputLocation = `out/${dynamicReel.name}.mp4`;
-  console.log("Attempting to render:", outputLocation);
   await renderMedia({
     composition,
     serveUrl: bundleLocation,
@@ -31,11 +30,13 @@ const renderOne = async (
     outputLocation,
     inputProps: dynamicReel,
     onProgress: (progress) => {
-      console.log(progress);
+      // prints the info in same line
+      process.stdout.write(
+        `${outputLocation} | ${progress.stitchStage} | ${Math.floor(progress.progress * 100)}% \r`,
+      );
     },
   });
-
-  console.log("Render done!");
+  console.log(`${outputLocation} | DONE`);
 };
 
 const start = async () => {
@@ -59,7 +60,6 @@ const start = async () => {
       },
     );
   }
-  console.log("All compositions rendered.");
 };
 
 start()
