@@ -16,7 +16,7 @@ export const Video: React.FC = () => {
             style={{
               transform: 'scale(1)'
             }}
-            src={staticFile("videos/shri-laxmi-tree.mp4")}
+            src={staticFile("myvideo.mp4")}
             volume={(f) =>
               interpolate(f, [0, 240], [0, 1], { extrapolateLeft: "clamp" })
             }

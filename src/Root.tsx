@@ -25,7 +25,7 @@ export const RemotionRoot: React.FC = () => {
         // https://www.remotion.dev/docs/parametrized-rendering
         schema={reelSchema}
         defaultProps={{
-          image: 'images/wallpaper.jpg',
+          image: 'wallpaper.jpg',
           bgColor: 'rgba(0,255,0,1)',
           gradient: '',
           color: 'rgba(255,0,0,1)',
@@ -65,9 +65,9 @@ export const RemotionRoot: React.FC = () => {
         defaultProps={
           {
             name: 'wallpaper',
-            img: 'images/6.jpg',
-            // video: 'videos/reel4.mp4',
-            music: 'music/bansuri.mp3',
+            img: 'wallpaper.jpg',
+            // video: 'reel2.mp4',
+            music: 'bansuri.mp3',
             filter: 'ForestFilter',
             title: "जीवन का सफ़र कभी आसान नहीं होता, लेकिन उस सफ़र में मिलने वाले अनुभव ही हमें मजबूत बनाते हैं। जीवन के सफ़र में खुशियाँ भी मिलेंगी और दुख भी, लेकिन हमें हर परिस्थिति का सामना करते हुए आगे बढ़ना है।",
           }
