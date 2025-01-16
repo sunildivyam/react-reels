@@ -9,16 +9,20 @@ const WORDS_DURATION_PART = 5;
 const WORD_SCALE = 5;
 const WORD_DURATION = 10;
 
-const generatePhrases = (text: string = '') => {
-  const result = [...text.split('।').map(p => p.split(','))].flat().map(p => p.trim()).filter(p => p);
-  return result;
+
+const generatePhrases = (text: string, chars: Array<string>) => {
+  let result: string[] = [text];
+  chars.forEach(char => {
+    result = result.flatMap(part => part.split(char));
+  });
+  return result.map(part => part.trim()).filter(part => part);
 }
 
 const ReelTitle: React.FC<ReelTitleProps> = ({ title }) => {
   const frame = useCurrentFrame();
   const { fps, durationInFrames } = useVideoConfig();
 
-  const phrases = generatePhrases(title);
+  const phrases = generatePhrases(title, ['। ', '. ', ', ']);
   const words = title.split(' ');
 
   const wordsEndFrame = durationInFrames / WORDS_DURATION_PART;
