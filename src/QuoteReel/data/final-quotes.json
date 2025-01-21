@@ -1,578 +1,196 @@
 [
   {
-    "name": "life-is-a-journey-not-a-destination",
-    "title": "जीवन एक यात्रा है, गंतव्य नहीं।",
-    "translation": "Life is a journey, not a destination.",
+    "name": "महाकुंभ 2025: भव्य आरंभ",
+    "title": "प्रयागराज में धूमधाम से शुरू हुआ महाकुंभ",
+    "summary": "लाखों श्रद्धालुओं ने पौष पूर्णिमा पर संगम में डुबकी लगाई, सुरक्षा व्यवस्था चाक-चौबंद.",
+    "translation": "Mahakumbh 2025: Grand Beginning",
+    "tags": [
+      "Mahakumbh",
+      "Prayagraj",
+      "Paush Purnima",
+      "Pilgrimage",
+      "India"
+    ],
     "filter": "ForestFilter",
-    "video": "videos/reel1.mp4",
-    "img": "",
-    "music": "music/01-Acoustic-Inspirational-Full-Track.mp3"
+    "videos": [],
+    "images": [
+      "images/0-171721532.jpg",
+      "images/4-1623180340.jpg"
+    ],
+    "music": "music/368 - Dyalla.mp3"
   },
   {
-    "name": "what-is-gone-is-gone-what-is-to-come-will-come",
-    "title": "जो बीत गया सो बीत गया, जो आना है वो आएगा।",
-    "translation": "What is gone is gone, what is to come will come.",
+    "name": "शाही स्नान: भक्तों की उमड़ी भीड़",
+    "title": "पौष पूर्णिमा पर शाही स्नान में लाखों श्रद्धालुओं ने किया डुबकी",
+    "summary": "संगम तट पर भारी भीड़, सुरक्षा बलों ने किया पुख्ता इंतजाम.",
+    "translation": "Royal Bath: Huge Crowd of Devotees",
+    "tags": [
+      "Royal Bath",
+      "Kumbh Mela",
+      "Devotees",
+      "Faith",
+      "India"
+    ],
     "filter": "ForestFilter",
-    "video": "",
-    "img": "images/1.jpg",
-    "music": "music/01-Amazing-Full-Track-1.mp3"
-  },
-  {
-    "name": "not-giving-up-is-victory",
-    "title": "हार नहीं मानना ही जीत है।",
-    "translation": "Not giving up is victory.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/2.jpg",
-    "music": "music/01-Bilateral-Tranquility-Variation-1.mp3"
-  },
-  {
-    "name": "dreams-are-not-what-we-see-while-sleeping-dreams-are-what-keep-us-awake",
-    "title": "सपने वो नहीं जो हम सोते वक्त देखते हैं, सपने वो हैं जो हमें सोने नहीं देते।",
-    "translation": "Dreams are not what we see while sleeping, dreams are what keep us awake.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/Designer (1).jpeg",
-    "music": "music/01-Inspire-Full-Track.mp3"
-  },
-  {
-    "name": "the-biggest-enemy-in-life-is-our-own-fear",
-    "title": "जीवन में सबसे बड़ा दुश्मन होता है खुद का डर।",
-    "translation": "The biggest enemy in life is our own fear.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/Designer (10).jpeg",
-    "music": "music/01-Inspiring-Upbeat-Ambient-Full-Track.mp3"
-  },
-  {
-    "name": "those-who-fear-do-not-win",
-    "title": "जो डरता है वो जीता नहीं।",
-    "translation": "Those who fear do not win.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/Designer (11).jpeg",
-    "music": "music/03-Bilateral-Harp.mp3"
-  },
-  {
-    "name": "change-yourself-the-world-will-change-itself",
-    "title": "खुद को बदल लो, दुनिया खुद बदल जाएगी।",
-    "translation": "Change yourself, the world will change itself.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/Designer (12).jpeg",
-    "music": "music/04-Bilateral-Stillness.mp3"
-  },
-  {
-    "name": "there-is-no-shortcut-to-success",
-    "title": "सफलता का कोई शॉर्टकट नहीं होता।",
-    "translation": "There is no shortcut to success.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/Designer (2).jpeg",
-    "music": "music/05-Bilateral-Eternal.mp3"
-  },
-  {
-    "name": "the-fruit-of-hard-work-is-never-bad",
-    "title": "मेहनत का फल कभी खराब नहीं होता।",
-    "translation": "The fruit of hard work is never bad.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/Designer (3).jpeg",
-    "music": "music/06-Transient.mp3"
-  },
-  {
-    "name": "if-you-cannot-change-anything-change-your-attitude",
-    "title": "अगर आप कुछ भी नहीं बदल सकते तो अपना नजरिया बदल डालो।",
-    "translation": "If you cannot change anything, change your attitude.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/Designer (4).jpeg",
-    "music": "music/07-Bright-Ambient.mp3"
-  },
-  {
-    "name": "the-biggest-gift-in-life-is-today",
-    "title": "जीवन में सबसे बड़ा उपहार है आज का दिन।",
-    "translation": "The biggest gift in life is today.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/Designer (5).jpeg",
-    "music": "music/08-Spring-Sunrise.mp3"
-  },
-  {
-    "name": "the-secret-to-happiness-is-to-feel-small-joys",
-    "title": "खुश रहने का राज है छोटी-छोटी खुशियों को महसूस करना।",
-    "translation": "The secret to happiness is to feel small joys.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/Designer (6).jpeg",
-    "music": "music/09-BLESSING.mp3"
-  },
-  {
-    "name": "the-greatest-power-in-the-world-is-love",
-    "title": "दुनिया में सबसे बड़ी ताकत है प्यार।",
-    "translation": "The greatest power in the world is love.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/Designer (7).jpeg",
-    "music": "music/14-BLOSSOM.mp3"
-  },
-  {
-    "name": "forgiveness-is-not-weakness-but-a-courageous-act",
-    "title": "माफ़ करना कमज़ोरी नहीं बल्कि हिम्मत का काम है।",
-    "translation": "Forgiveness is not weakness but a courageous act.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/Designer (8).jpeg",
-    "music": "music/19-EARTH.mp3"
-  },
-  {
-    "name": "never-give-up-in-life-because-failure-is-the-key-to-success",
-    "title": "जीवन में कभी हार नहीं माननी चाहिए, क्योंकि असफलता सफलता की कुंजी है।",
-    "translation": "Never give up in life, because failure is the key to success.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/Designer (9).jpeg",
-    "music": "music/24-FLOATING.mp3"
-  },
-  {
-    "name": "walk-the-path-that-scares-you",
-    "title": "जिस रास्ते पर चलने से डर लगता है, उसी रास्ते पर चलना चाहिए।",
-    "translation": "Walk the path that scares you.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/Designer.jpeg",
-    "music": "music/29-MOTION.mp3"
-  },
-  {
-    "name": "the-biggest-enemy-in-life-is-our-own-ego",
-    "title": "जीवन में सबसे बड़ा दुश्मन होता है खुद का अहंकार।",
-    "translation": "The biggest enemy in life is our own ego.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-0afa6a7f-2c41-4d3f-8f16-4a1a77a2aa39.png",
-    "music": "music/34-MOVEMENT.mp3"
-  },
-  {
-    "name": "those-who-help-others-get-help-themselves",
-    "title": "जो लोग दूसरों की मदद करते हैं, उनकी मदद खुद हो जाती है।",
-    "translation": "Those who help others get help themselves.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-1548900a-0664-4170-9251-ae55f6f94175.png",
-    "music": "music/39-REPLENISH.mp3"
-  },
-  {
-    "name": "the-biggest-gift-in-life-is-time",
-    "title": "जीवन में सबसे बड़ा उपहार है समय।",
-    "translation": "The biggest gift in life is time.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-29bc2f29-58ac-4094-80b9-a49f49b6f88c.png",
-    "music": "music/44-SANCTUARY.mp3"
-  },
-  {
-    "name": "time-heals-everything",
-    "title": "समय सब कुछ ठीक कर देता है।",
-    "translation": "Time heals everything.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-357de142-4108-4403-92bb-54bffaf9196d.png",
-    "music": "music/49-THE-DEEP.mp3"
-  },
-  {
-    "name": "the-greatest-joy-in-life-is-making-others-happy",
-    "title": "जीवन में सबसे बड़ी खुशी है दूसरों को खुश करना।",
-    "translation": "The greatest joy in life is making others happy.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-3830c857-9bd7-4d5d-b281-fa3ac6075f75.png",
-    "music": "music/54-TIMING.mp3"
-  },
-  {
-    "name": "be-kind-because-kindness-is-the-greatest-virtue",
-    "title": "दयालु बनो, क्योंकि दयालुता सबसे बड़ा गुण है।",
-    "translation": "Be kind, because kindness is the greatest virtue.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-386262e2-eecf-4841-98c6-1b91d390677a.png",
-    "music": "music/59-TUNING.mp3"
-  },
-  {
-    "name": "victory-is-in-the-mind",
-    "title": "मन के हारे हार है, मन के जीते जीत है।",
-    "translation": "Victory is in the mind.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-442e1390-b9dc-4199-ba45-2dec9bded90f.png",
-    "music": "music/Africa-Free-No-Copyright-Music-by-Liborio-Conti-01-Africa-With-Voices-Full-Track (1).mp3"
-  },
-  {
-    "name": "be-a-support-to-those-who-have-no-support",
-    "title": "जिसका कोई सहारा नहीं, उसका सहारा बनो।",
-    "translation": "Be a support to those who have no support.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-49ace496-de4b-49f7-867d-8572fff20bd1.png",
-    "music": "music/Africa-Free-No-Copyright-Music-by-Liborio-Conti-01-Africa-With-Voices-Full-Track.mp3"
-  },
-  {
-    "name": "the-biggest-enemy-in-life-is-our-own-laziness",
-    "title": "जीवन में सबसे बड़ा दुश्मन होता है खुद का आलस्य।",
-    "translation": "The biggest enemy in life is our own laziness.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-55400be9-2358-4811-aa29-8e8ee8af374e.png",
-    "music": "music/Africa-Free-No-Copyright-Music-by-Liborio-Conti-02-Africa-Without-Voices-Full-Track.mp3"
-  },
-  {
-    "name": "those-who-listen-to-others-are-successful",
-    "title": "जो लोग दूसरों की बात सुनते हैं, वही सफल होते हैं।",
-    "translation": "Those who listen to others are successful.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-5af5be69-8024-4c8e-b8fd-5969065a0d54.png",
-    "music": "music/Africa.mp3"
-  },
-  {
-    "name": "the-biggest-gift-in-life-is-health",
-    "title": "जीवन में सबसे बड़ा उपहार है स्वास्थ्य।",
-    "translation": "The biggest gift in life is health.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-5afffd41-cef3-4c8c-9b9c-a7311f45b195.png",
-    "music": "music/AmbientLight.mp3"
-  },
-  {
-    "name": "a-healthy-mind-resides-in-a-healthy-body",
-    "title": "स्वस्थ शरीर में ही स्वस्थ मन का वास होता है।",
-    "translation": "A healthy mind resides in a healthy body.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-610d5afb-4b77-48db-a4f3-fe0c5d149a5b.png",
-    "music": "music/BeachAmbient.mp3"
-  },
-  {
-    "name": "the-biggest-enemy-in-life-is-our-own-anger",
-    "title": "जीवन में सबसे बड़ा दुश्मन होता है खुद का गुस्सा।",
-    "translation": "The biggest enemy in life is our own anger.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-6579869f-365a-4849-8c08-5372a31534ce.png",
+    "videos": [],
+    "images": [
+      "images/0-184944813.jpg",
+      "images/0-184944813.jpg"
+    ],
     "music": "music/BeachSerenity.mp3"
   },
   {
-    "name": "count-to-ten-before-getting-angry",
-    "title": "गुस्सा करने से पहले दस तक गिनती गिनो।",
-    "translation": "Count to ten before getting angry.",
+    "name": "मकर संक्रांति: संगम में डुबकी लगाने के लिए उमड़ी भीड़",
+    "title": "मकर संक्रांति पर लाखों श्रद्धालुओं ने किया संगम स्नान",
+    "summary": "धार्मिक आयोजनों का हुआ आयोजन, सुरक्षा व्यवस्था कड़ी.",
+    "translation": "Makar Sankranti: Huge Crowd for Sangam Dip",
+    "tags": [
+      "Makar Sankranti",
+      "Kumbh Mela",
+      "Festival",
+      "India"
+    ],
     "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-6c706754-59f1-4ff9-ac35-b90337f6a4a5.png",
-    "music": "music/Bright-And-Clear-No-Copyright-Music-01-Bright-And-Clear.mp3"
+    "videos": [],
+    "images": [
+      "images/0-817622836 (1).jpg",
+      "images/0-171721532.jpg"
+    ],
+    "music": "music/Big River - Telecasted.mp3"
   },
   {
-    "name": "the-biggest-enemy-in-life-is-our-own-greed",
-    "title": "जीवन में सबसे बड़ा दुश्मन होता है खुद का लालच।",
-    "translation": "The biggest enemy in life is our own greed.",
+    "name": "मौनी अमावस्या: अमृत स्नान का महापर्व",
+    "title": "मौनी अमावस्या पर लाखों श्रद्धालुओं ने किया अमृत स्नान",
+    "summary": "संगम पर भारी भीड़, साधु-संतों का आशीर्वाद प्राप्त किया श्रद्धालुओं ने.",
+    "translation": "Mauni Amavasya: The Great Amrit Snan",
+    "tags": [
+      "Mauni Amavasya",
+      "Amrit Snan",
+      "Kumbh Mela",
+      "Spirituality",
+      "India"
+    ],
     "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-6e37b139-773d-4f7d-a735-f2af5f0d633f.png",
-    "music": "music/ByTheFire.mp3"
+    "videos": [],
+    "images": [
+      "images/0-817622836.jpg",
+      "images/_1ed360ec-e4e6-4503-a322-e822ef218732.jpg"
+    ],
+    "music": "music/Flutes - Stayloose.mp3"
   },
   {
-    "name": "be-the-change-you-want-to-see-in-the-world",
-    "title": "अगर आप दुनिया में जो बदलाव देखना चाहते हैं, वह बदलाव आप ही बनिए।",
-    "translation": "Be the change you want to see in the world.",
+    "name": "वसंत पंचमी: रंगों का त्योहार",
+    "title": "वसंत पंचमी पर संगम तट पर रंगों की छटा",
+    "summary": "श्रद्धालुओं ने किया विशेष पूजा अर्चना, मां सरस्वती की पूजा का विशेष महत्व.",
+    "translation": "Vasant Panchami: Festival of Colors",
+    "tags": [
+      "Vasant Panchami",
+      "Kumbh Mela",
+      "Festival",
+      "India"
+    ],
     "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-72e681e4-bbdc-46c3-876d-4bae74bbd81b.png",
-    "music": "music/Calmness.mp3"
+    "videos": [],
+    "images": [
+      "images/1-1369033143.jpg",
+      "images/0-171721532.jpg"
+    ],
+    "music": "music/368 - Dyalla.mp3"
   },
   {
-    "name": "challenges-come-in-life-but-facing-them-is-life",
-    "title": "जीवन में चुनौतियां आती हैं, लेकिन उनका सामना करना ही जीवन है।",
-    "translation": "Challenges come in life, but facing them is life.",
+    "name": "माघ पूर्णिमा: भक्तों की आस्था का केंद्र",
+    "title": "माघ पूर्णिमा पर लाखों श्रद्धालुओं ने किया संगम स्नान",
+    "summary": "धार्मिक आयोजनों का हुआ आयोजन, साधु-संतों का आशीर्वाद प्राप्त किया श्रद्धालुओं ने.",
+    "translation": "Magha Purnima: Center of Devotees' Faith",
+    "tags": [
+      "Magha Purnima",
+      "Kumbh Mela",
+      "Devotees",
+      "Faith",
+      "India"
+    ],
     "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-81723aba-8297-46fb-8674-f8aafac20797.png",
-    "music": "music/Cinelax.mp3"
+    "videos": [],
+    "images": [
+      "images/1-1664151040.jpg",
+      "images/_4dcd54dc-9ecd-4304-be90-5a21f4171967.jpg"
+    ],
+    "music": "music/BeachSerenity.mp3"
   },
   {
-    "name": "slowly-everything-happens",
-    "title": "धीरे धीरे रे मना, धीरे सब कुछ होय, माली सींचे सौ घड़ा, ऋतु आए फल होय।",
-    "translation": "Slowly, everything happens.",
+    "name": "महाशिवरात्रि: भव्य आयोजन",
+    "title": "महाशिवरात्रि पर भव्य आयोजन, लाखों श्रद्धालुओं ने किया शिव पूजा",
+    "summary": "संगम तट पर भव्य आयोजन, भजन-कीर्तन का हुआ आयोजन.",
+    "translation": "Maha Shivratri: Grand Celebration",
+    "tags": [
+      "Maha Shivratri",
+      "Kumbh Mela",
+      "Festival",
+      "India"
+    ],
     "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-84e3d85a-8d61-4baa-acd5-a2d543a848c2.png",
-    "music": "music/DeeperMeaning.mp3"
+    "videos": [],
+    "images": [
+      "images/1-415984715.jpg",
+      "images/0-171721532.jpg"
+    ],
+    "music": "music/Big River - Telecasted.mp3"
   },
   {
-    "name": "those-who-chase-their-dreams-are-successful",
-    "title": "जो लोग अपने सपनों का पीछा करते हैं, वही सफल होते हैं।",
-    "translation": "Those who chase their dreams are successful.",
+    "name": "कुंभ मेला: सुरक्षा व्यवस्था चाक-चौबंद",
+    "title": "कुंभ मेले में सुरक्षा व्यवस्था को लेकर प्रशासन सतर्क",
+    "summary": "सुरक्षा बलों की तैनाती, यातायात व्यवस्था सुचारू संचालन हेतु किए गए पुख्ता इंतजाम.",
+    "translation": "Kumbh Mela: Tight Security Arrangements",
+    "tags": [
+      "Kumbh Mela",
+      "Security",
+      "Safety",
+      "India"
+    ],
     "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-85d9247c-7be1-4e70-ae6c-15aa2810033f.png",
-    "music": "music/Emotional-Piano-Free-Royalty-Free-Relaxing-Music-by-Liborio-Conti-01-I-Believe.mp3"
+    "videos": [],
+    "images": [
+      "images/1-707251709.jpg",
+      "images/0-184944813.jpg"
+    ],
+    "music": "music/Flutes - Stayloose.mp3"
   },
   {
-    "name": "the-greatest-teacher-in-life-is-experience",
-    "title": "जीवन में सबसे बड़ा शिक्षक होता है अनुभव।",
-    "translation": "The greatest teacher in life is experience.",
+    "name": "स्वच्छता अभियान: कुंभ मेला क्षेत्र में चलाया गया अभियान",
+    "title": "स्वच्छता अभियान चलाकर स्वच्छ रखा गया कुंभ मेला क्षेत्र",
+    "summary": "स्वच्छता अभियान के तहत सफाई कर्मचारियों ने किया सफाई अभियान.",
+    "translation": "Cleanliness Campaign: Campaign Launched in Kumbh Mela Area",
+    "tags": [
+      "Cleanliness",
+      "Kumbh Mela",
+      "Campaign",
+      "India"
+    ],
     "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-86ada711-b2b0-4c72-9993-d8752481386a.png",
-    "music": "music/Evolving-Pads-Free-Relaxing-Royalty-Free-Music-by-Liborio-Conti-01-Evolving-Pads.mp3"
+    "videos": [],
+    "images": [
+      "images/1-956815164.jpg",
+      "images/1-707251709.jpg"
+    ],
+    "music": "music/368 - Dyalla.mp3"
   },
   {
-    "name": "those-who-work-hard-are-successful",
-    "title": "जो लोग मेहनत करते हैं, वही सफल होते हैं।",
-    "translation": "Those who work hard are successful.",
+    "name": "संत समागम: कुंभ मेले में जुटे देशभर से साधु-संत",
+    "title": "कुंभ मेले में देशभर से आए साधु-संतों ने किया संगम स्नान",
+    "summary": "संतों का आशीर्वाद प्राप्त करने के लिए उमड़े श्रद्धालु.",
+    "translation": "Gathering of Saints: Saints from Across the Country Gather at Kumbh Mela",
+    "tags": [
+      "Saints",
+      "Kumbh Mela",
+      "Spirituality",
+      "India"
+    ],
     "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-8fd24161-05eb-4625-a196-3e64fa0f21a9.png",
-    "music": "music/Forestal.mp3"
-  },
-  {
-    "name": "the-greatest-wealth-in-life-is-contentment",
-    "title": "जीवन में सबसे बड़ा धन होता है संतोष।",
-    "translation": "The greatest wealth in life is contentment.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-92547b1c-4d4c-40b3-9fdb-93b981b456c9.png",
-    "music": "music/Forever.mp3"
-  },
-  {
-    "name": "those-who-focus-on-their-goals-are-successful",
-    "title": "जो लोग अपने लक्ष्य पर ध्यान केंद्रित करते हैं, वही सफल होते हैं।",
-    "translation": "Those who focus on their goals are successful.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-9400997d-c2d9-4919-9fcd-1a7cb8ea02d8.png",
-    "music": "music/ForgottonPlace.mp3"
-  },
-  {
-    "name": "the-greatest-joy-in-life-is-self-contentment",
-    "title": "जीवन में सबसे बड़ा सुख होता है आत्म-संतोष।",
-    "translation": "The greatest joy in life is self-contentment.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-9416f316-12dc-47b0-b988-e265e63f4807.png",
-    "music": "music/Frozen-in-Time.mp3"
-  },
-  {
-    "name": "those-who-believe-in-themselves-are-successful",
-    "title": "जो लोग अपने आप पर विश्वास करते हैं, वही सफल होते हैं।",
-    "translation": "Those who believe in themselves are successful.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-94d632db-efb2-48aa-aaca-2b4ac6f66189.png",
-    "music": "music/Good-Morning-Sunshine-No-Copyright-Music.com-01-Good-Morning-Sunshine.mp3"
-  },
-  {
-    "name": "the-greatest-friend-in-life-is-self-confidence",
-    "title": "जीवन में सबसे बड़ा मित्र होता है आत्मविश्वास।",
-    "translation": "The greatest friend in life is self-confidence.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-9627eafb-493c-4b11-8d6a-1167d2f0987c.png",
-    "music": "music/Happy-Sun-No-Copyright-Music.com-01-Happy-Sun.mp3"
-  },
-  {
-    "name": "those-who-utilize-their-time-are-successful",
-    "title": "जो लोग अपने समय का सदुपयोग करते हैं, वही सफल होते हैं।",
-    "translation": "Those who utilize their time are successful.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-96750dbf-8d36-4dfb-915c-596ca29ec5fe.png",
-    "music": "music/Horizon.mp3"
-  },
-  {
-    "name": "the-greatest-enemy-in-life-is-laziness",
-    "title": "जीवन में सबसे बड़ा शत्रु होता है आलस्य।",
-    "translation": "The greatest enemy in life is laziness.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-a9159561-5471-496f-ab28-f5f4dc395692.png",
-    "music": "music/Inspiring-Ambient-No-Copyright-Music-01-Inspiring-Ambient.mp3"
-  },
-  {
-    "name": "those-who-love-their-work-are-successful",
-    "title": "जो लोग अपने काम से प्यार करते हैं, वही सफल होते हैं।",
-    "translation": "Those who love their work are successful.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-ab3e6c44-d678-46c8-996a-3dabb8b0a906.png",
-    "music": "music/Just-Relax-No-Copyright-Music-01-Just-Relax.mp3"
-  },
-  {
-    "name": "the-greatest-gift-in-life-is-family",
-    "title": "जीवन में सबसे बड़ा उपहार होता है परिवार।",
-    "translation": "The greatest gift in life is family.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-af27549b-c806-49cf-b98d-7c37689e16fb.png",
-    "music": "music/Light-And-Balanced-No-Copyright-Music-01-Light-And-Balanced.mp3"
-  },
-  {
-    "name": "those-who-are-honest-in-their-work-are-successful",
-    "title": "जो लोग अपने काम में ईमानदारी रखते हैं, वही सफल होते हैं।",
-    "translation": "Those who are honest in their work are successful.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-b10a01e5-a69a-4d46-a833-854f10a658ad.png",
-    "music": "music/Mandolin.mp3"
-  },
-  {
-    "name": "the-greatest-wealth-in-life-is-knowledge",
-    "title": "जीवन में सबसे बड़ा धन होता है ज्ञान।",
-    "translation": "The greatest wealth in life is knowledge.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-b7a8883c-e02f-438b-b02f-cab417a228ff.png",
-    "music": "music/NatureAmbience.mp3"
-  },
-  {
-    "name": "those-who-utilize-their-knowledge-are-successful",
-    "title": "जो लोग अपने ज्ञान का सदुपयोग करते हैं, वही सफल होते हैं।",
-    "translation": "Those who utilize their knowledge are successful.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-bb502cab-7bac-49ff-bed3-4484aad62fc6.png",
-    "music": "music/Nature´s-Call.mp3"
-  },
-  {
-    "name": "the-greatest-joy-in-life-is-doing-good-for-others",
-    "title": "जीवन में सबसे बड़ा सुख होता है दूसरों की भलाई करना।",
-    "translation": "The greatest joy in life is doing good for others.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-bb6e6c9a-168a-425e-8fc1-287028617172.png",
-    "music": "music/Noisescape.mp3"
-  },
-  {
-    "name": "those-who-understand-themselves-are-successful",
-    "title": "जो लोग अपने आप को समझते हैं, वही सफल होते हैं।",
-    "translation": "Those who understand themselves are successful.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-bde7b34d-84ae-4811-8d54-c4388b4772ff.png",
-    "music": "music/OnAPianoAcloudNatureSounds.mp3"
-  },
-  {
-    "name": "the-greatest-gift-in-life-is-time",
-    "title": "जीवन में सबसे बड़ा उपहार होता है समय।",
-    "translation": "The greatest gift in life is time.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-c4e2b7bb-d1ff-4db3-9a29-5adad9174392.png",
-    "music": "music/OnAPianoCloud.mp3"
-  },
-  {
-    "name": "those-who-utilize-their-time-wisely-are-successful",
-    "title": "जो लोग अपने समय का सही उपयोग करते हैं, वही सफल होते हैं।",
-    "translation": "Those who utilize their time wisely are successful.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-c8583a13-5d89-45a9-8b2f-9b0a6e5a6167.png",
-    "music": "music/Peaceful-Sleep-Music-Free-Royalty-Free-Music-by-Liborio-Conti-01-Peaceful-Sleep-Music.mp3"
-  },
-  {
-    "name": "the-greatest-joy-in-life-is-helping-others",
-    "title": "जीवन में सबसे बड़ा सुख होता है दूसरों की मदद करना।",
-    "translation": "The greatest joy in life is helping others.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-cab1b292-05ed-498a-b4b1-a9a452d6a6a5.png",
-    "music": "music/Pure-Ambient-No-Copyright-Music-01-Pure-Ambient.mp3"
-  },
-  {
-    "name": "those-who-respect-their-family-are-successful",
-    "title": "जो लोग अपने परिवार का सम्मान करते हैं, वही सफल होते हैं।",
-    "translation": "Those who respect their family are successful.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-d02251b9-41eb-41c5-8b7e-c2b62367ff6d.png",
-    "music": "music/Reflections-No-Copyright-Music-01-Reflections.mp3"
-  },
-  {
-    "name": "those-who-respect-their-friends-are-successful",
-    "title": "जो लोग अपने दोस्तों का सम्मान करते हैं, वही सफल होते हैं।",
-    "translation": "Those who respect their friends are successful.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-e3c5630b-7379-494a-93ef-36ab59445f80.png",
-    "music": "music/RelaxingMoment.mp3"
-  },
-  {
-    "name": "the-greatest-wealth-in-life-is-health",
-    "title": "जीवन में सबसे बड़ा धन होता है स्वास्थ्य।",
-    "translation": "The greatest wealth in life is health.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-e92d9096-269b-449c-9151-e7051ed9dc54.png",
-    "music": "music/Rio-Samba-Free-No-Copyright-Music-by-Liborio-Conti-01-Rio-Samba-Full-Track.mp3"
-  },
-  {
-    "name": "those-who-take-care-of-their-health-are-successful",
-    "title": "जो लोग अपने स्वास्थ्य का ध्यान रखते हैं, वही सफल होते हैं।",
-    "translation": "Those who take care of their health are successful.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-ea5d7d89-61c0-4336-83cd-e955a489faeb.png",
-    "music": "music/SerenityInTheWoods.mp3"
-  },
-  {
-    "name": "the-greatest-joy-in-life-is-seeing-others-happy",
-    "title": "जीवन में सबसे बड़ा सुख होता है दूसरों को खुश देखना।",
-    "translation": "The greatest joy in life is seeing others happy.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-eb880562-2f02-4ec2-bbe9-b1a8d6b3a973.png",
-    "music": "music/Skyline-Free-No-Copyright-Music-by-Liborio-Conti-01-Skyline-Full-Track.mp3"
-  },
-  {
-    "name": "those-who-listen-to-their-mind-are-successful",
-    "title": "जो लोग अपने मन की सुनते हैं, वही सफल होते हैं।",
-    "translation": "Those who listen to their mind are successful.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-f6ca4eda-c6df-4ae8-85bf-a0b8ffc4bec7.png",
-    "music": "music/SoftAndFragile.mp3"
-  },
-  {
-    "name": "the-greatest-gift-in-life-is-love",
-    "title": "जीवन में सबसे बड़ा उपहार होता है प्रेम।",
-    "translation": "The greatest gift in life is love.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-f8dcdc84-24c5-4d1b-a53b-682fd557a983.png",
-    "music": "music/Summer-Pack-No-Copyright-Music-01-Summer-FULL-TRACK.mp3"
-  },
-  {
-    "name": "those-who-listen-to-their-heart-are-successful",
-    "title": "जो लोग अपने दिल की सुनते हैं, वही सफल होते हैं।",
-    "translation": "Those who listen to their heart are successful.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/pixlr-image-generator-fb0dd7e6-7755-4100-b0b9-3e5090f456a1.png",
-    "music": "music/Sunny-Skies-No-Copyright-Music.com-01-Sunny-Skies.mp3"
-  },
-  {
-    "name": "the-greatest-joy-in-life-is-serving-others",
-    "title": "जीवन में सबसे बड़ा सुख होता है दूसरों की सेवा करना।",
-    "translation": "The greatest joy in life is serving others.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/s2 (1).webp",
-    "music": "music/TheCalling.mp3"
-  },
-  {
-    "name": "mother-and-motherland-are-greater-than-heaven",
-    "title": "जननी जन्मभूमिश्च स्वर्गादपि गरीयसी।",
-    "translation": "Mother and motherland are greater than heaven.",
-    "filter": "ForestFilter",
-    "video": "",
-    "img": "images/s2.webp",
-    "music": "music/TibetanBowls.mp3"
+    "videos": [],
+    "images": [
+      "images/1.jpg",
+      "images/0-817622836 (1).jpg"
+    ],
+    "music": "music/BeachSerenity.mp3"
   }
 ]

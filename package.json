@@ -1,25 +1,25 @@
 {
   "name": "react-reels",
   "version": "1.0.0",
-  "description": "My Remotion video",
+  "description": "My Remotion videos",
   "repository": {},
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "@remotion/cli": "4.0.248",
-    "@remotion/media-parser": "^4.0.249",
-    "@remotion/tailwind": "4.0.248",
-    "@remotion/transitions": "^4.0.248",
-    "@remotion/zod-types": "4.0.248",
+    "@remotion/cli": "4.0.251",
+    "@remotion/media-parser": "4.0.251",
+    "@remotion/tailwind": "4.0.251",
+    "@remotion/transitions": "4.0.251",
+    "@remotion/zod-types": "4.0.251",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "remotion": "4.0.248",
+    "remotion": "4.0.251",
     "remotion-animated": "^2.1.1",
     "ts-node": "^10.9.2",
     "zod": "3.22.3"
   },
   "devDependencies": {
-    "@remotion/eslint-config": "4.0.248",
+    "@remotion/eslint-config": "4.0.251",
     "@types/node": "^22.10.6",
     "@types/react": "19.0.0",
     "@types/web": "0.0.166",
@@ -33,7 +33,7 @@
     "upgrade": "remotion upgrade",
     "lint": "eslint src --ext ts,tsx,js,jsx && tsc",
     "prepareQuoteReels": "ts-node ./src/QuoteReel/data/prepareData.tsx",
-    "renderQuoteReels": "ts-node ./src/render.ts --exit-child",
+    "renderQuoteReels": "ts-node ./src/renderQuoteReels.ts --exit-child",
     "renderQuoteReel": "remotion render quoteReel out/quote-reel.mp4"
   },
   "sideEffects": [

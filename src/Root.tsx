@@ -1,11 +1,8 @@
 import './tailwind.css';
 import { Composition } from "remotion";
-import { reelSchema } from './Reel/Reel';
-import quotes from './QuoteReel/data/quotes.json';
-import { Video } from './Video/Video'
 import { MyAudio } from './MyAudio/MyAudio';
-import { TransitionVideo } from './TransitionVideo/TransitionVideo';
-import { calculateMetadata, QuoteReel } from './QuoteReel';
+import { QuoteReel, calculateMetadataQuoteReel } from './QuoteReel';
+
 
 // Each <Composition> is an entry in the sidebar!
 
@@ -13,24 +10,27 @@ export const RemotionRoot: React.FC = () => {
   return (
     <>
       <Composition
-        // You can take the "id" to render a video:
-        // npx remotion render src/index.ts <id> out/video.mp4
-        id="reel"
-        component={Video}
-        durationInFrames={9000}
+        id='quoteReel'
+        component={QuoteReel}
+        durationInFrames={30 * 30}
         fps={30}
-        width={1920}
-        height={1080}
-        // You can override these props for each render:
-        // https://www.remotion.dev/docs/parametrized-rendering
-        schema={reelSchema}
-        defaultProps={{
-          image: 'wallpaper.jpg',
-          bgColor: 'rgba(0,255,0,1)',
-          gradient: '',
-          color: 'rgba(255,0,0,1)',
-          texts: [...quotes].map(o => o.title)
-        }}
+        width={1080}
+        height={1920}
+        calculateMetadata={calculateMetadataQuoteReel}
+        defaultProps={
+          {
+            "title": "प्रयागराज में धूमधाम से शुरू हुआ महाकुंभ",
+            "summary": "लाखों श्रद्धालुओं ने पौष पूर्णिमा पर संगम में डुबकी लगाई, सुरक्षा व्यवस्था चाक-चौबंद.",
+            "translation": "Mahakumbh 2025: Grand Beginning",
+            "filter": "ForestFilter",
+            // "videos": [{ "src": "myvideo.mp4", "duration": 0 }, { "src": "reel1.mp4", "duration": 0 }],
+            "images": [
+              "images/0-184944813.jpg",
+              "images/2-1572030577.jpg"
+            ],
+            "music": "music/Flutes - Stayloose.mp3"
+          }
+        }
       />
       <Composition
         // You can take the "id" to render a video:
@@ -41,38 +41,6 @@ export const RemotionRoot: React.FC = () => {
         fps={30}
         width={1080}
         height={1920}
-      />
-
-      <Composition
-        // You can take the "id" to render a video:
-        // npx remotion render src/index.ts <id> out/video.mp4
-        id="transitionVideo"
-        component={TransitionVideo}
-        durationInFrames={9000}
-        fps={30}
-        width={1920}
-        height={1080}
-      />
-
-      <Composition
-        id='quoteReel'
-        component={QuoteReel}
-        durationInFrames={30 * 30}
-        fps={30}
-        width={1080}
-        height={1920}
-        calculateMetadata={calculateMetadata}
-        defaultProps={
-          {
-            "name": "dreams-are-not-what-we-see-while-sleeping-dreams-are-what-keep-us-awake",
-            "title": "सपने वो नहीं जो हम सोते वक्त देखते हैं, सपने वो हैं जो हमें सोने नहीं देते।",
-            "translation": "Dreams are not what we see while sleeping, dreams are what keep us awake.",
-            "filter": "ForestFilter",
-            // "video": "reel1.mp4",
-            "img": "images/s2 (1).webp",
-            "music": "mlp7-ghatam1.mp3"
-          }
-        }
       />
     </>
   );

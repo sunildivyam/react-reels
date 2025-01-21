@@ -22,7 +22,7 @@ const renderOne = async (
     id: compositionId,
   });
 
-  const outputLocation = `out/${quoteReel.name}.mp4`;
+  const outputLocation = `out/${quoteReel.title}.mp4`;
   await renderMedia({
     composition,
     serveUrl: bundleLocation,

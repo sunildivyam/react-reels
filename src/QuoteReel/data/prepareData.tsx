@@ -1,4 +1,5 @@
-import { QuoteReelType } from "../QuoteReel";
+import { VideoType } from "../../lib/Video";
+import { IMAGES_PER_REEL, QuoteReelType, VIDEOS_PER_REEL } from "../QuoteReel";
 import json from './quotes.json';
 
 import fs from 'fs';
@@ -30,25 +31,35 @@ export const readDataFromDirectories = async (): Promise<{ images: string[], vid
 
 export const getUpdatedJson = (json: Array<QuoteReelType>, images: Array<string>, videos: Array<string>, musics: Array<string>) => {
   const updatedJson = json.map((item, index) => {
-    let video = '';
-    let img = '';
+    let rVideos: Array<VideoType> = [];
+    let rImages: Array<string> = [];
 
     if (index < videos.length) {
-      video = videos[index];
+      rVideos = [{
+        src: `videos/${videos[index]}`,
+        duration: 0
+      }];
+      for (let i = 0; i < VIDEOS_PER_REEL; i++) {
+        const vid = { src: `videos/${videos[Math.floor(Math.random() * videos.length)]}`, duration: 0 };
+        rVideos.push(vid);
+      }
     } else {
-      img = images[(index - videos.length) % images.length];
+      rImages = [`images/${images[(index - videos.length) % images.length]}`];
+      for (let i = 0; i < IMAGES_PER_REEL; i++) {
+        const image = `images/${images[Math.floor(Math.random() * images.length)]}`;
+        rImages.push(image);
+      }
     }
-    // const video = videos[index % videos.length];
-    // const img = index >= videos.length ? images[index % images.length] : '';
+
     const music = musics[index % musics.length];
 
     return {
       ...item,
       filter: 'ForestFilter',
-      video: video ? `videos/${video}` : video,
-      img: img ? `images/${img}` : img,
-      music: music ? `music/${music}` : music,
-    };
+      videos: rVideos,
+      images: rImages,
+      music: music ? `music/${music}` : music
+    } as QuoteReelType;
   });
 
   return updatedJson;
