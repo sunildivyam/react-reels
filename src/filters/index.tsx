@@ -23,8 +23,15 @@ export const OverlayFilters: FilterType = {
         background: 'linear-gradient(110deg, rgba(14, 163, 255, 0.1) 0%, rgba(0, 213, 255, 0.1) 8%, rgba(100, 198, 255, 0.1) 50%, rgba(21, 205, 247, 0.1) 98%)',
       }
     }>
-  </AbsoluteFill>
+  </AbsoluteFill>,
 
+  FireFilter: () => <AbsoluteFill
+    style={
+      {
+        background: 'linear-gradient(110deg, rgba(219, 113, 0, 0.1) 0%, rgba(255, 0, 0, 0.1) 8%, rgba(233, 136, 0, 0.1) 50%, rgba(255, 106, 0, 0.1) 98%)'
+      }
+    }>
+  </AbsoluteFill>,
 }
 
 const imageFilters: any = {

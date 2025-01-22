@@ -1,4 +1,4 @@
-import { AbsoluteFill, Img, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { Img, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { getImageFilter, OverlayFilters } from "../filters";
 
 type ZoomImageProps = {
@@ -15,7 +15,7 @@ export const ZoomImage: React.FC<ZoomImageProps> = ({ img, filter, animationDura
   const imgScale = interpolate(frame, [0, animationDuration], zoom, { extrapolateRight: 'clamp' });
   const OverlayFilter = OverlayFilters[filter || ''];
 
-  return <AbsoluteFill>
+  return <>
     <Img
       style={{
         width,
@@ -25,5 +25,5 @@ export const ZoomImage: React.FC<ZoomImageProps> = ({ img, filter, animationDura
       }}
       src={staticFile(img)}></Img>
     {OverlayFilter && <OverlayFilter />}
-  </AbsoluteFill>
+  </>
 }
