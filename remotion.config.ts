@@ -8,6 +8,7 @@ import { enableTailwind } from "@remotion/tailwind";
 
 Config.setStillImageFormat("jpeg");
 Config.setVideoImageFormat("jpeg");
+Config.setDelayRenderTimeoutInMilliseconds(120 * 1000);
 Config.setOverwriteOutput(true);
-Config.setConcurrency(7); // CPU core concurrency
+Config.setConcurrency(8); // CPU core concurrency
 Config.overrideWebpackConfig(enableTailwind);

@@ -6,22 +6,27 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
+    "@react-three/fiber": "^8.17.12",
     "@remotion/cli": "4.0.251",
     "@remotion/media-parser": "4.0.251",
     "@remotion/tailwind": "4.0.251",
+    "@remotion/three": "4.0.251",
     "@remotion/transitions": "4.0.251",
     "@remotion/zod-types": "4.0.251",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-tsparticles": "^2.12.2",
     "remotion": "4.0.251",
     "remotion-animated": "^2.1.1",
     "ts-node": "^10.9.2",
+    "tsparticles": "^2.12.0",
     "zod": "3.22.3"
   },
   "devDependencies": {
     "@remotion/eslint-config": "4.0.251",
     "@types/node": "^22.10.6",
     "@types/react": "19.0.0",
+    "@types/three": "^0.172.0",
     "@types/web": "0.0.166",
     "eslint": "8.56.0",
     "prettier": "3.3.3",
@@ -34,6 +39,7 @@
     "lint": "eslint src --ext ts,tsx,js,jsx && tsc",
     "prepareQuoteReels": "ts-node ./src/QuoteReel/data/prepareData.tsx",
     "renderQuoteReels": "ts-node ./src/renderQuoteReels.ts --exit-child",
+    "renderRelaxingVideos": "ts-node ./src/renderRelaxingVideo.ts --exit-child",
     "renderQuoteReel": "remotion render quoteReel out/quote-reel.mp4"
   },
   "sideEffects": [

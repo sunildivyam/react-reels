@@ -17,7 +17,7 @@ export const ImageSequence: React.FC<ImageSequenceProps> = ({ images, filter, du
     // const transitionTiming = springTiming({ durationInFrames: transitionDuration, config: { damping: 200 } });
     const transitionTiming = linearTiming({ durationInFrames: transitionDuration });
 
-    return images.map((imgSrc, index) => <>
+    return images.map((imgSrc, index) => <React.Fragment key={index}>
       <TransitionSeries.Sequence
         durationInFrames={imgDuration}>
         {imgSrc && <ZoomImage img={imgSrc} filter={filter || ''} animationDuration={imgDuration} zoomMode="out" />}
@@ -27,7 +27,7 @@ export const ImageSequence: React.FC<ImageSequenceProps> = ({ images, filter, du
         timing={transitionTiming}
         presentation={fade()} />
       }
-    </>)
+    </React.Fragment>)
   }
 
 

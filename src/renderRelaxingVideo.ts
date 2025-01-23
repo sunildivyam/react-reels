@@ -1,12 +1,12 @@
 import path from "path";
 import { bundle } from "@remotion/bundler";
 import { selectComposition, renderMedia } from "@remotion/renderer";
-import quotes from "./QuoteReel/data/final-quotes.json";
-import { QuoteReelType } from "./QuoteReel";
+import relaxingVideos from "./RelaxingVideo/data/final-relaxing-videos.json";
 import { encodeFileName } from "./lib/Utils";
+import { RelaxingVideoProps } from "./RelaxingVideo";
 
 const renderOne = async (
-  quoteReel: QuoteReelType,
+  relaxingVideo: RelaxingVideoProps,
   bundleLocation: string,
   compositionId: string,
 ) => {
@@ -19,21 +19,32 @@ const renderOne = async (
     // in the composition list. Use this if you want to dynamically set the duration or
     // dimensions of the video.
     serveUrl: bundleLocation,
-    inputProps: quoteReel,
+    inputProps: relaxingVideo,
     id: compositionId,
   });
 
-  const outputLocation = `out/${encodeFileName(quoteReel.title)}.mp4`;
+  const outputLocation = `out/${encodeFileName(relaxingVideo.title)}.mp4`;
   await renderMedia({
     composition,
     serveUrl: bundleLocation,
     codec: "h264",
     outputLocation,
-    inputProps: quoteReel,
-    onProgress: (progress) => {
+    inputProps: relaxingVideo,
+    // frameRange: [0, 200],
+    onProgress: (rProgress) => {
       // prints the info in same line
+      const {
+        stitchStage,
+        renderedFrames,
+        renderEstimatedTime,
+        encodedFrames,
+        encodedDoneIn,
+        renderedDoneIn,
+        progress,
+      } = rProgress;
+
       process.stdout.write(
-        `${outputLocation} | ${progress.stitchStage} | ${Math.floor(progress.progress * 100)}% \r`,
+        `${outputLocation} | ${stitchStage} | ${Math.floor(progress * 100)}% | renderedFrames: ${renderedFrames} | renderEstimatedTime: ${renderEstimatedTime} | encodedFrames: ${encodedFrames} | encodedDoneIn: ${encodedDoneIn} | renderedDoneIn: ${renderedDoneIn}\r`,
       );
     },
   });
@@ -42,7 +53,7 @@ const renderOne = async (
 
 const start = async () => {
   // The composition you want to render
-  const compositionId = "quoteReel";
+  const compositionId = "relaxingVideo";
 
   // You only have to do this once, you can reuse the bundle.
   const entry = "src/index.ts";
@@ -53,11 +64,11 @@ const start = async () => {
     webpackOverride: (config) => config,
   });
 
-  for (const element of quotes) {
-    const singleQuoteReel = { ...element };
-    await renderOne(singleQuoteReel, bundleLocation, compositionId).catch(
+  for (const element of relaxingVideos) {
+    const singleRelaxingVideo = { ...element };
+    await renderOne(singleRelaxingVideo, bundleLocation, compositionId).catch(
       (error) => {
-        console.error(`Skipped: ${singleQuoteReel.name}`, error);
+        console.error(`Skipped: ${singleRelaxingVideo.title}`, error);
       },
     );
   }
