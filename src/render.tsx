@@ -1,7 +1,7 @@
 import path from "path";
 import yargs from "yargs";
 import { bundle } from "@remotion/bundler";
-import { selectComposition, renderMedia, FrameRange } from "@remotion/renderer";
+import { selectComposition, renderMedia, FrameRange, StitchingState } from "@remotion/renderer";
 import { encodeFileName, formatDuration, getETA, readJsonFile } from "./lib/Utils";
 
 import filelog from './lib/Logger';
@@ -15,6 +15,28 @@ const PROCESSED_DIRS = [
 
 import fs from 'fs';
 import fse from 'fs-extra';
+
+type RenderProgressType = {
+  renderedFrames: number;
+  encodedFrames: number;
+  encodedDoneIn: number | null;
+  renderedDoneIn: number | null;
+  renderEstimatedTime: number;
+  progress: number;
+  stitchStage: StitchingState;
+}
+
+function isProgressChanged(prevProgress: RenderProgressType, currentProgress: RenderProgressType): boolean {
+  return (
+    prevProgress.renderedFrames !== currentProgress.renderedFrames ||
+    prevProgress.encodedFrames !== currentProgress.encodedFrames ||
+    prevProgress.encodedDoneIn !== currentProgress.encodedDoneIn ||
+    prevProgress.renderedDoneIn !== currentProgress.renderedDoneIn ||
+    // prevProgress.renderEstimatedTime !== currentProgress.renderEstimatedTime ||
+    prevProgress.progress !== currentProgress.progress ||
+    prevProgress.stitchStage !== currentProgress.stitchStage
+  );
+}
 
 const moveProcessedData = (srcDirectory: string, destDirectory: string, dirs: string[], compositionId: string) => {
   const date = new Date();
@@ -87,8 +109,9 @@ const renderOne = async (
   const outputLocation = `out/${encodeFileName(videoProps.title)}-${Date.now()}.mp4`;
   const startTime = Date.now();
 
-  const frameRange: FrameRange = [0, composition.durationInFrames];
+  const frameRange: FrameRange = [0, composition.durationInFrames - 1];
   // const frameRange: FrameRange = [0, 10];
+  let prevProgress = {} as RenderProgressType;
 
   await renderMedia({
     composition,
@@ -108,11 +131,15 @@ const renderOne = async (
         renderedDoneIn,
         progress,
       } = rProgress;
-      const eta = getETA(progress, Date.now() - startTime, renderedFrames, frameRange[1] - frameRange[0]);
+      
+      if (isProgressChanged(prevProgress, rProgress)) {
+        const eta = getETA(progress, Date.now() - startTime, renderedFrames, frameRange[1] - frameRange[0]);
 
-      filelog(
-        `${outputLocation} | ${stitchStage} | ${Math.floor(progress * 100)}% | Frames (rendered: ${renderedFrames} encoded: ${encodedFrames}) | ETA: (${formatDuration(Date.now() - startTime)} / ${formatDuration(renderEstimatedTime)}) | Remaining: ${eta}\r`,
-        true);
+        filelog(
+          `${outputLocation} | ${stitchStage} | ${Math.floor(progress * 100)}% | Frames (rendered: ${renderedFrames} encoded: ${encodedFrames}) | ETA: (${formatDuration(Date.now() - startTime)} / ${formatDuration(renderEstimatedTime)}) | Remaining: ${eta}\r`,
+          true);
+        prevProgress = rProgress;
+      }
 
       if (encodedDoneIn !== null || renderedDoneIn !== null) {
         filelog(`|encodedDoneIn: ${formatDuration(encodedDoneIn || 0)} | renderedDoneIn: ${formatDuration(renderedDoneIn || 0)}`);
