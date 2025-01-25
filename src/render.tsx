@@ -1,8 +1,8 @@
 import path from "path";
 import yargs from "yargs";
 import { bundle } from "@remotion/bundler";
-import { selectComposition, renderMedia } from "@remotion/renderer";
-import { encodeFileName, formatDuration, readJsonFile } from "./lib/Utils";
+import { selectComposition, renderMedia, FrameRange } from "@remotion/renderer";
+import { encodeFileName, formatDuration, getETA, readJsonFile } from "./lib/Utils";
 
 import filelog from './lib/Logger';
 const PUBLIC_DIR = 'public';
@@ -17,10 +17,13 @@ import fs from 'fs';
 import fse from 'fs-extra';
 
 const moveProcessedData = (srcDirectory: string, destDirectory: string, dirs: string[], compositionId: string) => {
-  const destDataDir = `${(new Date).toDateString()}-${compositionId}-${Date.now()}`;
+  const date = new Date();
+  const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
+  const timeInMilliseconds = date.getTime();
+  const destDataDir = `${formattedDate} - ${compositionId} - ${timeInMilliseconds}`;
 
-  const srcDir = path.resolve(__dirname, srcDirectory);
-  const destDir = path.resolve(__dirname, destDataDir, destDirectory);
+  const srcDir = path.resolve(__dirname, '../', srcDirectory);
+  const destDir = path.resolve(__dirname, '../', destDirectory, destDataDir);
 
   dirs.forEach((dir) => {
     const srcPath = path.join(srcDir, dir);
@@ -81,8 +84,11 @@ const renderOne = async (
   });
 
 
-  const outputLocation = `out/${encodeFileName(videoProps.title)}.mp4`;
+  const outputLocation = `out/${encodeFileName(videoProps.title)}-${Date.now()}.mp4`;
   const startTime = Date.now();
+
+  const frameRange: FrameRange = [0, composition.durationInFrames];
+  // const frameRange: FrameRange = [0, 10];
 
   await renderMedia({
     composition,
@@ -90,7 +96,7 @@ const renderOne = async (
     codec: "h264",
     outputLocation,
     inputProps: videoProps,
-    frameRange: [0, 30],
+    frameRange,
     onProgress: (rProgress) => {
       // prints the info in same line
       const {
@@ -102,9 +108,10 @@ const renderOne = async (
         renderedDoneIn,
         progress,
       } = rProgress;
+      const eta = getETA(progress, Date.now() - startTime, renderedFrames, frameRange[1] - frameRange[0]);
 
       filelog(
-        `${outputLocation} | ${stitchStage} | ${Math.floor(progress * 100)}% | Frames (rendered: ${renderedFrames} encoded: ${encodedFrames}) | ETA: ${formatDuration(Date.now() - startTime)} / ${formatDuration(renderEstimatedTime)}\r`,
+        `${outputLocation} | ${stitchStage} | ${Math.floor(progress * 100)}% | Frames (rendered: ${renderedFrames} encoded: ${encodedFrames}) | ETA: (${formatDuration(Date.now() - startTime)} / ${formatDuration(renderEstimatedTime)}) | Remaining: ${eta}\r`,
         true);
 
       if (encodedDoneIn !== null || renderedDoneIn !== null) {
@@ -121,8 +128,7 @@ const renderOne = async (
 export const startRender = async (compositionId: string, jsonPath: string) => {
   let videoInfos: Array<any> = [];
   try {
-    videoInfos = await readJsonFile(jsonPath);
-
+    videoInfos = await readJsonFile(`${PUBLIC_DIR}/data/${jsonPath}`);
   } catch (error: any) {
     filelog(error);
     throw new Error(`Error reading json file ${jsonPath} ${error}`);
@@ -132,10 +138,12 @@ export const startRender = async (compositionId: string, jsonPath: string) => {
   const entry = "src/index.ts";
   filelog(`STARTED RENDERING ${compositionId} at: ${new Date()}`);
   filelog('Creating a Webpack bundle of the video')
+
   const bundleLocation = await bundle(path.resolve(entry), () => undefined, {
     // If you have a Webpack override, make sure to add it here
     webpackOverride: (config) => config,
   });
+
   try {
     for (const vidInfo of videoInfos) {
       const singleVideo = { ...vidInfo };
@@ -152,6 +160,8 @@ export const startRender = async (compositionId: string, jsonPath: string) => {
 };
 
 async function main() {
+  filelog.clear();
+
   try {
     const { composition, json } = await getCmdArguments();
 

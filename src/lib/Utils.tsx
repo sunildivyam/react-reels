@@ -14,7 +14,19 @@ export function formatDuration(ms: number): string {
 
 
 export async function readJsonFile(jsonFile: string): Promise<any> {
-  const filePath = path.resolve(__dirname, jsonFile);
+  const filePath = path.resolve(__dirname, '../../', jsonFile);
   const fileContent = await readFile(filePath, "utf-8");
   return JSON.parse(fileContent);
+}
+
+export function getETA(progressPercent: number, progressTimeMs: number, completedCount: number, totalCount: number) {
+  if (progressPercent <= 0 || completedCount <= 0) {
+    return "N/A";
+  }
+
+  const etaPerItem = progressTimeMs / completedCount;
+  const remainingCount = totalCount - completedCount;
+  const remainingTime = etaPerItem * remainingCount;
+
+  return formatDuration(remainingTime);
 }

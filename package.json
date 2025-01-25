@@ -40,8 +40,8 @@
     "upgrade": "remotion upgrade",
     "lint": "eslint src --ext ts,tsx,js,jsx && tsc",
     "prepareQuoteReels": "ts-node ./src/QuoteReel/prepareData.tsx",
-    "renderQuoteReels": "npm run prepareQuoteReels && ts-node ./src/render.ts -c quoteReel -j json/quote-final.json --exit-child",
-    "renderRelaxingVideos": "ts-node ./src/render.tsx -c relaxingVideo -j relaxing/json/quote-final.json --exit-child",
+    "renderQuoteReels": "npm run prepareQuoteReels && ts-node ./src/render.ts -c quoteReel -j final-quoteReel.json --exit-child",
+    "renderRelaxingVideos": "ts-node ./src/render.tsx -c relaxingVideo -j final-relaxingVideo.json --exit-child",
     "renderQuoteReel": "remotion render quoteReel out/quote-reel.mp4"
   },
   "sideEffects": [
