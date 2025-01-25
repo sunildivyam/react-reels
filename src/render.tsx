@@ -131,7 +131,7 @@ const renderOne = async (
         renderedDoneIn,
         progress,
       } = rProgress;
-      
+
       if (isProgressChanged(prevProgress, rProgress)) {
         const eta = getETA(progress, Date.now() - startTime, renderedFrames, frameRange[1] - frameRange[0]);
 
@@ -165,13 +165,12 @@ export const startRender = async (compositionId: string, jsonPath: string) => {
   const entry = "src/index.ts";
   filelog(`STARTED RENDERING ${compositionId} at: ${new Date()}`);
   filelog('Creating a Webpack bundle of the video')
-
-  const bundleLocation = await bundle(path.resolve(entry), () => undefined, {
-    // If you have a Webpack override, make sure to add it here
-    webpackOverride: (config) => config,
-  });
-
   try {
+    const bundleLocation = await bundle(path.resolve(entry), () => undefined, {
+      // If you have a Webpack override, make sure to add it here
+      webpackOverride: (config) => config,
+    });
+
     for (const vidInfo of videoInfos) {
       const singleVideo = { ...vidInfo };
       await renderOne(singleVideo, bundleLocation, compositionId).catch(
