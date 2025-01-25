@@ -1,9 +1,12 @@
-import { VideoType } from "../../lib/Video";
-import { IMAGES_PER_REEL, QuoteReelType, VIDEOS_PER_REEL } from "../QuoteReel";
-import json from './quotes.json';
+import { readJsonFile } from "../lib/Utils";
+import { VideoType } from "../lib/Video";
+import { IMAGES_PER_REEL, QuoteReelType, VIDEOS_PER_REEL } from "./QuoteReel";
 
 import fs from 'fs';
 import path from 'path';
+
+const SOURCE_QUOTE_FILE = 'public/data/quotesReel.json';
+const DEST_QUOTE_FILE = 'public/data/final-quotesReel.json';
 
 const getFilesFromDirectory = async (directoryPath: string): Promise<string[]> => {
   const files = await fs.promises.readdir(directoryPath);
@@ -81,9 +84,13 @@ const toUniqueArray = (items: Array<any>): Array<any> => {
 export const prepareJson = async () => {
   try {
     const { images, videos, musics } = await readDataFromDirectories();
+    const json = await readJsonFile(SOURCE_QUOTE_FILE);
     const quotes = toUniqueArray(json);
     const updatedJson = await getUpdatedJson(quotes as Array<QuoteReelType>, images, videos, musics);
-    await saveToJsonFile(updatedJson, './final-quotes.json');
+
+    const destPath = path.resolve(__dirname, DEST_QUOTE_FILE);
+    await saveToJsonFile(updatedJson, destPath);
+
     console.log('Updated file saved');
     console.log('SUMMARY:');
     console.log(`

@@ -13,25 +13,30 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id='relaxingVideo'
         component={RelaxingVideo}
-        durationInFrames={1 * 60 * 30}  // 1 minute
+        durationInFrames={8 * 60 * 30}  // 3 minute
         fps={30}
         width={1920}
         height={1080}
         defaultProps={
           {
             "images": [
-              "relaxing/images/Jai Shiv Bhole Bhandari (1).jpeg",
-              "relaxing/images/Jai Shiv Bhole Bhandari (2).jpeg",
-              "relaxing/images/Jai Shiv Bhole Bhandari (3).jpeg",
-              "relaxing/images/Jai Shiv Bhole Bhandari (2).jpeg",
-              "relaxing/images/Jai Shiv Bhole Bhandari (4).jpeg",
-              "relaxing/images/Jai Shiv Bhole Bhandari (2).jpeg",
-              "relaxing/images/Jai Shiv Bhole Bhandari (1).jpeg"],
-            "title": "ओम नमः शिवाय",
-            "subTitle": "ओम नमः शिवाय, एक प्रसिद्ध हिंदू मंत्र है जो भगवान शिव की स्तुति के लिए प्रयोग किया जाता है। यह मंत्र शक्ति और शांति का प्रतीक है और इसे जाप करने से मन शांत होता है और आत्मिक उन्नति होती है। \"ओम\" शब्द ब्रह्मांड की सृष्टि का प्रतिनिधित्व करता है, जबकि \"नमः शिवाय\" का अर्थ है \"मैं शिव को नमन करता हूँ\"। इस मंत्र का जाप करने से व्यक्ति में सकारात्मक ऊर्जा का संचार होता है और वह मानसिक, शारीरिक और आध्यात्मिक रूप से स्वस्थ रहता है।",
-            "secondaryImage": "relaxing/images/mandala-2341704_1920.png",
-            "music": "relaxing/music/Om Namah Shivay.mp3",
-            "imageSeconds": 20
+              "relaxing/images/Har har Gange (1).jpeg",
+              "relaxing/images/Har har Gange (2).jpeg",
+              "relaxing/images/Har har Gange (3).jpeg",
+              "relaxing/images/Har har Gange (4).jpeg",
+              "relaxing/images/Har har Gange (5).jpeg",
+              "relaxing/images/Har har Gange (6).jpeg",
+              "relaxing/images/Har har Gange (7).jpeg",
+              "relaxing/images/Har har Gange (8).jpeg",
+              "relaxing/images/Har har Gange (9).jpeg",
+              "relaxing/images/Har har Gange (10).jpeg"
+            ],
+            "title": "महाकुंभ और माँ गंगा का संबंध",
+            "subTitle": "Relaxing - Meditation - Peaceful",
+            "secondaryImage": "",
+            "logo": "relaxing/images/logo.png",
+            "music": "",
+            "imageSeconds": 40
           }
         }
       />

@@ -13,6 +13,7 @@ export type RelaxingVideoProps = {
   subTitle: string;
   images: Array<string>;
   secondaryImage: string;
+  logo: string;
   music: string;
   imageSeconds: number;
 }
@@ -34,6 +35,7 @@ export const RelaxingVideo: React.FC<RelaxingVideoProps> = ({
   subTitle,
   images,
   secondaryImage,
+  logo,
   music,
   imageSeconds }) => {
 
@@ -47,7 +49,7 @@ export const RelaxingVideo: React.FC<RelaxingVideoProps> = ({
 
   const len = allImages.length;
   const imagesSequenceDuration = PER_IMAGE_DURATION * len;
-  const transitionDuration = Math.floor(imagesSequenceDuration / len / 1.5);
+  const transitionDuration = Math.floor(imagesSequenceDuration / len / 2.5);
 
   return <AbsoluteFill
     style={{
@@ -56,9 +58,9 @@ export const RelaxingVideo: React.FC<RelaxingVideoProps> = ({
   >
     <ImageSequence images={allImages} filter="" durationInFrames={imagesSequenceDuration} transitionDuration={transitionDuration} />
 
-    <SpaceDust
+    {/* <SpaceDust
       count={1000}
-      color={'rgb(245, 0, 208)'}
+      color={'rgb(236, 146, 2)'}
       lightDistance={0}
       lightIntensity={1000}
       lightColor={'rgb(0, 133, 249)'}
@@ -67,12 +69,14 @@ export const RelaxingVideo: React.FC<RelaxingVideoProps> = ({
       near={0}
       far={30}
       smoothness={0}
-      particleSize={0.1}
+      particleSize={0.2}
       opacity={1}
       minSpeed={8}
       maxSpeed={20}
-    />
-    <AbsoluteFill style={
+    /> */}
+
+    {/* Secondary Image */}
+    {secondaryImage && <AbsoluteFill style={
       {
         display: 'flex',
         flexDirection: 'column',
@@ -81,47 +85,79 @@ export const RelaxingVideo: React.FC<RelaxingVideoProps> = ({
       }
     }
     >
-      <RotateImage img={secondaryImage} animationDuration={durationInFrames} filter="FireFilter"
+      <RotateImage img={secondaryImage} animationDuration={PER_IMAGE_DURATION} filter="FireFilter"
         style={{
-          width: '300em',
-          height: '300em',
+          width: '50em',
+          height: '50em',
           maxWidth: 'none',
-          opacity: '0.05'
+          opacity: '0.5'
         }} />
-    </AbsoluteFill>
+    </AbsoluteFill>}
+
+    {/* Space Dust 1 */}
     <SpaceDust
-      count={50}
-      color={'rgb(229, 119, 0)'}
+      count={1000}
+      color={'rgb(121, 229, 254)'}
       lightDistance={0}
       lightIntensity={1000}
-      lightColor={'rgb(253, 135, 0)'}
+      lightColor={'rgb(108, 186, 255)'}
       fov={100}
       aspect={0}
       near={0}
       far={30}
-      smoothness={5}
-      particleSize={10}
-      opacity={0.1}
-      minSpeed={8}
-      maxSpeed={10}
+      smoothness={3}
+      particleSize={0.5}
+      opacity={0.15}
+      minSpeed={2}
+      maxSpeed={15}
     />
 
-    {/* Title */}
-    <Sequence from={0} durationInFrames={8 * fps}>
-      <ZoomInText text={title} separator={' '} animationDuration={2 * fps} />
-    </Sequence>
 
-    {/* SubTitle */}
-    <Sequence from={3 * fps} durationInFrames={8 * fps} style={
+    {/* Title */}
+    {title && <Sequence from={0} durationInFrames={8 * fps} style={
       {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
+        justifyContent: 'start',
         alignItems: 'center'
       }
     }>
-      <BoxText text={subTitle} style={{ fontSize: '3em' }} />
-    </Sequence>
+      <ZoomInText style={{ fontSize: '8em', fontWeight: 'bold' }} text={title} separator={' '} animationDuration={2 * fps} />
+    </Sequence>}
+
+    {/* SubTitle */}
+    {subTitle && <Sequence from={2 * fps} durationInFrames={6 * fps} style={
+      {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'end',
+        alignItems: 'center'
+      }
+    } >
+      <BoxText text={subTitle} style={{ fontSize: '4em', fontWeight: 'bold' }} />
+    </Sequence>}
+
+    {/* Logo Image */}
+    {logo && <Sequence from={2 * fps} durationInFrames={6 * fps} style={
+      {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'end',
+        alignItems: 'end',
+      }
+    }
+    >
+      <RotateImage img={logo} animationDuration={8 * fps} filter=""
+        style={{
+          width: '20em',
+          height: '20em',
+          maxWidth: 'none',
+          opacity: '0.5',
+          margin: '5em',
+          borderRadius: '50%'
+        }} />
+    </Sequence>}
+
 
     {/* Music */}
     {music && <Sequence

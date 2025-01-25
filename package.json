@@ -15,11 +15,10 @@
     "@remotion/zod-types": "4.0.251",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-tsparticles": "^2.12.2",
     "remotion": "4.0.251",
     "remotion-animated": "^2.1.1",
     "ts-node": "^10.9.2",
-    "tsparticles": "^2.12.0",
+    "yargs": "^17.7.2",
     "zod": "3.22.3"
   },
   "devDependencies": {
@@ -28,6 +27,7 @@
     "@types/react": "19.0.0",
     "@types/three": "^0.172.0",
     "@types/web": "0.0.166",
+    "@types/yargs": "^17.0.33",
     "eslint": "8.56.0",
     "prettier": "3.3.3",
     "typescript": "5.5.4"
@@ -37,9 +37,9 @@
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
     "lint": "eslint src --ext ts,tsx,js,jsx && tsc",
-    "prepareQuoteReels": "ts-node ./src/QuoteReel/data/prepareData.tsx",
-    "renderQuoteReels": "ts-node ./src/renderQuoteReels.ts --exit-child",
-    "renderRelaxingVideos": "ts-node ./src/renderRelaxingVideo.ts --exit-child",
+    "prepareQuoteReels": "ts-node ./src/QuoteReel/prepareData.tsx",
+    "renderQuoteReels": "npm run prepareQuoteReels && ts-node ./src/render.ts -c quoteReel -j json/quote-final.json --exit-child",
+    "renderRelaxingVideos": "ts-node ./src/render.tsx -c relaxingVideo -j relaxing/json/quote-final.json --exit-child",
     "renderQuoteReel": "remotion render quoteReel out/quote-reel.mp4"
   },
   "sideEffects": [
