@@ -1,8 +1,9 @@
 import './tailwind.css';
 import { Composition } from "remotion";
 import { MyAudio } from './MyAudio/MyAudio';
-import { QuoteReel, calculateMetadataQuoteReel } from './QuoteReel';
+
 import { RelaxingVideo } from './RelaxingVideo';
+import { calculateMetadataQuoteReel, QuoteReel } from './QuoteReel';
 
 
 // Each <Composition> is an entry in the sidebar!
@@ -20,21 +21,21 @@ export const RemotionRoot: React.FC = () => {
         defaultProps={
           {
             "images": [
-              "relaxing/images/Har har Gange (1).jpeg",
-              "relaxing/images/Har har Gange (2).jpeg",
-              "relaxing/images/Har har Gange (3).jpeg",
-              "relaxing/images/Har har Gange (4).jpeg",
-              "relaxing/images/Har har Gange (5).jpeg",
-              "relaxing/images/Har har Gange (6).jpeg",
-              "relaxing/images/Har har Gange (7).jpeg",
-              "relaxing/images/Har har Gange (8).jpeg",
-              "relaxing/images/Har har Gange (9).jpeg",
-              "relaxing/images/Har har Gange (10).jpeg"
+              "images/Har har Gange (1).jpeg",
+              "images/Har har Gange (2).jpeg",
+              "images/Har har Gange (3).jpeg",
+              "images/Har har Gange (4).jpeg",
+              "images/Har har Gange (5).jpeg",
+              "images/Har har Gange (6).jpeg",
+              "images/Har har Gange (7).jpeg",
+              "images/Har har Gange (8).jpeg",
+              "images/Har har Gange (9).jpeg",
+              "images/Har har Gange (10).jpeg"
             ],
             "title": "महाकुंभ और माँ गंगा का संबंध",
             "subTitle": "Relaxing - Meditation - Peaceful",
             "secondaryImage": "",
-            "logo": "relaxing/images/logo.png",
+            "logo": "images/logo.png",
             "music": "",
             "imageSeconds": 40
           }
@@ -56,13 +57,8 @@ export const RemotionRoot: React.FC = () => {
             "translation": "Mahakumbh 2025: Grand Beginning",
             "filter": "ForestFilter",
             // "videos": [{ "src": "myvideo.mp4", "duration": 0 }, { "src": "reel1.mp4", "duration": 0 }],
-            "images": [
-              "images/WhatsApp Image 2025-01-22 at 22.42.21_1f01af80.jpg",
-              "images/WhatsApp Image 2025-01-22 at 22.42.21_07762208.jpg",
-              "images/WhatsApp Image 2025-01-22 at 22.42.21_bc5c0487.jpg",
-              "images/WhatsApp Image 2025-01-22 at 22.42.23_bd384b29.jpg"
-            ],
-            "music": "relaxing/music/Om Namah Shivay.mp3"
+            "images": [],
+            "music": ""
           }
         }
       />
