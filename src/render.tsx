@@ -5,6 +5,39 @@ import { selectComposition, renderMedia } from "@remotion/renderer";
 import { encodeFileName, formatDuration, readJsonFile } from "./lib/Utils";
 
 import filelog from './lib/Logger';
+const PUBLIC_DIR = 'public';
+const PROCESSED_DIR = 'processed data';
+const PROCESSED_DIRS = [
+  `images`,
+  `videos`,
+  `music`,
+  `data`];
+
+import fs from 'fs';
+import fse from 'fs-extra';
+
+const moveProcessedData = (srcDirectory: string, destDirectory: string, dirs: string[], compositionId: string) => {
+  const destDataDir = `${(new Date).toDateString()}-${compositionId}-${Date.now()}`;
+
+  const srcDir = path.resolve(__dirname, srcDirectory);
+  const destDir = path.resolve(__dirname, destDataDir, destDirectory);
+
+  dirs.forEach((dir) => {
+    const srcPath = path.join(srcDir, dir);
+    const destPath = path.join(destDir, dir);
+    if (!fs.existsSync(destPath)) {
+      fs.mkdirSync(destPath, { recursive: true });
+    }
+    const files = fs.readdirSync(srcPath);
+    files.forEach((file) => {
+      const srcFile = path.join(srcPath, file);
+      const destFile = path.join(destPath, file);
+      if (fs.lstatSync(srcFile).isFile()) {
+        fse.moveSync(srcFile, destFile, { overwrite: true });
+      }
+    });
+  });
+};
 
 async function getCmdArguments() {
   const args = process.argv.slice(2);
@@ -57,7 +90,7 @@ const renderOne = async (
     codec: "h264",
     outputLocation,
     inputProps: videoProps,
-    // frameRange: [0, 200],
+    frameRange: [0, 30],
     onProgress: (rProgress) => {
       // prints the info in same line
       const {
@@ -125,6 +158,8 @@ async function main() {
     await startRender(composition, json)
       .then(() => {
         filelog('All Renders Completed.');
+        filelog(`Moving all files and data to ${PROCESSED_DIR}`);
+        moveProcessedData(PUBLIC_DIR, PROCESSED_DIR, PROCESSED_DIRS, composition);
       })
       .catch((error) => {
         console.error(error);

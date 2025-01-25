@@ -13,6 +13,7 @@
     "@remotion/three": "4.0.251",
     "@remotion/transitions": "4.0.251",
     "@remotion/zod-types": "4.0.251",
+    "fs-extra": "^11.3.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "remotion": "4.0.251",
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "@remotion/eslint-config": "4.0.251",
+    "@types/fs-extra": "^11.0.4",
     "@types/node": "^22.10.6",
     "@types/react": "19.0.0",
     "@types/three": "^0.172.0",
