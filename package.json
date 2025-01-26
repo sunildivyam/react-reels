@@ -6,6 +6,7 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
+    "@google/generative-ai": "^0.21.0",
     "@react-three/fiber": "^8.17.12",
     "@remotion/cli": "4.0.251",
     "@remotion/media-parser": "4.0.251",
@@ -35,6 +36,7 @@
     "typescript": "5.5.4"
   },
   "scripts": {
+    "ts-node": "ts-node ",
     "dev": "remotion studio",
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
