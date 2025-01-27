@@ -134,9 +134,10 @@ const renderOne = async (
 
       if (isProgressChanged(prevProgress, rProgress)) {
         const eta = getETA(progress, Date.now() - startTime, renderedFrames, frameRange[1] - frameRange[0]);
+        const totalFrames = frameRange[1] - frameRange[0];
 
         filelog(
-          `${outputLocation} | ${stitchStage} | ${Math.floor(progress * 100)}% | Frames (rendered: ${renderedFrames} encoded: ${encodedFrames}) | ETA: (${formatDuration(Date.now() - startTime)} / ${formatDuration(renderEstimatedTime)}) | Remaining: ${eta}\r`,
+          `${outputLocation} | ${stitchStage} | ${Math.floor(progress * 100)}% | Frames(${totalFrames}) (rendered: ${renderedFrames} encoded: ${encodedFrames}) | ETA: (${formatDuration(Date.now() - startTime)} / ${formatDuration(renderEstimatedTime)}) | Remaining: ${eta}\r`,
           true);
         prevProgress = rProgress;
       }
