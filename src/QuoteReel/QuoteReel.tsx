@@ -9,7 +9,7 @@ import { parseMedia } from "@remotion/media-parser";
 
 const FPS = 30;
 export const VIDEO_TRANSITION_DURATION = (5 * FPS);
-export const IMAGES_PER_REEL = 1;
+export const IMAGES_PER_REEL = 2;
 export const VIDEOS_PER_REEL = 1;
 
 

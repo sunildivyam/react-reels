@@ -1,7 +1,9 @@
 import './tailwind.css';
 import { Composition } from "remotion";
 import { MyAudio } from './MyAudio/MyAudio';
-import { QuoteReel, calculateMetadataQuoteReel } from './QuoteReel';
+
+import { RelaxingVideo } from './RelaxingVideo';
+import { calculateMetadataQuoteReel, QuoteReel } from './QuoteReel';
 
 
 // Each <Composition> is an entry in the sidebar!
@@ -9,6 +11,37 @@ import { QuoteReel, calculateMetadataQuoteReel } from './QuoteReel';
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      <Composition
+        id='relaxingVideo'
+        component={RelaxingVideo}
+        durationInFrames={8 * 60 * 30}  // 3 minute
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={
+          {
+            "images": [
+              "images/Har har Gange (1).jpeg",
+              "images/Har har Gange (2).jpeg",
+              "images/Har har Gange (3).jpeg",
+              "images/Har har Gange (4).jpeg",
+              "images/Har har Gange (5).jpeg",
+              "images/Har har Gange (6).jpeg",
+              "images/Har har Gange (7).jpeg",
+              "images/Har har Gange (8).jpeg",
+              "images/Har har Gange (9).jpeg",
+              "images/Har har Gange (10).jpeg"
+            ],
+            "title": "महाकुंभ और माँ गंगा का संबंध",
+            "subTitle": "Relaxing - Meditation - Peaceful",
+            "secondaryImage": "",
+            "logo": "images/logo.png",
+            "music": "",
+            "imageSeconds": 40
+          }
+        }
+      />
+
       <Composition
         id='quoteReel'
         component={QuoteReel}
@@ -24,11 +57,8 @@ export const RemotionRoot: React.FC = () => {
             "translation": "Mahakumbh 2025: Grand Beginning",
             "filter": "ForestFilter",
             // "videos": [{ "src": "myvideo.mp4", "duration": 0 }, { "src": "reel1.mp4", "duration": 0 }],
-            "images": [
-              "images/0-184944813.jpg",
-              "images/2-1572030577.jpg"
-            ],
-            "music": "music/Flutes - Stayloose.mp3"
+            "images": [],
+            "music": ""
           }
         }
       />

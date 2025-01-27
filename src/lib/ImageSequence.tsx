@@ -13,13 +13,13 @@ interface ImageSequenceProps {
 export const ImageSequence: React.FC<ImageSequenceProps> = ({ images, filter, durationInFrames, transitionDuration }) => {
   function getImageSequences() {
     const len = images.length;
-    const imgDuration = durationInFrames / len;
+    const imgDuration = (durationInFrames + (transitionDuration * len)) / len;
     // const transitionTiming = springTiming({ durationInFrames: transitionDuration, config: { damping: 200 } });
     const transitionTiming = linearTiming({ durationInFrames: transitionDuration });
 
-    return images.map((imgSrc, index) => <>
+    return images.map((imgSrc, index) => <React.Fragment key={index}>
       <TransitionSeries.Sequence
-        durationInFrames={imgDuration + (transitionDuration / 2)}>
+        durationInFrames={imgDuration}>
         {imgSrc && <ZoomImage img={imgSrc} filter={filter || ''} animationDuration={imgDuration} zoomMode="out" />}
         {/* {imgSrc && <PanImage img={imgSrc} filter={filter || ''} animationDuration={imgDuration} panDirection="bottom" />} */}
       </TransitionSeries.Sequence >
@@ -27,7 +27,7 @@ export const ImageSequence: React.FC<ImageSequenceProps> = ({ images, filter, du
         timing={transitionTiming}
         presentation={fade()} />
       }
-    </>)
+    </React.Fragment>)
   }
 
 
