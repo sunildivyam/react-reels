@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import { z } from "zod";
 
 import { AbsoluteFill, Sequence, staticFile, useVideoConfig, Audio } from "remotion";
 import { ImageSequence } from "../../lib/ImageSequence";
@@ -7,16 +8,17 @@ import { SpaceDust } from "../../lib/Particles/SpaceDust";
 import ZoomInText from "../../lib/ZoomInText";
 import BoxText from "../../lib/BoxText";
 
+export const RelaxingVideoSchema = z.object({
+  title: z.string(),
+  subTitle: z.string(),
+  images: z.array(z.string()),
+  secondaryImage: z.string(),
+  logo: z.string(),
+  music: z.string(),
+  imageSeconds: z.number(),
+})
 
-export type RelaxingVideoProps = {
-  title: string;
-  subTitle: string;
-  images: Array<string>;
-  secondaryImage: string;
-  logo: string;
-  music: string;
-  imageSeconds: number;
-}
+export type RelaxingVideoProps = z.infer<typeof RelaxingVideoSchema>;
 
 function fillImagesUptoFullDuration(images: Array<string>, perImageDuration: number, videoDuration: number) {
   const oLen = images.length;

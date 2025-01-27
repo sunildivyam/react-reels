@@ -1,6 +1,6 @@
 import { MyAudio } from "./MyAudio/MyAudio";
-import { calculateMetadataQuoteReel, QuoteReel } from "./QuoteReel";
-import { RelaxingVideo } from "./RelaxingVideo";
+import { calculateMetadataQuoteReel, QuoteReel, QuoteReelSchema } from "./QuoteReel";
+import { RelaxingVideo, RelaxingVideoSchema } from "./RelaxingVideo";
 
 export const COMPOSITIONS: Array<any> = [
   {
@@ -10,6 +10,7 @@ export const COMPOSITIONS: Array<any> = [
     fps: 30,
     width: 1920,
     height: 1080,
+    schema: RelaxingVideoSchema,
     defaultProps: {
       images: [
         "remotion-defaults/images/relaxingVideo-image (1).jpeg",
@@ -34,11 +35,12 @@ export const COMPOSITIONS: Array<any> = [
     width: 1080,
     height: 1920,
     calculateMetadata: calculateMetadataQuoteReel,
+    schema: QuoteReelSchema,
     defaultProps:
     {
       title: "प्रयागराज में धूमधाम से शुरू हुआ महाकुंभ",
       summary: "लाखों श्रद्धालुओं ने पौष पूर्णिमा पर संगम में डुबकी लगाई, सुरक्षा व्यवस्था चाक-चौबंद.",
-      translation: "Mahakumbh202: Grand Beginning",
+      translation: "Mahakumbh2025: Grand Beginning",
       filter: "ForestFilter",
       videos: [
         { src: "remotion-defaults/videos/quoteReel-1.mp4", duration: 0 },

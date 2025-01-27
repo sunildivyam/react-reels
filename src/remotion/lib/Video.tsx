@@ -2,12 +2,14 @@ import { AbsoluteFill, OffthreadVideo, staticFile, useVideoConfig } from "remoti
 
 import { useCallback, useRef } from "react";
 import { getImageFilter, OverlayFilters } from "../filters";
+import { z } from "zod";
 
+export const VideoSchema = z.object({
+  src: z.string(),
+  duration: z.number()
+})
 
-export type VideoType = {
-  src: string;
-  duration: number;
-}
+export type VideoType = z.infer<typeof VideoSchema>;
 
 type VideoProps = {
   video: VideoType;

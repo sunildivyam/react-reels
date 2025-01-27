@@ -2,32 +2,33 @@ import React from "react"
 import { AbsoluteFill, Sequence, staticFile, useVideoConfig, Audio, CalculateMetadataFunction } from "remotion";
 
 import { ImageSequence } from "../../lib/ImageSequence";
-import { VideoType } from "../../lib/Video";
+import { VideoSchema } from "../../lib/Video";
 import { VideoSequence } from "../../lib/VideoSequence";
 import QuoteTextSequence from "./QuoteTextSequence";
 // import { parseMedia } from "@remotion/media-parser";
 import { getVideoMetadata } from '@remotion/media-utils';
+import { z } from "zod";
 
 const FPS = 30;
 export const VIDEO_TRANSITION_DURATION = (5 * FPS);
 export const IMAGES_PER_REEL = 2;
 export const VIDEOS_PER_REEL = 1;
 
+export const QuoteReelSchema = z.object({
+  title: z.string(),
+  summary: z.string(),
+  translation: z.string(),
+  images: z.array(z.string()),
+  music: z.string(),
+  videos: z.array(VideoSchema),
+  filter: z.string(),
+  youTubeId: z.string().optional(),
+  tags: z.array(z.string()).optional(),
+  hashTags: z.array(z.string()).optional(),
+  isVideoType: z.boolean().optional()
+});
 
-export type QuoteReelType = {
-  title: string;
-  summary: string;
-  translation: string;
-  images?: Array<string>;
-  music: string;
-  videos?: Array<VideoType>;
-  filter?: string;
-  youTubeId?: string;
-  tags?: Array<string>;
-  hashTags?: Array<string>;
-  isVideoType?: boolean;
-}
-
+export type QuoteReelType = z.infer<typeof QuoteReelSchema>;
 
 export const QuoteReel: React.FC<QuoteReelType> = ({ title, summary, translation, images, music, videos, filter, isVideoType }) => {
   const { durationInFrames, fps } = useVideoConfig();
