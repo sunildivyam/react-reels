@@ -86,7 +86,6 @@ async function getCmdArguments() {
   return { composition, json };
 }
 
-
 const renderOne = async (
   videoProps: any,
   bundleLocation: string,
@@ -153,24 +152,52 @@ const renderOne = async (
   );
 };
 
-export const startRender = async (compositionId: string, jsonPath: string) => {
-  let videoInfos: Array<any> = [];
-  try {
-    videoInfos = await readJsonFile(`${PUBLIC_DIR}/data/${jsonPath}`);
-  } catch (error: any) {
-    filelog(error);
-    throw new Error(`Error reading json file ${jsonPath} ${error}`);
-  }
-
+const buildBundle = async (): Promise<string> => {
   // You only have to do this once, you can reuse the bundle.
   const entry = "src/index.ts";
-  filelog(`STARTED RENDERING ${compositionId} at: ${new Date()}`);
   filelog('Creating a Webpack bundle of the video')
+
   try {
-    const bundleLocation = await bundle(path.resolve(entry), () => undefined, {
-      // If you have a Webpack override, make sure to add it here
-      webpackOverride: (config) => config,
+    const bundleLocation = await bundle({
+      entryPoint: path.resolve(entry),
+      onDirectoryCreated(dir) {
+        filelog(`Bundle Directory Created: ${dir}`);
+      },
+      onPublicDirCopyProgress(bytes) {
+        filelog(`Copying Public Directory: ${bytes} bytes\r`, true);
+      },
+      onProgress(progress) {
+        filelog(`Bundling progress: ${progress}%\r`, true);
+      },
+      webpackOverride: (config) => {
+        return {
+          ...config,
+          optimization: {
+            ...config.optimization,
+            minimize: true,
+          }
+        };
+      }
     });
+    return bundleLocation;
+  } catch (e) {
+    throw e;
+  }
+}
+
+export const startRender = async (compositionId: string, jsonPath: string) => {
+  filelog(`STARTED RENDERING ${compositionId} at: ${new Date()}`);
+  let videoInfos: Array<any> = [];
+
+  try {
+    const bundleLocation: string = await buildBundle();
+    console.log(bundleLocation);
+    try {
+      videoInfos = await readJsonFile(`${PUBLIC_DIR}/data/${jsonPath}`);
+    } catch (error: any) {
+      filelog(error);
+      throw new Error(`Error reading json file ${jsonPath} ${error}`);
+    }
 
     for (const vidInfo of videoInfos) {
       const singleVideo = { ...vidInfo };
