@@ -1,11 +1,11 @@
 import React, { useMemo } from "react";
 
 import { AbsoluteFill, Sequence, staticFile, useVideoConfig, Audio } from "remotion";
-import { ImageSequence } from "../lib/ImageSequence";
-import { RotateImage } from "../lib/RotateImage";
-import { SpaceDust } from "../lib/Particles/SpaceDust";
-import ZoomInText from "../lib/ZoomInText";
-import BoxText from "../lib/BoxText";
+import { ImageSequence } from "../../lib/ImageSequence";
+import { RotateImage } from "../../lib/RotateImage";
+import { SpaceDust } from "../../lib/Particles/SpaceDust";
+import ZoomInText from "../../lib/ZoomInText";
+import BoxText from "../../lib/BoxText";
 
 
 export type RelaxingVideoProps = {

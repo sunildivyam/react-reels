@@ -1,11 +1,12 @@
 import React from "react"
 import { AbsoluteFill, Sequence, staticFile, useVideoConfig, Audio, CalculateMetadataFunction } from "remotion";
 
-import { ImageSequence } from "../lib/ImageSequence";
-import { VideoType } from "../lib/Video";
-import { VideoSequence } from "../lib/VideoSequence";
+import { ImageSequence } from "../../lib/ImageSequence";
+import { VideoType } from "../../lib/Video";
+import { VideoSequence } from "../../lib/VideoSequence";
 import QuoteTextSequence from "./QuoteTextSequence";
-import { parseMedia } from "@remotion/media-parser";
+// import { parseMedia } from "@remotion/media-parser";
+import { getVideoMetadata } from '@remotion/media-utils';
 
 const FPS = 30;
 export const VIDEO_TRANSITION_DURATION = (5 * FPS);
@@ -24,10 +25,11 @@ export type QuoteReelType = {
   youTubeId?: string;
   tags?: Array<string>;
   hashTags?: Array<string>;
+  isVideoType?: boolean;
 }
 
 
-export const QuoteReel: React.FC<QuoteReelType> = ({ title, summary, translation, images, music, videos, filter, }) => {
+export const QuoteReel: React.FC<QuoteReelType> = ({ title, summary, translation, images, music, videos, filter, isVideoType }) => {
   const { durationInFrames, fps } = useVideoConfig();
 
   return (
@@ -37,7 +39,7 @@ export const QuoteReel: React.FC<QuoteReelType> = ({ title, summary, translation
       }}
     >
       {/* Videos & Images */}
-      {videos?.length ? <VideoSequence videos={videos} filter={filter || ''} transitionDuration={VIDEO_TRANSITION_DURATION} transitionType="flip" /> :
+      {isVideoType === true && videos?.length ? <VideoSequence videos={videos} filter={filter || ''} transitionDuration={VIDEO_TRANSITION_DURATION} transitionType="flip" /> :
         images?.length ? <ImageSequence images={images} durationInFrames={durationInFrames} filter={filter} transitionDuration={10 * fps} /> :
           null}
 
@@ -63,15 +65,22 @@ export const calculateMetadataQuoteReel: CalculateMetadataFunction<QuoteReelType
   const fps = FPS;
   let totalDuration = 0;
 
-  if (props.videos?.length) {
+  if (props.isVideoType === true && props.videos?.length) {
     for (let video of props.videos) {
-      const { slowDurationInSeconds } = await parseMedia({
-        src: staticFile(video.src),
-        fields: {
-          slowDurationInSeconds: true,
-          dimensions: true,
-        },
-      });
+      console.log(staticFile(video.src));
+
+      /**
+       * NOTE: parseMedia() started giving error of infinite loop. So till it resolves,
+       * Let's use getVideoMetaData(); while remotion recommends to use parseMedia();
+      */
+      // const { slowDurationInSeconds } = await parseMedia({
+      //   src: staticFile(video.src),
+      //   fields: {
+      //     slowDurationInSeconds: true,
+      //   },
+      // });
+
+      const { durationInSeconds: slowDurationInSeconds } = await getVideoMetadata(staticFile(video.src));
 
       video.duration = slowDurationInSeconds * fps;
       totalDuration += slowDurationInSeconds;

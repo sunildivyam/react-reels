@@ -1,6 +1,13 @@
 import { readFile } from "fs/promises";
 import path from "path";
 
+// Relative path to project root, from __dirname
+const RELATIVE_PATH = '../../../';
+
+export function resolvedPath(file: string): string {
+  return path.resolve(__dirname, RELATIVE_PATH, file);
+}
+
 export function encodeFileName(input: string): string {
   return input.replace(/[\/\\*<>|:*"?]/g, ' ');
 }
@@ -14,7 +21,7 @@ export function formatDuration(ms: number): string {
 
 
 export async function readJsonFile(jsonFile: string): Promise<any> {
-  const filePath = path.resolve(__dirname, '../../', jsonFile);
+  const filePath = path.resolve(__dirname, RELATIVE_PATH, jsonFile);
   const fileContent = await readFile(filePath, "utf-8");
   return JSON.parse(fileContent);
 }

@@ -1,9 +1,9 @@
 import { springTiming, TransitionSeries } from '@remotion/transitions';
 import React from 'react';
 import { AbsoluteFill, Sequence, useVideoConfig } from 'remotion';
-import ZoomInText from '../lib/ZoomInText';
+import ZoomInText from '../../lib/ZoomInText';
 import { slide } from '@remotion/transitions/slide';
-import BoxText from '../lib/BoxText';
+import BoxText from '../../lib/BoxText';
 
 interface QuoteTextSequenceProps {
   title: string;

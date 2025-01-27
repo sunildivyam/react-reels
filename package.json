@@ -37,11 +37,12 @@
   "scripts": {
     "dev": "remotion studio",
     "build": "remotion bundle",
+    "bundle": "ts-node ./src/remotion/rendering/bundle.tsx",
     "upgrade": "remotion upgrade",
     "lint": "eslint src --ext ts,tsx,js,jsx && tsc",
-    "prepareQuoteReels": "ts-node ./src/QuoteReel/prepareData.tsx",
-    "renderQuoteReels": "npm run prepareQuoteReels && ts-node ./src/render.ts -c quoteReel -j final-quoteReel.json --exit-child",
-    "renderRelaxingVideos": "ts-node ./src/render.tsx -c relaxingVideo -j final-relaxingVideo.json --exit-child",
+    "prepareQuoteReels": "ts-node ./src/remotion/QuoteReel/prepareData.tsx",
+    "renderQuoteReels": "npm run prepareQuoteReels && ts-node ./src/remotion/render.tsx -c quoteReel -j final-quoteReel.json --exit-child",
+    "renderRelaxingVideos": "ts-node ./src/remotion/render.tsx -c relaxingVideo -j final-relaxingVideo.json --exit-child",
     "renderQuoteReel": "remotion render quoteReel out/quote-reel.mp4"
   },
   "sideEffects": [

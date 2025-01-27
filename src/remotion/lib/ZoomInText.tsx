@@ -53,7 +53,7 @@ const ZoomInText: React.FC<ZoomInTextProps> = ({ text, separator, animationDurat
   return (
     <p
       style={{
-        // backgroundColor: 'rgba(60, 60, 60, 0.4)',
+        backgroundColor: 'rgba(60, 60, 60, 0.4)',
         color: `${color}`,
         textShadow: `${shadowColor} 1px 8px 14px`,
         borderRadius: '0.5em',

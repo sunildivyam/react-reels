@@ -1,20 +1,11 @@
-import path from "path";
-import yargs from "yargs";
-import { bundle } from "@remotion/bundler";
 import { selectComposition, renderMedia, FrameRange, StitchingState } from "@remotion/renderer";
-import { encodeFileName, formatDuration, getETA, readJsonFile } from "./lib/Utils";
-
-import filelog from './lib/Logger';
-const PUBLIC_DIR = 'public';
-const PROCESSED_DIR = 'processed data';
-const PROCESSED_DIRS = [
-  `images`,
-  `videos`,
-  `music`,
-  `data`];
-
+import { encodeFileName, formatDuration, getETA, readJsonFile, resolvedPath } from "../lib/Utils";
 import fs from 'fs';
 import fse from 'fs-extra';
+import path from "path";
+import { bundle } from "@remotion/bundler";
+import filelog from '../lib/Logger';
+import { entryPoint, PUBLIC_DIR } from "../constants";
 
 type RenderProgressType = {
   renderedFrames: number;
@@ -26,7 +17,51 @@ type RenderProgressType = {
   stitchStage: StitchingState;
 }
 
-function isProgressChanged(prevProgress: RenderProgressType, currentProgress: RenderProgressType): boolean {
+/**
+ * build the Remotion Webpack Bundle and saves in the outDir
+ * @param outDir Optional, default is windows temp dir
+ * @returns path of the generated webpackbundle
+ */
+export const buildBundle = async (outDir: string = ''): Promise<string> => {
+  // You only have to do this once, you can reuse the bundle.
+  const entry = entryPoint;
+  filelog('Creating a Webpack bundle of the video')
+
+  if (outDir && !path.isAbsolute(outDir)) {
+    outDir = resolvedPath(outDir);
+  }
+
+  try {
+    const bundleLocation = await bundle({
+      entryPoint: path.resolve(entry),
+      outDir: outDir || undefined,
+      onDirectoryCreated(dir) {
+        filelog(`Bundle Directory Created: ${dir}`);
+      },
+      onPublicDirCopyProgress(bytes) {
+        filelog(`Copying Public Directory: ${bytes} bytes\r`, true);
+      },
+      onProgress(progress) {
+        filelog(`Bundling progress: ${progress}%\r`, true);
+      },
+      webpackOverride: (config) => {
+        return {
+          ...config,
+          optimization: {
+            ...config.optimization,
+            minimize: true,
+          }
+        };
+      }
+    });
+    return bundleLocation;
+  } catch (e) {
+    throw e;
+  }
+}
+
+
+export function isProgressChanged(prevProgress: RenderProgressType, currentProgress: RenderProgressType): boolean {
   return (
     prevProgress.renderedFrames !== currentProgress.renderedFrames ||
     prevProgress.encodedFrames !== currentProgress.encodedFrames ||
@@ -38,7 +73,7 @@ function isProgressChanged(prevProgress: RenderProgressType, currentProgress: Re
   );
 }
 
-const moveProcessedData = (srcDirectory: string, destDirectory: string, dirs: string[], compositionId: string) => {
+export const moveProcessedData = (srcDirectory: string, destDirectory: string, dirs: string[], compositionId: string) => {
   const date = new Date();
   const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
   const timeInMilliseconds = date.getTime();
@@ -64,29 +99,7 @@ const moveProcessedData = (srcDirectory: string, destDirectory: string, dirs: st
   });
 };
 
-async function getCmdArguments() {
-  const args = process.argv.slice(2);
-  const options = yargs(args)
-    .option("composition", {
-      alias: "c",
-      type: "string",
-      description: "ID of Composition to render",
-    })
-    .option("json", {
-      alias: "j",
-      type: "string",
-      description: "Path of JSON data file relative to public folder",
-    })
-    .help().argv;
-
-  const { composition, json } = await options;
-  if (!composition) throw new Error("Composition required");
-  if (!json) throw new Error("Video Json file path required");
-
-  return { composition, json };
-}
-
-const renderOne = async (
+export const renderOne = async (
   videoProps: any,
   bundleLocation: string,
   compositionId: string,
@@ -152,40 +165,7 @@ const renderOne = async (
   );
 };
 
-const buildBundle = async (): Promise<string> => {
-  // You only have to do this once, you can reuse the bundle.
-  const entry = "src/index.ts";
-  filelog('Creating a Webpack bundle of the video')
-
-  try {
-    const bundleLocation = await bundle({
-      entryPoint: path.resolve(entry),
-      onDirectoryCreated(dir) {
-        filelog(`Bundle Directory Created: ${dir}`);
-      },
-      onPublicDirCopyProgress(bytes) {
-        filelog(`Copying Public Directory: ${bytes} bytes\r`, true);
-      },
-      onProgress(progress) {
-        filelog(`Bundling progress: ${progress}%\r`, true);
-      },
-      webpackOverride: (config) => {
-        return {
-          ...config,
-          optimization: {
-            ...config.optimization,
-            minimize: true,
-          }
-        };
-      }
-    });
-    return bundleLocation;
-  } catch (e) {
-    throw e;
-  }
-}
-
-export const startRender = async (compositionId: string, jsonPath: string) => {
+export const renderAll = async (compositionId: string, jsonPath: string) => {
   filelog(`STARTED RENDERING ${compositionId} at: ${new Date()}`);
   let videoInfos: Array<any> = [];
 
@@ -212,27 +192,3 @@ export const startRender = async (compositionId: string, jsonPath: string) => {
     throw error;
   }
 };
-
-async function main() {
-  filelog.clear();
-
-  try {
-    const { composition, json } = await getCmdArguments();
-
-    await startRender(composition, json)
-      .then(() => {
-        filelog('All Renders Completed.');
-        filelog(`Moving all files and data to ${PROCESSED_DIR}`);
-        moveProcessedData(PUBLIC_DIR, PROCESSED_DIR, PROCESSED_DIRS, composition);
-      })
-      .catch((error) => {
-        console.error(error);
-        filelog(error);
-        process.exit(1);
-      });
-  } catch (error: any) {
-    filelog(error);
-  }
-}
-
-main();

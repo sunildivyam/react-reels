@@ -1,5 +1,5 @@
-import { readJsonFile } from "../lib/Utils";
-import { VideoType } from "../lib/Video";
+import { readJsonFile } from "../../lib/Utils";
+import { VideoType } from "../../lib/Video";
 import { IMAGES_PER_REEL, QuoteReelType, VIDEOS_PER_REEL } from "./QuoteReel";
 
 import fs from 'fs';
