@@ -1,3 +1,4 @@
+import { random } from "remotion";
 import { readJsonFile } from "../../lib/Utils";
 import { VideoType } from "../../lib/Video";
 import { IMAGES_PER_REEL, QuoteReelType, VIDEOS_PER_REEL } from "./QuoteReel";
@@ -43,13 +44,13 @@ export const getUpdatedJson = (json: Array<QuoteReelType>, images: Array<string>
         duration: 0
       }];
       for (let i = 0; i < VIDEOS_PER_REEL; i++) {
-        const vid = { src: `videos/${videos[Math.floor(Math.random() * videos.length)]}`, duration: 0 };
+        const vid = { src: `videos/${videos[Math.floor(random(null) * videos.length)]}`, duration: 0 };
         rVideos.push(vid);
       }
     } else {
       rImages = [`images/${images[(index - videos.length) % images.length]}`];
       for (let i = 0; i < IMAGES_PER_REEL; i++) {
-        const image = `images/${images[Math.floor(Math.random() * images.length)]}`;
+        const image = `images/${images[Math.floor(random(null) * images.length)]}`;
         rImages.push(image);
       }
     }
@@ -73,6 +74,7 @@ export const saveToJsonFile = async (json: Array<QuoteReelType>, fileName: strin
   await fs.promises.writeFile(filePath, JSON.stringify(json, null, 2), 'utf-8')
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const toUniqueArray = (items: Array<any>): Array<any> => {
   const map = new Map();
   items.forEach(item => {

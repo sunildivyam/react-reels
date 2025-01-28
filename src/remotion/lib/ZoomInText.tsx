@@ -1,13 +1,13 @@
 import React from 'react';
-import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from 'remotion';
+import { Easing, interpolate, useCurrentFrame } from 'remotion';
 
 interface ZoomInTextProps {
-  text: string;
-  separator?: string;
-  animationDuration: number;
-  shadowColor?: string;
-  color?: string;
-  style?: React.CSSProperties;
+  readonly text: string;
+  readonly separator?: string;
+  readonly animationDuration: number;
+  readonly shadowColor?: string;
+  readonly color?: string;
+  readonly style?: React.CSSProperties;
 }
 
 

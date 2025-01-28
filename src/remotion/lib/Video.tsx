@@ -33,12 +33,13 @@ export const Video: React.FC<VideoProps> = ({ video, filter }) => {
     console.log(filter);
     context.filter = getImageFilter(filter || '');
     context.drawImage(vFrame, 0, 0, width, height);
-  }, [width, height]);
+  }, [width, height, filter]);
 
   return <AbsoluteFill>
     <AbsoluteFill>
       {/* <Loop durationInFrames={durationInFrames}> */}
       <OffthreadVideo
+        muted
         style={{
           width,
           height,
@@ -46,7 +47,6 @@ export const Video: React.FC<VideoProps> = ({ video, filter }) => {
         }}
         src={staticFile(video.src)}
         playbackRate={1}
-        muted
         onVideoFrame={onVideoFrame}
       />
 

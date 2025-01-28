@@ -1,13 +1,13 @@
 import React from 'react';
-import { linearTiming, /*springTiming, */ TransitionSeries } from '@remotion/transitions';
+import { linearTiming, TransitionSeries } from '@remotion/transitions';
 import { fade } from '@remotion/transitions/fade';
 import { ZoomImage } from './ZoomImage';
 
 interface ImageSequenceProps {
-  images: string[];
-  filter?: string;
-  durationInFrames: number;
-  transitionDuration: number;
+  readonly images: string[];
+  readonly filter?: string;
+  readonly durationInFrames: number;
+  readonly transitionDuration: number;
 }
 
 export const ImageSequence: React.FC<ImageSequenceProps> = ({ images, filter, durationInFrames, transitionDuration }) => {

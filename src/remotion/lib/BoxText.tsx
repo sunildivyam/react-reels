@@ -2,8 +2,8 @@ import React from 'react';
 import { spring, useCurrentFrame, useVideoConfig } from 'remotion';
 
 interface BoxTextProps {
-  text: string;
-  style?: React.CSSProperties;
+  readonly text: string;
+  readonly style?: React.CSSProperties;
 }
 
 const BoxText: React.FC<BoxTextProps> = ({ text, style }) => {

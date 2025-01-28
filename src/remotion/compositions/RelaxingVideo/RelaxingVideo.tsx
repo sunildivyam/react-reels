@@ -47,7 +47,7 @@ export const RelaxingVideo: React.FC<RelaxingVideoProps> = ({
   const allImages = useMemo(() => {
     console.log('IMG MEMO');
     return fillImagesUptoFullDuration(images, PER_IMAGE_DURATION, durationInFrames);
-  }, [images]);
+  }, [images, PER_IMAGE_DURATION, durationInFrames]);
 
   const len = allImages.length;
   const imagesSequenceDuration = PER_IMAGE_DURATION * len;
@@ -99,10 +99,10 @@ export const RelaxingVideo: React.FC<RelaxingVideoProps> = ({
     {/* Space Dust 1 */}
     <SpaceDust
       count={1000}
-      color={'rgb(121, 229, 254)'}
+      color='rgb(121, 229, 254)'
       lightDistance={0}
       lightIntensity={1000}
-      lightColor={'rgb(108, 186, 255)'}
+      lightColor='rgb(108, 186, 255)'
       fov={100}
       aspect={0}
       near={0}
@@ -116,7 +116,7 @@ export const RelaxingVideo: React.FC<RelaxingVideoProps> = ({
 
 
     {/* Title */}
-    {title && <Sequence from={0} durationInFrames={8 * fps} style={
+    {title && <Sequence durationInFrames={8 * fps} style={
       {
         display: 'flex',
         flexDirection: 'column',
@@ -163,13 +163,11 @@ export const RelaxingVideo: React.FC<RelaxingVideoProps> = ({
 
     {/* Music */}
     {music && <Sequence
-      from={0}
       durationInFrames={durationInFrames}>
       <Audio
-        loop={true}
+        loop
         src={staticFile(music)}
-      >
-      </Audio>
+      />
     </Sequence>}
   </AbsoluteFill>
 }

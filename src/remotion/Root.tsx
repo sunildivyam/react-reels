@@ -9,7 +9,7 @@ import { COMPOSITIONS } from './compositions/configs';
 export const RemotionRoot: React.FC = () => {
   return (
     <>
-      {COMPOSITIONS.map(cmp => <Composition key={cmp.id} {...cmp}></Composition>)}
+      {COMPOSITIONS.map(cmp => <Composition key={cmp.id} {...cmp} />)}
     </>
   );
 };

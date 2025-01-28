@@ -50,8 +50,8 @@ async function main() {
         filelog(error);
         process.exit(1);
       });
-  } catch (error: any) {
-    filelog(error);
+  } catch (error: unknown) {
+    filelog(error as string);
   }
 }
 

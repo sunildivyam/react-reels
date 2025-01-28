@@ -20,14 +20,14 @@ const DEFAULT_PROPS = {
   maxSpeed: 10,
 }
 export interface CameraProps {
-  fov?: number;
-  aspect?: number;
-  near?: number;
-  far?: number;
+  readonly fov?: number;
+  readonly aspect?: number;
+  readonly near?: number;
+  readonly far?: number;
 }
 
 export interface SpaceDustProps extends DustProps, CameraProps {
-  style?: React.CSSProperties,
+  readonly style?: React.CSSProperties,
 }
 
 export const SpaceDust: React.FC<SpaceDustProps> = ({

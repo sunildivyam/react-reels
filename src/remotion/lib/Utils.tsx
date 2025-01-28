@@ -9,6 +9,7 @@ export function resolvedPath(file: string): string {
 }
 
 export function encodeFileName(input: string): string {
+  /* eslint-disable no-useless-escape */
   return input.replace(/[\/\\*<>|:*"?]/g, ' ');
 }
 
@@ -19,7 +20,7 @@ export function formatDuration(ms: number): string {
   return `${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
 
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function readJsonFile(jsonFile: string): Promise<any> {
   const filePath = path.resolve(__dirname, RELATIVE_PATH, jsonFile);
   const fileContent = await readFile(filePath, "utf-8");

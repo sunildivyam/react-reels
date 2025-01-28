@@ -1,0 +1,25 @@
+[
+  {
+    "title": "प्रयागराज में धूमधाम से शुरू हुआ महाकुंभ",
+    "summary": "लाखों श्रद्धालुओं ने पौष पूर्णिमा पर संगम में डुबकी लगाई, सुरक्षा व्यवस्था चाक-चौबंद.",
+    "translation": "Mahakumbh2025: Grand Beginning",
+    "filter": "ForestFilter",
+    "videos": [
+      {
+        "src": "remotion-defaults/videos/quoteReel-1.mp4",
+        "duration": 0
+      },
+      {
+        "src": "remotion-defaults/videos/quoteReel-2.mp4",
+        "duration": 0
+      }
+    ],
+    "images": [
+      "remotion-defaults/images/quoteReel-image (1).jpeg",
+      "remotion-defaults/images/quoteReel-image (2).jpeg",
+      "remotion-defaults/images/quoteReel-image (3).jpeg"
+    ],
+    "music": "remotion-defaults/music/quoteReel.mp3",
+    "isVideoType": false
+  }
+]

@@ -2,21 +2,33 @@ import { random, useCurrentFrame, interpolate } from 'remotion';
 import React, { useEffect, useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import { InstancedMesh, PointLight } from 'three';
-
+import { ThreeElements } from '@react-three/fiber';
 
 const PARTICLE_SIZE_FACTOR = 1;
 
+// Needed to enable Typescript for three js camelCased components
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace React {
+    // eslint-disable-next-line @typescript-eslint/no-namespace
+    namespace JSX {
+      interface IntrinsicElements extends ThreeElements {
+      }
+    }
+  }
+}
+
 export interface DustProps {
-  count: number;
-  color: string;
-  lightDistance: number;
-  lightIntensity: number;
-  lightColor: string;
-  smoothness: number;
-  particleSize: number;
-  opacity: number;
-  minSpeed: number;
-  maxSpeed: number;
+  readonly count: number;
+  readonly color: string;
+  readonly lightDistance: number;
+  readonly lightIntensity: number;
+  readonly lightColor: string;
+  readonly smoothness: number;
+  readonly particleSize: number;
+  readonly opacity: number;
+  readonly minSpeed: number;
+  readonly maxSpeed: number;
 }
 
 export const Dust: React.FC<DustProps> = ({
@@ -50,7 +62,7 @@ export const Dust: React.FC<DustProps> = ({
       temp.push({ time, factor, speed, x, y, z });
     }
     return temp;
-  }, []);
+  }, [count, minSpeed, maxSpeed]);
 
   const dummy = useMemo(() => new THREE.Object3D(), []);
 
@@ -107,11 +119,11 @@ export const Dust: React.FC<DustProps> = ({
           args={[particleSize, smoothness]} />
 
         <meshPhongMaterial
+          transparent
           opacity={opacity}
           color={color}
           specular="yellow"
           shininess={100}
-          transparent
         />
       </instancedMesh>
     </>

@@ -28,7 +28,7 @@ export const RotateImage: React.FC<RotateImageProps> = ({ img, filter, animation
       filter: getImageFilter(filter),
       ...style
     }}
-    src={staticFile(img)}></Img>
+    src={staticFile(img)} />
     {OverlayFilter && <OverlayFilter />}
   </>
 }

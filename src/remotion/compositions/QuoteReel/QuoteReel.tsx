@@ -50,13 +50,11 @@ export const QuoteReel: React.FC<QuoteReelType> = ({ title, summary, translation
 
       {/* Music */}
       {music && <Sequence
-        from={0}
         durationInFrames={durationInFrames}>
         <Audio
-          loop={true}
+          loop
           src={staticFile(music)}
-        >
-        </Audio>
+        />
       </Sequence>}
     </AbsoluteFill>
   );
@@ -67,9 +65,7 @@ export const calculateMetadataQuoteReel: CalculateMetadataFunction<QuoteReelType
   let totalDuration = 0;
 
   if (props.isVideoType === true && props.videos?.length) {
-    for (let video of props.videos) {
-      console.log(staticFile(video.src));
-
+    for (const video of props.videos) {
       /**
        * NOTE: parseMedia() started giving error of infinite loop. So till it resolves,
        * Let's use getVideoMetaData(); while remotion recommends to use parseMedia();

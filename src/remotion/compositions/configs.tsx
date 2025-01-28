@@ -2,6 +2,7 @@ import { MyAudio } from "./MyAudio/MyAudio";
 import { calculateMetadataQuoteReel, QuoteReel, QuoteReelSchema } from "./QuoteReel";
 import { RelaxingVideo, RelaxingVideoSchema } from "./RelaxingVideo";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const COMPOSITIONS: Array<any> = [
   {
     id: 'relaxingVideo',

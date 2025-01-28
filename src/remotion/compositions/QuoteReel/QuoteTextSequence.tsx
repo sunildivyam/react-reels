@@ -6,9 +6,9 @@ import { slide } from '@remotion/transitions/slide';
 import BoxText from '../../lib/BoxText';
 
 interface QuoteTextSequenceProps {
-  title: string;
-  summary: string;
-  translation: string;
+  readonly title: string;
+  readonly summary: string;
+  readonly translation: string;
 }
 
 const QuoteTextSequence: React.FC<QuoteTextSequenceProps> = ({ title, summary, translation }) => {

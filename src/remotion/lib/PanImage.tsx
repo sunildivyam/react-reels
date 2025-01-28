@@ -12,7 +12,7 @@ export const PanImage: React.FC<PanImageProps> = ({ img, filter, animationDurati
   const frame = useCurrentFrame();
   const { width, height } = useVideoConfig();
   const PAN_SIZE = 15;
-  let panFactor = ['left', 'top'].includes(panDirection || '') ? [0, -PAN_SIZE] : [0, PAN_SIZE];
+  const panFactor = ['left', 'top'].includes(panDirection || '') ? [0, -PAN_SIZE] : [0, PAN_SIZE];
   const imgPan = interpolate(frame, [0, animationDuration], panFactor, { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   const translate = panDirection === 'left' || panDirection === 'right' ? `translateX(${imgPan}%)` : `translateY(${imgPan}%)`
   const OverlayFilter = OverlayFilters[filter || ''];
@@ -25,7 +25,7 @@ export const PanImage: React.FC<PanImageProps> = ({ img, filter, animationDurati
         transform: `scale(${1 + (3 * PAN_SIZE / 100)}) ${translate}`,
         filter: getImageFilter(filter)
       }}
-      src={staticFile(img)}></Img>
+      src={staticFile(img)} />
     {OverlayFilter && <OverlayFilter />}
   </AbsoluteFill>
 }

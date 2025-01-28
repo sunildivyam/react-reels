@@ -54,9 +54,10 @@ export const buildBundle = async (outDir: string = ''): Promise<string> => {
         };
       }
     });
+
     return bundleLocation;
   } catch (e) {
-    throw e;
+    throw new Error(`Bundle Error, ${e}`);
   }
 }
 
@@ -99,7 +100,9 @@ export const moveProcessedData = (srcDirectory: string, destDirectory: string, d
   });
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const renderOne = async (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   videoProps: any,
   bundleLocation: string,
   compositionId: string,
@@ -167,15 +170,15 @@ export const renderOne = async (
 
 export const renderAll = async (compositionId: string, jsonPath: string) => {
   filelog(`STARTED RENDERING ${compositionId} at: ${new Date()}`);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let videoInfos: Array<any> = [];
 
   try {
     const bundleLocation: string = await buildBundle();
-    console.log(bundleLocation);
     try {
       videoInfos = await readJsonFile(`${PUBLIC_DIR}/data/${jsonPath}`);
-    } catch (error: any) {
-      filelog(error);
+    } catch (error: unknown) {
+      filelog(error as string);
       throw new Error(`Error reading json file ${jsonPath} ${error}`);
     }
 
@@ -189,6 +192,6 @@ export const renderAll = async (compositionId: string, jsonPath: string) => {
     }
     filelog(`COMPLETED RENDERING at: ${new Date()}`)
   } catch (error) {
-    throw error;
+    throw new Error(`ERROR: ${error}`);
   }
 };

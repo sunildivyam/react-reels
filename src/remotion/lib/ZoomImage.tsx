@@ -23,7 +23,7 @@ export const ZoomImage: React.FC<ZoomImageProps> = ({ img, filter, animationDura
         transform: `scale(${imgScale})`,
         filter: getImageFilter(filter)
       }}
-      src={staticFile(img)}></Img>
+      src={staticFile(img)} />
     {OverlayFilter && <OverlayFilter />}
   </>
 }
