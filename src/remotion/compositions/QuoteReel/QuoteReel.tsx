@@ -8,11 +8,10 @@ import QuoteTextSequence from "./QuoteTextSequence";
 // import { parseMedia } from "@remotion/media-parser";
 import { getVideoMetadata } from '@remotion/media-utils';
 import { z } from "zod";
+import { zColor } from "@remotion/zod-types";
 
 const FPS = 30;
 export const VIDEO_TRANSITION_DURATION = (5 * FPS);
-export const IMAGES_PER_REEL = 2;
-export const VIDEOS_PER_REEL = 1;
 
 export const QuoteReelSchema = z.object({
   title: z.string(),
@@ -25,7 +24,9 @@ export const QuoteReelSchema = z.object({
   youTubeId: z.string().optional(),
   tags: z.array(z.string()).optional(),
   hashTags: z.array(z.string()).optional(),
-  isVideoType: z.boolean().optional()
+  isVideoType: z.boolean().optional(),
+  // Extra props
+  bgGradient: z.object({ color1: zColor(), color2: zColor(), color3: zColor(), color4: zColor() }),
 });
 
 export type QuoteReelType = z.infer<typeof QuoteReelSchema>;

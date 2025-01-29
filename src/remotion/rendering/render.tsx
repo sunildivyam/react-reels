@@ -13,23 +13,22 @@ import { PROCESSED_DIR, PROCESSED_DIRS, PUBLIC_DIR } from "../constants";
 async function getCmdArguments() {
   const args = process.argv.slice(2);
   const options = yargs(args)
-    .option("composition", {
-      alias: "c",
-      type: "string",
-      description: "ID of Composition to render",
-    })
     .option("json", {
       alias: "j",
       type: "string",
       description: "Path of JSON data file relative to public folder",
     })
+    .option("bundleLocation", {
+      alias: "b",
+      type: "string",
+      description: "Bundle location",
+    })
     .help().argv;
 
-  const { composition, json } = await options;
-  if (!composition) throw new Error("Composition required");
+  const { json, bundleLocation } = await options;
   if (!json) throw new Error("Video Json file path required");
 
-  return { composition, json };
+  return { json, bundleLocation };
 }
 
 
@@ -37,13 +36,15 @@ async function main() {
   filelog.clear();
 
   try {
-    const { composition, json } = await getCmdArguments();
+    const { json, bundleLocation } = await getCmdArguments();
 
-    await renderAll(composition, json)
+    await renderAll(json, bundleLocation || '')
       .then(() => {
         filelog('All Renders Completed.');
         filelog(`Moving all files and data to ${PROCESSED_DIR}`);
-        moveProcessedData(PUBLIC_DIR, PROCESSED_DIR, PROCESSED_DIRS, composition);
+
+        // TODO: Move only completed data and asset files to processed data folder.
+        // moveProcessedData(PUBLIC_DIR, PROCESSED_DIR, PROCESSED_DIRS);
       })
       .catch((error) => {
         console.error(error);

@@ -29,6 +29,7 @@ export interface DustProps {
   readonly opacity: number;
   readonly minSpeed: number;
   readonly maxSpeed: number;
+  readonly shininess: number;
 }
 
 export const Dust: React.FC<DustProps> = ({
@@ -41,7 +42,8 @@ export const Dust: React.FC<DustProps> = ({
   particleSize,
   opacity,
   minSpeed,
-  maxSpeed }) => {
+  maxSpeed,
+  shininess }) => {
   const mesh = useRef<InstancedMesh>(null);
   const light = useRef<PointLight>(null);
 
@@ -123,7 +125,7 @@ export const Dust: React.FC<DustProps> = ({
           opacity={opacity}
           color={color}
           specular="yellow"
-          shininess={100}
+          shininess={shininess}
         />
       </instancedMesh>
     </>

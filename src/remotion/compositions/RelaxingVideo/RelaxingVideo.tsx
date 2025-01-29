@@ -7,6 +7,7 @@ import { RotateImage } from "../../lib/RotateImage";
 import { SpaceDust } from "../../lib/Particles/SpaceDust";
 import ZoomInText from "../../lib/ZoomInText";
 import BoxText from "../../lib/BoxText";
+import { zColor } from "@remotion/zod-types";
 
 export const RelaxingVideoSchema = z.object({
   title: z.string(),
@@ -16,21 +17,26 @@ export const RelaxingVideoSchema = z.object({
   logo: z.string(),
   music: z.string(),
   imageSeconds: z.number(),
+  // Extra props
+  bgGradient: z.object({ color1: zColor(), color2: zColor(), color3: zColor(), color4: zColor() }),
+  particles: z.object({
+    count: z.number(),
+    speed: z.object({ min: z.number(), max: z.number() }),
+    opacity: z.number(),
+    smoothness: z.number(),
+    size: z.number(),
+    color: zColor(),
+    lightDistance: z.number(),
+    lightIntensity: z.number(),
+    lightColor: zColor(),
+    cameraFov: z.number(),
+    cameraNear: z.number(),
+    cameraFar: z.number(),
+    shininess: z.number()
+  })
 })
 
 export type RelaxingVideoProps = z.infer<typeof RelaxingVideoSchema>;
-
-function fillImagesUptoFullDuration(images: Array<string>, perImageDuration: number, videoDuration: number) {
-  const oLen = images.length;
-  const imageCount = videoDuration / perImageDuration;
-  const allImages: Array<string> = [];
-
-  for (let i = 0; i < imageCount; i++) {
-    allImages.push(images[i % oLen]);
-  }
-
-  return allImages;
-}
 
 export const RelaxingVideo: React.FC<RelaxingVideoProps> = ({
   title,
@@ -39,7 +45,24 @@ export const RelaxingVideo: React.FC<RelaxingVideoProps> = ({
   secondaryImage,
   logo,
   music,
-  imageSeconds }) => {
+  imageSeconds,
+  bgGradient,
+  particles }) => {
+  const {
+    count,
+    speed,
+    opacity,
+    smoothness,
+    size,
+    color,
+    lightDistance,
+    lightIntensity,
+    lightColor,
+    cameraFov,
+    cameraNear,
+    cameraFar,
+    shininess,
+  } = particles;
 
   const { fps, durationInFrames } = useVideoConfig();
   const PER_IMAGE_DURATION = imageSeconds * fps;
@@ -55,7 +78,7 @@ export const RelaxingVideo: React.FC<RelaxingVideoProps> = ({
 
   return <AbsoluteFill
     style={{
-      background: 'linear-gradient(110deg, rgb(144, 61, 2) 0%, rgb(255, 152, 35) 30%, rgb(158, 71, 42) 50%, rgb(73, 45, 3) 90%)'
+      background: `linear-gradient(110deg, ${bgGradient?.color1} 0%, ${bgGradient?.color2} 30%, ${bgGradient?.color3} 50%, ${bgGradient?.color4} 90%)`
     }}
   >
     <ImageSequence images={allImages} filter="" durationInFrames={imagesSequenceDuration} transitionDuration={transitionDuration} />
@@ -87,7 +110,7 @@ export const RelaxingVideo: React.FC<RelaxingVideoProps> = ({
       }
     }
     >
-      <RotateImage img={secondaryImage} animationDuration={PER_IMAGE_DURATION} filter="FireFilter"
+      <RotateImage img={secondaryImage} animationDuration={durationInFrames} filter="FireFilter"
         style={{
           width: '50em',
           height: '50em',
@@ -98,20 +121,21 @@ export const RelaxingVideo: React.FC<RelaxingVideoProps> = ({
 
     {/* Space Dust 1 */}
     <SpaceDust
-      count={1000}
-      color='rgb(121, 229, 254)'
-      lightDistance={0}
-      lightIntensity={1000}
-      lightColor='rgb(108, 186, 255)'
-      fov={100}
+      count={count}
+      color={color}
+      lightDistance={lightDistance}
+      lightIntensity={lightIntensity}
+      lightColor={lightColor}
+      fov={cameraFov}
       aspect={0}
-      near={0}
-      far={30}
-      smoothness={3}
-      particleSize={0.5}
-      opacity={0.15}
-      minSpeed={2}
-      maxSpeed={15}
+      near={cameraNear}
+      far={cameraFar}
+      smoothness={smoothness}
+      particleSize={size}
+      opacity={opacity}
+      minSpeed={speed.min}
+      maxSpeed={speed.max}
+      shininess={shininess}
     />
 
 
@@ -170,4 +194,17 @@ export const RelaxingVideo: React.FC<RelaxingVideoProps> = ({
       />
     </Sequence>}
   </AbsoluteFill>
+}
+
+
+function fillImagesUptoFullDuration(images: Array<string>, perImageDuration: number, videoDuration: number) {
+  const oLen = images.length;
+  const imageCount = videoDuration / perImageDuration;
+  const allImages: Array<string> = [];
+
+  for (let i = 0; i < imageCount; i++) {
+    allImages.push(images[i % oLen]);
+  }
+
+  return allImages;
 }

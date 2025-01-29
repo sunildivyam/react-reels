@@ -1,11 +1,15 @@
 import { MyAudio } from "./MyAudio/MyAudio";
 import { calculateMetadataQuoteReel, QuoteReel, QuoteReelSchema } from "./QuoteReel";
 import { RelaxingVideo, RelaxingVideoSchema } from "./RelaxingVideo";
-
+/**
+ * This Configuration is for FALLBACK
+ * Import public/remotion-defaults/data/compositions.json in <Root/>
+ */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const COMPOSITIONS: Array<any> = [
   {
-    id: 'relaxingVideo',
+    id: 'RelaxingVideo-1',
+    originalId: 'RelaxingVideo',
     component: RelaxingVideo,
     durationInFrames: (8 * 60 * 30),  // 3 minute
     fps: 30,
@@ -25,11 +29,33 @@ export const COMPOSITIONS: Array<any> = [
       secondaryImage: "remotion-defaults/images/relaxingVideo-sec-image.png",
       logo: "remotion-defaults/images/logo.png",
       music: "remotion-defaults/music/relaxingVideo.mp3",
-      imageSeconds: 40
+      imageSeconds: 40,
+      bgGradient: {
+        color1: 'rgb(144, 61, 2)',
+        color2: 'rgb(255, 152, 35)',
+        color3: 'rgb(158, 71, 42)',
+        color4: 'rgb(73, 45, 3)'
+      },
+      particles: {
+        count: 1000,
+        speed: { min: 2, max: 10 },
+        opacity: 0.5,
+        smoothness: 3,
+        size: 0.5,
+        color: 'rgb(121, 229, 254)',
+        lightDistance: 0,
+        lightIntensity: 1000,
+        lightColor: 'rgb(108, 186, 255)',
+        cameraFov: 100,
+        cameraNear: 0,
+        cameraFar: 30,
+        shininess: 100
+      }
     }
   },
   {
-    id: 'quoteReel',
+    id: 'QuoteReel',
+    originalId: 'QuoteReel',
     component: QuoteReel,
     durationInFrames: 10 * 30,
     fps: 30,
@@ -57,7 +83,8 @@ export const COMPOSITIONS: Array<any> = [
     }
   },
   {
-    id: "myVideo",
+    id: "MyAudio",
+    originalId: "MyAudio",
     component: MyAudio,
     durationInFrames: 9000,
     fps: 30,

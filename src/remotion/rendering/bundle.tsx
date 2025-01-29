@@ -22,6 +22,7 @@ async function getCmdArguments() {
 
 async function main() {
   const { outDir } = await getCmdArguments();
+  if (!outDir) console.log('You can specify Output bundle directory by -- -o [oudir], by default it is windows temp directory');
   const bundleName = await buildBundle(outDir);
   console.log(`\nBundle Created in: \n ${bundleName}`);
 }

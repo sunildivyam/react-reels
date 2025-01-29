@@ -1,5 +1,5 @@
 import { springTiming, TransitionSeries } from '@remotion/transitions';
-import React from 'react';
+import React, { Fragment } from 'react';
 import { AbsoluteFill, Sequence, useVideoConfig } from 'remotion';
 import ZoomInText from '../../lib/ZoomInText';
 import { slide } from '@remotion/transitions/slide';
@@ -37,13 +37,13 @@ const QuoteTextSequence: React.FC<QuoteTextSequenceProps> = ({ title, summary, t
   const transition = <TransitionSeries.Transition timing={springTiming({ durationInFrames: TRANSITION_DURATION, config: { damping: 200 } })} presentation={slide({ direction: "from-top" })} />
 
   return (<><TransitionSeries>
-    {texts.map((text, i) => <>
+    {texts.map((text, i) => <Fragment key={i}>
       <TransitionSeries.Sequence durationInFrames={textDuration(i)}>
-        <ZoomInText text={texts[i]} separator={' '} animationDuration={textAnimationDuration(i)} />
+        <ZoomInText text={text} separator={' '} animationDuration={textAnimationDuration(i)} />
       </TransitionSeries.Sequence>
       {/* Last Sequence should not have Transition */}
       {i < (SEQUENCE_COUNT - 1) ? transition : null}
-    </>)}
+    </Fragment>)}
   </TransitionSeries>
     <Sequence from={durationInFrames - LASTSEQUENCE_DURATION} durationInFrames={LASTSEQUENCE_DURATION}>
       <AbsoluteFill style={{

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { AbsoluteFill, useVideoConfig } from 'remotion';
 import { Dust, DustProps } from './Dust';
 import { ThreeCanvas } from '@remotion/three';
+import { Camera } from '@react-three/fiber';
 
 const DEFAULT_PROPS = {
   count: 1000,
@@ -18,7 +19,9 @@ const DEFAULT_PROPS = {
   opacity: 0.3,
   minSpeed: 1,
   maxSpeed: 10,
+  shininess: 100
 }
+
 export interface CameraProps {
   readonly fov?: number;
   readonly aspect?: number;
@@ -45,7 +48,8 @@ export const SpaceDust: React.FC<SpaceDustProps> = ({
   fov,
   aspect,
   near,
-  far
+  far,
+  shininess
 }) => {
   count = count ?? DEFAULT_PROPS.count;
   fov = fov ?? DEFAULT_PROPS.fov;
@@ -61,6 +65,7 @@ export const SpaceDust: React.FC<SpaceDustProps> = ({
   opacity = opacity ?? DEFAULT_PROPS.opacity;
   minSpeed = minSpeed ?? DEFAULT_PROPS.minSpeed;
   maxSpeed = maxSpeed ?? DEFAULT_PROPS.maxSpeed;
+  shininess = shininess ?? DEFAULT_PROPS.shininess;
 
   const { width, height } = useVideoConfig();
 
@@ -82,7 +87,8 @@ export const SpaceDust: React.FC<SpaceDustProps> = ({
           particleSize={particleSize}
           opacity={opacity}
           minSpeed={minSpeed}
-          maxSpeed={maxSpeed} />
+          maxSpeed={maxSpeed}
+          shininess={shininess} />
       </ThreeCanvas>
     </AbsoluteFill>
   );

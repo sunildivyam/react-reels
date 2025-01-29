@@ -1,13 +1,16 @@
 import { random } from "remotion";
 import { readJsonFile } from "../../lib/Utils";
 import { VideoType } from "../../lib/Video";
-import { IMAGES_PER_REEL, QuoteReelType, VIDEOS_PER_REEL } from "./QuoteReel";
+import { QuoteReelType } from "./QuoteReel";
 
 import fs from 'fs';
 import path from 'path';
 
 const SOURCE_QUOTE_FILE = 'public/data/quotesReel.json';
 const DEST_QUOTE_FILE = 'public/data/final-quotesReel.json';
+
+export const IMAGES_PER_REEL = 1;
+export const VIDEOS_PER_REEL = 1;
 
 const getFilesFromDirectory = async (directoryPath: string): Promise<string[]> => {
   const files = await fs.promises.readdir(directoryPath);
