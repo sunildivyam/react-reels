@@ -11,3 +11,16 @@ export const PROCESSED_DIR = 'processed data';
 export const PROCESSED_DIRS = [...Object.keys(ASSETS_DIRS)];
 export const REMOTION_DEFAULTS = 'public/remotion-defaults';
 export const OUT_DIR = 'out';
+
+export const HD_REEL = {
+  width: 1920,
+  height: 1080,
+  FPS: 30,
+  DURATION_SECONDS: 30
+}
+
+export const HD_VIDEO = {
+  width: 1080,
+  height: 1920,
+  FPS: 30
+}

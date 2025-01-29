@@ -1,5 +1,5 @@
 import { moveProcessedData, renderAll } from "./helpers";
-import filelog from '../lib/Logger';
+import filelog from '../../core-lib/Logger';
 import yargs from "yargs";
 import { PROCESSED_DIR, PROCESSED_DIRS, PUBLIC_DIR } from "../constants";
 
@@ -7,7 +7,7 @@ import { PROCESSED_DIR, PROCESSED_DIRS, PUBLIC_DIR } from "../constants";
  * Gets parameters from command prompt for rendering
  * compositionId: compositionId to render
  * fileName of json data file
- * @returns {CompositionEvent, json}
+ * @returns {json, bundleLocation}
  */
 
 async function getCmdArguments() {
@@ -43,8 +43,8 @@ async function main() {
         filelog('All Renders Completed.');
         filelog(`Moving all files and data to ${PROCESSED_DIR}`);
 
-        // TODO: Move only completed data and asset files to processed data folder.
-        // moveProcessedData(PUBLIC_DIR, PROCESSED_DIR, PROCESSED_DIRS);
+        // NEXT STEPS: Move only completed data and asset files to processed data folder.
+        moveProcessedData(PUBLIC_DIR, PROCESSED_DIR, PROCESSED_DIRS);
       })
       .catch((error) => {
         console.error(error);

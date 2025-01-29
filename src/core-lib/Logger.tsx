@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 // Relative path to project root, from __dirname
-const RELATIVE_PATH = '../../../';
+const RELATIVE_PATH = '../../';
 
 function log(message: string, processWrite: boolean = false): void {
   const logFilePath = path.join(__dirname, RELATIVE_PATH, 'public/logs.txt');

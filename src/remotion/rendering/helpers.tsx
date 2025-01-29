@@ -1,10 +1,11 @@
-import { selectComposition, renderMedia, FrameRange, StitchingState } from "@remotion/renderer";
-import { encodeFileName, formatDuration, getETA, readJsonFile, resolvedPath } from "../lib/Utils";
+import { selectComposition, renderMedia, StitchingState } from "@remotion/renderer";
+import { encodeFileName, formatDuration, getETA, resolvedPath } from "../../core-lib/Utils";
+import { readJsonFile } from "../../core-lib/FileUtils";
 import fs from 'fs';
 import fse from 'fs-extra';
 import path from "path";
 import { bundle } from "@remotion/bundler";
-import filelog from '../lib/Logger';
+import filelog from '../../core-lib/Logger';
 import { ASSETS_DIRS, entryPoint, OUT_DIR, PUBLIC_DIR } from "../constants";
 
 type RenderProgressType = {
@@ -94,7 +95,8 @@ export const moveProcessedData = (srcDirectory: string, destDirectory: string, d
       const srcFile = path.join(srcPath, file);
       const destFile = path.join(destPath, file);
       if (fs.lstatSync(srcFile).isFile()) {
-        fse.moveSync(srcFile, destFile, { overwrite: true });
+        fse.copySync(srcFile, destFile, { overwrite: true });
+        // fse.moveSync(srcFile, destFile, { overwrite: true });
       }
     });
   });
@@ -103,7 +105,7 @@ export const moveProcessedData = (srcDirectory: string, destDirectory: string, d
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const renderOne = async (
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  videoProps: any,
+  singleVideo: any,
   bundleLocation: string,
   compositionId: string,
 ) => {
@@ -111,23 +113,24 @@ export const renderOne = async (
 
   // Extract all the compositions you have defined in your project
   // from the webpack bundle.
-
-  const composition = await selectComposition({
+  let composition = await selectComposition({
     // You can pass custom input props that you can retrieve using getInputProps()
     // in the composition list. Use this if you want to dynamically set the duration or
     // dimensions of the video.
     serveUrl: bundleLocation,
-    inputProps: videoProps,
+    inputProps: singleVideo.videoProps,
     id: compositionId,
   });
 
+  const { width, height, fps, durationInSeconds, rangeInSeconds } = singleVideo;
+  composition = { ...composition, width, height, fps, durationInFrames: fps * durationInSeconds };
 
-  const outputLocation = `${OUT_DIR}/${encodeFileName(videoProps.title)}-${Date.now()}.mp4`;
+  const outputLocation = `${OUT_DIR}/${encodeFileName(singleVideo.videoProps.title)}-${Date.now()}.mp4`;
   const startTime = Date.now();
   filelog(`STARTING... ${outputLocation} | ${formatDuration(startTime)}\n`);
 
-  const frameRange: FrameRange = [0, composition.durationInFrames - 1];
-  // const frameRange: FrameRange = [0, 10];
+  const cFrameRange: [number, number] = rangeInSeconds?.length ? [rangeInSeconds[0] * fps, rangeInSeconds[1] * fps] : [0, composition.durationInFrames - 1];
+
   let prevProgress = {} as RenderProgressType;
 
   await renderMedia({
@@ -135,8 +138,8 @@ export const renderOne = async (
     serveUrl: bundleLocation,
     codec: "h264",
     outputLocation,
-    inputProps: videoProps,
-    frameRange,
+    inputProps: singleVideo.videoProps,
+    frameRange: cFrameRange,
     onProgress: (rProgress) => {
       // prints the info in same line
       const {
@@ -150,8 +153,8 @@ export const renderOne = async (
       } = rProgress;
 
       if (isProgressChanged(prevProgress, rProgress)) {
-        const eta = getETA(progress, Date.now() - startTime, renderedFrames, frameRange[1] - frameRange[0]);
-        const totalFrames = frameRange[1] - frameRange[0];
+        const eta = getETA(progress, Date.now() - startTime, renderedFrames, cFrameRange[1] - cFrameRange[0]);
+        const totalFrames = cFrameRange[1] - cFrameRange[0];
 
         filelog(
           `${outputLocation} | ${stitchStage} | ${Math.floor(progress * 100)}% | Frames(${totalFrames}) (rendered: ${renderedFrames} encoded: ${encodedFrames}) | ETA: (${formatDuration(Date.now() - startTime)} / ${formatDuration(renderEstimatedTime)}) | Remaining: ${eta}\r`,
@@ -186,18 +189,18 @@ export const renderAll = async (jsonPath: string, bundleLocation: string) => {
 
     for (const vidInfo of videoInfos) {
       const singleVideo = { ...vidInfo };
-      // TODO: Random Composition Ids can be assigned to each video
+      // NEXT STEPS: Random Composition Ids can be assigned to each video
       const { compositionId } = singleVideo;
 
       filelog(`STARTED RENDERING ${compositionId} at: ${new Date()}`);
 
-      await renderOne(singleVideo.videoProps, bundleLocationPath, compositionId).catch(
+      await renderOne(singleVideo, bundleLocationPath, compositionId).catch(
         (error) => {
           filelog(`Skipped: ${singleVideo.videoProps.title} | Error: ${error}`);
         },
       );
 
-      // TODO: Update JSON with rendered video info
+      // NEXT STEPS: Update JSON with rendered video info
     }
     filelog(`COMPLETED RENDERING at: ${new Date()}`)
   } catch (error) {
