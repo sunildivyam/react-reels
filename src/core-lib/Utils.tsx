@@ -4,6 +4,7 @@ import path from "path";
 const RELATIVE_PATH = '../../';
 
 export function resolvedPath(file: string): string {
+  if (path.isAbsolute(file)) return file;
   return path.resolve(__dirname, RELATIVE_PATH, file);
 }
 

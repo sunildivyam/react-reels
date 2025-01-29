@@ -31,13 +31,13 @@ export const QuoteReelSchema = z.object({
 
 export type QuoteReelType = z.infer<typeof QuoteReelSchema>;
 
-export const QuoteReel: React.FC<QuoteReelType> = ({ title, summary, translation, images, music, videos, filter, isVideoType }) => {
+export const QuoteReel: React.FC<QuoteReelType> = ({ title, summary, translation, images, music, videos, filter, isVideoType, bgGradient }) => {
   const { durationInFrames, fps } = useVideoConfig();
 
   return (
     <AbsoluteFill
       style={{
-        background: 'linear-gradient(110deg, rgba(0, 132, 255, 1) 0%, rgba(12, 97, 255, 1) 8%, rgba(7, 196, 186, 1) 50%, rgba(27, 99, 255, 1) 98%)'
+        background: `linear-gradient(110deg, ${bgGradient.color1} 0%, ${bgGradient.color1} 8%, ${bgGradient.color1} 50%, ${bgGradient.color1} 98%)`
       }}
     >
       {/* Videos & Images */}

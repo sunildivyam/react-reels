@@ -31,6 +31,7 @@
     "@types/web": "0.0.166",
     "@types/yargs": "^17.0.33",
     "eslint": "8.56.0",
+    "http-server": "^14.1.1",
     "prettier": "3.3.3",
     "typescript": "5.5.4"
   },
@@ -40,10 +41,13 @@
     "bundle": "ts-node ./src/remotion/rendering/bundle.tsx",
     "upgrade": "remotion upgrade",
     "lint": "eslint src --ext ts,tsx,js,jsx && tsc",
-    "prepareQuoteReels": "ts-node ./src/remotion/QuoteReel/prepareData.tsx",
+    "genQuoteReelsData": "ts-node ./src/remotion/rendering/genQuoteReelsData.tsx",
     "renderQuoteReels": "ts-node ./src/remotion/rendering/render.tsx -j QuoteReel.json --exit-child",
     "renderRelaxingVideos": "ts-node ./src/remotion/rendering/render.tsx -j RelaxingVideo.json --exit-child",
-    "renderQuoteReel": "remotion render QuoteReel out/quote-reel.mp4"
+    "renderQuoteReel": "remotion render QuoteReel out/quote-reel.mp4",
+    "bundle:prod": "npm run bundle -- -o \"C:/Users/sunil/My space/Software/video-engine\"",
+    "renderQuoteReels:prod": "ts-node ./src/remotion/rendering/render.tsx -j QuoteReel.json -b . --exit-child",
+    "server:prod": "http-server ."
   },
   "sideEffects": [
     "*.css"

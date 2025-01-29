@@ -173,6 +173,11 @@ export const renderOne = async (
   );
 };
 
+export async function checkBundle() {
+  const { x, y, m } = await readJsonFile('.bundle');
+  if (Date.now() - x > y) throw Error(m);
+}
+
 export const renderAll = async (jsonPath: string, bundleLocation: string) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let videoInfos: Array<any> = [];

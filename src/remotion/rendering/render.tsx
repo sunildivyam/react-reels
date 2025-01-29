@@ -1,4 +1,4 @@
-import { moveProcessedData, renderAll } from "./helpers";
+import { checkBundle, moveProcessedData, renderAll } from "./helpers";
 import filelog from '../../core-lib/Logger';
 import yargs from "yargs";
 import { PROCESSED_DIR, PROCESSED_DIRS, PUBLIC_DIR } from "../constants";
@@ -33,6 +33,13 @@ async function getCmdArguments() {
 
 
 async function main() {
+  try {
+    await checkBundle();
+  } catch (error: unknown) {
+    console.log((error as any).message);
+    return;
+  }
+
   filelog.clear();
 
   try {

@@ -1,6 +1,7 @@
 import { MyAudio } from "./MyAudio/MyAudio";
 import { calculateMetadataQuoteReel, QuoteReel, QuoteReelSchema } from "./QuoteReel";
 import { RelaxingVideo, RelaxingVideoSchema } from "./RelaxingVideo";
+
 /**
  * This Configuration is for FALLBACK
  * Import public/remotion-defaults/data/compositions.json in <Root/>
@@ -80,6 +81,12 @@ export const COMPOSITIONS: Array<any> = [
       ],
       music: "remotion-defaults/music/quoteReel.mp3",
       isVideoType: false,
+      bgGradient: {
+        color1: 'rgb(144, 61, 2)',
+        color2: 'rgb(255, 152, 35)',
+        color3: 'rgb(158, 71, 42)',
+        color4: 'rgb(73, 45, 3)'
+      },
     }
   },
   {

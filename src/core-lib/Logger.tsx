@@ -13,7 +13,7 @@ function log(message: string, processWrite: boolean = false): void {
 
 log.clear = () => {
   const logFilePath = path.join(__dirname, RELATIVE_PATH, 'public/logs.txt');
-  fs.unlink(logFilePath, (error) => error && console.log('Error deleting log file', error));
+  fs.unlink(logFilePath, (error) => error && console.log('Log file already cleared'));
 }
 
 export default log;

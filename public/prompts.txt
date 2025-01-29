@@ -1,3 +1,22 @@
+[10 Facts] about [history and importance of Kumbh Mela]
+Use Format: JSON
+Schema: [
+{
+name,
+title,
+summary,
+translation,
+tags,
+hashTags
+]
+
+tags and hashTags should be in English language and name, title, and summary should be in hindi.
+max length of summary should be 200 characters.
+Translation should be the English translation of summary
+
+****
+
+
 "An iridescent figure with an open heart chakra, bathed in golden sunlight, radiating waves of rainbow-colored energy, surrounded by a lush garden of vibrant flowers symbolizing inner growth and harmony."
 
 “A majestic snowy owl perched on a weathered, dead tree branch at night. The owl’s feathers are pure white with faint black markings, glistening under the soft glow of the full moon. The moon dominates the background, illuminating the dark, starry sky with an ethereal light. The barren tree is twisted and gnarled, creating an eerie yet serene atmosphere. A subtle mist clings to the ground in the distance, adding depth and mystery to the scene. The owl’s piercing yellow eyes gaze intensely, capturing its wise and enigmatic demeanor. The overall tone is a blend of mysticism and tranquility, with high contrast between the moonlight and shadow. Add light snow falling in the foreground”

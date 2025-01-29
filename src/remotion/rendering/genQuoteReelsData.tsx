@@ -9,9 +9,14 @@ import yargs from "yargs";
 const SOURCE_JSON_FILE = `${PUBLIC_DIR}/${ASSETS_DIRS.DATA}/quotes.json`;
 const DEST_JSON_FILE = `${PUBLIC_DIR}/${ASSETS_DIRS.DATA}/QuoteReel.json`;;
 
-export const IMAGES_PER_REEL = 1;
-export const VIDEOS_PER_REEL = 1;
+export const IMAGES_PER_VIDEO = 1;
+export const VIDEOS_PER_VIDEO = 1;
 
+interface VideoOptionsType {
+  durationInSeconds?: number,
+  compositionIds?: Array<string>,
+  imagesPerVideo?: number;
+}
 
 export const readDataFromDirectories = async (): Promise<{ images: string[], videos: string[], musics: string[] }> => {
   const imagesDirectory = path.join(PUBLIC_DIR, ASSETS_DIRS.IMAGES);
@@ -32,8 +37,9 @@ async function getUpdatedJson(json: Array<unknown>,
   images: Array<string>,
   videos: Array<string>,
   musics: Array<string>,
-  durationInSeconds: number | undefined,
-  compositionIds: Array<string> | undefined) {
+  videoOptions: VideoOptionsType) {
+  const { durationInSeconds, compositionIds, imagesPerVideo } = videoOptions;
+
   const updatedJson = json.map((item, index) => {
     let rVideos: Array<VideoType> = [];
     let rImages: Array<string> = [];
@@ -41,22 +47,29 @@ async function getUpdatedJson(json: Array<unknown>,
     let isVideoType = false;
 
     if (index < videos.length) {
-      rVideos = [{
-        src: `${ASSETS_DIRS.VIDEOS}/${videos[index]}`,
-        duration: 0
-      }];
-      for (let i = 0; i < VIDEOS_PER_REEL; i++) {
-        const vid = { src: `${ASSETS_DIRS.VIDEOS}/${videos[Math.floor(random(null) * videos.length)]}`, duration: 0 };
-        rVideos.push(vid);
-      }
       isVideoType = true;
-    } else {
-      rImages = [`${ASSETS_DIRS.IMAGES}/${images[(index - videos.length) % images.length]}`];
-      for (let i = 0; i < IMAGES_PER_REEL; i++) {
-        const image = `${ASSETS_DIRS.IMAGES}/${images[Math.floor(random(null) * images.length)]}`;
-        rImages.push(image);
+      const vidFile = videos[index];
+      rVideos = vidFile ? [{
+        src: `${ASSETS_DIRS.VIDEOS}/${vidFile}`,
+        duration: 0
+      }] : [];
+      for (let i = 0; i < (imagesPerVideo || VIDEOS_PER_VIDEO) - 1; i++) {
+        const vidFile = videos[Math.floor(random(null) * videos.length)];
+        const vid = { src: `${ASSETS_DIRS.VIDEOS}/${vidFile}`, duration: 0 };
+        vidFile && rVideos.push(vid);
       }
+    } else {
       isVideoType = false;
+
+      // 1st Image
+      const imgFile = images[(index - videos.length) % images.length];
+      rImages = imgFile ? [`${ASSETS_DIRS.IMAGES}/${imgFile}`] : [];
+      // Additional Images
+      for (let i = 0; i < (imagesPerVideo || IMAGES_PER_VIDEO) - 1; i++) {
+        const imgFile = images[Math.floor(random(null) * images.length)];
+        const image = `${ASSETS_DIRS.IMAGES}/${imgFile}`;
+        imgFile && rImages.push(image);
+      }
     }
 
     const music = musics[index % musics.length];
@@ -103,6 +116,11 @@ async function getCmdArguments() {
       type: "number",
       description: "Duration of reel in seconds",
     })
+    .option("imagesPerVideo", {
+      alias: "i",
+      type: "number",
+      description: "Number of Images per Video",
+    })
     .option("compositionIds", {
       alias: "c",
       type: "string",
@@ -110,24 +128,23 @@ async function getCmdArguments() {
     })
     .help().argv;
 
-  const { durationInSeconds, compositionIds } = await options;
+  const { durationInSeconds, compositionIds, imagesPerVideo } = await options;
 
-  return { durationInSeconds, compositionIds: compositionIds ? compositionIds.split(', ').map(s => s.trim()) : [] };
+  if (!durationInSeconds || !compositionIds || !imagesPerVideo) console.log('You can provide Reel imagesPerVideo, duration and compositionIds using command line -- -d 30 -c QuoteReel, NewsReel -i 2');
+
+  return { durationInSeconds, compositionIds: compositionIds ? compositionIds.split(', ').map(s => s.trim()) : [], imagesPerVideo };
 }
 
 
 export const prepareJson = async () => {
   try {
-    const { durationInSeconds, compositionIds } = await getCmdArguments();
-
+    const videoOptions = await getCmdArguments();
     const { images, videos, musics } = await readDataFromDirectories();
     const json = await readJsonFile(SOURCE_JSON_FILE);
     const quotes = toUniqueArray(json);
-    const updatedJson = await getUpdatedJson(quotes as Array<object>, images, videos, musics, durationInSeconds, compositionIds);
+    const updatedJson = await getUpdatedJson(quotes as Array<object>, images, videos, musics, videoOptions);
 
-    const destPath = path.resolve(__dirname, DEST_JSON_FILE);
-
-    await saveToJsonFile(updatedJson, destPath);
+    await saveToJsonFile(updatedJson, DEST_JSON_FILE);
 
     console.log('Updated file saved');
     console.log('SUMMARY:');
