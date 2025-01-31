@@ -47,6 +47,7 @@
     "renderQuoteReel": "remotion render QuoteReel out/quote-reel.mp4",
     "bundle:prod": "npm run bundle -- -o \"C:/Users/sunil/My space/Software/video-engine\"",
     "renderQuoteReels:prod": "ts-node ./src/remotion/rendering/render.tsx -j QuoteReel.json -b . --exit-child",
+    "renderRelaxingVideos:prod": "ts-node ./src/remotion/rendering/render.tsx -j RelaxingVideo.json -b . --exit-child",
     "server:prod": "http-server ."
   },
   "sideEffects": [

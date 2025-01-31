@@ -5,7 +5,7 @@ import { copyFiles, getFilesFromDirectory, saveToJsonFile } from "../../core-lib
 import { resolvedPath } from "../../core-lib/Utils";
 
 // Runs the bundler, and builds saves it to outDir if passed else to Windows default temp dir
-const TRIAL_PERIOD = 31 * 24 * 60 * 1000; // one month
+const TRIAL_PERIOD = 31 * 24 * 60 * 60 * 1000; // one month
 
 
 async function getCmdArguments() {

@@ -1,34 +1,20 @@
-import { staticFile, useCurrentFrame, useVideoConfig, Audio } from "remotion"
-import { useAudioData, visualizeAudio } from "@remotion/media-utils";
+import { staticFile, Audio } from "remotion"
+import { useAudioData } from "@remotion/media-utils";
+import AudioBars from "../../lib/AudioSpectrum/AudioBars";
+
 
 const music = staticFile('BeachSerenity.mp3');
+const minDb = -100;
+const maxDb = -10;
+
 export const MyAudio: React.FC = () => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
   const audioData = useAudioData(music);
 
-  if (!audioData) return null;
-
-  const visualization = visualizeAudio({
-    fps,
-    frame,
-    audioData,
-    numberOfSamples: 64,
-  });
-
-
   return <>
-    <div>
-      <Audio
-        loop
-        src={music}
-      />
-      {
-        visualization.map((v) => {
-          return <div style={{ position: 'absolute', top: '50%', left: '50%', width: 100, height: 1000 * v, backgroundColor: `rgba(${150 * v}, ${100 * v}, ${50 * v}, 1)` }} />;
-        })
-      }
-
-    </div>
+    <AudioBars minDb={minDb} maxDb={maxDb} audioData={audioData} barsCount={128} color="rgb(211, 238, 2)"></AudioBars>
+    <Audio
+      loop
+      src={music}
+    />
   </>
 }

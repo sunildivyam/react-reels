@@ -98,6 +98,7 @@ export const RelaxingVideo: React.FC<RelaxingVideoProps> = ({
       opacity={1}
       minSpeed={8}
       maxSpeed={20}
+      shininess={100}
     /> */}
 
     {/* Secondary Image */}

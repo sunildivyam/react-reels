@@ -5,30 +5,30 @@ import COMPOSITIONS_FROM_JSON from '../../public/remotion-defaults/data/composit
 import { CompositionCalculateMetaDataFns, CompositionComponents, CompositionSchemas } from './compositions';
 import { useEffect, useState } from 'react';
 import Trial from './lib/Trial';
+import { getTrialStatus } from '../client-core-lib/Trial';
+import { getCompositionPublicProps } from '../client-core-lib/Core';
 
 // Each <Composition> is an entry in the sidebar!
 
 export const RemotionRoot: React.FC = () => {
-  const compositions = COMPOSITIONS_FROM_JSON?.length ? COMPOSITIONS_FROM_JSON : COMPOSITIONS;
+  const [compositions, setCompositions] = useState(COMPOSITIONS_FROM_JSON?.length ? COMPOSITIONS_FROM_JSON : COMPOSITIONS);
   const [hasExpired, setHasExpired] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('.bundle');
-        const text = await response.text();
-        const jsonData = JSON.parse(text);
-        const { x, y, m } = jsonData;
-        setHasExpired((Date.now() - x) > y);
-        setMessage(m);
-      } catch (error) {
-        setHasExpired(false);
-        console.log('Error fetching or parsing the file:', (error as any).message);
-      }
-    };
+    // Trial Period Check
+    getTrialStatus().then(m => {
+      setHasExpired(m ? true : false);
+      setMessage(m);
+    });
 
-    fetchData();
+    // Get Public data composition JSON, and get merge video props
+    getCompositionPublicProps(compositions.map(c => c.id)).then((cmps: Record<string, object>) => {
+      setCompositions(compositions.map(c => {
+        c.defaultProps = cmps[c.id] || c.videoProps;
+        return c;
+      }));
+    })
   }, []);
 
   return (
