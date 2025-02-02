@@ -5,10 +5,15 @@ import path from 'path';
 const RELATIVE_PATH = '../../';
 
 function log(message: string, processWrite: boolean = false): void {
-  const logFilePath = path.join(__dirname, RELATIVE_PATH, 'public/logs.txt');
-  const logMessage = `${new Date().toISOString()} - ${message}\n`;
-  processWrite ? process.stdout.write(message) : console.log(message);
-  fs.appendFile(logFilePath, logMessage, (error) => error && console.log('Error in Loger', error));
+  try {
+    const logFilePath = path.join(__dirname, RELATIVE_PATH, 'public/logs.txt');
+    const logMessage = `${new Date().toISOString()} - ${message}\n`;
+    processWrite ? process.stdout.write(message) : console.log(message);
+    fs.appendFile(logFilePath, logMessage, (error) => error && console.log('Error Log Append'));
+  } catch (error) {
+
+  }
+
 }
 
 log.clear = () => {

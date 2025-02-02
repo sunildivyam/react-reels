@@ -30,7 +30,6 @@ export const Video: React.FC<VideoProps> = ({ video, filter }) => {
     const context = canvas.current.getContext('2d');
 
     if (!context) return;
-    console.log(filter);
     context.filter = getImageFilter(filter || '');
     context.drawImage(vFrame, 0, 0, width, height);
   }, [width, height, filter]);
