@@ -64,7 +64,7 @@ export const RelaxingVideo: React.FC<RelaxingVideoProps> = ({
     shininess,
   } = particles;
 
-  const { fps, durationInFrames } = useVideoConfig();
+  const { width, height, fps, durationInFrames } = useVideoConfig();
   const PER_IMAGE_DURATION = imageSeconds * fps;
 
   const allImages = useMemo(() => {
@@ -111,12 +111,10 @@ export const RelaxingVideo: React.FC<RelaxingVideoProps> = ({
       }
     }
     >
-      <RotateImage img={secondaryImage} animationDuration={durationInFrames} filter="FireFilter"
+      <RotateImage img={secondaryImage} animationDuration={5 * fps} filter="FireFilter" loop={true}
         style={{
-          width: '50em',
-          height: '50em',
           maxWidth: 'none',
-          opacity: '0.5'
+          opacity: '0.2'
         }} />
     </AbsoluteFill>}
 
@@ -174,7 +172,7 @@ export const RelaxingVideo: React.FC<RelaxingVideoProps> = ({
       }
     }
     >
-      <RotateImage img={logo} animationDuration={8 * fps} filter=""
+      <RotateImage img={logo} animationDuration={8 * fps} filter="" loop={false}
         style={{
           width: '20em',
           height: '20em',

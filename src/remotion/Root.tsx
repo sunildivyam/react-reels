@@ -25,7 +25,7 @@ export const RemotionRoot: React.FC = () => {
     // Get Public data composition JSON, and get merge video props
     getCompositionPublicProps(compositions.map(c => c.id)).then((cmps: Record<string, object>) => {
       setCompositions(compositions.map(c => {
-        c.defaultProps = cmps[c.id] || c.videoProps;
+        c.defaultProps = cmps[c.id] || c.defaultProps;
         return c;
       }));
     })

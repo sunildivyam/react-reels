@@ -141,9 +141,22 @@
     "id": "MyAudio",
     "originalId": "MyAudio",
     "component": null,
-    "durationInFrames": 9000,
+    "durationInFrames": 2700,
     "fps": 30,
     "width": 1920,
-    "height": 1080
+    "height": 1080,
+    "defaultProps": {
+      "minDb": -10,
+      "maxDb": -100,
+      "color": "rgb(255, 100, 10)",
+      "barsCount": 128,
+      "music": "remotion-defaults/music/MyAudio.mp3",
+      "bgGradient": {
+        "color1": "rgb(144, 61, 2)",
+        "color2": "rgb(255, 152, 35)",
+        "color3": "rgb(158, 71, 42)",
+        "color4": "rgb(73, 45, 3)"
+      }
+    }
   }
 ]

@@ -65,7 +65,7 @@ const AudioBars: React.FC<AudioBarsProps> = ({ minDb, maxDb, audioData, barsCoun
           height: `1px`,
           transform: `translate(${i * bar.width}px, ${height}px) scaleY(${bar.height})`
         }}
-      >{`${bar.height}`}</AbsoluteFill>)
+      />)
     }
   </AbsoluteFill >
   );
