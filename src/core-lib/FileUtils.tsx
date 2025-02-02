@@ -37,7 +37,7 @@ export async function copyFiles(files: Array<string>, destDir: string) {
     const srcFile = resolvedPath(file);
     const destFile = path.join(destPath, file)
     const destDirPath = path.dirname(destFile);
-    if (!fs.existsSync(destPath)) {
+    if (!fs.existsSync(destDirPath)) {
       await mkdir(destDirPath, { recursive: true });
     }
     await copyFile(srcFile, destFile, fs.constants.COPYFILE_FICLONE);
