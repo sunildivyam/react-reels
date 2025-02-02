@@ -64,11 +64,10 @@ export const RelaxingVideo: React.FC<RelaxingVideoProps> = ({
     shininess,
   } = particles;
 
-  const { width, height, fps, durationInFrames } = useVideoConfig();
+  const { fps, durationInFrames } = useVideoConfig();
   const PER_IMAGE_DURATION = imageSeconds * fps;
 
   const allImages = useMemo(() => {
-    console.log('IMG MEMO');
     return fillImagesUptoFullDuration(images, PER_IMAGE_DURATION, durationInFrames);
   }, [images, PER_IMAGE_DURATION, durationInFrames]);
 
