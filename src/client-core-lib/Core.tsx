@@ -7,7 +7,7 @@ export const runFetch = async (url: string) => {
     const jsonData = JSON.parse(text);
     return jsonData;
   } catch (error) {
-    console.log(`Error fetching or parsing the file ${url}:, ${(error as any).message}`);
+    console.log(`Error fetching or parsing the file ${url}:, ${(error as any)?.message}`);
     return null;
   };
 

@@ -1,7 +1,6 @@
 import { random } from "remotion";
 import { getFilesFromDirectory, saveToJsonFile } from '../../core-lib/FileUtils';
 import { readJsonFile } from "../../core-lib/FileUtils";
-import { VideoType } from "../lib/Video";
 import path from 'path';
 import { ASSETS_DIRS, HD_REEL, PUBLIC_DIR } from "../constants";
 import yargs from "yargs";
@@ -41,7 +40,7 @@ async function getUpdatedJson(json: Array<unknown>,
   const { durationInSeconds, compositionIds, imagesPerVideo } = videoOptions;
 
   const updatedJson = json.map((item, index) => {
-    let rVideos: Array<VideoType> = [];
+    let rVideos: Array<object> = [];
     let rImages: Array<string> = [];
     let rMusic: string = '';
     let isVideoType = false;

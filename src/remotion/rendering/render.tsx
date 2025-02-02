@@ -36,7 +36,7 @@ async function main() {
   try {
     await checkBundle();
   } catch (error: unknown) {
-    console.log((error as any).message);
+    console.log((error as any)?.message);
     return;
   }
 
