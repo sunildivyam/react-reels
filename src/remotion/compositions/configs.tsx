@@ -9,7 +9,7 @@ import { RelaxingVideo, RelaxingVideoSchema } from "./RelaxingVideo";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const COMPOSITIONS: Array<any> = [
   {
-    id: 'RelaxingVideo-1',
+    id: 'RelaxingVideo',
     originalId: 'RelaxingVideo',
     component: RelaxingVideo,
     durationInFrames: (8 * 60 * 30),  // 3 minute
@@ -19,17 +19,15 @@ export const COMPOSITIONS: Array<any> = [
     schema: RelaxingVideoSchema,
     defaultProps: {
       images: [
-        "remotion-defaults/images/relaxingVideo-image (1).jpeg",
-        "remotion-defaults/images/relaxingVideo-image (2).jpeg",
-        "remotion-defaults/images/relaxingVideo-image (3).jpeg",
-        "remotion-defaults/images/relaxingVideo-image (4).jpeg",
-        "remotion-defaults/images/relaxingVideo-image (5).jpeg",
+        "remotion-defaults/images/RelaxingVideo (1).jpeg",
+        "remotion-defaults/images/RelaxingVideo (2).jpeg",
+        "remotion-defaults/images/RelaxingVideo (3).jpeg",
       ],
       title: "महाकुंभ और माँ गंगा",
       subTitle: "Relaxing - Meditation - Peaceful",
       secondaryImage: "remotion-defaults/images/relaxingVideo-sec-image.png",
       logo: "remotion-defaults/images/logo.png",
-      music: "remotion-defaults/music/relaxingVideo.mp3",
+      music: "remotion-defaults/music/RelaxingVideo.mp3",
       imageSeconds: 40,
       bgGradient: {
         color1: 'rgb(144, 61, 2)',
