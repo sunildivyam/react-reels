@@ -11,7 +11,7 @@ export const MyAudioSchema = z.object({
   color: z.string(),
   music: z.string(),
   // Extra props
-  bgGradient: z.object({ color1: zColor(), color2: zColor(), color3: zColor(), color4: zColor() }),
+  bgGradient: z.object({ color1: zColor(), color2: zColor(), color3: zColor(), color4: zColor() }).optional(),
 });
 
 export type MyAudioType = z.infer<typeof MyAudioSchema>;
@@ -19,9 +19,10 @@ export type MyAudioType = z.infer<typeof MyAudioSchema>;
 export const MyAudio: React.FC<MyAudioType> = ({ minDb, maxDb, barsCount, bgGradient, color, music }) => {
   const musicFile = staticFile(music);
   const audioData = useAudioData(musicFile);
+  const background = bgGradient ? `linear-gradient(110deg, ${bgGradient?.color1} 0%, ${bgGradient?.color2} 30%, ${bgGradient?.color3} 50%, ${bgGradient?.color4} 90%)` : 'none';
 
   return <AbsoluteFill style={{
-    background: `linear-gradient(110deg, ${bgGradient.color1} 0%, ${bgGradient.color1} 8%, ${bgGradient.color1} 50%, ${bgGradient.color1} 98%)`
+    background
   }}>
     <AudioBars minDb={minDb} maxDb={maxDb} audioData={audioData} barsCount={barsCount} color={color}></AudioBars>
     <Audio

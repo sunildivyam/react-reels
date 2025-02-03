@@ -26,18 +26,19 @@ export const QuoteReelSchema = z.object({
   hashTags: z.array(z.string()).optional(),
   isVideoType: z.boolean().optional(),
   // Extra props
-  bgGradient: z.object({ color1: zColor(), color2: zColor(), color3: zColor(), color4: zColor() }),
+  bgGradient: z.object({ color1: zColor(), color2: zColor(), color3: zColor(), color4: zColor() }).optional(),
 });
 
 export type QuoteReelType = z.infer<typeof QuoteReelSchema>;
 
 export const QuoteReel: React.FC<QuoteReelType> = ({ title, summary, translation, images, music, videos, filter, isVideoType, bgGradient }) => {
   const { durationInFrames, fps } = useVideoConfig();
+  const background = bgGradient ? `linear-gradient(110deg, ${bgGradient?.color1} 0%, ${bgGradient?.color2} 30%, ${bgGradient?.color3} 50%, ${bgGradient?.color4} 90%)` : 'none';
 
   return (
     <AbsoluteFill
       style={{
-        background: `linear-gradient(110deg, ${bgGradient.color1} 0%, ${bgGradient.color1} 8%, ${bgGradient.color1} 50%, ${bgGradient.color1} 98%)`
+        background
       }}
     >
       {/* Videos & Images */}

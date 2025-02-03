@@ -75,13 +75,13 @@ async function getUpdatedJson(json: Array<unknown>,
     rMusic = music ? `${ASSETS_DIRS.MUSIC}/${music}` : music;
 
     const videoComposition = {
-      compositionId: (compositionIds && compositionIds[index % compositionIds.length]) || "QuoteReel",
+      id: (compositionIds && compositionIds[index % compositionIds.length]) || "QuoteReel",
       durationInSeconds: durationInSeconds || HD_REEL.DURATION_SECONDS,
       fps: HD_REEL.FPS,
       width: HD_REEL.width,
       height: HD_REEL.height,
       rangeInSeconds: [],
-      videoProps: {
+      defaultProps: {
         ...item as object,
         isVideoType,
         filter: 'ForestFilter',

@@ -20,9 +20,13 @@ export const getCompositionPublicProps = async (compositionIds: Array<string>): 
     const url = staticFile(`data/${id}.json`);
     const cmp = await runFetch(url);
     if (cmp?.length) {
-      compositions[id] = cmp[0].videoProps;
+      compositions[id] = { ...(cmp[0] || {}) };
     }
   }
 
   return compositions;
 };
+
+export const deepCopy = (obj: object): object => {
+  return JSON.parse(JSON.stringify(obj));
+}

@@ -37,14 +37,14 @@
     "typescript": "5.5.4"
   },
   "scripts": {
-    "dev": "remotion studio",
+    "dev": "set DEV=true && remotion studio",
     "build": "remotion bundle",
     "bundle": "ts-node ./src/remotion/rendering/bundle.tsx",
     "upgrade": "remotion upgrade",
     "lint": "eslint src --ext ts,tsx,js,jsx && tsc",
     "genQuoteReelsData": "ts-node ./src/remotion/rendering/genQuoteReelsData.tsx",
-    "renderQuoteReels": "ts-node ./src/remotion/rendering/render.tsx -j QuoteReel.json --exit-child",
-    "renderRelaxingVideos": "ts-node ./src/remotion/rendering/render.tsx -j RelaxingVideo.json --exit-child",
+    "renderQuoteReels": "set DEV=true && ts-node ./src/remotion/rendering/render.tsx -j QuoteReel.json --exit-child",
+    "renderRelaxingVideos": "set DEV=true && ts-node ./src/remotion/rendering/render.tsx -j RelaxingVideo.json --exit-child",
     "renderQuoteReel": "remotion render QuoteReel out/quote-reel.mp4",
     "bundle:prod": "npm run bundle -- -o \"C:/Users/sunil/My space/Software/video-engine\"",
     "renderQuoteReels:prod": "ts-node ./src/remotion/rendering/render.tsx -j QuoteReel.json -b . --exit-child",

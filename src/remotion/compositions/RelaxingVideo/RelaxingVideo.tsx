@@ -18,7 +18,7 @@ export const RelaxingVideoSchema = z.object({
   music: z.string(),
   imageSeconds: z.number(),
   // Extra props
-  bgGradient: z.object({ color1: zColor(), color2: zColor(), color3: zColor(), color4: zColor() }),
+  bgGradient: z.object({ color1: zColor(), color2: zColor(), color3: zColor(), color4: zColor() }).optional(),
   particles: z.object({
     count: z.number(),
     speed: z.object({ min: z.number(), max: z.number() }),
@@ -74,10 +74,10 @@ export const RelaxingVideo: React.FC<RelaxingVideoProps> = ({
   const len = allImages.length;
   const imagesSequenceDuration = PER_IMAGE_DURATION * len;
   const transitionDuration = Math.floor(imagesSequenceDuration / len / 2.5);
-
+  const background = bgGradient ? `linear-gradient(110deg, ${bgGradient?.color1} 0%, ${bgGradient?.color2} 30%, ${bgGradient?.color3} 50%, ${bgGradient?.color4} 90%)` : 'none';
   return <AbsoluteFill
     style={{
-      background: `linear-gradient(110deg, ${bgGradient?.color1} 0%, ${bgGradient?.color2} 30%, ${bgGradient?.color3} 50%, ${bgGradient?.color4} 90%)`
+      background,
     }}
   >
     <ImageSequence images={allImages} filter="" durationInFrames={imagesSequenceDuration} transitionDuration={transitionDuration} />
@@ -196,6 +196,7 @@ export const RelaxingVideo: React.FC<RelaxingVideoProps> = ({
 
 
 function fillImagesUptoFullDuration(images: Array<string>, perImageDuration: number, videoDuration: number) {
+  if (!images?.length) return [];
   const oLen = images.length;
   const imageCount = videoDuration / perImageDuration;
   const allImages: Array<string> = [];

@@ -33,7 +33,7 @@ export const VideoSequence: React.FC<VideoSequenceProps> = ({ videos, filter, tr
     // const transitionTiming = springTiming({ durationInFrames: transitionDuration, config: { damping: 200 } });
     const transitionTiming = linearTiming({ durationInFrames: transitionDuration });
 
-    return videos.map((video, index) => <React.Fragment key={index}>
+    const videoSequences = videos.map((video, index) => <React.Fragment key={index}>
       <TransitionSeries.Sequence
         durationInFrames={video.duration + (transitionDuration / 2)}>
         <Video video={video} filter={filter || ''} />
@@ -42,10 +42,16 @@ export const VideoSequence: React.FC<VideoSequenceProps> = ({ videos, filter, tr
         timing={transitionTiming}
         presentation={transition()} />
       }
-    </React.Fragment>)
+    </React.Fragment>);
+
+    if (videoSequences?.length) {
+      return <TransitionSeries>
+        {videoSequences}
+      </TransitionSeries>
+    }
+
+    return null;
   }
 
-  return <TransitionSeries>
-    {getVideoSequences()}
-  </TransitionSeries>
+  return getVideoSequences();
 }

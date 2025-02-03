@@ -6,7 +6,7 @@
     "width": 1920,
     "height": 1080,
     "rangeInSeconds": [],
-    "videoProps": {
+    "defaultProps": {
       "images": [
         "remotion-defaults/images/MantrasVideo (1).jpeg",
         "remotion-defaults/images/MantrasVideo (2).jpeg",

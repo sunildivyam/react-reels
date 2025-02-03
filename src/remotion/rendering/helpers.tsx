@@ -118,14 +118,14 @@ export const renderOne = async (
     // in the composition list. Use this if you want to dynamically set the duration or
     // dimensions of the video.
     serveUrl: bundleLocation,
-    inputProps: singleVideo.videoProps,
+    inputProps: singleVideo.defaultProps,
     id: compositionId,
   });
 
   const { width, height, fps, durationInSeconds, rangeInSeconds } = singleVideo;
   composition = { ...composition, width, height, fps, durationInFrames: fps * durationInSeconds };
 
-  const outputLocation = `${OUT_DIR}/${encodeFileName(singleVideo.videoProps.title)}-${Date.now()}.mp4`;
+  const outputLocation = `${OUT_DIR}/${encodeFileName(singleVideo.defaultProps.title)}-${Date.now()}.mp4`;
   const startTime = Date.now();
   filelog(`STARTING... ${outputLocation} | ${formatDuration(startTime)}\n`);
 
@@ -138,7 +138,7 @@ export const renderOne = async (
     serveUrl: bundleLocation,
     codec: "h264",
     outputLocation,
-    inputProps: singleVideo.videoProps,
+    inputProps: singleVideo.defaultProps,
     frameRange: cFrameRange,
     onProgress: (rProgress) => {
       // prints the info in same line
@@ -174,6 +174,7 @@ export const renderOne = async (
 };
 
 export async function checkBundle() {
+  if (process.env.DEV) return;
   const { x, y, m } = await readJsonFile('.bundle');
   if (Date.now() - x > y) throw Error(m);
 }
@@ -201,7 +202,7 @@ export const renderAll = async (jsonPath: string, bundleLocation: string) => {
 
       await renderOne(singleVideo, bundleLocationPath, compositionId).catch(
         (error) => {
-          filelog(`Skipped: ${singleVideo.videoProps.title} | Error: ${error}`);
+          filelog(`Skipped: ${singleVideo.defaultProps.title} | Error: ${error}`);
         },
       );
 
