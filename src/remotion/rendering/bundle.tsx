@@ -19,7 +19,6 @@ async function getCmdArguments() {
     .help().argv;
 
   const { outDir } = await options;
-  // if (!outDir) throw new Error("Bundle Output folder required");
 
   return { outDir };
 }

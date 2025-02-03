@@ -29,5 +29,5 @@ export function getETA(progressPercent: number, progressTimeMs: number, complete
   const remainingCount = totalCount - completedCount;
   const remainingTime = etaPerItem * remainingCount;
 
-  return formatDuration(remainingTime);
+  return formatDuration(remainingTime >= 0 ? remainingTime : 0);
 }

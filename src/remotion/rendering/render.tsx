@@ -16,7 +16,8 @@ async function getCmdArguments() {
     .option("json", {
       alias: "j",
       type: "string",
-      description: "Path of JSON data file relative to public folder",
+      description: `Filename of composition JSON data file relative to public folder.`,
+      demandOption: `Usage Ex: -j RelaxingVideo.json`
     })
     .option("bundleLocation", {
       alias: "b",
@@ -26,7 +27,7 @@ async function getCmdArguments() {
     .help().argv;
 
   const { json, bundleLocation } = await options;
-  if (!json) throw new Error("Video Json file path required");
+  // if (!json) throw new Error("Video Json file path required. Ex: -- -j RelaxingVideo.json");
 
   return { json, bundleLocation };
 }

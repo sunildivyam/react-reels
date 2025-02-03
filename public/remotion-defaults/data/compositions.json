@@ -156,5 +156,33 @@
         "color4": "rgb(73, 45, 3)"
       }
     }
+  },
+  {
+    "id": "DustVideo",
+    "originalId": "DustVideo",
+    "component": null,
+    "durationInFrames": 90,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "schema": null,
+    "defaultProps": {
+      "count": 1000,
+      "speed": {
+        "min": 2,
+        "max": 10
+      },
+      "opacity": 0.5,
+      "smoothness": 3,
+      "size": 0.5,
+      "color": "rgb(121, 229, 254)",
+      "lightDistance": 0,
+      "lightIntensity": 1000,
+      "lightColor": "rgb(108, 186, 255)",
+      "cameraFov": 100,
+      "cameraNear": 0,
+      "cameraFar": 30,
+      "shininess": 100
+    }
   }
 ]

@@ -122,12 +122,13 @@ export const renderOne = async (
     id: compositionId,
   });
 
-  const { width, height, fps, durationInSeconds, rangeInSeconds } = singleVideo;
+  const { width, height, fps, durationInSeconds, rangeInSeconds, transparent } = singleVideo;
   composition = { ...composition, width, height, fps, durationInFrames: fps * durationInSeconds };
 
-  const outputLocation = `${OUT_DIR}/${encodeFileName(singleVideo.defaultProps.title)}-${Date.now()}.mp4`;
+  const outputLocation = `${OUT_DIR}/${encodeFileName(singleVideo.defaultProps.title || compositionId)}-${Date.now()}.${transparent ? 'webm' : 'mp4'}`;
   const startTime = Date.now();
-  filelog(`STARTING... ${outputLocation} | ${formatDuration(startTime)}\n`);
+
+  filelog(`${formatDuration(startTime)} | STARTED: ${outputLocation} \n`);
 
   const cFrameRange: [number, number] = rangeInSeconds?.length ? [rangeInSeconds[0] * fps, rangeInSeconds[1] * fps] : [0, composition.durationInFrames - 1];
 
@@ -136,7 +137,8 @@ export const renderOne = async (
   await renderMedia({
     composition,
     serveUrl: bundleLocation,
-    codec: "h264",
+    codec: transparent ? "vp9" : "h264",
+    imageFormat: transparent ? "png" : "jpeg",
     outputLocation,
     inputProps: singleVideo.defaultProps,
     frameRange: cFrameRange,
@@ -154,10 +156,10 @@ export const renderOne = async (
 
       if (isProgressChanged(prevProgress, rProgress)) {
         const eta = getETA(progress, Date.now() - startTime, renderedFrames, cFrameRange[1] - cFrameRange[0]);
-        const totalFrames = cFrameRange[1] - cFrameRange[0];
+        const totalFrames = (cFrameRange[1] - cFrameRange[0] + 1);
 
         filelog(
-          `${outputLocation} | ${stitchStage} | ${Math.floor(progress * 100)}% | Frames(${totalFrames}) (rendered: ${renderedFrames} encoded: ${encodedFrames}) | ETA: (${formatDuration(Date.now() - startTime)} / ${formatDuration(renderEstimatedTime)}) | Remaining: ${eta}\r`,
+          `${stitchStage} | ${Math.floor(progress * 100)}% | Frames(${totalFrames}) (rendered: ${renderedFrames} encoded: ${encodedFrames}) | ETA: (${formatDuration(Date.now() - startTime)} / ${formatDuration(renderEstimatedTime)}) | Remaining: ${eta}\r`,
           true);
         prevProgress = rProgress;
       }
@@ -174,7 +176,7 @@ export const renderOne = async (
 };
 
 export async function checkBundle() {
-  if (process.env.DEV) return;
+  if (process.env.REMOTION_DEV) return;
   const { x, y, m } = await readJsonFile('.bundle');
   if (Date.now() - x > y) throw Error(m);
 }
@@ -196,13 +198,13 @@ export const renderAll = async (jsonPath: string, bundleLocation: string) => {
     for (const vidInfo of videoInfos) {
       const singleVideo = { ...vidInfo };
       // NEXT STEPS: Random Composition Ids can be assigned to each video
-      const { compositionId } = singleVideo;
+      const { id } = singleVideo;
 
-      filelog(`STARTED RENDERING ${compositionId} at: ${new Date()}`);
+      filelog(`STARTED RENDERING ${id} at: ${new Date()}`);
 
-      await renderOne(singleVideo, bundleLocationPath, compositionId).catch(
+      await renderOne(singleVideo, bundleLocationPath, id).catch(
         (error) => {
-          filelog(`Skipped: ${singleVideo.defaultProps.title} | Error: ${error}`);
+          filelog(`Skipped: ${singleVideo.defaultProps.title || id} | Error: ${error}`);
         },
       );
 

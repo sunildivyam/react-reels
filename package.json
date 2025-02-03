@@ -37,19 +37,17 @@
     "typescript": "5.5.4"
   },
   "scripts": {
-    "dev": "set DEV=true && remotion studio",
     "build": "remotion bundle",
-    "bundle": "ts-node ./src/remotion/rendering/bundle.tsx",
     "upgrade": "remotion upgrade",
+    "renderQuoteReel": "remotion render QuoteReel out/quote-reel.mp4",
     "lint": "eslint src --ext ts,tsx,js,jsx && tsc",
     "genQuoteReelsData": "ts-node ./src/remotion/rendering/genQuoteReelsData.tsx",
-    "renderQuoteReels": "set DEV=true && ts-node ./src/remotion/rendering/render.tsx -j QuoteReel.json --exit-child",
-    "renderRelaxingVideos": "set DEV=true && ts-node ./src/remotion/rendering/render.tsx -j RelaxingVideo.json --exit-child",
-    "renderQuoteReel": "remotion render QuoteReel out/quote-reel.mp4",
+    "bundle:dev": "set REMOTION_DEV=true && ts-node ./src/remotion/rendering/bundle.tsx",
+    "render:dev": "set REMOTION_DEV=true && ts-node ./src/remotion/rendering/render.tsx --exit-child",
+    "serve:dev": "set REMOTION_DEV=true && set REMOTION_IS_WEB=true && remotion studio",
     "bundle:prod": "npm run bundle -- -o \"C:/Users/sunil/My space/Software/video-engine\"",
-    "renderQuoteReels:prod": "ts-node ./src/remotion/rendering/render.tsx -j QuoteReel.json -b . --exit-child",
-    "renderRelaxingVideos:prod": "ts-node ./src/remotion/rendering/render.tsx -j RelaxingVideo.json -b . --exit-child",
-    "server:prod": "http-server ."
+    "render:prod": "ts-node ./src/remotion/rendering/render.tsx -j QuoteReel.json -b . --exit-child",
+    "serve:prod": "set IS_WEB=true && http-server ."
   },
   "sideEffects": [
     "*.css"

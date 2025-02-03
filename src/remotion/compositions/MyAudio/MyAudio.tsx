@@ -8,7 +8,7 @@ export const MyAudioSchema = z.object({
   minDb: z.number(),
   maxDb: z.number(),
   barsCount: z.number(),
-  color: z.string(),
+  color: zColor(),
   music: z.string(),
   // Extra props
   bgGradient: z.object({ color1: zColor(), color2: zColor(), color3: zColor(), color4: zColor() }).optional(),

@@ -1,0 +1,118 @@
+[
+  {
+    "id": "DustVideo",
+    "originalId": "DustVideo",
+    "component": null,
+    "durationInSeconds": 60,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "schema": null,
+    "transparent": true,
+    "defaultProps": {
+      "count": 1000,
+      "speed": {
+        "min": 2,
+        "max": 10
+      },
+      "opacity": 1,
+      "smoothness": 1,
+      "size": 0.05,
+      "color": "#ffffff",
+      "lightDistance": 0,
+      "lightIntensity": 1000,
+      "lightColor": "#b4fef9",
+      "cameraFov": 100,
+      "cameraNear": 0,
+      "cameraFar": 30,
+      "shininess": 100
+    }
+  },
+  {
+    "id": "DustVideo",
+    "originalId": "DustVideo",
+    "component": null,
+    "durationInSeconds": 60,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "schema": null,
+    "transparent": true,
+    "defaultProps": {
+      "count": 1000,
+      "speed": {
+        "min": 2,
+        "max": 10
+      },
+      "opacity": 1,
+      "smoothness": 1,
+      "size": 0.05,
+      "color": "#ffc800",
+      "lightDistance": 0,
+      "lightIntensity": 1000,
+      "lightColor": "#ffffff",
+      "cameraFov": 100,
+      "cameraNear": 0,
+      "cameraFar": 30,
+      "shininess": 100
+    }
+  },
+  {
+    "id": "DustVideo",
+    "originalId": "DustVideo",
+    "component": null,
+    "durationInSeconds": 60,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "schema": null,
+    "transparent": true,
+    "defaultProps": {
+      "count": 50,
+      "speed": {
+        "min": 8,
+        "max": 20
+      },
+      "opacity": 0.1,
+      "smoothness": 3,
+      "size": 10,
+      "color": "#ffc800",
+      "lightDistance": 0,
+      "lightIntensity": 1000,
+      "lightColor": "#ffffff",
+      "cameraFov": 100,
+      "cameraNear": 0,
+      "cameraFar": 30,
+      "shininess": 100
+    }
+  },
+  {
+    "id": "DustVideo",
+    "originalId": "DustVideo",
+    "component": null,
+    "durationInSeconds": 60,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "schema": null,
+    "transparent": true,
+    "defaultProps": {
+      "count": 50,
+      "speed": {
+        "min": 8,
+        "max": 20
+      },
+      "opacity": 0.1,
+      "smoothness": 3,
+      "size": 50,
+      "color": "#00eeff",
+      "lightDistance": 0,
+      "lightIntensity": 1000,
+      "lightColor": "#ffffff",
+      "cameraFov": 100,
+      "cameraNear": 0,
+      "cameraFar": 30,
+      "shininess": 100
+    }
+  }
+]
