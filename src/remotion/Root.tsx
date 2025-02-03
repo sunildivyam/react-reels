@@ -32,7 +32,6 @@ export const RemotionRoot: React.FC = () => {
       getCompositionPublicProps(ids).then((cmps: Record<string, object>) => {
         const compositions = COMPOSITIONS_FROM_JSON.map(c => {
           const merged = { ...c, ...(cmps[c.id]) || {} };
-          console.log(merged.defaultProps.images);
           return merged;
         });
         setCompositions(compositions);
