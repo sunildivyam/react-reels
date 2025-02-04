@@ -1,0 +1,50 @@
+[
+  {
+    "id": "MantrasVideo",
+    "originalId": "RelaxingVideo",
+    "durationInSeconds": 30,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "rangeInSeconds": [],
+    "defaultProps": {
+      "images": [
+        "remotion-defaults/images/MantrasVideo (1).jpeg",
+        "remotion-defaults/images/MantrasVideo (2).jpeg",
+        "remotion-defaults/images/MantrasVideo (3).jpeg",
+        "remotion-defaults/images/MantrasVideo (4).jpeg",
+        "remotion-defaults/images/MantrasVideo (5).jpeg"
+      ],
+      "title": "महाकुंभ और माँ गंगा",
+      "subTitle": "Relaxing - Meditation - Peaceful",
+      "secondaryImage": "remotion-defaults/images/relaxingVideo-sec-image.png",
+      "logo": "remotion-defaults/images/logo.png",
+      "music": "remotion-defaults/music/MantrasVideo.mp3",
+      "imageSeconds": 10,
+      "bgGradient": {
+        "color1": "rgb(144, 61, 2)",
+        "color2": "rgb(255, 152, 35)",
+        "color3": "rgb(158, 71, 42)",
+        "color4": "rgb(73, 45, 3)"
+      },
+      "particles": {
+        "count": 1000,
+        "speed": {
+          "min": 10,
+          "max": 20
+        },
+        "opacity": 0.2,
+        "smoothness": 3,
+        "size": 0.5,
+        "color": "#ffae52",
+        "lightDistance": 0,
+        "lightIntensity": 1000,
+        "lightColor": "rgb(108, 0, 255)",
+        "cameraFov": 100,
+        "cameraNear": 0,
+        "cameraFar": 30,
+        "shininess": 100
+      }
+    }
+  }
+]

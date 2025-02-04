@@ -5,7 +5,7 @@
 
 import { Config } from "@remotion/cli/config";
 import { enableTailwind } from "@remotion/tailwind";
-
+Config.setEntryPoint("src/remotion/index.tsx");
 Config.setStillImageFormat("jpeg");
 Config.setVideoImageFormat("jpeg");
 Config.setDelayRenderTimeoutInMilliseconds(240 * 1000);
