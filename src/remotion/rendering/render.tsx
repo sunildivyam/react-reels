@@ -5,8 +5,8 @@ import { PROCESSED_DIR, PROCESSED_DIRS, PUBLIC_DIR } from "../constants";
 
 /**
  * Gets parameters from command prompt for rendering
- * compositionId: compositionId to render
  * fileName of json data file
+ * bundleLocation
  * @returns {json, bundleLocation}
  */
 

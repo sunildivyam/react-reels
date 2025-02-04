@@ -4,11 +4,17 @@ import path from 'path';
 // Relative path to project root, from __dirname
 const RELATIVE_PATH = '../../';
 
-function log(message: string, processWrite: boolean = false): void {
+function log(message: string, lines: number = 0): void {
   try {
     const logFilePath = path.join(__dirname, RELATIVE_PATH, 'public/logs.txt');
     const logMessage = `${new Date().toISOString()} - ${message}\n`;
-    processWrite ? process.stdout.write(message) : console.log(message);
+    if (lines) {
+      process.stdout.write(message);
+      lines > 1 && process.stdout.write(`\x1b[${lines}A`);
+    } else {
+      console.log(message);
+    }
+
     fs.appendFile(logFilePath, logMessage, (error) => error && console.log('Error Log Append'));
   } catch (error) {
 

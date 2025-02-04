@@ -45,8 +45,8 @@
     "bundle:dev": "set REMOTION_DEV=true && ts-node ./src/remotion/rendering/bundle.tsx",
     "render:dev": "set REMOTION_DEV=true && ts-node ./src/remotion/rendering/render.tsx --exit-child",
     "serve:dev": "set REMOTION_DEV=true && set REMOTION_IS_WEB=true && remotion studio",
-    "bundle:prod": "npm run bundle -- -o \"C:/Users/sunil/My space/Software/video-engine\"",
-    "render:prod": "ts-node ./src/remotion/rendering/render.tsx -j QuoteReel.json -b . --exit-child",
+    "bundle:prod": "ts-node ./src/remotion/rendering/bundle.tsx -o \"C:/Users/sunil/My space/Software/video-engine\"",
+    "render:prod": "ts-node ./src/remotion/rendering/render.tsx -b . --exit-child",
     "serve:prod": "set IS_WEB=true && http-server ."
   },
   "sideEffects": [

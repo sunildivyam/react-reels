@@ -1,6 +1,7 @@
 [
   {
-    "compositionId": "MyAudio",
+    "id": "MyAudio",
+    "originalId": "MyAudio",
     "durationInFrames": 2700,
     "fps": 30,
     "width": 1920,

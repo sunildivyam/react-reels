@@ -40,10 +40,10 @@ export const buildBundle = async (outDir: string = ''): Promise<string> => {
         filelog(`Bundle Directory Created: ${dir}`);
       },
       onPublicDirCopyProgress(bytes) {
-        filelog(`Copying Public Directory: ${bytes} bytes\r`, true);
+        filelog(`Copying Public Directory: ${bytes} bytes\r`, 1);
       },
       onProgress(progress) {
-        filelog(`Bundling progress: ${progress}%\r`, true);
+        filelog(`Bundling progress: ${progress}%\r`, 1);
       },
       webpackOverride: (config) => {
         return {
@@ -128,7 +128,7 @@ export const renderOne = async (
   const outputLocation = `${OUT_DIR}/${encodeFileName(singleVideo.defaultProps.title || compositionId)}-${Date.now()}.${transparent ? 'webm' : 'mp4'}`;
   const startTime = Date.now();
 
-  filelog(`${formatDuration(startTime)} | STARTED: ${outputLocation} \n`);
+  filelog(`${outputLocation} \n`);
 
   const cFrameRange: [number, number] = rangeInSeconds?.length ? [rangeInSeconds[0] * fps, rangeInSeconds[1] * fps] : [0, composition.durationInFrames - 1];
 
@@ -149,29 +149,28 @@ export const renderOne = async (
         renderedFrames,
         renderEstimatedTime,
         encodedFrames,
-        encodedDoneIn,
-        renderedDoneIn,
+        // encodedDoneIn,
+        // renderedDoneIn,
         progress,
       } = rProgress;
 
       if (isProgressChanged(prevProgress, rProgress)) {
         const eta = getETA(progress, Date.now() - startTime, renderedFrames, cFrameRange[1] - cFrameRange[0]);
         const totalFrames = (cFrameRange[1] - cFrameRange[0] + 1);
-
         filelog(
-          `${stitchStage} | ${Math.floor(progress * 100)}% | Frames(${totalFrames}) (rendered: ${renderedFrames} encoded: ${encodedFrames}) | ETA: (${formatDuration(Date.now() - startTime)} / ${formatDuration(renderEstimatedTime)}) | Remaining: ${eta}\r`,
-          true);
+          `Stage: ${stitchStage} | ${Math.floor(progress * 100)}%\nrendering: ${renderedFrames}(${totalFrames})\nencoding: ${encodedFrames}(${totalFrames})\nETA: (${formatDuration(Date.now() - startTime)} / ${formatDuration(renderEstimatedTime)}) | Remaining: ${eta}\r`
+          , 3)
         prevProgress = rProgress;
       }
 
-      if (encodedDoneIn !== null || renderedDoneIn !== null) {
-        filelog(`|encodedDoneIn: ${formatDuration(encodedDoneIn || 0)} | renderedDoneIn: ${formatDuration(renderedDoneIn || 0)}`);
-      }
+      // if (encodedDoneIn !== null || renderedDoneIn !== null) {
+      //   filelog(`|encodedDoneIn: ${formatDuration(encodedDoneIn || 0)} | renderedDoneIn: ${formatDuration(renderedDoneIn || 0)}`);
+      // }
     },
   });
 
   filelog(
-    `${outputLocation} | DONE in ${formatDuration(Date.now() - startTime)}`,
+    `\n\n\n\n${outputLocation} | DONE in ${formatDuration(Date.now() - startTime)}\n`,
   );
 };
 
@@ -195,11 +194,12 @@ export const renderAll = async (jsonPath: string, bundleLocation: string) => {
       throw new Error(`Error reading json file ${jsonPath} ${error}`);
     }
 
-    for (const vidInfo of videoInfos) {
-      const singleVideo = { ...vidInfo };
+    for (let vI = 0; vI < videoInfos.length; vI++) {
+
+      const singleVideo = { ...videoInfos[vI] };
       // NEXT STEPS: Random Composition Ids can be assigned to each video
       const { id } = singleVideo;
-
+      console.log(`\n(${vI + 1}/${videoInfos.length}) START`);
       filelog(`STARTED RENDERING ${id} at: ${new Date()}`);
 
       await renderOne(singleVideo, bundleLocationPath, id).catch(
@@ -207,7 +207,7 @@ export const renderAll = async (jsonPath: string, bundleLocation: string) => {
           filelog(`Skipped: ${singleVideo.defaultProps.title || id} | Error: ${error}`);
         },
       );
-
+      console.log(`(${vI + 1}/${videoInfos.length}) END _________________________________\n`);
       // NEXT STEPS: Update JSON with rendered video info
     }
     filelog(`COMPLETED RENDERING at: ${new Date()}`)

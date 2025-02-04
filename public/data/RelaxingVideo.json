@@ -1,6 +1,7 @@
 [
   {
-    "compositionId": "RelaxingVideo",
+    "id": "RelaxingVideo",
+    "originalId": "RelaxingVideo",
     "durationInSeconds": 60,
     "fps": 30,
     "width": 1920,

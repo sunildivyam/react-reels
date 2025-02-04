@@ -1,6 +1,7 @@
 [
   {
-    "compositionId": "QuoteReel",
+    "id": "QuoteReel",
+    "originalId": "QuoteReel",
     "durationInSeconds": 30,
     "fps": 30,
     "width": 1080,

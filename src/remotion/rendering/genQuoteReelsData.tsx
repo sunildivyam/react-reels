@@ -76,6 +76,7 @@ async function getUpdatedJson(json: Array<unknown>,
 
     const videoComposition = {
       id: (compositionIds && compositionIds[index % compositionIds.length]) || "QuoteReel",
+      originalId: "QuoteReel",
       durationInSeconds: durationInSeconds || HD_REEL.DURATION_SECONDS,
       fps: HD_REEL.FPS,
       width: HD_REEL.width,
