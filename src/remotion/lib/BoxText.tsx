@@ -10,7 +10,7 @@ const BoxText: React.FC<BoxTextProps> = ({ text, style }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  const scale = spring({ frame, fps, durationInFrames: 2 * fps, config: { damping: 10 } });
+  const scale = frame > 1 ? spring({ frame, fps, durationInFrames: 2 * fps, config: { damping: 10 } }) : 1;
 
   return (
     <p

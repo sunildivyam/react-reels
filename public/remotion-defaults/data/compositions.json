@@ -184,5 +184,30 @@
       "cameraFar": 30,
       "shininess": 100
     }
+  },
+  {
+    "id": "Quote",
+    "originalId": "Quote",
+    "component": null,
+    "durationInFrames": 210,
+    "fps": 30,
+    "width": 1080,
+    "height": 1920,
+    "calculateMetadata": null,
+    "schema": null,
+    "defaultProps": {
+      "name": "चाणक्य",
+      "title": "विद्या का महत्व",
+      "summary": "विद्या ही मनुष्य का सबसे बड़ा आभूषण है।",
+      "translation": "Knowledge is the greatest ornament of man.",
+      "filter": "",
+      "categoryImage": "remotion-defaults/images/chanakya.jpg",
+      "videos": [],
+      "images": [
+        "remotion-defaults/images/quote-paper.png"
+      ],
+      "music": "remotion-defaults/music/Quote.mp3",
+      "isVideoType": false
+    }
   }
 ]
