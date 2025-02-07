@@ -6,7 +6,7 @@ import { ASSETS_DIRS, HD_REEL, PUBLIC_DIR } from "../constants";
 import yargs from "yargs";
 
 const SOURCE_JSON_FILE = `${PUBLIC_DIR}/${ASSETS_DIRS.DATA}/quotes.json`;
-const DEST_JSON_FILE = `${PUBLIC_DIR}/${ASSETS_DIRS.DATA}/QuoteReel.json`;;
+const DEST_JSON_FILE = `${PUBLIC_DIR}/${ASSETS_DIRS.DATA}`;
 
 export const IMAGES_PER_VIDEO = 1;
 export const VIDEOS_PER_VIDEO = 1;
@@ -15,6 +15,7 @@ interface VideoOptionsType {
   durationInSeconds?: number,
   compositionIds?: Array<string>,
   imagesPerVideo?: number;
+  categoryImage?: string;
 }
 
 export const readDataFromDirectories = async (): Promise<{ images: string[], videos: string[], musics: string[] }> => {
@@ -37,7 +38,7 @@ async function getUpdatedJson(json: Array<unknown>,
   videos: Array<string>,
   musics: Array<string>,
   videoOptions: VideoOptionsType) {
-  const { durationInSeconds, compositionIds, imagesPerVideo } = videoOptions;
+  const { durationInSeconds, compositionIds, imagesPerVideo, categoryImage } = videoOptions;
 
   const updatedJson = json.map((item, index) => {
     let rVideos: Array<object> = [];
@@ -73,10 +74,11 @@ async function getUpdatedJson(json: Array<unknown>,
 
     const music = musics[index % musics.length];
     rMusic = music ? `${ASSETS_DIRS.MUSIC}/${music}` : music;
+    const cId = (compositionIds && compositionIds[index % compositionIds.length]) || "QuoteReel";
 
     const videoComposition = {
-      id: (compositionIds && compositionIds[index % compositionIds.length]) || "QuoteReel",
-      originalId: "QuoteReel",
+      id: cId,
+      originalId: cId,
       durationInSeconds: durationInSeconds || HD_REEL.DURATION_SECONDS,
       fps: HD_REEL.FPS,
       width: HD_REEL.width,
@@ -86,6 +88,7 @@ async function getUpdatedJson(json: Array<unknown>,
         ...item as object,
         isVideoType,
         filter: 'ForestFilter',
+        categoryImage,
         videos: rVideos,
         images: rImages,
         music: rMusic,
@@ -108,7 +111,7 @@ async function getUpdatedJson(json: Array<unknown>,
 const toUniqueArray = (items: Array<any>): Array<any> => {
   const map = new Map();
   items.forEach(item => {
-    map.set(item.name, item);
+    map.set(item.summary, item);
   });
   return Array.from(map.values());
 };
@@ -121,24 +124,31 @@ async function getCmdArguments() {
       alias: "d",
       type: "number",
       description: "Duration of reel in seconds",
+      demandOption: "Video Duration required (seconds), Ex. -- -d 10"
     })
     .option("imagesPerVideo", {
       alias: "i",
       type: "number",
       description: "Number of Images per Video",
+      demandOption: "Number of Images per Video, Ex. -- -i 1"
     })
     .option("compositionIds", {
       alias: "c",
       type: "string",
       description: "Composition Ids for reels",
+      demandOption: "One or more composition Id/s required, Ex. -- -c Quote, QuoteReel"
+    })
+    .option("categoryImage", {
+      alias: "t",
+      type: "string",
+      description: "Category Image Relative Url to public Folder",
+      demandOption: "Category Image Relative Url to public Folder, Ex. -- -t remotion-defaults/images/chanakya.jpg"
     })
     .help().argv;
 
-  const { durationInSeconds, compositionIds, imagesPerVideo } = await options;
+  const { durationInSeconds, compositionIds, imagesPerVideo, categoryImage } = await options;
 
-  if (!durationInSeconds || !compositionIds || !imagesPerVideo) console.log('You can provide Reel imagesPerVideo, duration and compositionIds using command line -- -d 30 -c QuoteReel, NewsReel -i 2');
-
-  return { durationInSeconds, compositionIds: compositionIds ? compositionIds.split(', ').map(s => s.trim()) : [], imagesPerVideo };
+  return { durationInSeconds, compositionIds: compositionIds ? compositionIds.split(', ').map(s => s.trim()) : [], imagesPerVideo, categoryImage };
 }
 
 
@@ -149,8 +159,8 @@ export const prepareJson = async () => {
     const json = await readJsonFile(SOURCE_JSON_FILE);
     const quotes = toUniqueArray(json);
     const updatedJson = await getUpdatedJson(quotes as Array<object>, images, videos, musics, videoOptions);
-
-    await saveToJsonFile(updatedJson, DEST_JSON_FILE);
+    const { compositionIds } = videoOptions;
+    await saveToJsonFile(updatedJson, `${DEST_JSON_FILE}/${compositionIds[0]}.json`);
 
     console.log('Updated file saved');
     console.log('SUMMARY:');
