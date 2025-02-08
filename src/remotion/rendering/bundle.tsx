@@ -29,7 +29,7 @@ async function createTrialPeriodStamp(destDir: string) {
 }
 
 async function copyAdditionalBuildFiles(destDir: string) {
-  const folders = ['src/core-lib', 'src/remotion/rendering'];
+  const folders = ['src/core-lib', 'src/remotion/rendering', 'src/jsondb'];
   const excludeFile = 'bundle.tsx'; // Exclude budle.tsx itself
   let files = ['package.json', 'tsconfig.json', '.eslintrc', 'src/remotion/constants.tsx']
 

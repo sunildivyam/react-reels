@@ -195,7 +195,7 @@ export async function checkBundle() {
 
 export const renderAll = async (dbName: string, bundleLocation: string) => {
   const db = new JsonDb(dbName);
-  db.load();
+  await db.load();
 
   // Update DB on Each Composition Render Finish
   renderEventEmitter.on(RenderEventsEnum.COMPOSITION_FINISHED, (videoRecord: VideoRecord) => db.update([videoRecord]))
