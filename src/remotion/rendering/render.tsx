@@ -2,6 +2,7 @@ import { checkBundle, moveProcessedData, renderAll } from "./helpers";
 import filelog from '../../core-lib/Logger';
 import yargs from "yargs";
 import { PROCESSED_DIR, PROCESSED_DIRS, PUBLIC_DIR } from "../constants";
+import { renderEventEmitter, RenderEventsEnum } from "./RenderEvents";
 
 /**
  * Gets parameters from command prompt for rendering
@@ -16,8 +17,8 @@ async function getCmdArguments() {
     .option("json", {
       alias: "j",
       type: "string",
-      description: `Filename of composition JSON data file relative to public folder.`,
-      demandOption: `Usage Ex: -j RelaxingVideo.json`
+      description: `DB Name of the compositions`,
+      demandOption: `Usage Ex: -j Quote`
     })
     .option("bundleLocation", {
       alias: "b",
@@ -45,9 +46,10 @@ async function main() {
 
   try {
     const { json, bundleLocation } = await getCmdArguments();
-
+    renderEventEmitter.emit(RenderEventsEnum.RENDER_START);
     await renderAll(json, bundleLocation || '')
       .then(() => {
+        renderEventEmitter.emit(RenderEventsEnum.RENDER_FINISHED);
         filelog('All Renders Completed.');
         filelog(`Moving all files and data to ${PROCESSED_DIR}`);
 
