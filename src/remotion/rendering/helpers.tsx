@@ -6,7 +6,7 @@ import fse from 'fs-extra';
 import path from "path";
 import { bundle } from "@remotion/bundler";
 import filelog from '../../core-lib/Logger';
-import { entryPoint, OUT_DIR } from "../constants";
+import { entryPoint, OUT_DIR, RENDER_MEDIA_CONFIG } from "../constants";
 import { renderEventEmitter, RenderEventsEnum } from "./RenderEvents";
 import JsonDb from "../../jsondb/JsonDb";
 import { LogicalOperatorEnum, RelationalOperatorEnum, VideoRecord } from "../../jsondb/db.models";
@@ -142,12 +142,18 @@ export const renderOne = async (
   renderEventEmitter.emit(RenderEventsEnum.COMPOSITION_START, singleVideo);
   await renderMedia({
     composition,
-    serveUrl: bundleLocation,
-    codec: transparent ? "vp9" : "h264",
-    imageFormat: transparent ? "png" : "jpeg",
     outputLocation,
+    serveUrl: bundleLocation,
     inputProps: defaultProps as Record<string, unknown>,
     frameRange: cFrameRange,
+    codec: transparent ? "vp9" : "h264",
+    imageFormat: transparent ? "png" : "jpeg",
+    timeoutInMilliseconds: RENDER_MEDIA_CONFIG.timeoutInMilliseconds,
+    overwrite: RENDER_MEDIA_CONFIG.overwrite,
+    concurrency: RENDER_MEDIA_CONFIG.concurrency,
+    chromiumOptions: {
+      gl: RENDER_MEDIA_CONFIG.openGLRenderer
+    },
     onProgress: (rProgress) => {
       // prints the info in same line
       const {
