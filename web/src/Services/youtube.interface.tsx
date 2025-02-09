@@ -39,6 +39,7 @@ export interface VideoUpload {
   thumbnails: Thumbnails;
 }
 
+
 export interface Thumbnail {
   height?: number | null;
   url?: string | null;
@@ -53,21 +54,6 @@ export interface Thumbnails {
   standard?: Thumbnail;
 }
 
-export interface YoutubeUploadBatch {
-  id: string;
-  tags: string[];
-  hashTags: string[];
-  description: string;
-  channelId: string;
-  channelTitle: string;
-  playlistIds: string[];
-  categoryId: VideoCategoryEnums;
-  publishGapHrs: number; // Ex. Every 2 hour, means 12 videos per day
-  videos: {
-    id: string;
-    videoRecordId: string;
-  };
-}
 
 export enum VideoCategoryEnums {
   "Film & Animation" = "1",

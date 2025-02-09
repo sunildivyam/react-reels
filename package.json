@@ -15,6 +15,7 @@
     "@remotion/three": "4.0.257",
     "@remotion/transitions": "4.0.257",
     "@remotion/zod-types": "4.0.257",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "fs-extra": "^11.3.0",
@@ -30,6 +31,7 @@
   },
   "devDependencies": {
     "@remotion/eslint-config": "4.0.257",
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^22.10.6",

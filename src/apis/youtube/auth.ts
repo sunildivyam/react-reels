@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { router } from "./index";
 
 import {
+  isUserLoggedIn,
   oauth2Client,
   storeToken,
   YOUTUBE_API_SCOPES,
@@ -21,7 +22,7 @@ router.get("/oauth2callback", async (req: Request, res: Response) => {
   try {
     const { tokens } = await oauth2Client.getToken(code as string);
     await storeToken(tokens.access_token || "");
-    res.send("Authenticated, Tokens saved in env for use.");
+    res.redirect("/");
   } catch (error) {
     console.log("Error", error);
     res.status(500).send("Error during OAuth");
@@ -29,11 +30,9 @@ router.get("/oauth2callback", async (req: Request, res: Response) => {
 });
 
 router.get("/authorized", async (req: Request, res: Response) => {
-  const { code } = req.query;
   try {
-    const { tokens } = await oauth2Client.getToken(code as string);
-    const token = tokens.access_token || "";
-    res.json({ token });
+    const isLoggedIn = await isUserLoggedIn();
+    res.send(isLoggedIn);
   } catch (error) {
     console.log("Error", error);
     res.status(401).json({ message: "Not Authorized" });

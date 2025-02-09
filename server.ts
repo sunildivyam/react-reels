@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 import dotenv from "dotenv";
 import { router as apisRouter } from "./src/apis";
+import cors from "cors";
 
 dotenv.config();
 const DEV = process.env.DEV;
@@ -10,6 +11,7 @@ const rootPath = DEV ? "dist" : "./";
 
 const app = express();
 const port = 3000;
+app.use(cors());
 
 app.use(
   "/assets",

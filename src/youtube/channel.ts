@@ -20,6 +20,7 @@ export const getPlaylists = async (
             id: playlist.id,
             title: playlist.snippet?.title,
             description: playlist.snippet?.description,
+            thumbnails: playlist.snippet?.thumbnails,
           }) as VideoPlaylist,
       ) || []
     );
