@@ -7,7 +7,7 @@ import path from "path";
 import { bundle } from "@remotion/bundler";
 import filelog from '../../core-lib/Logger';
 import { entryPoint, OUT_DIR, RENDER_MEDIA_CONFIG } from "../constants";
-import { renderEventEmitter, RenderEventsEnum } from "./RenderEvents";
+import { appEvents, AppEventsEnum } from "../../core-lib/AppEvents";
 import JsonDb from "../../jsondb/JsonDb";
 import { LogicalOperatorEnum, RelationalOperatorEnum, VideoRecord } from "../../jsondb/db.models";
 
@@ -139,7 +139,7 @@ export const renderOne = async (
 
   let prevProgress = {} as RenderProgressType;
 
-  renderEventEmitter.emit(RenderEventsEnum.COMPOSITION_START, singleVideo);
+  appEvents.emit(AppEventsEnum.COMPOSITION_START, singleVideo);
   await renderMedia({
     composition,
     outputLocation,
@@ -181,7 +181,7 @@ export const renderOne = async (
     },
   });
   singleVideo.renderedOn = new Date();
-  renderEventEmitter.emit(RenderEventsEnum.COMPOSITION_FINISHED, singleVideo);
+  appEvents.emit(AppEventsEnum.COMPOSITION_FINISHED, singleVideo);
   filelog(
     `\n\n\n\n${outputLocation} | DONE in ${formatDuration(Date.now() - startTime)}\n`,
   );
@@ -198,7 +198,7 @@ export const renderAll = async (dbName: string, bundleLocation: string) => {
   await db.load();
 
   // Update DB on Each Composition Render Finish
-  renderEventEmitter.on(RenderEventsEnum.COMPOSITION_FINISHED, (videoRecord: VideoRecord) => db.update([videoRecord]))
+  appEvents.on(AppEventsEnum.COMPOSITION_FINISHED, (videoRecord: VideoRecord) => db.update([videoRecord]))
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let videoRecords: Array<VideoRecord> = [];

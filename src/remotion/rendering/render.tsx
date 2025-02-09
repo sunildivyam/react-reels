@@ -2,7 +2,7 @@ import { checkBundle, moveProcessedData, renderAll } from "./helpers";
 import filelog from '../../core-lib/Logger';
 import yargs from "yargs";
 import { PROCESSED_DIR, PROCESSED_DIRS, PUBLIC_DIR } from "../constants";
-import { renderEventEmitter, RenderEventsEnum } from "./RenderEvents";
+import { appEvents, AppEventsEnum } from "../../core-lib/AppEvents";
 
 /**
  * Gets parameters from command prompt for rendering
@@ -46,10 +46,10 @@ async function main() {
 
   try {
     const { json, bundleLocation } = await getCmdArguments();
-    renderEventEmitter.emit(RenderEventsEnum.RENDER_START);
+    appEvents.emit(AppEventsEnum.RENDER_START);
     await renderAll(json, bundleLocation || '')
       .then(() => {
-        renderEventEmitter.emit(RenderEventsEnum.RENDER_FINISHED);
+        appEvents.emit(AppEventsEnum.RENDER_FINISHED);
         filelog('All Renders Completed.');
         filelog(`Moving all files and data to ${PROCESSED_DIR}`);
 

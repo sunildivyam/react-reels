@@ -2,6 +2,8 @@ export interface YoutubeInfo {
   channelId?: string;
   videoId?: string;
   uploadedOn?: Date;
+  publishedAt?: Date;
+  scheduleAfterHrs?: number;
 }
 
 export interface CompositionInfo {
