@@ -1,4 +1,3 @@
-import { staticFile } from "remotion";
 
 export const runFetch = async (url: string) => {
   try {
@@ -12,20 +11,6 @@ export const runFetch = async (url: string) => {
   };
 
 }
-
-export const getCompositionPublicProps = async (compositionIds: Array<string>): Promise<Record<string, object>> => {
-  let compositions: Record<string, object> = {};
-
-  for (const id of compositionIds) {
-    const url = staticFile(`data/${id}.json`);
-    const cmp = await runFetch(url);
-    if (cmp?.length) {
-      compositions[id] = { ...(cmp[0] || {}) };
-    }
-  }
-
-  return compositions;
-};
 
 export const deepCopy = (obj: object): object => {
   return JSON.parse(JSON.stringify(obj));

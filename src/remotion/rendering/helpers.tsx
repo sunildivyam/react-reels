@@ -6,7 +6,10 @@ import fse from 'fs-extra';
 import path from "path";
 import { bundle } from "@remotion/bundler";
 import filelog from '../../core-lib/Logger';
-import { ASSETS_DIRS, entryPoint, OUT_DIR, PUBLIC_DIR } from "../constants";
+import { entryPoint, OUT_DIR, RENDER_MEDIA_CONFIG } from "../constants";
+import { appEvents, AppEventsEnum } from "../../core-lib/AppEvents";
+import JsonDb from "../../jsondb/JsonDb";
+import { LogicalOperatorEnum, RelationalOperatorEnum, VideoRecord } from "../../jsondb/db.models";
 
 type RenderProgressType = {
   renderedFrames: number;
@@ -105,10 +108,10 @@ export const moveProcessedData = (srcDirectory: string, destDirectory: string, d
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const renderOne = async (
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  singleVideo: any,
-  bundleLocation: string,
-  compositionId: string,
+  singleVideo: VideoRecord,
+  bundleLocation: string
 ) => {
+  const { id, width, height, fps, durationInSeconds, rangeInSeconds, transparent, defaultProps } = singleVideo.compositionInfo;
   // Parametrize the video by passing arbitrary props to your component.
 
   // Extract all the compositions you have defined in your project
@@ -118,14 +121,16 @@ export const renderOne = async (
     // in the composition list. Use this if you want to dynamically set the duration or
     // dimensions of the video.
     serveUrl: bundleLocation,
-    inputProps: singleVideo.defaultProps,
-    id: compositionId,
+    inputProps: defaultProps as Record<string, unknown>,
+    id,
   });
 
-  const { width, height, fps, durationInSeconds, rangeInSeconds, transparent } = singleVideo;
+
   composition = { ...composition, width, height, fps, durationInFrames: fps * durationInSeconds };
 
-  const outputLocation = `${OUT_DIR}/${encodeFileName(singleVideo.defaultProps.title || compositionId)}-${Date.now()}.${transparent ? 'webm' : 'mp4'}`;
+
+  singleVideo.outFileName = `${encodeFileName((defaultProps as any).title || singleVideo.id)}-${Date.now()}.${transparent ? 'webm' : 'mp4'}`
+  const outputLocation = `${OUT_DIR}/${singleVideo.outFileName}`;
   const startTime = Date.now();
 
   filelog(`${outputLocation} \n`);
@@ -134,14 +139,21 @@ export const renderOne = async (
 
   let prevProgress = {} as RenderProgressType;
 
+  appEvents.emit(AppEventsEnum.COMPOSITION_START, singleVideo);
   await renderMedia({
     composition,
+    outputLocation,
     serveUrl: bundleLocation,
+    inputProps: defaultProps as Record<string, unknown>,
+    frameRange: cFrameRange,
     codec: transparent ? "vp9" : "h264",
     imageFormat: transparent ? "png" : "jpeg",
-    outputLocation,
-    inputProps: singleVideo.defaultProps,
-    frameRange: cFrameRange,
+    timeoutInMilliseconds: RENDER_MEDIA_CONFIG.timeoutInMilliseconds,
+    overwrite: RENDER_MEDIA_CONFIG.overwrite,
+    concurrency: RENDER_MEDIA_CONFIG.concurrency,
+    chromiumOptions: {
+      gl: RENDER_MEDIA_CONFIG.openGLRenderer
+    },
     onProgress: (rProgress) => {
       // prints the info in same line
       const {
@@ -168,7 +180,8 @@ export const renderOne = async (
       // }
     },
   });
-
+  singleVideo.renderedOn = new Date();
+  appEvents.emit(AppEventsEnum.COMPOSITION_FINISHED, singleVideo);
   filelog(
     `\n\n\n\n${outputLocation} | DONE in ${formatDuration(Date.now() - startTime)}\n`,
   );
@@ -180,34 +193,47 @@ export async function checkBundle() {
   if (Date.now() - x > y) throw Error(m);
 }
 
-export const renderAll = async (jsonPath: string, bundleLocation: string) => {
+export const renderAll = async (dbName: string, bundleLocation: string) => {
+  const db = new JsonDb(dbName);
+  await db.load();
+
+  // Update DB on Each Composition Render Finish
+  appEvents.on(AppEventsEnum.COMPOSITION_FINISHED, (videoRecord: VideoRecord) => db.update([videoRecord]))
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let videoInfos: Array<any> = [];
+  let videoRecords: Array<VideoRecord> = [];
 
   try {
     const bundleLocationPath: string = bundleLocation || await buildBundle();
 
     try {
-      videoInfos = await readJsonFile(`${PUBLIC_DIR}/${ASSETS_DIRS.DATA}/${jsonPath}`);
+      videoRecords = db.query({
+        queries: [{
+          path: "renderedOn",
+          operator: RelationalOperatorEnum.NOT,
+          value: undefined
+        }],
+        logicalOperator: LogicalOperatorEnum.AND
+      }) as Array<VideoRecord>;
     } catch (error: unknown) {
       filelog(error as string);
-      throw new Error(`Error reading json file ${jsonPath} ${error}`);
+      throw new Error(`Error reading DB ${dbName} ${error}`);
     }
 
-    for (let vI = 0; vI < videoInfos.length; vI++) {
+    for (let vI = 0; vI < videoRecords.length; vI++) {
 
-      const singleVideo = { ...videoInfos[vI] };
+      const singleVideo = videoRecords[vI];
       // NEXT STEPS: Random Composition Ids can be assigned to each video
       const { id } = singleVideo;
-      console.log(`\n(${vI + 1}/${videoInfos.length}) START`);
+      console.log(`\n(${vI + 1}/${videoRecords.length}) START`);
       filelog(`STARTED RENDERING ${id} at: ${new Date()}`);
 
-      await renderOne(singleVideo, bundleLocationPath, id).catch(
+      await renderOne(singleVideo, bundleLocationPath).catch(
         (error) => {
-          filelog(`Skipped: ${singleVideo.defaultProps.title || id} | Error: ${error}`);
+          filelog(`Skipped: ${(singleVideo.compositionInfo.defaultProps as any).title || id} | Error: ${error}`);
         },
       );
-      console.log(`(${vI + 1}/${videoInfos.length}) END _________________________________\n`);
+      console.log(`(${vI + 1}/${videoRecords.length}) END _________________________________\n`);
       // NEXT STEPS: Update JSON with rendered video info
     }
     filelog(`COMPLETED RENDERING at: ${new Date()}`)

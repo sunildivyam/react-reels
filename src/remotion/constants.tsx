@@ -1,3 +1,5 @@
+import { OpenGlRenderer } from "@remotion/renderer";
+
 export enum ASSETS_DIRS {
   IMAGES = 'images',
   VIDEOS = 'videos',
@@ -23,4 +25,11 @@ export const HD_VIDEO = {
   width: 1080,
   height: 1920,
   FPS: 30
+}
+
+export const RENDER_MEDIA_CONFIG = {
+  overwrite: true,
+  timeoutInMilliseconds: 240 * 1000,
+  concurrency: 8,
+  openGLRenderer: 'angle' as OpenGlRenderer
 }

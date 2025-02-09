@@ -4,8 +4,10 @@ import { readJsonFile } from "../../core-lib/FileUtils";
 import path from 'path';
 import { ASSETS_DIRS, HD_REEL, PUBLIC_DIR } from "../constants";
 import yargs from "yargs";
+import JsonDb from "../../jsondb/JsonDb";
+import { VideoRecord } from "../../jsondb/db.models";
 
-const SOURCE_JSON_FILE = `${PUBLIC_DIR}/${ASSETS_DIRS.DATA}/quotes.json`;
+const SOURCE_JSON_FILE = `${PUBLIC_DIR}`;
 const DEST_JSON_FILE = `${PUBLIC_DIR}/${ASSETS_DIRS.DATA}`;
 
 export const IMAGES_PER_VIDEO = 1;
@@ -120,6 +122,12 @@ const toUniqueArray = (items: Array<any>): Array<any> => {
 async function getCmdArguments() {
   const args = process.argv.slice(2);
   const options = yargs(args)
+    .option("sourceJson", {
+      alias: "s",
+      type: "string",
+      description: "Source Json File Folder",
+      demandOption: "Source Json File path relative to public folder "
+    })
     .option("durationInSeconds", {
       alias: "d",
       type: "number",
@@ -146,21 +154,45 @@ async function getCmdArguments() {
     })
     .help().argv;
 
-  const { durationInSeconds, compositionIds, imagesPerVideo, categoryImage } = await options;
+  const { durationInSeconds, compositionIds, imagesPerVideo, categoryImage, sourceJson } = await options;
 
-  return { durationInSeconds, compositionIds: compositionIds ? compositionIds.split(', ').map(s => s.trim()) : [], imagesPerVideo, categoryImage };
+  return { durationInSeconds, compositionIds: compositionIds ? compositionIds.split(', ').map(s => s.trim()) : [], imagesPerVideo, categoryImage, sourceJson };
 }
 
+async function saveToJsonDb(dbName: string, compositions: Array<object>) {
+  const quotesDb = new JsonDb(dbName);
+  quotesDb.options = {
+    duplicateCheckKeys: ['compositionInfo.defaultProps.title', 'compositionInfo.defaultProps.summary'],
+    writeDeferMs: 1000
+  }
+  await quotesDb.load();
+
+  const dbRecords = compositions.map((c: any) => {
+    const { id, originalId, fps, width, height, durationInSeconds, rangeInSeconds, defaultProps } = c;
+    const { tags, hashTags } = defaultProps;
+
+    return {
+      compositionInfo: { id, originalId, fps, width, height, durationInSeconds, rangeInSeconds, defaultProps: { ...defaultProps, hashTags: undefined, tags: undefined } },
+      socialMedia: { tags, hashTags }
+    } as VideoRecord
+  });
+
+  await quotesDb.add(dbRecords, true);
+}
 
 export const prepareJson = async () => {
   try {
     const videoOptions = await getCmdArguments();
+    const { compositionIds, sourceJson } = videoOptions;
     const { images, videos, musics } = await readDataFromDirectories();
-    const json = await readJsonFile(SOURCE_JSON_FILE);
+    const json = await readJsonFile(path.join(SOURCE_JSON_FILE, `${sourceJson}`));
     const quotes = toUniqueArray(json);
+
     const updatedJson = await getUpdatedJson(quotes as Array<object>, images, videos, musics, videoOptions);
-    const { compositionIds } = videoOptions;
+
     await saveToJsonFile(updatedJson, `${DEST_JSON_FILE}/${compositionIds[0]}.json`);
+
+    await saveToJsonDb(compositionIds[0], updatedJson);
 
     console.log('Updated file saved');
     console.log('SUMMARY:');
@@ -175,7 +207,6 @@ export const prepareJson = async () => {
   } catch (error) {
     console.log(error);
   }
-
 }
 
 prepareJson();

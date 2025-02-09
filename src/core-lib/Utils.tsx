@@ -31,3 +31,7 @@ export function getETA(progressPercent: number, progressTimeMs: number, complete
 
   return formatDuration(remainingTime >= 0 ? remainingTime : 0);
 }
+
+export function generateUniqueId(): string {
+  return `id-${Math.random().toString(36).substring(2, 9)}`;
+}

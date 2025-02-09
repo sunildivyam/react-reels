@@ -12,3 +12,4 @@ Config.setDelayRenderTimeoutInMilliseconds(240 * 1000);
 Config.setOverwriteOutput(true);
 Config.setConcurrency(8); // CPU core concurrency
 Config.overrideWebpackConfig(enableTailwind);
+Config.setChromiumOpenGlRenderer("angle");
