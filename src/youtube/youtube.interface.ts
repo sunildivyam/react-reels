@@ -55,6 +55,7 @@ export interface Thumbnails {
 
 export interface YoutubeUploadBatch {
   id: string;
+  title: string;
   tags: string[];
   hashTags: string[];
   description: string;
@@ -62,9 +63,11 @@ export interface YoutubeUploadBatch {
   channelTitle: string;
   playlistIds: string[];
   categoryId: VideoCategoryEnums;
-  publishGapHrs: number; // Ex. Every 2 hour, means 12 videos per day
+  publishStartDate: Date; // Start publish on this date, publishStartDate + (i * publishGapHours)
+  publishGapHrs: number; // Ex. Every 2 hour, means 12 videos per day,
+  dbName: string;
   videos: {
-    id: string;
+    youtubeVideoId: string;
     videoRecordId: string;
   };
 }
