@@ -37,6 +37,8 @@ export interface VideoUpload {
   notifySubscribers: boolean;
   playlistIds: Array<string>;
   thumbnails: Thumbnails;
+  videoFilePath: string;
+  youtubeVideoId?: string;
 }
 
 export interface Thumbnail {

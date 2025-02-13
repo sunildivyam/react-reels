@@ -1,24 +1,17 @@
+import { io } from 'socket.io-client';
 
-import { EventEmitter } from 'node:events';
+export const socket = io("/");
+
+socket.on("connect", () => {
+  console.log("connected to server");
+});
 
 
-export class AppEvents extends EventEmitter {
-  public static instance: AppEvents;
+socket.on("disconnect", () => {
+  console.log("disconnected from server");
+});
 
-  private constructor() {
-    super();
-  }
-
-  public static getInstance(): AppEvents {
-    if (!AppEvents.instance) {
-      AppEvents.instance = new AppEvents();
-    }
-    return AppEvents.instance;
-  }
-}
-export const appEvents = AppEvents.getInstance();
-
-export enum AppEventsEnum {
+export enum SocketEventsEnums {
   RENDER_START = 'RENDER_START',
   RENDER_PROGRESS = 'RENDER_PROGRESS',
   RENDER_FINISHED = 'RENDER_FINISHED',

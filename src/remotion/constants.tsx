@@ -10,7 +10,7 @@ export const entryPoint = 'src/remotion/index.tsx';
 export const PUBLIC_DIR = 'public';
 export const PROCESSED_DIR = 'processed data';
 
-export const PROCESSED_DIRS = [...Object.keys(ASSETS_DIRS)];
+export const PROCESSED_DIRS = [...Object.values(ASSETS_DIRS), 'json_db_data'];
 export const REMOTION_DEFAULTS = 'public/remotion-defaults';
 export const OUT_DIR = 'out';
 

@@ -15,6 +15,20 @@ export const getFilesFromDirectory = async (directoryPath: string): Promise<stri
   return fileStats.filter(file => file !== null) as string[];
 };
 
+export const getFilesFromDirectorySortedByDate = async (directoryPath: string): Promise<string[]> => {
+  const dirPath = resolvedPath(directoryPath);
+  const files = await readdir(dirPath);
+  const fileStats = await Promise.all(files.map(async file => {
+    const filePath = path.join(dirPath, file);
+    const stats = await lstat(filePath);
+    return { file, createdDate: stats.birthtime };
+  }));
+
+  return fileStats
+    .filter(fileStat => fileStat.createdDate)
+    .sort((a, b) => a.createdDate.getTime() - b.createdDate.getTime())
+    .map(fileStat => fileStat.file);
+};
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function readJsonFile(fileName: string): Promise<any> {

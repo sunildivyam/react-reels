@@ -1,3 +1,4 @@
+
 export interface ChannelInfo {
   id: string;
   title: string;
@@ -37,6 +38,8 @@ export interface VideoUpload {
   notifySubscribers: boolean;
   playlistIds: Array<string>;
   thumbnails: Thumbnails;
+  videoFilePath: string;
+  youtubeVideoId?: string;
 }
 
 
@@ -54,6 +57,27 @@ export interface Thumbnails {
   standard?: Thumbnail;
 }
 
+
+export interface YoutubeUploadBatch {
+  id: string;
+  title: string;
+  tags: string[];
+  hashTags: string[];
+  description: string;
+  channelId: string;
+  channelTitle: string;
+  playlistIds: string[];
+  categoryId: VideoCategoryEnums;
+  publishStartDate: Date; // Start publish on this date, publishStartDate + (i * publishGapHours)
+  publishGapHrs: number; // Ex. Every 2 hour, means 12 videos per day,
+  dbName: string;
+  videos: [
+    {
+      videoRecordId: string;  // Video records
+      videoUpload: VideoUpload;
+    }
+  ]
+}
 
 export enum VideoCategoryEnums {
   "Film & Animation" = "1",
@@ -87,4 +111,12 @@ export enum VideoCategoryEnums {
   "Shorts" = "42",
   "Shows" = "43",
   "Trailers" = "44",
+}
+
+export interface VideoMeta {
+  categoryId: VideoCategoryEnums;
+  tags: string[];
+  hashTags: string[];
+  startPublishFrom: Date;
+  publishDelayHours: number;
 }

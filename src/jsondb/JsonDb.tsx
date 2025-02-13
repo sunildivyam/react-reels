@@ -1,7 +1,7 @@
 
 import * as fs from 'fs/promises';
 import * as path from 'path';
-import { CHANGED_EVENT, DB_DATA_FOLDER, RELATIVE_PATH_TO_ROOT, WRITE_DEFER_MS } from './constants';
+import { CHANGED_EVENT, DB_DATA_FOLDER, DB_ID, RELATIVE_PATH_TO_ROOT, WRITE_DEFER_MS } from './constants';
 import EventEmitter from 'node:events';
 import { DbOptions, DbRecord, LogicalOperatorEnum, Queries, Query, RelationalOperatorEnum } from './db.models';
 
@@ -144,6 +144,7 @@ class JsonDb {
       const existing = this.exists(id, r);
       if (existing) {
         if (overWriteExisting) {
+          delete r.id;
           this._json[(existing as any).id] = { ...r };
         } else {
           failed.push(r);
@@ -152,10 +153,11 @@ class JsonDb {
         delete r.id;
         this._json[id] = { ...r };
       }
+      r.id = id;
     });
 
-    this._eventEmitter.emit(CHANGED_EVENT);
-    return failed;
+    this._eventEmitter.emit(CHANGED_EVENT, records);
+    return records;
   }
 
   /**
@@ -177,10 +179,11 @@ class JsonDb {
 
       delete r.id;
       this._json[id] = { ...r };
+      r.id = id;
     });
 
     this._eventEmitter.emit(CHANGED_EVENT);
-    return added;
+    return records;
   }
 
   public async delete(records: Array<object>): Promise<void> {
@@ -252,6 +255,12 @@ class JsonDb {
     return results;
   }
 
+  public all(): Array<object> {
+    this.checkAndLoadDb();
+    const results: Array<object> = Object.entries(this._json).map(ent => ({ ...ent[1], [DB_ID]: ent[0] }));
+
+    return results;
+  }
 }
 
 export default JsonDb;

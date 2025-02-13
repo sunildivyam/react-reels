@@ -89,19 +89,21 @@ export const moveProcessedData = (srcDirectory: string, destDirectory: string, d
 
   dirs.forEach((dir) => {
     const srcPath = path.join(srcDir, dir);
-    const destPath = path.join(destDir, dir);
-    if (!fs.existsSync(destPath)) {
-      fs.mkdirSync(destPath, { recursive: true });
-    }
-    const files = fs.readdirSync(srcPath);
-    files.forEach((file) => {
-      const srcFile = path.join(srcPath, file);
-      const destFile = path.join(destPath, file);
-      if (fs.lstatSync(srcFile).isFile()) {
-        fse.copySync(srcFile, destFile, { overwrite: true });
-        // fse.moveSync(srcFile, destFile, { overwrite: true });
+    if (fs.existsSync(srcPath)) {
+      const destPath = path.join(destDir, dir);
+      if (!fs.existsSync(destPath)) {
+        fs.mkdirSync(destPath, { recursive: true });
       }
-    });
+      const files = fs.readdirSync(srcPath);
+      files.forEach((file) => {
+        const srcFile = path.join(srcPath, file);
+        const destFile = path.join(destPath, file);
+        if (fs.lstatSync(srcFile).isFile()) {
+          fse.copySync(srcFile, destFile, { overwrite: true });
+          // fse.moveSync(srcFile, destFile, { overwrite: true });
+        }
+      });
+    }
   });
 };
 
