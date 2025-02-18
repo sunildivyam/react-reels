@@ -12,10 +12,16 @@ interface VideoEngineDataProviderProps {
   children: React.ReactNode
 }
 const VideoEngineDataProvider: React.FC<VideoEngineDataProviderProps> = ({ children }) => {
-  const [videoEngineData, setVideoEngineData] = useState<VideoEngineType>({});
+  const initialData = JSON.parse(localStorage.getItem('videoEngineData') || '{}');
+  const [videoEngineData, setVideoEngineData] = useState<VideoEngineType>(initialData);
 
   const updateVideoEngineData = (data: VideoEngineType) => {
-    setVideoEngineData((prev) => ({ ...prev, ...data }));
+
+    setVideoEngineData((prev) => {
+      const ndata = ({ ...prev, ...data });
+      localStorage.setItem('videoEngineData', JSON.stringify(ndata));
+      return ndata;
+    });
   };
 
   return (

@@ -8,7 +8,7 @@ router.get("/all", async (req: Request, res: Response) => {
 
   try {
     const db = new JsonDb(dbName as string);
-    await db.load();
+    await db.load(true);
     const all = db.all();
     res.json(all);
   } catch (error) {

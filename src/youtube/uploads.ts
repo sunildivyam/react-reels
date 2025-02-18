@@ -8,18 +8,24 @@ import "../sockets/index";
 import JsonDb from "../jsondb/JsonDb";
 import { VideoRecord, YoutubeInfo } from "../jsondb/db.models";
 
-let db: JsonDb;
+// let db: JsonDb;
 
-appEvents.on(AppEventsEnum.YOUTUBE_UPLOAD_BATCH_START, async (e) => {
-  db = new JsonDb(e.dbName);
-  await db.load();
-});
+// appEvents.on(AppEventsEnum.YOUTUBE_UPLOAD_BATCH_START, async (e) => {
+//   db = new JsonDb(e.dbName);
+//   await db.load();
+// });
 
 appEvents.on(
   AppEventsEnum.YOUTUBE_UPLOAD_FINISH,
-  (e: { videoUpload: VideoUpload; videoFilePath: string }) => {
-    const { videoUpload, videoFilePath } = e;
+  async (e: {
+    videoUpload: VideoUpload;
+    videoFilePath: string;
+    dbName: string;
+  }) => {
+    const db = new JsonDb(e.dbName);
+    await db.load();
 
+    const { videoUpload, videoFilePath } = e;
     const vRecord: VideoRecord | undefined = db.find(
       videoUpload.id as string,
     ) as VideoRecord;
@@ -31,8 +37,8 @@ appEvents.on(
         uploadedOn: new Date(),
         publishedAt: new Date(videoUpload.publishAt || ""),
       } as YoutubeInfo;
+      db.update([vRecord]);
     }
-    db.add([]);
   },
 );
 
@@ -138,7 +144,7 @@ export const uploadVideos = async (
     try {
       const uploaded = await uploadVideo(auth, dbName, vid);
       result.push(uploaded);
-      appEvents.emit(AppEventsEnum.YOUTUBE_UPLOAD_BATCH_START, {
+      appEvents.emit(AppEventsEnum.YOUTUBE_UPLOAD_BATCH_PROGRESS, {
         dbName,
         uploaded,
         progress: (((index + 1) / videoUploads.length) * 100).toFixed(2),

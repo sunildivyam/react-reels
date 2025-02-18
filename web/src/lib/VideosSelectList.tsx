@@ -31,12 +31,41 @@ const VideoSelectList: React.FC<VideoSelectListProps> = ({ title, videos, onSele
   };
 
   const handleSelectAll = () => setAllSelected(prev => !prev);
+  const handleRandomSelect = (e: any) => {
+    const count = parseInt(e.target.value, 10);
+    if (count === videos.length) {
+      setAllSelected(true);
+    } else {
+      setAllSelected(false);
+      const randomVideos = videos
+        .sort(() => 0.5 - Math.random())
+        .slice(0, count)
+        .map((v) => v.id || '');
+      setSelectedVideos(randomVideos);
+    }
+  };
 
   return (
     <>
       <Box style={{ marginTop: '20px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
         <Typography variant="h5">{title} ({selectedVideos.length}/{videos.length})</Typography>
-        <Checkbox checked={allSelected} onChange={handleSelectAll} title='Select all' />
+
+      </Box>
+      <Box style={{ marginTop: '20px', marginBottom: '20px', display: 'flex', flexDirection: 'row', justifyContent: 'right' }}>
+        <Checkbox style={{ marginRight: '10px' }} checked={allSelected} onChange={handleSelectAll} title='Select all' />
+        <FormControlLabel
+          control={
+            <select onChange={handleRandomSelect} style={{ padding: '10px' }}>
+              <option value="">Select Randomly</option>
+              {[10, 30, 50, 70, 100, 200, videos.length].map((count) => (
+                <option key={count} value={count}>
+                  {count === videos.length ? `${count} (All)` : count}
+                </option>
+              ))}
+            </select>
+          }
+          label=""
+        />
       </Box>
       <Grid2 container spacing={2}>
         {videos.map(video => (

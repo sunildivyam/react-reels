@@ -60,7 +60,7 @@ const YoutubeHome: React.FC = () => {
 
   const handleUpload = () => {
     const videosToUpload = uploadReadyVideos.filter(v => selectedVideos.includes(v.id));
-    videoEngineData?.dbName && videosToUpload?.length && uploadVideos(videoEngineData?.dbName,videosToUpload).then(() => setUploadStarted(true));
+    videoEngineData?.dbName && videosToUpload?.length && uploadVideos(videoEngineData?.dbName, videosToUpload).then(() => setUploadStarted(true));
   };
 
   const handleLogin = async () => {
@@ -87,7 +87,7 @@ const YoutubeHome: React.FC = () => {
         color="secondary"
         style={{ marginTop: '20px' }}
         onClick={handleUpload}
-        disabled={selectedVideos.length === 0 || selectedPlaylists.length === 0 || uploadStarted}
+        disabled={selectedVideos.length === 0 || uploadStarted}
       >
         Start Upload
       </Button></Box>
@@ -103,7 +103,7 @@ const YoutubeHome: React.FC = () => {
         color="secondary"
         style={{ marginTop: '20px' }}
         onClick={handleUpload}
-        disabled={selectedVideos.length === 0 || selectedPlaylists.length === 0 || uploadStarted}
+        disabled={selectedVideos.length === 0 || uploadStarted}
       >
         Start Upload
       </Button>

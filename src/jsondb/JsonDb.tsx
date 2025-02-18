@@ -113,19 +113,23 @@ class JsonDb {
     }
   }
 
-  public async load(): Promise<void> {
-    try {
-      const fileExists = await fs.access(this._filePath).then(() => true).catch(() => false);
-      if (!fileExists) {
-        await this.save();
+  public async load(force: boolean = false): Promise<void> {
+    if (force || !this._isDbLoaded) {
+      try {
+        const fileExists = await fs.access(this._filePath).then(() => true).catch(() => false);
+        if (!fileExists) {
+          await this.save();
+        }
+        const data = await fs.readFile(this._filePath, 'utf-8');
+        this._json = JSON.parse(data);
+        this._isDbLoaded = true;
+      } catch (error) {
+        this._json = {};
+        console.error('Error reading JSON file:', error);
+        throw error;
       }
-      const data = await fs.readFile(this._filePath, 'utf-8');
-      this._json = JSON.parse(data);
-      this._isDbLoaded = true;
-    } catch (error) {
-      this._json = {};
-      console.error('Error reading JSON file:', error);
-      throw error;
+    } else {
+      return;
     }
   }
   /**
