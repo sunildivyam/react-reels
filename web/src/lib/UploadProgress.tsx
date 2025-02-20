@@ -39,12 +39,12 @@ const UploadProgress: React.FC = () => {
     socket.on(SocketEventsEnums.YOUTUBE_UPLOAD_FINISH, () => {
       setProgress(100);
     });
+
+    socket.on(SocketEventsEnums.YOUTUBE_UPLOAD_FAILED, (e) => {
+      setErrorMessage(e.message);
+    });
   }, [])
 
-
-  socket.on(SocketEventsEnums.YOUTUBE_UPLOAD_FAILED, (e) => {
-    setErrorMessage(e.message);
-  });
 
 
   return (

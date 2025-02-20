@@ -15,3 +15,42 @@ router.get("/all", async (req: Request, res: Response) => {
     res.status(500).send(error);
   }
 });
+
+router.post("/add", async (req: Request, res: Response) => {
+  const { dbName, videoRecord } = req.body;
+
+  try {
+    const db = new JsonDb(dbName as string);
+    await db.load(true);
+    const [added] = await db.add([videoRecord]);
+    res.json(added);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+router.post("/update", async (req: Request, res: Response) => {
+  const { dbName, videoRecord } = req.body;
+
+  try {
+    const db = new JsonDb(dbName as string);
+    await db.load(true);
+    const [updated] = await db.update([videoRecord]);
+    res.json(updated);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+router.post("/delete", async (req: Request, res: Response) => {
+  const { dbName, videoRecord } = req.body;
+
+  try {
+    const db = new JsonDb(dbName as string);
+    await db.load(true);
+    await db.delete([videoRecord]);
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});

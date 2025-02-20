@@ -131,10 +131,10 @@ export const renderOne = async (
   composition = { ...composition, width, height, fps, durationInFrames: fps * durationInSeconds };
 
 
-  singleVideo.outFileName = `${encodeFileName((defaultProps as any).title || singleVideo.id)}-${Date.now()}.${transparent ? 'webm' : 'mp4'}`
-  const outputLocation = `${OUT_DIR}/${singleVideo.outFileName}`;
+  const outFileName = `${encodeFileName((defaultProps as any).title || singleVideo.id)}-${Date.now()}.${transparent ? 'webm' : 'mp4'}`
+  const outputLocation = `${OUT_DIR}/${outFileName}`;
   const startTime = Date.now();
-
+  singleVideo.outFileName = outputLocation;
   filelog(`${outputLocation} \n`);
 
   const cFrameRange: [number, number] = rangeInSeconds?.length ? [rangeInSeconds[0] * fps, rangeInSeconds[1] * fps] : [0, composition.durationInFrames - 1];
@@ -171,9 +171,9 @@ export const renderOne = async (
       if (isProgressChanged(prevProgress, rProgress)) {
         const eta = getETA(progress, Date.now() - startTime, renderedFrames, cFrameRange[1] - cFrameRange[0]);
         const totalFrames = (cFrameRange[1] - cFrameRange[0] + 1);
-        filelog(
-          `Stage: ${stitchStage} | ${Math.floor(progress * 100)}%\nrendering: ${renderedFrames}(${totalFrames})\nencoding: ${encodedFrames}(${totalFrames})\nETA: (${formatDuration(Date.now() - startTime)} / ${formatDuration(renderEstimatedTime)}) | Remaining: ${eta}\r`
-          , 3)
+        const progressMsg = `Stage: ${stitchStage} | ${Math.floor(progress * 100)}%\nrendering: ${renderedFrames}(${totalFrames})\nencoding: ${encodedFrames}(${totalFrames})\nETA: (${formatDuration(Date.now() - startTime)} / ${formatDuration(renderEstimatedTime)}) | Remaining: ${eta}\r`;
+        filelog(progressMsg, 3);
+        appEvents.emit(AppEventsEnum.COMPOSITION_PROGRESS, progressMsg);
         prevProgress = rProgress;
       }
 
@@ -195,51 +195,56 @@ export async function checkBundle() {
   if (Date.now() - x > y) throw Error(m);
 }
 
-export const renderAll = async (dbName: string, bundleLocation: string) => {
+export const startRender = async (dbName: string, bundleLocation: string) => {
   const db = new JsonDb(dbName);
   await db.load();
 
+  try {
+    const videoRecords: Array<VideoRecord> = db.query({
+      queries: [{
+        path: "renderedOn",
+        operator: RelationalOperatorEnum.NOT,
+        value: undefined
+      }],
+      logicalOperator: LogicalOperatorEnum.AND
+    }) as Array<VideoRecord>;
+
+    return videoRecords;
+  } catch (error: unknown) {
+    filelog(error as string);
+    throw new Error(`Error reading DB ${dbName} ${error}`);
+  }
+}
+
+export const renderAll = async (dbName: string, videoRecords: Array<VideoRecord>, bundleLocation: string) => {
+  const db = new JsonDb(dbName);
+  await db.load();
   // Update DB on Each Composition Render Finish
   appEvents.on(AppEventsEnum.COMPOSITION_FINISHED, (videoRecord: VideoRecord) => db.update([videoRecord]))
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let videoRecords: Array<VideoRecord> = [];
-
   try {
+    appEvents.emit(AppEventsEnum.RENDER_START, { count: videoRecords?.length || 0 });
     const bundleLocationPath: string = bundleLocation || await buildBundle();
-
-    try {
-      videoRecords = db.query({
-        queries: [{
-          path: "renderedOn",
-          operator: RelationalOperatorEnum.NOT,
-          value: undefined
-        }],
-        logicalOperator: LogicalOperatorEnum.AND
-      }) as Array<VideoRecord>;
-    } catch (error: unknown) {
-      filelog(error as string);
-      throw new Error(`Error reading DB ${dbName} ${error}`);
-    }
-
     for (let vI = 0; vI < videoRecords.length; vI++) {
-
       const singleVideo = videoRecords[vI];
       // NEXT STEPS: Random Composition Ids can be assigned to each video
       const { id } = singleVideo;
       console.log(`\n(${vI + 1}/${videoRecords.length}) START`);
       filelog(`STARTED RENDERING ${id} at: ${new Date()}`);
-
+      appEvents.emit(AppEventsEnum.RENDER_PROGRESS, { current: vI + 1, count: videoRecords?.length || 0 });
       await renderOne(singleVideo, bundleLocationPath).catch(
         (error) => {
+          appEvents.emit(AppEventsEnum.COMPOSITION_FAILED, error?.message || '');
           filelog(`Skipped: ${(singleVideo.compositionInfo.defaultProps as any).title || id} | Error: ${error}`);
         },
       );
       console.log(`(${vI + 1}/${videoRecords.length}) END _________________________________\n`);
       // NEXT STEPS: Update JSON with rendered video info
     }
+    appEvents.emit(AppEventsEnum.RENDER_FINISHED);
     filelog(`COMPLETED RENDERING at: ${new Date()}`)
-  } catch (error) {
+  } catch (error: any) {
+    appEvents.emit(AppEventsEnum.RENDER_FAILED, error?.message || '');
     throw new Error(`ERROR: ${error}`);
   }
 };

@@ -49,7 +49,6 @@ const VideoSelectList: React.FC<VideoSelectListProps> = ({ title, videos, onSele
     <>
       <Box style={{ marginTop: '20px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
         <Typography variant="h5">{title} ({selectedVideos.length}/{videos.length})</Typography>
-
       </Box>
       <Box style={{ marginTop: '20px', marginBottom: '20px', display: 'flex', flexDirection: 'row', justifyContent: 'right' }}>
         <Checkbox style={{ marginRight: '10px' }} checked={allSelected} onChange={handleSelectAll} title='Select all' />

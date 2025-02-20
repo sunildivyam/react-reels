@@ -41,6 +41,7 @@
     "@types/three": "^0.172.0",
     "@types/web": "0.0.166",
     "@types/yargs": "^17.0.33",
+    "cpy-cli": "^5.0.0",
     "eslint": "8.56.0",
     "http-server": "^14.1.1",
     "nodemon": "^3.1.9",
@@ -48,7 +49,7 @@
     "typescript": "5.5.4"
   },
   "scripts": {
-    "build:apis": "tsc -p ./tsconfig.apis.json",
+    "build:apis": "tsc -p ./tsconfig.apis.json && npm run build && cpy build/**/* dist",
     "serve:apis:dev": "set DEV=true && nodemon server.ts -p ./tsconfig.apis.json",
     "serve:apis:prod": "node dist/server.js",
     "build": "remotion bundle",

@@ -3,6 +3,7 @@ import SlideNavigation from './SlideNavigation';
 import CompositionsHome from './CompositionsHome';
 import YoutubeHome from './YoutubeHome';
 import VideoEngineDataProvider from './VideoEngineDataProvider';
+import RenderHome from './RenderHome';
 
 
 // Main component that uses the provider
@@ -13,6 +14,7 @@ const VideoEngine: React.FC = () => {
     <VideoEngineDataProvider>
       <SlideNavigation>
         <CompositionsHome />
+        <RenderHome/>
         <YoutubeHome />
       </SlideNavigation>
     </VideoEngineDataProvider>

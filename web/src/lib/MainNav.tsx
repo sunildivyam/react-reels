@@ -38,7 +38,7 @@ const MainNav: React.FC<MainNavProps> = ({ sticky, items }) => {
 
           {/* Logo */}
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            MyApp
+            Video Engine
           </Typography>
 
           {/* Desktop Navigation */}

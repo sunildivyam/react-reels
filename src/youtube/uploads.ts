@@ -25,12 +25,12 @@ appEvents.on(
     const db = new JsonDb(e.dbName);
     await db.load();
 
-    const { videoUpload, videoFilePath } = e;
+    const { videoUpload } = e;
     const vRecord: VideoRecord | undefined = db.find(
       videoUpload.id as string,
     ) as VideoRecord;
     if (vRecord) {
-      vRecord.outFileName = videoFilePath;
+      // vRecord.outFileName = videoFilePath;
       vRecord.youTube = {
         ...vRecord.youTube,
         videoId: videoUpload.youtubeVideoId,

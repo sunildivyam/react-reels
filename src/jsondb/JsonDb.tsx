@@ -136,7 +136,7 @@ class JsonDb {
    * Add Records to db, if duplicates exist and overwrite is true, updates them. Else duplicates will not be added.
    * @param records
    * @param overWriteExisting
-   * @returns Failed records, due to duplicate exists.
+   * @returns Added Records with their generated IDs.
    */
   public async add(records: Array<object>, overWriteExisting: boolean = false): Promise<Array<object>> {
     this.checkAndLoadDb();
@@ -167,7 +167,7 @@ class JsonDb {
   /**
    * Updates existing and creates add new ones if not existed.
    * @param records
-   * @returns list of added. Updated are silently updated.
+   * @returns Updated or Added Records, with their generated Ids, if added
    */
   public async update(records: Array<object>): Promise<Array<object>> {
     this.checkAndLoadDb();

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Box, Button, } from '@mui/material';
+import { Box, Button, Typography, } from '@mui/material';
 import { ChannelInfo, VideoMeta, VideoPlaylist, VideoUpload } from '../Services/youtube.interface';
 import { getYoutubeChannel, getYoutubePlaylists, prepareUploadReadyVideos, uploadVideos, youtubeAuthorize, youtubeAuthorized } from '../Services/Youtube.service';
 import YoutubeChannel from './YoutubeChannel';
@@ -79,8 +79,11 @@ const YoutubeHome: React.FC = () => {
   }
 
   return (
-    <div>
-      <Box>{uploadStarted}</Box>
+    <Box>
+      <Typography style={{ textAlign: 'center' }} variant="h4">YouTube Home</Typography>
+      <Button variant="contained" color="primary" style={{ margin: '20px 0' }} onClick={() => handleLogin()}>
+        Login / switch Youtube channel
+      </Button>
       <UploadProgress />
       <Box fontStyle={{ textAlign: 'center' }}> <Button
         variant="contained"
@@ -91,9 +94,7 @@ const YoutubeHome: React.FC = () => {
       >
         Start Upload
       </Button></Box>
-      <Button variant="contained" color="primary" style={{ margin: '20px 0' }} onClick={() => handleLogin()}>
-        Login / switch Youtube channel
-      </Button>
+
       {channelInfo && <YoutubeChannel channelInfo={channelInfo} />}
       <VideoMetaForm meta={videoMeta} onChange={handleMetaChange} />
       <PlaylistsSelectList title='PLAYLISTS' playlists={playlists} onSelect={handlePlaylistSelect} />
@@ -107,7 +108,7 @@ const YoutubeHome: React.FC = () => {
       >
         Start Upload
       </Button>
-    </div>
+    </Box>
   );
 };
 

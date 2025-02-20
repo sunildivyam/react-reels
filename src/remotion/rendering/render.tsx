@@ -1,4 +1,4 @@
-import { checkBundle, moveProcessedData, renderAll } from "./helpers";
+import { checkBundle, moveProcessedData, renderAll, startRender } from "./helpers";
 import filelog from '../../core-lib/Logger';
 import yargs from "yargs";
 import { PROCESSED_DIR, PROCESSED_DIRS, PUBLIC_DIR } from "../constants";
@@ -46,8 +46,8 @@ async function main() {
 
   try {
     const { json, bundleLocation } = await getCmdArguments();
-    appEvents.emit(AppEventsEnum.RENDER_START);
-    await renderAll(json, bundleLocation || '')
+    const videoRecords = await startRender(json, bundleLocation || '');
+    await renderAll(json, videoRecords, bundleLocation || '')
       .then(() => {
         appEvents.emit(AppEventsEnum.RENDER_FINISHED);
         filelog('All Renders Completed.');
