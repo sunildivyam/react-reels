@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { AppBar, Tabs, Tab, Box, ListItem, ListItemIcon, ListItemText, TextField, IconButton, Button, Checkbox } from '@mui/material';
-import { Audiotrack, Delete } from '@mui/icons-material';
+import { Audiotrack, Delete, VideoCameraFront } from '@mui/icons-material';
 import { Asset } from '../Services/AssetsManager.interface';
 import { deleteAssets, endpoints, listAssets } from '../Services/AssetsManager.service';
 import FilesUpload from './FilesUpload';
 import { ALLOWED_EXTENSIONS, ALLOWED_IMAGE_EXTENSIONS, ALLOWED_MUSIC_EXTENSIONS, ALLOWED_VIDEO_EXTENSIONS } from '../config';
+import AssetsSlideShow from './AssetsSlideShow';
 
 interface AssetsManagerProps {
   assetType?: 'images' | 'videos' | 'music';
@@ -18,12 +19,22 @@ const AssetsManager: React.FC<AssetsManagerProps> = ({ assetType, selected, onCh
   const [assets, setAssets] = useState<Asset[]>([]);
   const [selectedAssets, setSelectedAssets] = useState<Asset[]>(selected || []);
   const [searchQuery, setSearchQuery] = useState('');
+  const [currentSlide, setCurrentSlide] = useState<Asset | null>(null);
+  const [filteredAssets, setFilteredAssets] = useState<Asset[]>([]);
 
   useEffect(() => {
     if (!assets?.length) {
       handleRefresh()
     }
   }, [])
+
+  useEffect(() => {
+    const fAssets = assets.filter(asset =>
+      asset.filename.toLowerCase().includes(searchQuery.toLowerCase()) &&
+      (tabName === 'all' || (tabName === 'images' && asset.parentPath === 'images') || (tabName === 'music' && asset.parentPath === 'music') || (tabName === 'videos' && asset.parentPath === 'videos'))
+    );
+    setFilteredAssets(fAssets);
+  }, [assets, searchQuery, tabName])
 
   const handleRefresh = () => {
     listAssets().then(allAssets => setAssets(allAssets || []));
@@ -58,14 +69,10 @@ const AssetsManager: React.FC<AssetsManagerProps> = ({ assetType, selected, onCh
       setSelectedAssets([]);
       handleRefresh();
     }).catch((error) => {
+      handleRefresh();
       console.log('Error Deleting Assets', error)
     });
   };
-
-  const filteredAssets = assets.filter(asset =>
-    asset.filename.toLowerCase().includes(searchQuery.toLowerCase()) &&
-    (tabName === 'all' || (tabName === 'images' && asset.parentPath === 'images') || (tabName === 'music' && asset.parentPath === 'music') || (tabName === 'videos' && asset.parentPath === 'videos'))
-  );
 
   const getThumbnailSrc = (asset: Asset): string => {
     let tSrc = '';
@@ -90,11 +97,11 @@ const AssetsManager: React.FC<AssetsManagerProps> = ({ assetType, selected, onCh
         return ALLOWED_EXTENSIONS;
     }
   }
-  return (
+  return (<>
     <Box>
       <AppBar position="static">
         <Tabs value={tabName} onChange={handleTabChange} TabIndicatorProps={{ style: { backgroundColor: 'white' } }}>
-          {(!assetType) && <Tab label="All" style={{ color: tabName === 'all' ? 'white' : 'black' }} />}
+          <Tab label="All" style={{ color: tabName === 'all' ? 'white' : 'black' }} />
           {(!assetType || assetType === 'images') && <Tab label="Images" style={{ color: tabName === 'images' ? 'white' : 'black' }} />}
           {(!assetType || assetType === 'music') && <Tab label="Audio" style={{ color: tabName === 'music' ? 'white' : 'black' }} />}
           {(!assetType || assetType === 'videos') && <Tab label="Video" style={{ color: tabName === 'videos' ? 'white' : 'black' }} />}
@@ -136,15 +143,25 @@ const AssetsManager: React.FC<AssetsManagerProps> = ({ assetType, selected, onCh
               margin: '0.5em',
               overflow: 'hidden'
             }}>
-              <ListItem component="div" onClick={() => handleToggle(asset)}
+              <ListItem component="div" onClick={() => handleToggle(asset)} onDoubleClick={() => setCurrentSlide(asset)}
                 style={{
                   flexDirection: 'column',
                   alignItems: 'center',
                   maxWidth: '100%',
                   overflow: 'hidden'
                 }}>
-                <ListItemIcon>
+                <ListItemIcon style={{
+                  position: 'relative',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
                   {asset.parentPath === 'music' ? <Audiotrack /> : <img src={getThumbnailSrc(asset)} alt={asset.filename} style={{ width: '100%', height: 'auto' }} />}
+                  {asset.parentPath === 'videos' && <VideoCameraFront style={{
+                    fontSize: '5em',
+                    position: 'absolute',
+                    zIndex: 2,
+                    color: 'white'
+                  }} />}
                 </ListItemIcon>
                 <ListItemText title={asset.filename} primary={asset.filename} style={{ textAlign: 'center', maxWidth: '100%', textOverflow: 'ellipsis' }} />
               </ListItem>
@@ -156,7 +173,8 @@ const AssetsManager: React.FC<AssetsManagerProps> = ({ assetType, selected, onCh
         </IconButton>
       </Box>
     </Box>
-  );
+    {currentSlide && <AssetsSlideShow open={!!currentSlide} currentAsset={currentSlide} assets={filteredAssets} onClose={() => setCurrentSlide(null)} />}
+  </>);
 };
 
 export default AssetsManager
