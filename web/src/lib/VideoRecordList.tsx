@@ -59,7 +59,7 @@ const VideoRecordList: React.FC<VideoRecordListProps> = ({ records, onSelect, ti
   };
 
   const handleDuplicateClick = async (record: VideoRecord) => {
-    const duplicate = { ...record, id: '' };
+    const duplicate: VideoRecord = { ...record, id: '', renderedOn: undefined, outFileName: '', youTube: { ...record.youTube, uploadedOn: undefined, videoId: '' } };
     const added = await addVideoRecord(videoEngineData?.dbName || '', duplicate);
     const index = records.findIndex(rec => rec.id === record.id);
     records.splice(index + 1, 0, added);

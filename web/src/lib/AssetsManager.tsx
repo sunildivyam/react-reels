@@ -102,9 +102,9 @@ const AssetsManager: React.FC<AssetsManagerProps> = ({ assetType, selected, onCh
       <AppBar position="static">
         <Tabs value={tabName} onChange={handleTabChange} TabIndicatorProps={{ style: { backgroundColor: 'white' } }}>
           <Tab label="All" style={{ color: tabName === 'all' ? 'white' : 'black' }} />
-          {(!assetType || assetType === 'images') && <Tab label="Images" style={{ color: tabName === 'images' ? 'white' : 'black' }} />}
-          {(!assetType || assetType === 'music') && <Tab label="Audio" style={{ color: tabName === 'music' ? 'white' : 'black' }} />}
-          {(!assetType || assetType === 'videos') && <Tab label="Video" style={{ color: tabName === 'videos' ? 'white' : 'black' }} />}
+          <Tab label="Images" style={{ color: tabName === 'images' ? 'white' : 'black' }} />
+          <Tab label="Audio" style={{ color: tabName === 'music' ? 'white' : 'black' }} />
+          <Tab label="Video" style={{ color: tabName === 'videos' ? 'white' : 'black' }} />
         </Tabs>
       </AppBar>
       <Box p={2}>

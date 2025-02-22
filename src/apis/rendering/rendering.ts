@@ -8,7 +8,8 @@ router.post("/videorecords", async (req: Request, res: Response) => {
   const { dbName, videoRecords } = req.body;
 
   try {
-    renderAll(dbName, videoRecords, REMOTION_BUNDLE_PATH);
+    const DEV = process.env.DEV;
+    renderAll(dbName, videoRecords, DEV ? "" : REMOTION_BUNDLE_PATH);
     res.json({ started: true, startedOn: Date.now() });
   } catch (error) {
     res.status(500).send(error);
