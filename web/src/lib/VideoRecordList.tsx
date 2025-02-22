@@ -5,6 +5,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/
 import CompositionInfoForm from './CompositionInfoForm';
 import { addVideoRecord, deleteVideoRecord, updateVideoRecord } from '../Services/Composition.service';
 import { VideoEngineDataContext } from './VideoEngineDataProvider';
+import AiQuotesForm from './AiQuotesForm';
 
 interface VideoRecordListProps {
   title: string;
@@ -16,6 +17,7 @@ const VideoRecordList: React.FC<VideoRecordListProps> = ({ records, onSelect, ti
   const { videoEngineData, updateVideoEngineData } = useContext(VideoEngineDataContext);
   const [selectedVideoRecords, setSelectedVideoRecords] = useState<VideoRecord[]>([]);
   const [allSelected, setAllSelected] = useState<boolean>(false);
+  const [aiOpen, setAiOpen] = useState<boolean>(false);
 
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   const [currentRecord, setCurrentRecord] = useState<VideoRecord | null>(null);
@@ -178,6 +180,9 @@ const VideoRecordList: React.FC<VideoRecordListProps> = ({ records, onSelect, ti
         <Button variant="outlined" onClick={() => handleAddClick()}>
           Add New
         </Button>
+        <Button variant="outlined" onClick={() => setAiOpen(true)}>
+          Generate New
+        </Button>
       </Box>
 
       <Grid2 container spacing={2}>
@@ -235,6 +240,17 @@ const VideoRecordList: React.FC<VideoRecordListProps> = ({ records, onSelect, ti
           </Button>
           <Button onClick={handleCloseDialog} color="secondary">
             Cancel
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <Dialog open={aiOpen} onClose={() => setAiOpen(false)} fullScreen>
+        <DialogTitle>Quotes generator</DialogTitle>
+        <DialogContent>
+          <AiQuotesForm onChange={() => { }} />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setAiOpen(false)} color="primary">
+            Close
           </Button>
         </DialogActions>
       </Dialog>
