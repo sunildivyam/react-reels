@@ -10,7 +10,7 @@ const MainNav: React.FC<MainNavProps> = ({ sticky, items }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleNavItemClick = (item: string) => {
-    console.log(`Navigating to ${item}`);
+    window.location.href = `/${item.toLowerCase()}`;
     setMobileOpen(false);
   };
   const handleDrawerToggle = () => {

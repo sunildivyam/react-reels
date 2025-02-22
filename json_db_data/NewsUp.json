@@ -1,0 +1,22 @@
+{
+  "id-liqw6wu": {
+    "compositionInfo": {
+      "id": "News",
+      "originalId": "News",
+      "fps": 30,
+      "width": 1080,
+      "height": 1900,
+      "durationInSeconds": 30,
+      "rangeInSeconds": [],
+      "transparent": false,
+      "defaultProps": {
+        "name": "Sample Name 11",
+        "title": "Sample title",
+        "summary": "Sample Summary",
+        "imageSeconds": 10
+      }
+    },
+    "outFileName": "",
+    "socialMedia": {}
+  }
+}

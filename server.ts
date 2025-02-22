@@ -31,12 +31,32 @@ app.use(
 // API routes
 app.use("/api", apisRouter);
 
-app.get("*", (req, res) => {
+// Player
+
+app.get("/editor", (req, res) => {
+  const baseUrl = "/editor";
+  const filePath = path.join(__dirname, rootPath, "index.html");
+  let fileContent = fs.readFileSync(filePath, "utf-8");
+  fileContent = fileContent.replace(
+    /<head>/,
+    `<head><base href="${baseUrl}/">`,
+  );
+  res.send(fileContent);
+});
+
+app.get("/", (req, res) => {
   const filePath = path.join(__dirname, rootPath, "web", "index.html");
   const fileContent = fs.readFileSync(filePath, "utf-8");
 
   res.send(fileContent);
 });
+
+app.use(
+  "/",
+  express.static(path.join(__dirname, rootPath), {
+    extensions: ["js"],
+  }),
+);
 
 server.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

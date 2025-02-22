@@ -3,11 +3,14 @@
     "compositionInfo": {
       "id": "Quote",
       "originalId": "Quote",
-      "durationInSeconds": 7,
+      "durationInSeconds": "9",
       "fps": 30,
       "width": 1080,
       "height": 1920,
-      "rangeInSeconds": [],
+      "rangeInSeconds": [
+        0,
+        9
+      ],
       "defaultProps": {
         "name": "चाणक्य",
         "title": "संगति का प्रभाव",
@@ -27,7 +30,8 @@
           "color3": "rgb(158, 71, 42)",
           "color4": "rgb(73, 45, 3)"
         }
-      }
+      },
+      "transparent": true
     },
     "socialMedia": {
       "tags": [
@@ -42,8 +46,13 @@
         "#PositiveInfluence"
       ]
     },
-    "outFileName": "out/संगति का प्रभाव-1738850966923.mp4",
-    "renderedOn": "2025-02-06T14:09:26.923Z"
+    "outFileName": "C:\\Users\\sunil\\My space\\Repos\\react-reels\\out\\संगति का प्रभाव-1738850966923.mp4",
+    "renderedOn": "2025-02-06T14:09:26.923Z",
+    "youTube": {
+      "videoId": "-Yeb-RsmgXs",
+      "uploadedOn": "2025-02-13T15:39:32.129Z",
+      "publishedAt": "2025-02-13T15:39:25.000Z"
+    }
   },
   "id-i7dz7fp": {
     "compositionInfo": {
@@ -88,8 +97,13 @@
         "#RespectfulCommunication"
       ]
     },
-    "outFileName": "out/वाणी पर नियंत्रण-1738850989389.mp4",
-    "renderedOn": "2025-02-06T14:09:49.389Z"
+    "outFileName": "C:\\Users\\sunil\\My space\\Repos\\react-reels\\out\\वाणी पर नियंत्रण-1738850989389.mp4",
+    "renderedOn": "2025-02-06T14:09:49.389Z",
+    "youTube": {
+      "videoId": "hjtSC72ta4w",
+      "uploadedOn": "2025-02-13T15:39:35.224Z",
+      "publishedAt": "2025-02-13T15:39:33.000Z"
+    }
   },
   "id-siv5rks": {
     "compositionInfo": {
@@ -134,8 +148,13 @@
         "#KnowledgeIsPower"
       ]
     },
-    "outFileName": "out/विद्या का महत्व-1738851012788.mp4",
-    "renderedOn": "2025-02-06T14:10:12.788Z"
+    "outFileName": "C:\\Users\\sunil\\My space\\Repos\\react-reels\\out\\विद्या का महत्व-1738851012788.mp4",
+    "renderedOn": "2025-02-06T14:10:12.788Z",
+    "youTube": {
+      "videoId": "DmZ72785foc",
+      "uploadedOn": "2025-02-13T16:26:18.143Z",
+      "publishedAt": "2025-02-13T16:26:16.000Z"
+    }
   },
   "id-rizwh45": {
     "compositionInfo": {
@@ -180,8 +199,13 @@
         "#Minimalism"
       ]
     },
-    "outFileName": "out/सादगी का महत्व-1738851039839.mp4",
-    "renderedOn": "2025-02-06T14:10:39.839Z"
+    "outFileName": "C:\\Users\\sunil\\My space\\Repos\\react-reels\\out\\सादगी का महत्व-1738851039839.mp4",
+    "renderedOn": "2025-02-06T14:10:39.839Z",
+    "youTube": {
+      "videoId": "jrKlPXOh7ig",
+      "uploadedOn": "2025-02-13T16:26:20.968Z",
+      "publishedAt": "2025-02-13T16:26:19.000Z"
+    }
   },
   "id-edtg72h": {
     "compositionInfo": {
@@ -35411,5 +35435,445 @@
     },
     "outFileName": "out/Quote-1738918271690.mp4",
     "renderedOn": "2025-02-07T08:51:11.690Z"
+  },
+  "id-c4q2i7r": {
+    "compositionInfo": {
+      "id": "Quote",
+      "originalId": "Quote",
+      "fps": 30,
+      "width": 1080,
+      "height": 1920,
+      "durationInSeconds": 10,
+      "rangeInSeconds": [],
+      "defaultProps": {
+        "name": "WPL 2025 की तैयारी",
+        "title": "महिला प्रीमियर लीग 2025 की तैयारियां जोरों पर",
+        "summary": "WPL 2025 के लिए तैयारियां शुरू हो गई हैं।  खिलाड़ियों के ऑक्शन से लेकर स्टेडियम की व्यवस्था तक, सब पर ध्यान दिया जा रहा है।",
+        "translation": "Preparations for WPL 2025 have begun. From player auctions to stadium arrangements, everything is being taken care of.",
+        "isVideoType": false,
+        "filter": "ForestFilter",
+        "categoryImage": "remotion-defaults/images/news-logo.jpg",
+        "videos": [],
+        "images": [
+          "images/News (1).jpeg"
+        ],
+        "music": "music/breaking-news-background-music-252187.mp3",
+        "bgGradient": {
+          "color1": "rgb(144, 61, 2)",
+          "color2": "rgb(255, 152, 35)",
+          "color3": "rgb(158, 71, 42)",
+          "color4": "rgb(73, 45, 3)"
+        }
+      }
+    },
+    "socialMedia": {
+      "tags": [
+        "WPL",
+        "Women's Premier League",
+        "Cricket",
+        "India"
+      ],
+      "hashTags": [
+        "#WPL2025",
+        "#WomensCricket",
+        "#CricketIndia"
+      ]
+    }
+  },
+  "id-eg1j3w6": {
+    "compositionInfo": {
+      "id": "Quote",
+      "originalId": "Quote",
+      "fps": 30,
+      "width": 1080,
+      "height": 1920,
+      "durationInSeconds": 10,
+      "rangeInSeconds": [],
+      "defaultProps": {
+        "name": "ऑक्शन की तारीख",
+        "title": "WPL 2025 ऑक्शन की तारीख घोषित",
+        "summary": "महिला प्रीमियर लीग 2025 के ऑक्शन की तारीख घोषित कर दी गई है। सभी टीमें अपनी नई रणनीति बनाने में जुट गई हैं।",
+        "translation": "The date for the Women's Premier League 2025 auction has been announced. All teams have started working on their new strategies.",
+        "isVideoType": false,
+        "filter": "ForestFilter",
+        "categoryImage": "remotion-defaults/images/news-logo.jpg",
+        "videos": [],
+        "images": [
+          "images/News (2).jpeg"
+        ],
+        "music": "music/breaking-news-symphony-249980.mp3",
+        "bgGradient": {
+          "color1": "rgb(144, 61, 2)",
+          "color2": "rgb(255, 152, 35)",
+          "color3": "rgb(158, 71, 42)",
+          "color4": "rgb(73, 45, 3)"
+        }
+      }
+    },
+    "socialMedia": {
+      "tags": [
+        "WPL Auction",
+        "Women's Premier League",
+        "Cricket",
+        "India"
+      ],
+      "hashTags": [
+        "#WPL2025Auction",
+        "#WomensCricket",
+        "#CricketIndia"
+      ]
+    }
+  },
+  "id-kvfr4jm": {
+    "compositionInfo": {
+      "id": "Quote",
+      "originalId": "Quote",
+      "fps": 30,
+      "width": 1080,
+      "height": 1920,
+      "durationInSeconds": 10,
+      "rangeInSeconds": [],
+      "defaultProps": {
+        "name": "नई टीमें",
+        "title": "WPL 2025 में नई टीमों की एंट्री?",
+        "summary": "खबरें हैं कि WPL 2025 में कुछ नई टीमें भी शामिल हो सकती हैं। इससे लीग और भी रोमांचक हो जाएगी।",
+        "translation": "Rumors are that some new teams might also join WPL 2025. This will make the league even more exciting.",
+        "isVideoType": false,
+        "filter": "ForestFilter",
+        "categoryImage": "remotion-defaults/images/news-logo.jpg",
+        "videos": [],
+        "images": [
+          "images/News (3).jpeg"
+        ],
+        "music": "music/breaking-news-background-music-252187.mp3",
+        "bgGradient": {
+          "color1": "rgb(144, 61, 2)",
+          "color2": "rgb(255, 152, 35)",
+          "color3": "rgb(158, 71, 42)",
+          "color4": "rgb(73, 45, 3)"
+        }
+      }
+    },
+    "socialMedia": {
+      "tags": [
+        "WPL",
+        "New Teams",
+        "Women's Premier League",
+        "Cricket"
+      ],
+      "hashTags": [
+        "#WPL2025",
+        "#NewTeams",
+        "#WomensCricket"
+      ]
+    }
+  },
+  "id-dx4jf81": {
+    "compositionInfo": {
+      "id": "Quote",
+      "originalId": "Quote",
+      "fps": 30,
+      "width": 1080,
+      "height": 1920,
+      "durationInSeconds": 10,
+      "rangeInSeconds": [],
+      "defaultProps": {
+        "name": "खिलाड़ियों का उत्साह",
+        "title": "WPL 2025 को लेकर खिलाड़ियों में उत्साह",
+        "summary": "महिला खिलाड़ी WPL 2025 को लेकर बहुत उत्साहित हैं। वे अपनी बेहतरीन प्रदर्शन के लिए कड़ी मेहनत कर रही हैं।",
+        "translation": "Women players are very excited about WPL 2025. They are working hard to give their best performance.",
+        "isVideoType": false,
+        "filter": "ForestFilter",
+        "categoryImage": "remotion-defaults/images/news-logo.jpg",
+        "videos": [],
+        "images": [
+          "images/News (4).jpeg"
+        ],
+        "music": "music/breaking-news-symphony-249980.mp3",
+        "bgGradient": {
+          "color1": "rgb(144, 61, 2)",
+          "color2": "rgb(255, 152, 35)",
+          "color3": "rgb(158, 71, 42)",
+          "color4": "rgb(73, 45, 3)"
+        }
+      }
+    },
+    "socialMedia": {
+      "tags": [
+        "WPL",
+        "Players",
+        "Women's Premier League",
+        "Cricket"
+      ],
+      "hashTags": [
+        "#WPL2025",
+        "#WomensCricket",
+        "#CricketPlayers"
+      ]
+    }
+  },
+  "id-k1lio96": {
+    "compositionInfo": {
+      "id": "Quote",
+      "originalId": "Quote",
+      "fps": 30,
+      "width": 1080,
+      "height": 1920,
+      "durationInSeconds": 10,
+      "rangeInSeconds": [],
+      "defaultProps": {
+        "name": "प्रसारण अधिकार",
+        "title": "WPL 2025 के प्रसारण अधिकार की चर्चा",
+        "summary": "WPL 2025 के प्रसारण अधिकार को लेकर भी चर्चा चल रही है। कई बड़े चैनल इसमें दिलचस्पी दिखा रहे हैं।",
+        "translation": "Discussions are also going on regarding the broadcast rights of WPL 2025. Many big channels are showing interest in it.",
+        "isVideoType": false,
+        "filter": "ForestFilter",
+        "categoryImage": "remotion-defaults/images/news-logo.jpg",
+        "videos": [],
+        "images": [
+          "images/News (5).jpeg"
+        ],
+        "music": "music/breaking-news-background-music-252187.mp3",
+        "bgGradient": {
+          "color1": "rgb(144, 61, 2)",
+          "color2": "rgb(255, 152, 35)",
+          "color3": "rgb(158, 71, 42)",
+          "color4": "rgb(73, 45, 3)"
+        }
+      }
+    },
+    "socialMedia": {
+      "tags": [
+        "WPL",
+        "Broadcast Rights",
+        "Women's Premier League",
+        "Cricket"
+      ],
+      "hashTags": [
+        "#WPL2025",
+        "#Broadcast",
+        "#WomensCricket"
+      ]
+    }
+  },
+  "id-12po679": {
+    "compositionInfo": {
+      "id": "Quote",
+      "originalId": "Quote",
+      "fps": 30,
+      "width": 1080,
+      "height": 1920,
+      "durationInSeconds": 10,
+      "rangeInSeconds": [],
+      "defaultProps": {
+        "name": "स्टेडियम की तैयारी",
+        "title": "WPL 2025 के लिए स्टेडियम तैयार",
+        "summary": "WPL 2025 के मैचों के लिए स्टेडियमों को तैयार किया जा रहा है। दर्शकों के लिए बेहतर सुविधाएं उपलब्ध कराई जाएंगी।",
+        "translation": "The stadiums are being prepared for the WPL 2025 matches. Better facilities will be provided for the spectators.",
+        "isVideoType": false,
+        "filter": "ForestFilter",
+        "categoryImage": "remotion-defaults/images/news-logo.jpg",
+        "videos": [],
+        "images": [
+          "images/News (6).jpeg"
+        ],
+        "music": "music/breaking-news-symphony-249980.mp3",
+        "bgGradient": {
+          "color1": "rgb(144, 61, 2)",
+          "color2": "rgb(255, 152, 35)",
+          "color3": "rgb(158, 71, 42)",
+          "color4": "rgb(73, 45, 3)"
+        }
+      }
+    },
+    "socialMedia": {
+      "tags": [
+        "WPL",
+        "Stadiums",
+        "Women's Premier League",
+        "Cricket"
+      ],
+      "hashTags": [
+        "#WPL2025",
+        "#Stadiums",
+        "#WomensCricket"
+      ]
+    }
+  },
+  "id-jot83eb": {
+    "compositionInfo": {
+      "id": "Quote",
+      "originalId": "Quote",
+      "fps": 30,
+      "width": 1080,
+      "height": 1920,
+      "durationInSeconds": 10,
+      "rangeInSeconds": [],
+      "defaultProps": {
+        "name": "युवा खिलाड़ियों का मौका",
+        "title": "WPL 2025 में युवा खिलाड़ियों को मौका",
+        "summary": "WPL 2025 में युवा खिलाड़ियों को अपनी प्रतिभा दिखाने का अच्छा मौका मिलेगा।",
+        "translation": "Young players will get a good opportunity to showcase their talent in WPL 2025.",
+        "isVideoType": false,
+        "filter": "ForestFilter",
+        "categoryImage": "remotion-defaults/images/news-logo.jpg",
+        "videos": [],
+        "images": [
+          "images/News (7).jpeg"
+        ],
+        "music": "music/breaking-news-background-music-252187.mp3",
+        "bgGradient": {
+          "color1": "rgb(144, 61, 2)",
+          "color2": "rgb(255, 152, 35)",
+          "color3": "rgb(158, 71, 42)",
+          "color4": "rgb(73, 45, 3)"
+        }
+      }
+    },
+    "socialMedia": {
+      "tags": [
+        "WPL",
+        "Young Players",
+        "Women's Premier League",
+        "Cricket"
+      ],
+      "hashTags": [
+        "#WPL2025",
+        "#YoungPlayers",
+        "#WomensCricket"
+      ]
+    }
+  },
+  "id-zguli1k": {
+    "compositionInfo": {
+      "id": "Quote",
+      "originalId": "Quote",
+      "fps": 30,
+      "width": 1080,
+      "height": 1920,
+      "durationInSeconds": 10,
+      "rangeInSeconds": [],
+      "defaultProps": {
+        "name": "कोचिंग स्टाफ",
+        "title": "WPL 2025 के लिए कोचिंग स्टाफ की नियुक्ति",
+        "summary": "WPL 2025 के लिए टीमों ने अपने कोचिंग स्टाफ की नियुक्ति कर ली है।",
+        "translation": "Teams have appointed their coaching staff for WPL 2025.",
+        "isVideoType": false,
+        "filter": "ForestFilter",
+        "categoryImage": "remotion-defaults/images/news-logo.jpg",
+        "videos": [],
+        "images": [
+          "images/News (8).jpeg"
+        ],
+        "music": "music/breaking-news-symphony-249980.mp3",
+        "bgGradient": {
+          "color1": "rgb(144, 61, 2)",
+          "color2": "rgb(255, 152, 35)",
+          "color3": "rgb(158, 71, 42)",
+          "color4": "rgb(73, 45, 3)"
+        }
+      }
+    },
+    "socialMedia": {
+      "tags": [
+        "WPL",
+        "Coaching Staff",
+        "Women's Premier League",
+        "Cricket"
+      ],
+      "hashTags": [
+        "#WPL2025",
+        "#CoachingStaff",
+        "#WomensCricket"
+      ]
+    }
+  },
+  "id-9onjofu": {
+    "compositionInfo": {
+      "id": "Quote",
+      "originalId": "Quote",
+      "fps": 30,
+      "width": 1080,
+      "height": 1920,
+      "durationInSeconds": 10,
+      "rangeInSeconds": [],
+      "defaultProps": {
+        "name": "सुरक्षा व्यवस्था",
+        "title": "WPL 2025 में सुरक्षा व्यवस्था कड़ी",
+        "summary": "WPL 2025 में खिलाड़ियों और दर्शकों की सुरक्षा के लिए कड़ी व्यवस्था की जाएगी।",
+        "translation": "Tight security arrangements will be made for the safety of players and spectators in WPL 2025.",
+        "isVideoType": false,
+        "filter": "ForestFilter",
+        "categoryImage": "remotion-defaults/images/news-logo.jpg",
+        "videos": [],
+        "images": [
+          "images/News (1).jpeg"
+        ],
+        "music": "music/breaking-news-background-music-252187.mp3",
+        "bgGradient": {
+          "color1": "rgb(144, 61, 2)",
+          "color2": "rgb(255, 152, 35)",
+          "color3": "rgb(158, 71, 42)",
+          "color4": "rgb(73, 45, 3)"
+        }
+      }
+    },
+    "socialMedia": {
+      "tags": [
+        "WPL",
+        "Security",
+        "Women's Premier League",
+        "Cricket"
+      ],
+      "hashTags": [
+        "#WPL2025",
+        "#Security",
+        "#WomensCricket"
+      ]
+    }
+  },
+  "id-tz10qcv": {
+    "compositionInfo": {
+      "id": "Quote",
+      "originalId": "Quote",
+      "fps": 30,
+      "width": 1080,
+      "height": 1920,
+      "durationInSeconds": 10,
+      "rangeInSeconds": [],
+      "defaultProps": {
+        "name": "फैंस का उत्साह",
+        "title": "WPL 2025 को लेकर फैंस में उत्साह",
+        "summary": "WPL 2025 को लेकर फैंस भी बहुत उत्साहित हैं। वे अपनी पसंदीदा टीमों को सपोर्ट करने के लिए तैयार हैं।",
+        "translation": "Fans are also very excited about WPL 2025. They are ready to support their favorite teams.",
+        "isVideoType": false,
+        "filter": "ForestFilter",
+        "categoryImage": "remotion-defaults/images/news-logo.jpg",
+        "videos": [],
+        "images": [
+          "images/News (2).jpeg"
+        ],
+        "music": "music/breaking-news-symphony-249980.mp3",
+        "bgGradient": {
+          "color1": "rgb(144, 61, 2)",
+          "color2": "rgb(255, 152, 35)",
+          "color3": "rgb(158, 71, 42)",
+          "color4": "rgb(73, 45, 3)"
+        }
+      }
+    },
+    "socialMedia": {
+      "tags": [
+        "WPL",
+        "Fans",
+        "Women's Premier League",
+        "Cricket"
+      ],
+      "hashTags": [
+        "#WPL2025",
+        "#Fans",
+        "#WomensCricket"
+      ]
+    }
   }
 }
