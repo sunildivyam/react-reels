@@ -3,17 +3,19 @@ import { TextField, Button, Dialog, DialogActions, DialogContent, DialogTitle, B
 import CompositionParticlesForm from './CompositionParticlesForm';
 import { CompositionParticles, CompositionProps } from '../Services/Composition.interface';
 import CodeBlock from './CodeBlock';
+import AssetsSelectInput from './AssetsSelectInput';
 
 interface CompositionPropsFormProps {
   initialProps: CompositionProps;
   onChange: (props: CompositionProps) => void;
 }
 
+
 const CompositionPropsForm: React.FC<CompositionPropsFormProps> = ({ initialProps, onChange }) => {
   const [props, setProps] = useState<CompositionProps>(initialProps);
   const [particlesDialogOpen, setParticlesDialogOpen] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: any) => {
     const { name, value, checked, type } = e.target;
     try {
       const parsedValue = type === 'checkbox' ? checked : type === 'number' ? parseInt(value) : value;
@@ -26,6 +28,13 @@ const CompositionPropsForm: React.FC<CompositionPropsFormProps> = ({ initialProp
       console.log(error);
     }
   };
+
+  const handleAssetsChange = (name: string, strAssets: string[]) => {
+    const updatedProps = { ...props, [name]: strAssets };
+
+    setProps(updatedProps);
+    onChange && onChange(updatedProps);
+  }
 
   const handleParticlesChange = (particles: CompositionParticles) => {
     const updatedProps = { ...props, particles };
@@ -48,7 +57,11 @@ const CompositionPropsForm: React.FC<CompositionPropsFormProps> = ({ initialProp
     onChange && onChange(jsonObj as CompositionProps);
   }
 
-  return (
+  // const handleImagesUpload = (files: string[]) => {
+  //   console.log(files);
+  // }
+
+  return (<>
     <Box>
       <CodeBlock style={{ display: 'flex', justifyContent: 'flex-end' }} value={props} onChange={handleCodeBlock} />
       <TextField style={{ marginTop: '1em' }}
@@ -93,41 +106,7 @@ const CompositionPropsForm: React.FC<CompositionPropsFormProps> = ({ initialProp
         onChange={handleInputChange}
         fullWidth
       />
-      <TextField style={{ marginTop: '1em' }}
-        label="Category Image"
-        name="categoryImage"
-        value={props.categoryImage || ''}
-        onChange={handleInputChange}
-        fullWidth
-      />
-      <TextField style={{ marginTop: '1em' }}
-        label="Logo"
-        name="logo"
-        value={props.logo || ''}
-        onChange={handleInputChange}
-        fullWidth
-      />
-      <TextField style={{ marginTop: '1em' }}
-        label="Music"
-        name="music"
-        value={props.music || ''}
-        onChange={handleInputChange}
-        fullWidth
-      />
-      <TextField style={{ marginTop: '1em' }}
-        label="Images"
-        name="images"
-        value={props.images ? props.images.join(', ') : ''}
-        onChange={handleInputChange}
-        fullWidth
-      />
-      <TextField style={{ marginTop: '1em' }}
-        label="Videos"
-        name="videos"
-        value={props.videos ? props.videos.join(', ') : ''}
-        onChange={handleInputChange}
-        fullWidth
-      />
+
       <TextField style={{ marginTop: '1em' }}
         label="Duration per Image (seconds)"
         name="imageSeconds"
@@ -136,25 +115,42 @@ const CompositionPropsForm: React.FC<CompositionPropsFormProps> = ({ initialProp
         onChange={handleInputChange}
         fullWidth
       />
+
+      <AssetsSelectInput singleSelect value={[props.categoryImage || '']} assetType='images' label='Category Image' name='categoryImage'
+        onChange={(categoryImage) => handleInputChange({ target: { name: 'categoryImage', value: categoryImage as string, type: 'text' } })} />
+
+      <AssetsSelectInput singleSelect value={[props.logo || '']} assetType='images' label='Logo' name='logo'
+        onChange={(logo) => handleInputChange({ target: { name: 'logo', value: logo as string, type: 'text' } })} />
+
+      <AssetsSelectInput singleSelect value={[props.music || '']} assetType='music' label='Music' name='music'
+        onChange={(music) => handleInputChange({ target: { name: 'music', value: music as string, type: 'text' } })} />
+
+      <AssetsSelectInput value={props.images} assetType='images' label='Images' name='images'
+        onChange={(images) => handleAssetsChange('images', images as string[])} />
+
+      <AssetsSelectInput value={props.videos} assetType='videos' label='Videos' name='videos'
+        onChange={(videos) => handleAssetsChange('videos', videos as string[])} />
+
       <Button style={{ margin: '1em' }} variant="outlined" color="primary" onClick={handleOpenParticlesDialog}>
         Edit Particles
       </Button>
-      <Dialog open={particlesDialogOpen} onClose={handleCloseParticlesDialog}>
-        <DialogTitle>Edit Particles</DialogTitle>
-        <DialogContent>
-          <CompositionParticlesForm
-            particles={props.particles || {} as CompositionParticles}
-            onChange={handleParticlesChange}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseParticlesDialog} color="primary">
-            Close
-          </Button>
-        </DialogActions>
-      </Dialog>
+
     </Box>
-  );
+    <Dialog open={particlesDialogOpen} onClose={handleCloseParticlesDialog}>
+      <DialogTitle>Edit Particles</DialogTitle>
+      <DialogContent>
+        <CompositionParticlesForm
+          particles={props.particles || {} as CompositionParticles}
+          onChange={handleParticlesChange}
+        />
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleCloseParticlesDialog} color="primary">
+          Close
+        </Button>
+      </DialogActions>
+    </Dialog>
+  </>);
 };
 
 export default CompositionPropsForm;

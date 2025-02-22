@@ -1,4 +1,4 @@
-import { readdir, lstat, writeFile, readFile, copyFile, mkdir } from "fs/promises";
+import { readdir, lstat, writeFile, readFile, copyFile, mkdir, unlink } from "fs/promises";
 import fs from 'fs'
 import path from 'path';
 import { resolvedPath } from "./Utils";
@@ -55,5 +55,14 @@ export async function copyFiles(files: Array<string>, destDir: string) {
       await mkdir(destDirPath, { recursive: true });
     }
     await copyFile(srcFile, destFile, fs.constants.COPYFILE_FICLONE);
+  }
+}
+
+export async function deleteFiles(files: Array<string>) {
+  for (const file of files) {
+    const srcFile = resolvedPath(file);
+    if (fs.existsSync(srcFile)) {
+      await unlink(srcFile);
+    }
   }
 }
