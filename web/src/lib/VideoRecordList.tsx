@@ -3,9 +3,11 @@ import { Box, Checkbox, FormControlLabel, Grid2, Typography } from '@mui/materia
 import { CompositionInfo, VideoRecord } from '../Services/Composition.interface';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import CompositionInfoForm from './CompositionInfoForm';
-import { addVideoRecord, deleteVideoRecord, updateVideoRecord } from '../Services/Composition.service';
+import { addVideoRecord, addVideoRecords, deleteVideoRecord, updateVideoRecord } from '../Services/Composition.service';
 import { VideoEngineDataContext } from './VideoEngineDataProvider';
 import AiQuotesForm from './AiQuotesForm';
+import VideoRecordItem from './VideoRecordItem';
+import { DEFAULT_COMPSITION_INFO, DEFAULT_COMPSITION_PROPS } from '../Services/Composition.constants';
 
 interface VideoRecordListProps {
   title: string;
@@ -38,15 +40,9 @@ const VideoRecordList: React.FC<VideoRecordListProps> = ({ records, onSelect, ti
     const record: VideoRecord = {
       id: '',
       compositionInfo: {
-        id: '',
-        originalId: '',
-        fps: 0,
-        width: 0,
-        height: 0,
-        durationInSeconds: 0,
-        rangeInSeconds: [],
-        transparent: false,
+        ...DEFAULT_COMPSITION_INFO,
         defaultProps: {
+          ...DEFAULT_COMPSITION_PROPS,
           name: 'Sample Name',
           title: 'Sample title',
           summary: 'Sample Summary',
@@ -135,12 +131,18 @@ const VideoRecordList: React.FC<VideoRecordListProps> = ({ records, onSelect, ti
     }
   };
 
+  const handleAiQuoteChange = async (vRecords: VideoRecord[]) => {
+    const added = await addVideoRecords(videoEngineData?.dbName || '', vRecords);
+    records.splice(0, 0, ...added);
+    updateVideoEngineData && updateVideoEngineData({ videoRecords: [...records] });
+  }
+
   return (
     <>
       <Box style={{ marginTop: '20px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
         <Typography variant="h5">{title} ({selectedVideoRecords.length}/{records.length})</Typography>
       </Box>
-      <Box style={{ marginTop: '20px', marginBottom: '20px', display: 'flex', flexDirection: 'row', justifyContent: 'right' }}>
+      <Box style={{ marginTop: '20px', marginBottom: '20px', display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'right' }}>
         <Checkbox style={{ marginRight: '10px' }} checked={allSelected} onChange={handleSelectAll} title='Select all' />
         <FormControlLabel
           control={
@@ -177,33 +179,23 @@ const VideoRecordList: React.FC<VideoRecordListProps> = ({ records, onSelect, ti
           }
           label="Uploaded"
         />
-        <Button variant="outlined" onClick={() => handleAddClick()}>
+        <Button style={{ margin: '1em' }} variant="outlined" onClick={() => handleAddClick()}>
           Add New
         </Button>
-        <Button variant="outlined" onClick={() => setAiOpen(true)}>
+        <Button style={{ margin: '1em' }} variant="outlined" onClick={() => setAiOpen(true)}>
           Generate New
         </Button>
       </Box>
 
       <Grid2 container spacing={2}>
         {records.map((record: VideoRecord) => {
-          const { id, outFileName, renderedOn, compositionInfo, youTube } = record;
-          const { title, summary } = (compositionInfo.defaultProps || {}) as any;
-          const { uploadedOn } = youTube || {};
+          const { id } = record;
 
           return <Grid2 key={id} style={{ backgroundColor: '#e9e9e9', borderRadius: '0.5em', padding: '1em', width: '100%' }}>
             <FormControlLabel control={<Checkbox
               checked={selectedVideoRecords.includes(record)}
               onChange={() => handleVideoSelect(record)}
-            />} label={<>
-              {id && <Typography variant="h6">{id}</Typography>}
-              {title && <Typography variant="h5">{title}</Typography>}
-              {summary && <Typography variant="h6">{summary}</Typography>}
-
-              <Typography style={{ marginTop: '1em' }} component={'p'}>{`Rendered File: ${outFileName || 'pending'}`}</Typography>
-              <Typography style={{ marginTop: '1em' }} component={'p'}>{`Rendered On: ${renderedOn || 'pending'}`}</Typography>
-              <Typography style={{ marginTop: '1em' }} component={'p'}>{`Uploaded On: ${uploadedOn || 'pending'}`}</Typography>
-            </>} />
+            />} label={<VideoRecordItem value={record} />} />
 
             <Box style={{
               display: 'flex',
@@ -243,10 +235,10 @@ const VideoRecordList: React.FC<VideoRecordListProps> = ({ records, onSelect, ti
           </Button>
         </DialogActions>
       </Dialog>
-      <Dialog open={aiOpen} onClose={() => setAiOpen(false)} fullScreen>
-        <DialogTitle>Quotes generator</DialogTitle>
+      <Dialog open={aiOpen} onClose={() => setAiOpen(false)}>
+        <DialogTitle>Quotes gGenerator</DialogTitle>
         <DialogContent>
-          <AiQuotesForm onChange={() => { }} />
+          <AiQuotesForm onChange={handleAiQuoteChange} />
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setAiOpen(false)} color="primary">

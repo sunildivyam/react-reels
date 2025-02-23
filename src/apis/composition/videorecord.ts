@@ -18,12 +18,15 @@ router.get("/all", async (req: Request, res: Response) => {
 
 router.post("/add", async (req: Request, res: Response) => {
   const { dbName, videoRecord } = req.body;
+  const isSingleRecord = !Array.isArray(videoRecord);
 
   try {
     const db = new JsonDb(dbName as string);
     await db.load(true);
-    const [added] = await db.add([videoRecord]);
-    res.json(added);
+    const added = await db.add(
+      isSingleRecord ? [videoRecord] : [...videoRecord],
+    );
+    res.json(isSingleRecord ? added[0] : added);
   } catch (error) {
     res.status(500).send(error);
   }

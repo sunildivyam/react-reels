@@ -74,6 +74,20 @@ export const deleteVideoRecord = async (dbName: string, videoRecord: VideoRecord
   }
 };
 
+
+export const addVideoRecords = async (dbName: string, videoRecords: VideoRecord[]): Promise<VideoRecord[]> => {
+  try {
+    const response = await axios.post(`${endpoints.addComposition}`, {
+      dbName,
+      videoRecord: videoRecords
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error Adding VideoRecord:', error);
+    throw error;
+  }
+};
+
 export const getCompositionAll = async (dbName: string): Promise<Array<VideoRecord>> => {
   try {
     const response = await axios.get(`${endpoints.compositionAll}?dbName=${dbName}`);

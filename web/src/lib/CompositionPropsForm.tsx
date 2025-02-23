@@ -30,7 +30,13 @@ const CompositionPropsForm: React.FC<CompositionPropsFormProps> = ({ initialProp
   };
 
   const handleAssetsChange = (name: string, strAssets: string[]) => {
-    const updatedProps = { ...props, [name]: strAssets };
+    let updatedProps;
+    if (name === 'videos') {
+      updatedProps = { ...props, [name]: strAssets.map(ast => ({ src: ast, duration: 0 })) };
+    } else {
+      updatedProps = { ...props, [name]: strAssets };
+    }
+
 
     setProps(updatedProps);
     onChange && onChange(updatedProps);
@@ -128,7 +134,7 @@ const CompositionPropsForm: React.FC<CompositionPropsFormProps> = ({ initialProp
       <AssetsSelectInput value={props.images} assetType='images' label='Images' name='images'
         onChange={(images) => handleAssetsChange('images', images as string[])} />
 
-      <AssetsSelectInput value={props.videos} assetType='videos' label='Videos' name='videos'
+      <AssetsSelectInput value={props.videos?.map(v => v.src)} assetType='videos' label='Videos' name='videos'
         onChange={(videos) => handleAssetsChange('videos', videos as string[])} />
 
       <Button style={{ margin: '1em' }} variant="outlined" color="primary" onClick={handleOpenParticlesDialog}>

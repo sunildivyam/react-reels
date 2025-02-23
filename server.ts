@@ -20,7 +20,9 @@ export const io = new Server(server, {
 });
 
 const port = 3000;
-app.use(bodyParser.json());
+// Increase request size limit
+app.use(express.urlencoded({ limit: "50mb", extended: true }));
+app.use(bodyParser.json({ limit: "50mb" }));
 app.use(cors());
 
 app.use(

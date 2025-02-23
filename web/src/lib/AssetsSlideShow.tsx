@@ -21,9 +21,26 @@ const AssetsSlideShow: React.FC<AssetsSlideShowProps> = ({ assets, currentAsset,
     }
   }, [currentSlide, assets]);
 
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'ArrowLeft') {
+        handlePrevious();
+      } else if (event.key === 'ArrowRight') {
+        handleNext();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [assets]);
+
   const findCurrentAssetIndex = () => {
     return assets.findIndex(asset => (asset.filename === currentSlide.filename && asset.parentPath === currentSlide.parentPath));
   }
+
   const handleNext = () => {
     const currentIndex = findCurrentAssetIndex();
     const nextIndex = (currentIndex + 1) % assets.length;

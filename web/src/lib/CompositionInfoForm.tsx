@@ -3,14 +3,15 @@ import { TextField, Button, Dialog, DialogActions, DialogContent, DialogTitle, C
 import CompositionPropsForm from './CompositionPropsForm';
 import { CompositionInfo, CompositionProps } from '../Services/Composition.interface';
 import CodeBlock from './CodeBlock';
+import { DEFAULT_COMPSITION_INFO } from '../Services/Composition.constants';
 
 interface CompositionInfoFormProps {
-  initialData: CompositionInfo;
+  initialData?: CompositionInfo;
   onChange: (data: CompositionInfo) => void;
 }
 
 const CompositionInfoForm: React.FC<CompositionInfoFormProps> = ({ initialData, onChange }) => {
-  const [formData, setFormData] = useState<CompositionInfo>(initialData);
+  const [formData, setFormData] = useState<CompositionInfo>(initialData || DEFAULT_COMPSITION_INFO);
   const [open, setOpen] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

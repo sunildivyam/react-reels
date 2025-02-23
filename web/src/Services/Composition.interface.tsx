@@ -19,12 +19,16 @@ export interface CompositionInfo {
   transparent: boolean;
   defaultProps: CompositionProps,
 }
+export interface SocialMedia {
+  tags?: string[];
+  hashTags?: string[]
+}
 
 export interface VideoRecord {
   id: string;
   compositionInfo: CompositionInfo;
   outFileName: string;
-  socialMedia: object;
+  socialMedia?: SocialMedia;
   youTube?: YoutubeInfo;
   instagram?: object;
   renderedOn?: Date;
@@ -34,6 +38,10 @@ export interface VideoEngineType {
   dbName?: string;
   videoMeta?: VideoMeta;
   videoRecords?: VideoRecord[];
+}
+export interface VideoInfo {
+  src: string;
+  duration?: number;
 }
 
 export interface CompositionProps {
@@ -48,7 +56,7 @@ export interface CompositionProps {
   logo?: string;
   music?: string;
   images?: string[];
-  videos?: string[];
+  videos?: VideoInfo[];
   imageSeconds?: number;
   bgGradient?: BgGradient;
   particles?: CompositionParticles;

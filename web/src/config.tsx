@@ -22,4 +22,7 @@ Schema: [
 tags and hashTags should be in English language and name, title, and summary should be in hindi.
 max length of summary should be 200 characters.
 translation should be the English translation of summary`;
-export const PROMPT_TEXT = `10 Facts about history and importance of Kumbh Mela`
+export const PROMPT_TEXT = `Facts about history and importance of Kumbh Mela`
+export const GEMINI_LIMIT_PER_MINUTE = 15;
+export const GEMINI_LIMIT_PER_PROMPT = 10;
+export const YOUTUBE_WATCH_URL = 'https://www.youtube.com/watch?v=';
