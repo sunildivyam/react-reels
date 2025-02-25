@@ -6,6 +6,7 @@ import { socket, SocketEventsEnums } from '../Services/Sockets';
 import { VideoRecord } from '../Services/Composition.interface';
 
 const RenderProgress: React.FC = () => {
+
   const [progressMsg, setProgressMsg] = useState<string>('');
   const [progressHistory, setProgressHistory] = useState<string>('');
   const [batchProgress, setBatchProgress] = useState(0);

@@ -15,6 +15,15 @@ const CompositionsHome: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [newDbName, setNewDbName] = useState('');
 
+  const reloadDb = () => {
+    if (dbName && !videoRecords?.length) {
+      getCompositionAll(dbName).then(vRecords => setVideoRecords(vRecords));
+      updateVideoEngineData && updateVideoEngineData({
+        dbName
+      });
+    }
+  }
+
   useEffect(() => {
     if (!dbNames?.length) {
       listDatabases().then(dbs => setDbNames(dbs))
@@ -22,12 +31,7 @@ const CompositionsHome: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (dbName && !videoRecords?.length) {
-      getCompositionAll(dbName).then(vRecords => setVideoRecords(vRecords));
-      updateVideoEngineData && updateVideoEngineData({
-        dbName
-      });
-    }
+    reloadDb();
   }, [dbName]);
 
   useEffect(() => {

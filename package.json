@@ -57,7 +57,7 @@
   "scripts": {
     "build:apis": "tsc -p ./tsconfig.apis.json && npm run build && cpy build/**/* dist",
     "serve:apis:dev": "set DEV=true && nodemon server.ts -p ./tsconfig.apis.json",
-    "serve:apis:prod": "node dist/server.js",
+    "serve:apis:prod": "cd dist && node server.js",
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
     "renderQuoteReel": "remotion render QuoteReel out/quote-reel.mp4",

@@ -9,6 +9,7 @@ import { VideoEngineDataContext } from './VideoEngineDataProvider';
 import VideoMetaForm from './VideoMetaForm';
 import UploadProgress from './UploadProgress';
 import { socket, SocketEventsEnums } from '../Services/Sockets';
+import { getCompositionAll } from '../Services/Composition.service';
 
 const YoutubeHome: React.FC = () => {
   const { videoEngineData, updateVideoEngineData } = useContext(VideoEngineDataContext);
@@ -21,8 +22,16 @@ const YoutubeHome: React.FC = () => {
   const [videoMeta, setVideoMeta] = useState<VideoMeta | undefined>(videoEngineData?.videoMeta);
   const [uploadStarted, setUploadStarted] = useState<boolean>(false);
 
+  const reloadDb = () => {
+    videoEngineData?.dbName && getCompositionAll(videoEngineData?.dbName)
+      .then(vRecords => updateVideoEngineData && updateVideoEngineData({
+        videoRecords: vRecords
+      }))
+  }
+
   socket.on(SocketEventsEnums.YOUTUBE_UPLOAD_BATCH_FINISH, () => {
     setUploadStarted(false);
+    reloadDb();
   });
 
   socket.on(SocketEventsEnums.YOUTUBE_UPLOAD_BATCH_FAILED, () => {
