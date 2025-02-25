@@ -10,8 +10,8 @@ import bodyParser from "body-parser";
 
 dotenv.config();
 const DEV = process.env.DEV;
-const rootPath = DEV ? "." : ".";
-// const rootPath = DEV ? "dist" : ".";
+// const rootPath = DEV ? "." : ".";
+const rootPath = DEV ? "dist" : ".";
 const app = express();
 const server = http.createServer(app);
 export const io = new Server(server, {
