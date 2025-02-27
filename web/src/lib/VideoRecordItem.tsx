@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Card, CardContent, CardMedia, Typography } from '@mui/material';
+import { Card, CardContent, Typography } from '@mui/material';
 import { VideoRecord } from '../Services/Composition.interface';
 import { YouTube } from '@mui/icons-material';
 import { YOUTUBE_WATCH_URL } from '../config';
-import { endpoints } from '../Services/Render.service';
 import RenderedVideosSlideShow from './RenderedVideosSlideShow';
 
 interface VideoRecordItemProps {
