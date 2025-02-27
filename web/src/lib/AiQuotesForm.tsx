@@ -176,7 +176,7 @@ const AiQuotesForm: React.FC<AiQuotesFormProps> = ({ onChange }) => {
             </Button>}
           </Box>
 
-          <CodeBlock style={{ display: 'flex', justifyContent: 'flex-end' }} value={quotes} onChange={(vRs: any) => setQuotes(vRs)} />
+          <CodeBlock style={{ display: 'flex', justifyContent: 'flex-end' }} value={quotes} onChange={(vRs: any) => updateQuotes(vRs)} />
           <List style={{
             maxHeight: '25em',
             overflow: 'auto'
