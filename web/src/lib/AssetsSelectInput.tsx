@@ -44,7 +44,7 @@ const AssetsSelectInput: React.FC<AssetsSelectInputProps> = ({ label, name, valu
 
   return (
     <>
-      <Box style={{ marginTop: '1em', display: 'flex', flexDirection: 'row' }}>
+      <Box style={{ marginTop: '1em', display: 'flex', flexDirection: 'row', width: '100%' }}>
         <TextField
           label={label}
           name={name}

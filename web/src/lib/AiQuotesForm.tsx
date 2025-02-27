@@ -13,6 +13,7 @@ import VideoRecordItem from './VideoRecordItem';
 import AssetsSelectInput from './AssetsSelectInput';
 import { DEFAULT_COMPSITION_INFO } from '../Services/Composition.constants';
 import CodeBlock from './CodeBlock';
+import CompositionIdsSelect from './CompositionIdsSelect';
 
 interface AiQuotesFormProps {
   defaultVideoRecord?: VideoRecord;
@@ -32,10 +33,16 @@ const AiQuotesForm: React.FC<AiQuotesFormProps> = ({ onChange }) => {
   const [images, setImages] = useState<string[]>([]);
   const [musics, setMusics] = useState<string[]>([]);
   const [videos, setVideos] = useState<string[]>([]);
-
-
+  const [compositionIds, setCompositionIds] = useState<string[]>([]);
   const [progress, setProgress] = useState<{ current: number, total: number, error?: any }>({ current: 0, total: 0 });
 
+  const updateQuotes = (qS: AiQuote[], clear: boolean = false) => {
+    setQuotes(prev => {
+      const updatedQuotes = [...qS, ...(clear ? [] : prev)];
+      localStorage.setItem(`generatedQuotes-${videoEngineData?.dbName}`, JSON.stringify(updatedQuotes));
+      return updatedQuotes;
+    });
+  }
   useEffect(() => {
     if (videoEngineData?.dbName) {
       const key = `generatedQuotes-${videoEngineData?.dbName}`;
@@ -49,11 +56,7 @@ const AiQuotesForm: React.FC<AiQuotesFormProps> = ({ onChange }) => {
     setGenerating(true);
     await startGenerating(`${prompt} ${promptFormat}`, needed,
       (current, total, rQuotes, error) => {
-        setQuotes(prev => {
-          const updatedQuotes = [...rQuotes, ...prev];
-          localStorage.setItem(`generatedQuotes-${videoEngineData?.dbName}`, JSON.stringify(updatedQuotes));
-          return updatedQuotes;
-        });
+        updateQuotes(rQuotes);
         setProgress({ current, total, error });
       });
     setGenerating(false);
@@ -68,7 +71,7 @@ const AiQuotesForm: React.FC<AiQuotesFormProps> = ({ onChange }) => {
   }
 
   const handleApplyComposition = () => {
-    const vRecords = applyCompositionsToRawAssets(compositionInfo, quotes, imagesPerVideo, images, videos, musics)
+    const vRecords = applyCompositionsToRawAssets(compositionInfo, quotes, imagesPerVideo, images, videos, musics, compositionIds)
     setVideoRecords(vRecords)
     // Run Merging
   }
@@ -84,6 +87,9 @@ const AiQuotesForm: React.FC<AiQuotesFormProps> = ({ onChange }) => {
         break;
       case 'videos':
         setVideos(strAssets);
+        break;
+      case 'compositionIds':
+        setCompositionIds(strAssets);
         break;
     }
   };
@@ -156,9 +162,20 @@ const AiQuotesForm: React.FC<AiQuotesFormProps> = ({ onChange }) => {
               )}
             </>)}
           </Box>
-          <Typography variant="h6" color="success" style={{ marginTop: '1em', marginBottom: '1em' }}>
-            Total generated: {quotes.length}
-          </Typography>
+          <Box display="flex" justifyContent="space-between" alignItems="center" flexDirection="row">
+            <Typography variant="h6" color="success" style={{ marginTop: '1em', marginBottom: '1em' }}>
+              Total generated: {quotes.length}
+            </Typography>
+            {quotes?.length && <Button
+              variant="outlined"
+              color="secondary"
+              onClick={() => updateQuotes([], true)}
+              style={{ marginTop: '1em' }}
+            >
+              Clear
+            </Button>}
+          </Box>
+
           <CodeBlock style={{ display: 'flex', justifyContent: 'flex-end' }} value={quotes} onChange={(vRs: any) => setQuotes(vRs)} />
           <List style={{
             maxHeight: '25em',
@@ -213,6 +230,9 @@ const AiQuotesForm: React.FC<AiQuotesFormProps> = ({ onChange }) => {
               onChange={(e) => setImagesPerVideo(parseInt(e.target.value, 10))}
             />
 
+            <CompositionIdsSelect value={compositionIds} multiSelect label='Composition Ids' name='compositionIds'
+              onChange={(ids) => handleAssetsChange('compositionIds', ids as string[])} />
+
             <AssetsSelectInput value={musics} assetType='music' label='Music' name='music'
               onChange={(musics) => handleAssetsChange('musics', musics as string[])} />
 
@@ -230,6 +250,7 @@ const AiQuotesForm: React.FC<AiQuotesFormProps> = ({ onChange }) => {
               color="secondary"
               onClick={handleApplyComposition}
               style={{ marginTop: '1em' }}
+              disabled={quotes?.length ? false : true}
             >
               Apply Composition to Raw Quotes
             </Button>
@@ -239,7 +260,7 @@ const AiQuotesForm: React.FC<AiQuotesFormProps> = ({ onChange }) => {
           </Box>
           {/* List Video records */}
           <Typography variant="h6" color="primary" style={{ marginTop: '1em', marginBottom: '1em' }}>
-            Total: {videoRecords?.length || 0}
+            Merged Video Records (Total: {videoRecords?.length || 0})
           </Typography>
           <CodeBlock style={{ display: 'flex', justifyContent: 'flex-end' }} value={videoRecords} onChange={(vRs: any) => setVideoRecords(vRs)} />
           <Box display="flex" justifyContent="center" alignItems="center" flexDirection="row" flexWrap="wrap">
@@ -253,6 +274,7 @@ const AiQuotesForm: React.FC<AiQuotesFormProps> = ({ onChange }) => {
               color="secondary"
               onClick={handleConfirm}
               style={{ marginTop: '1em' }}
+              disabled={videoRecords?.length ? false : true}
             >
               Confirm & Save
             </Button>

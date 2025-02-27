@@ -24,6 +24,7 @@ const RenderHome: React.FC = () => {
 
   socket.on(SocketEventsEnums.COMPOSITION_FINISH, () => {
     reloadDb();
+    setSelectedVideos([])
   });
 
   useEffect(() => {

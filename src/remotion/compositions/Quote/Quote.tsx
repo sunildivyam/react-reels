@@ -1,5 +1,5 @@
 import React from "react"
-import { AbsoluteFill, Sequence, staticFile, useVideoConfig, Audio, CalculateMetadataFunction, Img } from "remotion";
+import { AbsoluteFill, Sequence, staticFile, useVideoConfig, Audio, CalculateMetadataFunction } from "remotion";
 
 import { ImageSequence } from "../../lib/ImageSequence";
 import { VideoSchema } from "../../lib/Video";

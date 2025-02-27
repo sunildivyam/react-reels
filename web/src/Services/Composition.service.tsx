@@ -8,6 +8,7 @@ const endpoints = {
   deleteComposition: 'api/composition/delete',
   addDatabase: 'api/composition/add-db',
   listDatabases: 'api/composition/list-dbs',
+  compositionIds: 'api/composition/ids',
 }
 
 export const addDatabase = async (dbName: string): Promise<string> => {
@@ -97,3 +98,13 @@ export const getCompositionAll = async (dbName: string): Promise<Array<VideoReco
     throw error;
   }
 };
+
+export const getCompositionIds = async () => {
+  try {
+    const response = await axios.get(`${endpoints.compositionIds}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching CompositionIds:', error);
+    throw error;
+  }
+}

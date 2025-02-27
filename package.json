@@ -55,7 +55,7 @@
     "typescript": "5.5.4"
   },
   "scripts": {
-    "build:apis": "tsc -p ./tsconfig.apis.json && npm run build && cpy build/**/* dist",
+    "build:apis": "tsc -p ./tsconfig.apis.json && npm run build && cpy build/**/* dist && cpy .env dist",
     "serve:apis:dev": "set DEV=true && nodemon server.ts -p ./tsconfig.apis.json",
     "serve:apis:prod": "cd dist && node server.js",
     "build": "remotion bundle",

@@ -24,7 +24,6 @@ export const renderVideoRecords = async (dbName: string, videoRecords: VideoReco
 export const prepareRenderReadyVideos = (
   videoRecords: VideoRecord[],
 ): VideoRecord[] => {
-  console.log(videoRecords.length)
   const vRecs = videoRecords.filter(rec => !rec.outFileName && !rec.renderedOn);
   return vRecs;
 }

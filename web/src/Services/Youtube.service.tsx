@@ -97,7 +97,6 @@ export const prepareUploadReadyVideos = (
   playlistIds: string[],
   meta?: VideoMeta
 ): VideoUpload[] => {
-  console.log(videoRecords.length)
   const vRecs = videoRecords.filter(rec => rec.outFileName && !rec.youTube?.uploadedOn);
 
   const videos: VideoUpload[] = vRecs.map((vR: VideoRecord, index: number) => {

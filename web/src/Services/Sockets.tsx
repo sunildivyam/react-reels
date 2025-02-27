@@ -3,12 +3,12 @@ import { io } from 'socket.io-client';
 export const socket = io("/");
 
 socket.on("connect", () => {
-  console.log("connected to server");
+  console.log("connected to Socket server");
 });
 
 
 socket.on("disconnect", () => {
-  console.log("disconnected from server");
+  console.log("disconnected from Socket server");
 });
 
 export enum SocketEventsEnums {

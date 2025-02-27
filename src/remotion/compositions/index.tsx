@@ -30,3 +30,5 @@ export const CompositionCalculateMetaDataFns: { [key: string]: CalculateMetadata
   QuoteReel: calculateMetadataQuoteReel,
   Quote: calculateMetadataQuote,
 }
+
+export const compositionIds = Object.keys(CompositionComponents);

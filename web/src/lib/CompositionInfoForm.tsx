@@ -4,6 +4,7 @@ import CompositionPropsForm from './CompositionPropsForm';
 import { CompositionInfo, CompositionProps } from '../Services/Composition.interface';
 import CodeBlock from './CodeBlock';
 import { DEFAULT_COMPSITION_INFO } from '../Services/Composition.constants';
+import CompositionIdsSelect from './CompositionIdsSelect';
 
 interface CompositionInfoFormProps {
   initialData?: CompositionInfo;
@@ -53,27 +54,29 @@ const CompositionInfoForm: React.FC<CompositionInfoFormProps> = ({ initialData, 
     onChange && onChange(jsonObj as CompositionInfo);
   }
 
+  const handleCompositionIdChange = (name: string, id: string) => {
+    const updatedFormData = {
+      ...formData,
+      [name]: id,
+    };
+
+    setFormData(updatedFormData);
+    onChange && onChange(updatedFormData);
+  }
+
   return (
     <Box>
+      <FormLabel style={{ display: 'flex', marginTop: '1em', marginBottom: '1em' }}>Composition Information</FormLabel>
       <CodeBlock style={{ display: 'flex', justifyContent: 'flex-end' }} value={formData} onChange={handleCodeBlock} />
-      <FormLabel style={{ display: 'flex', marginTop: '1em' }}>Composition Ids</FormLabel>
       <Box display="flex" justifyContent="space-between">
-        <TextField
-          style={{ margin: '1em' }}
+        <CompositionIdsSelect value={formData.id} style={{ margin: '1em' }}
           label="Composition Id"
           name="id"
-          value={formData.id}
-          onChange={handleInputChange}
-          fullWidth
-        />
-        <TextField
-          style={{ margin: '1em' }}
+          onChange={(id) => handleCompositionIdChange('id', id as string)} />
+        <CompositionIdsSelect value={formData.originalId} style={{ margin: '1em' }}
           label="Composition Original Id"
           name="originalId"
-          value={formData.originalId}
-          onChange={handleInputChange}
-          fullWidth
-        />
+          onChange={(id) => handleCompositionIdChange('originalId', id as string)} />
       </Box>
       <FormLabel style={{ display: 'flex', marginTop: '1em' }}>Composition Meta</FormLabel>
       <Box display="flex" justifyContent="space-between">

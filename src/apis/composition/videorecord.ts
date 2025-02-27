@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { router } from "./index";
 
 import JsonDb from "../../jsondb/JsonDb";
+import { compositionIds } from "../../remotion/compositions";
 
 router.get("/all", async (req: Request, res: Response) => {
   const { dbName } = req.query;
@@ -53,6 +54,14 @@ router.post("/delete", async (req: Request, res: Response) => {
     await db.load();
     await db.delete([videoRecord]);
     res.json({ success: true });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+router.get("/ids", async (req: Request, res: Response) => {
+  try {
+    res.json(compositionIds);
   } catch (error) {
     res.status(500).send(error);
   }

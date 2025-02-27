@@ -70,7 +70,8 @@ export const applyCompositionsToRawAssets = (
   imagesPerVideo: number,
   images: string[],
   videos: string[],
-  musics: string[]
+  musics: string[],
+  compositionIds: string[],
 ): VideoRecord[] => {
   if (!cmpInfo || !quotes?.length) return [];
 
@@ -82,6 +83,7 @@ export const applyCompositionsToRawAssets = (
     let isVideoType = false;
 
     if (index < videos.length) {
+      // Videos
       isVideoType = true;
       const vidFile = videos[index];
       rVideos = vidFile ? [{
@@ -94,6 +96,7 @@ export const applyCompositionsToRawAssets = (
         vidFile && rVideos.push(vid);
       }
     } else {
+      // Images
       isVideoType = false;
 
       // 1st Image
@@ -107,13 +110,18 @@ export const applyCompositionsToRawAssets = (
       }
     }
 
+    // Music
     const music = musics[index % musics.length];
     rMusic = music || '';
+
+    // Composition Ids
+    let cId = compositionIds[Math.floor(Math.random() * compositionIds.length)];
 
     const vRecord: VideoRecord = {
       id: '',
       compositionInfo: {
         ...cmpInfo,
+        originalId: cId || cmpInfo.originalId,
         defaultProps: {
           ...cmpInfo.defaultProps,
           name: q.name,
