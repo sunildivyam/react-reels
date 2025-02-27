@@ -5,14 +5,26 @@ import { VideoEngineDataContext } from './VideoEngineDataProvider';
 import { prepareRenderReadyVideos, renderVideoRecords } from '../Services/Render.service';
 import VideoRecordList from './VideoRecordList';
 import RenderProgress from './RenderProgress';
+import { getCompositionAll } from '../Services/Composition.service';
+import { socket, SocketEventsEnums } from '../Services/Sockets';
 
 
 const RenderHome: React.FC = () => {
-  const { videoEngineData } = useContext(VideoEngineDataContext);
+  const { videoEngineData, updateVideoEngineData } = useContext(VideoEngineDataContext);
   const [uploadReadyVideos, setUploadReadyVideos] = useState<VideoRecord[]>([]);
   const [selectedVideos, setSelectedVideos] = useState<VideoRecord[]>([]);
 
-  const [isRendering, setIsRendering] = useState(false);
+
+  const reloadDb = () => {
+    videoEngineData?.dbName && getCompositionAll(videoEngineData?.dbName)
+      .then(vRecords => updateVideoEngineData && updateVideoEngineData({
+        videoRecords: vRecords
+      }))
+  }
+
+  socket.on(SocketEventsEnums.COMPOSITION_FINISH, () => {
+    reloadDb();
+  });
 
   useEffect(() => {
     videoEngineData?.videoRecords && setUploadReadyVideos(
@@ -21,9 +33,7 @@ const RenderHome: React.FC = () => {
 
   const handleStartRendering = () => {
     if (videoEngineData?.dbName && selectedVideos?.length) {
-      renderVideoRecords(videoEngineData?.dbName, selectedVideos).then((res: any) => {
-        res.started && setIsRendering(true);
-      })
+      renderVideoRecords(videoEngineData?.dbName, selectedVideos);
     }
   };
 
@@ -35,11 +45,11 @@ const RenderHome: React.FC = () => {
     <Box style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
       <Typography style={{ textAlign: 'center' }} variant="h4">Rendering Home</Typography>
       <RenderProgress />
-      <Button style={{ margin: '1em' }} variant="contained" color="primary" onClick={handleStartRendering} disabled={isRendering || !selectedVideos?.length}>
+      <Button style={{ margin: '1em' }} variant="contained" color="primary" onClick={handleStartRendering} disabled={!selectedVideos?.length}>
         Start Rendering
       </Button>
       <VideoRecordList title={'Ready to Render Video Records'} records={uploadReadyVideos} onSelect={handleVideoRecordsSelect} />
-      <Button style={{ margin: '1em' }} variant="contained" color="primary" onClick={handleStartRendering} disabled={isRendering || !selectedVideos?.length}>
+      <Button style={{ margin: '1em' }} variant="contained" color="primary" onClick={handleStartRendering} disabled={!selectedVideos?.length}>
         Start Rendering
       </Button>
     </Box>

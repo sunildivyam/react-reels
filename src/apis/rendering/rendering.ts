@@ -5,7 +5,7 @@ import { renderAll } from "../../remotion/rendering/helpers";
 import { OUT_DIR, REMOTION_BUNDLE_PATH } from "./rendering.constants";
 
 // Out Videos
-router.use("/out/videos", express.static(`${OUT_DIR}`));
+router.use("/videos/out", express.static(`${OUT_DIR}`));
 
 router.post("/videorecords", async (req: Request, res: Response) => {
   const { dbName, videoRecords } = req.body;

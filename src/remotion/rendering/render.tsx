@@ -46,10 +46,10 @@ async function main() {
 
   try {
     const { json, bundleLocation } = await getCmdArguments();
-    const videoRecords = await startRender(json, bundleLocation || '');
+    const videoRecords = await startRender(json);
     await renderAll(json, videoRecords, bundleLocation || '')
       .then(() => {
-        appEvents.emit(AppEventsEnum.RENDER_FINISHED);
+        appEvents.emit(AppEventsEnum.RENDER_FINISH);
         filelog('All Renders Completed.');
         filelog(`Moving all files and data to ${PROCESSED_DIR}`);
 

@@ -42,14 +42,16 @@ const AssetsSlideShow: React.FC<AssetsSlideShowProps> = ({ assets, currentAsset,
   }
 
   const handleNext = () => {
-    const currentIndex = findCurrentAssetIndex();
-    const nextIndex = (currentIndex + 1) % assets.length;
+    let currentIndex = findCurrentAssetIndex();
+    currentIndex++;
+    const nextIndex = currentIndex >= assets.length ? 0 : currentIndex;
     setCurrentSlide(assets[nextIndex]);
   };
 
   const handlePrevious = () => {
-    const currentIndex = findCurrentAssetIndex();
-    const prevIndex = (currentIndex - 1 + assets.length) % assets.length;
+    let currentIndex = findCurrentAssetIndex();
+    currentIndex--;
+    const prevIndex = currentIndex <= 0 ? assets.length - 1 : currentIndex;
     setCurrentSlide(assets[prevIndex]);
   };
 

@@ -57,28 +57,6 @@ export interface Thumbnails {
   standard?: Thumbnail;
 }
 
-
-export interface YoutubeUploadBatch {
-  id: string;
-  title: string;
-  tags: string[];
-  hashTags: string[];
-  description: string;
-  channelId: string;
-  channelTitle: string;
-  playlistIds: string[];
-  categoryId: VideoCategoryEnums;
-  publishStartDate: Date; // Start publish on this date, publishStartDate + (i * publishGapHours)
-  publishGapHrs: number; // Ex. Every 2 hour, means 12 videos per day,
-  dbName: string;
-  videos: [
-    {
-      videoRecordId: string;  // Video records
-      videoUpload: VideoUpload;
-    }
-  ]
-}
-
 export enum VideoCategoryEnums {
   "Film & Animation" = "1",
   "Autos & Vehicles" = "2",
@@ -119,4 +97,20 @@ export interface VideoMeta {
   hashTags: string[];
   startPublishFrom: Date;
   publishDelayHours: number;
+}
+
+
+export interface YoutubeUploadProgress {
+  dbName: string;
+  timeStartedMS: number;
+  timeEllapsedMS: number;
+  progress: number;
+  currentItem: {
+    videoUpload?: VideoUpload;
+    progress?: number;
+    error?: string;
+  };
+  currentItemNo: number;
+  totalItems: number;
+  error?: string;
 }

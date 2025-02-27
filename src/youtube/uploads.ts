@@ -1,58 +1,54 @@
 import { OAuth2Client } from "google-auth-library";
-import { VideoUpload } from "./youtube.interface";
+import { VideoUpload, YoutubeUploadProgress } from "./youtube.interface";
 import { createReadStream, statSync } from "fs";
 import { google, youtube_v3 } from "googleapis";
 import { appEvents, AppEventsEnum } from "../core-lib/AppEvents";
-import { delay, resolvedPath } from "../core-lib/Utils";
+import { resolvedPath, toPercentage } from "../core-lib/Utils";
 import "../sockets/index";
 import JsonDb from "../jsondb/JsonDb";
 import { VideoRecord, YoutubeInfo } from "../jsondb/db.models";
 
-// let db: JsonDb;
-
-// appEvents.on(AppEventsEnum.YOUTUBE_UPLOAD_BATCH_START, async (e) => {
-//   db = new JsonDb(e.dbName);
-//   await db.load();
-// });
+const updatedProgress = (p: YoutubeUploadProgress): YoutubeUploadProgress => {
+  p.timeEllapsedMS = Date.now() - p.timeStartedMS;
+  return p;
+};
 
 appEvents.on(
   AppEventsEnum.YOUTUBE_UPLOAD_FINISH,
-  async (e: {
-    videoUpload: VideoUpload;
-    videoFilePath: string;
-    dbName: string;
-  }) => {
+  async (e: YoutubeUploadProgress) => {
     const db = new JsonDb(e.dbName);
     await db.load();
 
-    const { videoUpload } = e;
-    const vRecord: VideoRecord | undefined = db.find(
-      videoUpload.id as string,
-    ) as VideoRecord;
-    if (vRecord) {
-      // vRecord.outFileName = videoFilePath;
-      vRecord.youTube = {
-        ...vRecord.youTube,
-        videoId: videoUpload.youtubeVideoId,
-        uploadedOn: new Date(),
-        publishedAt: new Date(videoUpload.publishAt || ""),
-      } as YoutubeInfo;
-      db.update([vRecord]);
+    const { videoUpload } = e.currentItem;
+    if (videoUpload) {
+      const vRecord: VideoRecord | undefined = db.find(
+        videoUpload.id as string,
+      ) as VideoRecord;
+      if (vRecord) {
+        // vRecord.outFileName = videoFilePath;
+        vRecord.youTube = {
+          ...vRecord.youTube,
+          videoId: videoUpload.youtubeVideoId,
+          uploadedOn: new Date(),
+          publishedAt: new Date(videoUpload.publishAt || ""),
+        } as YoutubeInfo;
+        db.update([vRecord]);
+      }
     }
   },
 );
 
 export const uploadVideo = async (
   auth: OAuth2Client,
-  dbName: string,
-  videoUpload: Partial<VideoUpload>,
-): Promise<youtube_v3.Schema$Video> => {
+  videoUpload: VideoUpload,
+  uploadProgress: YoutubeUploadProgress,
+): Promise<VideoUpload> => {
   try {
     let videoFilePath = videoUpload.videoFilePath || "";
+
     if (!videoFilePath) {
       const err = "VideoFilePath is required";
       console.log(err);
-      appEvents.emit(AppEventsEnum.YOUTUBE_UPLOAD_FAILED, err);
       throw new Error(err);
     }
 
@@ -63,17 +59,16 @@ export const uploadVideo = async (
 
     inputVideoStream.on("data", (chunk) => {
       uploadedSize += chunk.length;
-      const progress = ((uploadedSize / fileSize) * 100).toFixed(2);
-      // Emit Video progress event (videoUpload.id, percentage)
-      appEvents.emit(AppEventsEnum.YOUTUBE_UPLOAD_PROGRESS, {
-        videoUpload,
-        progress,
-      });
-    });
 
-    appEvents.emit(AppEventsEnum.YOUTUBE_UPLOAD_START, {
-      videoUpload,
-      videoFilePath,
+      // Emit Video progress event (videoUpload.id, percentage)
+      uploadProgress.currentItem.progress = toPercentage(
+        uploadedSize,
+        fileSize,
+      );
+      appEvents.emit(
+        AppEventsEnum.YOUTUBE_UPLOAD_PROGRESS,
+        updatedProgress(uploadProgress),
+      );
     });
 
     const service = google.youtube("v3");
@@ -105,28 +100,34 @@ export const uploadVideo = async (
     const id = (response.data as youtube_v3.Schema$Video).id;
     const publishAt = (response.data as youtube_v3.Schema$Video).snippet
       ?.publishedAt;
-    const uploaded = { ...videoUpload, youtubeVideoId: id, publishAt };
 
-    appEvents.emit(AppEventsEnum.YOUTUBE_UPLOAD_FINISH, {
-      dbName,
-      videoUpload: uploaded,
-      videoFilePath,
-    });
+    // Update uploaded info
+    if (uploadProgress.currentItem.videoUpload) {
+      uploadProgress.currentItem.videoUpload.youtubeVideoId = id || "";
+      uploadProgress.currentItem.videoUpload.publishAt = publishAt || "";
+    }
+
     // Add to playlists
+    let addedToPlaylists = false;
     for (const pId of videoUpload.playlistIds || []) {
       if (id && pId) {
-        await addToPlaylists(auth, pId, id);
-        appEvents.emit(AppEventsEnum.YOUTUBE_PLAYLIST_ITEM_ADDED, {
-          videoUpload: uploaded,
-          playListId: pId,
+        await addToPlaylists(auth, pId, id).catch((error) => {
+          addedToPlaylists = false;
+          uploadProgress.currentItem.error = error.message;
+          appEvents.emit(
+            AppEventsEnum.YOUTUBE_UPLOAD_FAILED,
+            updatedProgress(uploadProgress),
+          );
         });
+        addedToPlaylists = true;
       }
     }
 
-    return { ...uploaded };
+    addedToPlaylists &&
+      appEvents.emit(AppEventsEnum.YOUTUBE_PLAYLIST_ITEM_ADDED, uploadProgress);
+
+    return videoUpload;
   } catch (err) {
-    console.log("Failed to upload video " + err);
-    appEvents.emit(AppEventsEnum.YOUTUBE_UPLOAD_FAILED, err);
     throw err;
   }
 };
@@ -136,31 +137,92 @@ export const uploadVideos = async (
   dbName: string,
   videoUploads: VideoUpload[],
 ) => {
-  const result = [];
-  appEvents.emit(AppEventsEnum.YOUTUBE_UPLOAD_BATCH_START, {
-    videoUploads,
-  });
+  let errorCount = 0;
+
+  const videoUploadCount = videoUploads.length;
+
+  let uploadProgress: YoutubeUploadProgress = {
+    dbName: dbName,
+    timeStartedMS: Date.now(),
+    timeEllapsedMS: 0,
+    progress: 0,
+    currentItem: {
+      videoUpload: undefined,
+      progress: 0,
+      error: undefined,
+    },
+    currentItemNo: 0,
+    totalItems: videoUploadCount,
+  };
+
+  // Batch Upload start
+  appEvents.emit(
+    AppEventsEnum.YOUTUBE_UPLOAD_BATCH_START,
+    updatedProgress(uploadProgress),
+  );
+
   for (const [index, vid] of videoUploads.entries()) {
     try {
-      const uploaded = await uploadVideo(auth, dbName, vid);
-      result.push(uploaded);
-      appEvents.emit(AppEventsEnum.YOUTUBE_UPLOAD_BATCH_PROGRESS, {
-        dbName,
-        uploaded,
-        progress: (((index + 1) / videoUploads.length) * 100).toFixed(2),
-      });
-    } catch (err: any) {
-      if (err?.status == "429" || err.code == "429") {
-        videoUploads.unshift(vid);
-        await delay(30000);
+      const currentVuNo = index + 1;
+      // Update render Progress
+      uploadProgress = {
+        ...uploadProgress,
+        progress: toPercentage(index, videoUploadCount),
+        currentItem: {
+          videoUpload: vid,
+          error: "",
+          progress: 0,
+        },
+        currentItemNo: currentVuNo,
+        totalItems: videoUploadCount,
+      };
+
+      appEvents.emit(
+        AppEventsEnum.YOUTUBE_UPLOAD_BATCH_PROGRESS,
+        updatedProgress(uploadProgress),
+      );
+      appEvents.emit(
+        AppEventsEnum.YOUTUBE_UPLOAD_START,
+        updatedProgress(uploadProgress),
+      );
+
+      const uploaded = await uploadVideo(auth, vid, uploadProgress);
+
+      uploadProgress.currentItem.videoUpload = uploaded;
+      uploadProgress.progress = toPercentage(currentVuNo, videoUploadCount);
+
+      appEvents.emit(
+        AppEventsEnum.YOUTUBE_UPLOAD_FINISH,
+        updatedProgress(uploadProgress),
+      );
+    } catch (error: any) {
+      uploadProgress.currentItem.error = error.message;
+      appEvents.emit(
+        AppEventsEnum.YOUTUBE_UPLOAD_FAILED,
+        updatedProgress(uploadProgress),
+      );
+      errorCount++;
+
+      if (errorCount >= 3) {
+        // Batch Uplaod Error
+        uploadProgress.error = error.message;
+        uploadProgress.progress = 100;
+
+        appEvents.emit(
+          AppEventsEnum.YOUTUBE_UPLOAD_BATCH_FAILED,
+          updatedProgress(uploadProgress),
+        );
+        break;
       }
     }
   }
 
-  appEvents.emit(AppEventsEnum.YOUTUBE_UPLOAD_BATCH_FINISH, {
-    result,
-  });
-  return result;
+  // Batch Upload FINISH
+  uploadProgress.progress = 100;
+  appEvents.emit(
+    AppEventsEnum.YOUTUBE_UPLOAD_BATCH_FINISH,
+    updatedProgress(uploadProgress),
+  );
 };
 
 export const addToPlaylists = async (

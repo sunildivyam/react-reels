@@ -28,15 +28,15 @@ class JsonDb {
     writeDeferMs: WRITE_DEFER_MS
   };
 
-  public static instances: Record<string, JsonDb> = {};
+  public static instances: Record<string, { createdOn: Date, value: JsonDb }> = {};
 
   constructor(dbName: string) {
     // Stops creating Multiple instances of Same Db
     const existingInstance = JsonDb.instances[dbName];
     if (existingInstance) {
-      return existingInstance;
+      return existingInstance.value;
     } else {
-      JsonDb.instances[dbName] = this;
+      JsonDb.instances[dbName] = { createdOn: new Date(), value: this };
     }
 
     // Resolve Path
@@ -186,7 +186,7 @@ class JsonDb {
       r.id = id;
     });
 
-    this._eventEmitter.emit(CHANGED_EVENT);
+    this._eventEmitter.emit(CHANGED_EVENT, records);
     return records;
   }
 
@@ -196,7 +196,7 @@ class JsonDb {
     records.forEach((r: any) => {
       r.id && delete this._json[r.id];
     });
-    this._eventEmitter.emit(CHANGED_EVENT);
+    this._eventEmitter.emit(CHANGED_EVENT, records);
   }
 
   public find(id: string): object | undefined {
@@ -262,7 +262,6 @@ class JsonDb {
   public all(): Array<object> {
     this.checkAndLoadDb();
     const results: Array<object> = Object.entries(this._json).map(ent => ({ ...ent[1], [DB_ID]: ent[0] }));
-
     return results;
   }
 }

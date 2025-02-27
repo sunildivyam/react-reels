@@ -20,7 +20,6 @@ const YoutubeHome: React.FC = () => {
   const [playlists, setPlaylists] = useState<Array<VideoPlaylist>>([]);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [videoMeta, setVideoMeta] = useState<VideoMeta | undefined>(videoEngineData?.videoMeta);
-  const [uploadStarted, setUploadStarted] = useState<boolean>(false);
 
   const reloadDb = () => {
     videoEngineData?.dbName && getCompositionAll(videoEngineData?.dbName)
@@ -29,13 +28,9 @@ const YoutubeHome: React.FC = () => {
       }))
   }
 
-  socket.on(SocketEventsEnums.YOUTUBE_UPLOAD_BATCH_FINISH, () => {
-    setUploadStarted(false);
+  socket.on(SocketEventsEnums.YOUTUBE_UPLOAD_FINISH, () => {
     reloadDb();
-  });
-
-  socket.on(SocketEventsEnums.YOUTUBE_UPLOAD_BATCH_FAILED, () => {
-    setUploadStarted(false);
+    setSelectedVideos([]);
   });
 
   useEffect(() => {
@@ -69,7 +64,7 @@ const YoutubeHome: React.FC = () => {
 
   const handleUpload = () => {
     const videosToUpload = uploadReadyVideos.filter(v => selectedVideos.includes(v.id));
-    videoEngineData?.dbName && videosToUpload?.length && uploadVideos(videoEngineData?.dbName, videosToUpload).then(() => setUploadStarted(true));
+    videoEngineData?.dbName && videosToUpload?.length && uploadVideos(videoEngineData?.dbName, videosToUpload);
   };
 
   const handleLogin = async () => {
@@ -99,7 +94,7 @@ const YoutubeHome: React.FC = () => {
         color="secondary"
         style={{ marginTop: '20px' }}
         onClick={handleUpload}
-        disabled={selectedVideos.length === 0 || uploadStarted}
+        disabled={selectedVideos.length === 0}
       >
         Start Upload
       </Button></Box>
@@ -113,7 +108,7 @@ const YoutubeHome: React.FC = () => {
         color="secondary"
         style={{ marginTop: '20px' }}
         onClick={handleUpload}
-        disabled={selectedVideos.length === 0 || uploadStarted}
+        disabled={selectedVideos.length === 0}
       >
         Start Upload
       </Button>

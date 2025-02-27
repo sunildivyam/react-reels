@@ -20,7 +20,7 @@ router.post("/add-db", async (req: Request, res: Response) => {
 
   try {
     const db = new JsonDb(dbName as string);
-    await db.load(true);
+    await db.load();
     res.json(dbName);
   } catch (error) {
     res.status(500).send(error);

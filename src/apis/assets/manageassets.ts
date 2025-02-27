@@ -152,7 +152,7 @@ router.post(
               fs.mkdirSync(thumbDir, { recursive: true });
             }
           }
-          console.log("REQ", file.filename);
+
           if (fileType === "image") {
             await sharp(file.path)
               .resize(IMAGE_THUMB_SIZE)

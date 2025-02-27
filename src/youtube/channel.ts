@@ -24,8 +24,8 @@ export const getPlaylists = async (
           }) as VideoPlaylist,
       ) || []
     );
-  } catch (err) {
-    console.log("Failed to list playlists " + err);
+  } catch (err: any) {
+    console.log("Failed to list playlists " + err.status || err.code + ': ' + err.message);
     throw err;
   }
 };
@@ -65,8 +65,11 @@ export const getChannel = async (auth: OAuth2Client): Promise<ChannelInfo> => {
     };
 
     return channelInfo;
-  } catch (err) {
-    console.log("The API returned an error: " + err);
+  } catch (err: any) {
+    console.log(
+      "The API returned an error: " + +err.status ||
+        err.code + ": " + err.message,
+    );
     throw err;
   }
 };

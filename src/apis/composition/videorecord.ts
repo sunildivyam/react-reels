@@ -8,7 +8,7 @@ router.get("/all", async (req: Request, res: Response) => {
 
   try {
     const db = new JsonDb(dbName as string);
-    await db.load(true);
+    await db.load();
     const all = db.all();
     res.json(all);
   } catch (error) {
@@ -22,7 +22,7 @@ router.post("/add", async (req: Request, res: Response) => {
 
   try {
     const db = new JsonDb(dbName as string);
-    await db.load(true);
+    await db.load();
     const added = await db.add(
       isSingleRecord ? [videoRecord] : [...videoRecord],
     );
@@ -37,7 +37,7 @@ router.post("/update", async (req: Request, res: Response) => {
 
   try {
     const db = new JsonDb(dbName as string);
-    await db.load(true);
+    await db.load();
     const [updated] = await db.update([videoRecord]);
     res.json(updated);
   } catch (error) {
@@ -50,7 +50,7 @@ router.post("/delete", async (req: Request, res: Response) => {
 
   try {
     const db = new JsonDb(dbName as string);
-    await db.load(true);
+    await db.load();
     await db.delete([videoRecord]);
     res.json({ success: true });
   } catch (error) {

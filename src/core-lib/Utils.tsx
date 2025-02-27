@@ -41,3 +41,5 @@ export async function delay(ms: number) {
     setTimeout(() => resolve(true), ms)
   });
 }
+
+export const toPercentage = (n: number, total: number) => Math.ceil((n / total) * 100);

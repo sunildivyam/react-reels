@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ChannelInfo, VideoCategoryEnums, VideoMeta, VideoPlaylist, VideoUpload, YoutubeUploadBatch } from './youtube.interface';
+import { ChannelInfo, VideoCategoryEnums, VideoMeta, VideoPlaylist, VideoUpload } from './youtube.interface';
 import { VideoRecord } from './Composition.interface';
 import { MAX_HASHTAGS_IN_TITLE } from '../config';
 
@@ -8,10 +8,7 @@ const endpoints = {
   youtubeChannel: 'api/youtube/channel',
   youtubeAuthorized: 'api/youtube/authorized',
   youtubeAuthorize: 'api/youtube/auth',
-  youtubeUploads: 'api/youtube/uploads',
-  youtubeUploadsAll: 'api/youtube/alluploads',
   youtubeUpload: 'api/youtube/upload',
-
 }
 
 
@@ -55,27 +52,6 @@ export const getYoutubeChannel = async (): Promise<ChannelInfo> => {
 export const youtubeAuthorized = async (): Promise<boolean> => {
   try {
     const response = await axios.get(endpoints.youtubeAuthorized);
-    return response.data;
-  } catch (error) {
-    console.error('Error Authorizing YouTube channel:', error);
-    throw error;
-  }
-};
-
-
-export const getYoutubeUploadBatch = async (batchId: string): Promise<YoutubeUploadBatch> => {
-  try {
-    const response = await axios.get(`${endpoints.youtubeUploads}?batchUploadId=${batchId}`);
-    return response.data;
-  } catch (error) {
-    console.error('Error Authorizing YouTube channel:', error);
-    throw error;
-  }
-};
-
-export const getYoutubeUploadBatchAll = async (): Promise<YoutubeUploadBatch> => {
-  try {
-    const response = await axios.get(`${endpoints.youtubeUploadsAll}`);
     return response.data;
   } catch (error) {
     console.error('Error Authorizing YouTube channel:', error);

@@ -1,8 +1,9 @@
 import { VideoRecord } from "./Composition.interface";
 import axios from 'axios';
 
-const endpoints = {
+export const endpoints = {
   renderVideoRecords: 'api/render/videorecords',
+  outVideos: 'api/render/videos', // Static route for out (rendered Videos)
 }
 
 
