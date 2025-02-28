@@ -23,6 +23,7 @@ export interface VideoPlaylist {
   id: string;
   title: string;
   description: string;
+  thumbnails: Thumbnails;
 }
 
 export interface VideoUpload {
@@ -35,27 +36,23 @@ export interface VideoUpload {
   publishAt: string;
   notifySubscribers: boolean;
   playlistIds: Array<string>;
-  thumbnail: {
-    url: string;
-    width: number;
-    height: number;
-  };
+  thumbnails: Thumbnails;
+  videoFilePath: string;
+  youtubeVideoId?: string;
 }
 
-export interface YoutubeUploadBatch {
-  id: string;
-  tags: string[];
-  hashTags: string[];
-  description: string;
-  channelId: string;
-  channelTitle: string;
-  playlistIds: string[];
-  categoryId: VideoCategoryEnums;
-  publishGapHrs: number; // Ex. Every 2 hour, means 12 videos per day
-  videos: {
-    id: string;
-    videoRecordId: string;
-  };
+export interface Thumbnail {
+  height?: number | null;
+  url?: string | null;
+  width?: number | null;
+}
+
+export interface Thumbnails {
+  default?: Thumbnail;
+  high?: Thumbnail;
+  maxres?: Thumbnail;
+  medium?: Thumbnail;
+  standard?: Thumbnail;
 }
 
 export enum VideoCategoryEnums {
@@ -90,4 +87,19 @@ export enum VideoCategoryEnums {
   "Shorts" = "42",
   "Shows" = "43",
   "Trailers" = "44",
+}
+
+export interface YoutubeUploadProgress {
+  dbName: string;
+  timeStartedMS: number;
+  timeEllapsedMS: number;
+  progress: number;
+  currentItem: {
+    videoUpload?: VideoUpload;
+    progress?: number;
+    error?: string;
+  };
+  currentItemNo: number;
+  totalItems: number;
+  error?: string;
 }

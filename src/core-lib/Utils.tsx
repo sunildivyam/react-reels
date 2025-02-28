@@ -35,3 +35,11 @@ export function getETA(progressPercent: number, progressTimeMs: number, complete
 export function generateUniqueId(): string {
   return `id-${Math.random().toString(36).substring(2, 9)}`;
 }
+
+export async function delay(ms: number) {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(true), ms)
+  });
+}
+
+export const toPercentage = (n: number, total: number) => Math.ceil((n / total) * 100);

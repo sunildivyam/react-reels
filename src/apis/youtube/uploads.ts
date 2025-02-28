@@ -2,15 +2,13 @@ import { Request, Response } from "express";
 import { router } from "./index";
 
 import { getAuth } from "../../youtube/auth";
-import { uploadVideo } from "../../youtube/uploads";
-import { resolvedPath } from "../../core-lib/Utils";
+import { uploadVideos } from "../../youtube/uploads";
 
 router.post("/upload", async (req: Request, res: Response) => {
-  const { videoUpload, videoFilePath } = req.body;
-  const vFile = resolvedPath(videoFilePath);
+  const { dbName, videoUploads } = req.body;
 
   try {
-    const uploaded = await uploadVideo(getAuth(), videoUpload, vFile);
+    const uploaded = await uploadVideos(getAuth(), dbName, videoUploads);
 
     res.json(uploaded);
   } catch (error) {

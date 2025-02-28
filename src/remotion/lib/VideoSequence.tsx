@@ -35,7 +35,7 @@ export const VideoSequence: React.FC<VideoSequenceProps> = ({ videos, filter, tr
 
     const videoSequences = videos.map((video, index) => <React.Fragment key={index}>
       <TransitionSeries.Sequence
-        durationInFrames={video.duration + (transitionDuration / 2)}>
+        durationInFrames={(video.duration ?? 0) + (transitionDuration / 2)}>
         <Video video={video} filter={filter || ''} />
       </TransitionSeries.Sequence >
       {index < (videos.length - 1) && <TransitionSeries.Transition

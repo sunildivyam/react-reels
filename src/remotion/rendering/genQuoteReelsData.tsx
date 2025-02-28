@@ -1,14 +1,13 @@
 import { random } from "remotion";
-import { getFilesFromDirectory, saveToJsonFile } from '../../core-lib/FileUtils';
+import { getFilesFromDirectory } from '../../core-lib/FileUtils';
 import { readJsonFile } from "../../core-lib/FileUtils";
 import path from 'path';
 import { ASSETS_DIRS, HD_REEL, PUBLIC_DIR } from "../constants";
 import yargs from "yargs";
 import JsonDb from "../../jsondb/JsonDb";
-import { VideoRecord } from "../../jsondb/db.models";
+import { VideoRecord } from "../..//remotion/interfaces";
 
 const SOURCE_JSON_FILE = `${PUBLIC_DIR}`;
-const DEST_JSON_FILE = `${PUBLIC_DIR}/${ASSETS_DIRS.DATA}`;
 
 export const IMAGES_PER_VIDEO = 1;
 export const VIDEOS_PER_VIDEO = 1;
@@ -95,10 +94,13 @@ async function getUpdatedJson(json: Array<unknown>,
         images: rImages,
         music: rMusic,
         bgGradient: {
-          color1: "rgb(144, 61, 2)",
-          color2: "rgb(255, 152, 35)",
-          color3: "rgb(158, 71, 42)",
-          color4: "rgb(73, 45, 3)"
+          colors: [
+            "rgb(144, 61, 2)",
+            "rgb(255, 152, 35)",
+            "rgb(158, 71, 42)",
+            "rgb(73, 45, 3)"
+          ],
+          angle: 45
         }
       }
     }
@@ -128,6 +130,12 @@ async function getCmdArguments() {
       description: "Source Json File Folder",
       demandOption: "Source Json File path relative to public folder "
     })
+    .option("dbName", {
+      alias: "b",
+      type: "string",
+      description: "Database name",
+      demandOption: "Data base name for JsonDb "
+    })
     .option("durationInSeconds", {
       alias: "d",
       type: "number",
@@ -154,9 +162,9 @@ async function getCmdArguments() {
     })
     .help().argv;
 
-  const { durationInSeconds, compositionIds, imagesPerVideo, categoryImage, sourceJson } = await options;
+  const { durationInSeconds, compositionIds, imagesPerVideo, categoryImage, sourceJson, dbName } = await options;
 
-  return { durationInSeconds, compositionIds: compositionIds ? compositionIds.split(', ').map(s => s.trim()) : [], imagesPerVideo, categoryImage, sourceJson };
+  return { durationInSeconds, compositionIds: compositionIds ? compositionIds.split(', ').map(s => s.trim()) : [], imagesPerVideo, categoryImage, sourceJson, dbName };
 }
 
 async function saveToJsonDb(dbName: string, compositions: Array<object>) {
@@ -183,16 +191,16 @@ async function saveToJsonDb(dbName: string, compositions: Array<object>) {
 export const prepareJson = async () => {
   try {
     const videoOptions = await getCmdArguments();
-    const { compositionIds, sourceJson } = videoOptions;
+    const { sourceJson, dbName } = videoOptions;
     const { images, videos, musics } = await readDataFromDirectories();
     const json = await readJsonFile(path.join(SOURCE_JSON_FILE, `${sourceJson}`));
     const quotes = toUniqueArray(json);
 
     const updatedJson = await getUpdatedJson(quotes as Array<object>, images, videos, musics, videoOptions);
 
-    await saveToJsonFile(updatedJson, `${DEST_JSON_FILE}/${compositionIds[0]}.json`);
+    // await saveToJsonFile(updatedJson, `${DEST_JSON_FILE}/${compositionIds[0]}.json`);
 
-    await saveToJsonDb(compositionIds[0], updatedJson);
+    await saveToJsonDb(dbName, updatedJson);
 
     console.log('Updated file saved');
     console.log('SUMMARY:');

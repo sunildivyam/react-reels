@@ -1,5 +1,5 @@
 import React from 'react';
-import { AbsoluteFill, random, useCurrentFrame, useVideoConfig } from 'remotion';
+import { AbsoluteFill, useCurrentFrame, useVideoConfig } from 'remotion';
 import { visualizeAudio, AudioData } from "@remotion/media-utils";
 import { getAmplitude, getColorFromValue, stringToRGBType } from './AudioHelpers';
 

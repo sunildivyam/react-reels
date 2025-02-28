@@ -1,5 +1,5 @@
-import { selectComposition, renderMedia, StitchingState } from "@remotion/renderer";
-import { encodeFileName, formatDuration, getETA, resolvedPath } from "../../core-lib/Utils";
+import { selectComposition, renderMedia } from "@remotion/renderer";
+import { encodeFileName, formatDuration, getETA, resolvedPath, toPercentage } from "../../core-lib/Utils";
 import { readJsonFile } from "../../core-lib/FileUtils";
 import fs from 'fs';
 import fse from 'fs-extra';
@@ -9,16 +9,13 @@ import filelog from '../../core-lib/Logger';
 import { entryPoint, OUT_DIR, RENDER_MEDIA_CONFIG } from "../constants";
 import { appEvents, AppEventsEnum } from "../../core-lib/AppEvents";
 import JsonDb from "../../jsondb/JsonDb";
-import { LogicalOperatorEnum, RelationalOperatorEnum, VideoRecord } from "../../jsondb/db.models";
+import { LogicalOperatorEnum, RelationalOperatorEnum } from "../../jsondb/db.models";
+import { RenderProgressType, RenderProgressItemType } from "./rendering.interface";
+import { VideoRecord } from "../interfaces";
 
-type RenderProgressType = {
-  renderedFrames: number;
-  encodedFrames: number;
-  encodedDoneIn: number | null;
-  renderedDoneIn: number | null;
-  renderEstimatedTime: number;
-  progress: number;
-  stitchStage: StitchingState;
+const updatedProgress = (p: RenderProgressType): RenderProgressType => {
+  p.timeEllapsedMS = Date.now() - p.timeStartedMS;
+  return p;
 }
 
 /**
@@ -29,7 +26,7 @@ type RenderProgressType = {
 export const buildBundle = async (outDir: string = ''): Promise<string> => {
   // You only have to do this once, you can reuse the bundle.
   const entry = entryPoint;
-  filelog('Creating a Webpack bundle of the video')
+  filelog('Creating a Webpack bundle of the video');
 
   if (outDir && !path.isAbsolute(outDir)) {
     outDir = resolvedPath(outDir);
@@ -65,8 +62,7 @@ export const buildBundle = async (outDir: string = ''): Promise<string> => {
   }
 }
 
-
-export function isProgressChanged(prevProgress: RenderProgressType, currentProgress: RenderProgressType): boolean {
+export function isProgressChanged(prevProgress: RenderProgressItemType, currentProgress: RenderProgressItemType): boolean {
   return (
     prevProgress.renderedFrames !== currentProgress.renderedFrames ||
     prevProgress.encodedFrames !== currentProgress.encodedFrames ||
@@ -89,19 +85,21 @@ export const moveProcessedData = (srcDirectory: string, destDirectory: string, d
 
   dirs.forEach((dir) => {
     const srcPath = path.join(srcDir, dir);
-    const destPath = path.join(destDir, dir);
-    if (!fs.existsSync(destPath)) {
-      fs.mkdirSync(destPath, { recursive: true });
-    }
-    const files = fs.readdirSync(srcPath);
-    files.forEach((file) => {
-      const srcFile = path.join(srcPath, file);
-      const destFile = path.join(destPath, file);
-      if (fs.lstatSync(srcFile).isFile()) {
-        fse.copySync(srcFile, destFile, { overwrite: true });
-        // fse.moveSync(srcFile, destFile, { overwrite: true });
+    if (fs.existsSync(srcPath)) {
+      const destPath = path.join(destDir, dir);
+      if (!fs.existsSync(destPath)) {
+        fs.mkdirSync(destPath, { recursive: true });
       }
-    });
+      const files = fs.readdirSync(srcPath);
+      files.forEach((file) => {
+        const srcFile = path.join(srcPath, file);
+        const destFile = path.join(destPath, file);
+        if (fs.lstatSync(srcFile).isFile()) {
+          fse.copySync(srcFile, destFile, { overwrite: true });
+          // fse.moveSync(srcFile, destFile, { overwrite: true });
+        }
+      });
+    }
   });
 };
 
@@ -109,8 +107,9 @@ export const moveProcessedData = (srcDirectory: string, destDirectory: string, d
 export const renderOne = async (
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   singleVideo: VideoRecord,
-  bundleLocation: string
-) => {
+  bundleLocation: string,
+  renderProgress: RenderProgressType,
+): Promise<VideoRecord> => {
   const { id, width, height, fps, durationInSeconds, rangeInSeconds, transparent, defaultProps } = singleVideo.compositionInfo;
   // Parametrize the video by passing arbitrary props to your component.
 
@@ -129,17 +128,16 @@ export const renderOne = async (
   composition = { ...composition, width, height, fps, durationInFrames: fps * durationInSeconds };
 
 
-  singleVideo.outFileName = `${encodeFileName((defaultProps as any).title || singleVideo.id)}-${Date.now()}.${transparent ? 'webm' : 'mp4'}`
-  const outputLocation = `${OUT_DIR}/${singleVideo.outFileName}`;
+  const outFileName = `${encodeFileName((defaultProps as any).title || singleVideo.id)}-${Date.now()}.${transparent ? 'webm' : 'mp4'}`
+  const outputLocation = `${OUT_DIR}/${outFileName}`;
   const startTime = Date.now();
-
+  singleVideo.outFileName = outputLocation;
   filelog(`${outputLocation} \n`);
 
   const cFrameRange: [number, number] = rangeInSeconds?.length ? [rangeInSeconds[0] * fps, rangeInSeconds[1] * fps] : [0, composition.durationInFrames - 1];
 
-  let prevProgress = {} as RenderProgressType;
+  let prevProgress = {} as RenderProgressItemType;
 
-  appEvents.emit(AppEventsEnum.COMPOSITION_START, singleVideo);
   await renderMedia({
     composition,
     outputLocation,
@@ -169,9 +167,14 @@ export const renderOne = async (
       if (isProgressChanged(prevProgress, rProgress)) {
         const eta = getETA(progress, Date.now() - startTime, renderedFrames, cFrameRange[1] - cFrameRange[0]);
         const totalFrames = (cFrameRange[1] - cFrameRange[0] + 1);
-        filelog(
-          `Stage: ${stitchStage} | ${Math.floor(progress * 100)}%\nrendering: ${renderedFrames}(${totalFrames})\nencoding: ${encodedFrames}(${totalFrames})\nETA: (${formatDuration(Date.now() - startTime)} / ${formatDuration(renderEstimatedTime)}) | Remaining: ${eta}\r`
-          , 3)
+        const progressMsg = `Stage: ${stitchStage} | ${Math.floor(progress * 100)}%\nrendering: ${renderedFrames}(${totalFrames})\nencoding: ${encodedFrames}(${totalFrames})\nETA: (${formatDuration(Date.now() - startTime)} / ${formatDuration(renderEstimatedTime)}) | Remaining: ${eta}\r`;
+        filelog(progressMsg, 3);
+        renderProgress.currentItem = {
+          ...renderProgress.currentItem,
+          progress: { ...rProgress, progress: rProgress.progress * 100 },
+          message: progressMsg
+        };
+        appEvents.emit(AppEventsEnum.COMPOSITION_PROGRESS, updatedProgress(renderProgress));
         prevProgress = rProgress;
       }
 
@@ -180,11 +183,14 @@ export const renderOne = async (
       // }
     },
   });
+
   singleVideo.renderedOn = new Date();
-  appEvents.emit(AppEventsEnum.COMPOSITION_FINISHED, singleVideo);
+
   filelog(
     `\n\n\n\n${outputLocation} | DONE in ${formatDuration(Date.now() - startTime)}\n`,
   );
+
+  return singleVideo;
 };
 
 export async function checkBundle() {
@@ -193,51 +199,124 @@ export async function checkBundle() {
   if (Date.now() - x > y) throw Error(m);
 }
 
-export const renderAll = async (dbName: string, bundleLocation: string) => {
+export const startRender = async (dbName: string) => {
   const db = new JsonDb(dbName);
   await db.load();
 
-  // Update DB on Each Composition Render Finish
-  appEvents.on(AppEventsEnum.COMPOSITION_FINISHED, (videoRecord: VideoRecord) => db.update([videoRecord]))
+  try {
+    const videoRecords: Array<VideoRecord> = db.query({
+      queries: [{
+        path: "renderedOn",
+        operator: RelationalOperatorEnum.NOT,
+        value: undefined
+      }],
+      logicalOperator: LogicalOperatorEnum.AND
+    }) as Array<VideoRecord>;
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let videoRecords: Array<VideoRecord> = [];
+    return videoRecords;
+  } catch (error: unknown) {
+    filelog(error as string);
+    throw new Error(`Error reading DB ${dbName} ${error}`);
+  }
+}
+
+export const renderAll = async (dbName: string, videoRecords: Array<VideoRecord>, bundleLocation: string) => {
+  const db = new JsonDb(dbName);
+  await db.load();
+
+  let renderProgress: RenderProgressType = {
+    dbName: dbName,
+    timeStartedMS: Date.now(),
+    timeEllapsedMS: 0,
+    progress: 0,
+    currentItem: {
+      videoRecord: undefined,
+      progress: undefined,
+      error: undefined,
+    },
+    currentItemNo: 0,
+    totalItems: videoRecords.length,
+    renderedVideoUrls: [],
+    history: []
+  }
 
   try {
+    // Batch Start event
+    appEvents.emit(AppEventsEnum.RENDER_START, renderProgress);
+
+    // Build and get bundle location
     const bundleLocationPath: string = bundleLocation || await buildBundle();
 
-    try {
-      videoRecords = db.query({
-        queries: [{
-          path: "renderedOn",
-          operator: RelationalOperatorEnum.NOT,
-          value: undefined
-        }],
-        logicalOperator: LogicalOperatorEnum.AND
-      }) as Array<VideoRecord>;
-    } catch (error: unknown) {
-      filelog(error as string);
-      throw new Error(`Error reading DB ${dbName} ${error}`);
-    }
+    // Start batch items
+    const videoRecordsCount = videoRecords.length;
+    for (let vI = 0; vI < videoRecordsCount; vI++) {
+      const videoRecord = videoRecords[vI];
+      const currentVrNo = vI + 1;
+      // Update render Progress
+      renderProgress = {
+        ...renderProgress,
+        progress: toPercentage(vI, videoRecordsCount),
+        currentItem: {
+          videoRecord: videoRecord,
+          message: '',
+          error: '',
+          progress: {
+            renderedFrames: 0,
+            encodedFrames: 0,
+            encodedDoneIn: null,
+            renderedDoneIn: null,
+            renderEstimatedTime: 0,
+            progress: 0,
+            stitchStage: "encoding"
+          }
+        },
+        currentItemNo: currentVrNo,
+        totalItems: videoRecordsCount
+      }
 
-    for (let vI = 0; vI < videoRecords.length; vI++) {
-
-      const singleVideo = videoRecords[vI];
       // NEXT STEPS: Random Composition Ids can be assigned to each video
-      const { id } = singleVideo;
-      console.log(`\n(${vI + 1}/${videoRecords.length}) START`);
+      const { id } = videoRecord;
+      console.log(`\n(${currentVrNo}/${renderProgress.totalItems}) START`);
+
       filelog(`STARTED RENDERING ${id} at: ${new Date()}`);
 
-      await renderOne(singleVideo, bundleLocationPath).catch(
-        (error) => {
-          filelog(`Skipped: ${(singleVideo.compositionInfo.defaultProps as any).title || id} | Error: ${error}`);
-        },
-      );
-      console.log(`(${vI + 1}/${videoRecords.length}) END _________________________________\n`);
-      // NEXT STEPS: Update JSON with rendered video info
+      // VR PROGRESS
+      appEvents.emit(AppEventsEnum.RENDER_PROGRESS, updatedProgress(renderProgress));
+      appEvents.emit(AppEventsEnum.COMPOSITION_START, updatedProgress(renderProgress));
+
+      try {
+        const renderedVideoRecord = await renderOne(videoRecord, bundleLocationPath, renderProgress);
+
+        renderProgress.currentItem.videoRecord = renderedVideoRecord;
+        renderProgress.progress = toPercentage(currentVrNo, videoRecordsCount);
+        renderProgress.renderedVideoUrls?.push(renderedVideoRecord.outFileName);
+        renderProgress.history?.push(`${renderedVideoRecord.id} | ${renderedVideoRecord.outFileName}`);
+
+        console.log('REND P', renderProgress.history);
+        console.log('REND OUrls', renderProgress.renderedVideoUrls);
+        db.update([renderedVideoRecord]);
+
+        appEvents.emit(AppEventsEnum.COMPOSITION_FINISH, updatedProgress(renderProgress));
+
+        console.log(`(${currentVrNo}/${videoRecords.length}) END _________________________________\n`);
+      } catch (error: any) {
+        if (renderProgress.currentItem.videoRecord) renderProgress.currentItem.videoRecord.outFileName = ''
+        renderProgress.currentItem.error = error.message;
+        renderProgress.progress = toPercentage(currentVrNo, videoRecordsCount);
+        renderProgress.history = [`${videoRecord.id} | ${videoRecord.outFileName} | Error:${error.message}`, ...(renderProgress.history || [])]
+        appEvents.emit(AppEventsEnum.COMPOSITION_FAILED, updatedProgress(renderProgress));
+        filelog(`Skipped: ${(videoRecord.compositionInfo.defaultProps as any).title || id} | Error: ${error}`);
+      }
     }
+
+    renderProgress.progress = 100;
+    appEvents.emit(AppEventsEnum.RENDER_FINISH, updatedProgress(renderProgress));
     filelog(`COMPLETED RENDERING at: ${new Date()}`)
-  } catch (error) {
+  } catch (error: any) {
+    renderProgress.error = error.message;
+    renderProgress.progress = 100;
+    renderProgress.history = [`Batch Error:${error.message}`, ...renderProgress.history || []]
+    appEvents.emit(AppEventsEnum.RENDER_FAILED, updatedProgress(renderProgress));
     throw new Error(`ERROR: ${error}`);
   }
 };

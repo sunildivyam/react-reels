@@ -1,0 +1,11 @@
+{
+  "watch": [
+    "src/**/*",
+    "server.ts"
+  ],
+  "ext": "tsx,json,ts",
+  "ignore": [
+    "public",
+    "node_modules"
+  ]
+}

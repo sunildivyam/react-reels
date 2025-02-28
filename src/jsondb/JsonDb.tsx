@@ -1,7 +1,7 @@
 
 import * as fs from 'fs/promises';
 import * as path from 'path';
-import { CHANGED_EVENT, DB_DATA_FOLDER, RELATIVE_PATH_TO_ROOT, WRITE_DEFER_MS } from './constants';
+import { CHANGED_EVENT, DB_DATA_FOLDER, DB_ID, RELATIVE_PATH_TO_ROOT, WRITE_DEFER_MS } from './constants';
 import EventEmitter from 'node:events';
 import { DbOptions, DbRecord, LogicalOperatorEnum, Queries, Query, RelationalOperatorEnum } from './db.models';
 
@@ -28,15 +28,15 @@ class JsonDb {
     writeDeferMs: WRITE_DEFER_MS
   };
 
-  public static instances: Record<string, JsonDb> = {};
+  public static instances: Record<string, { createdOn: Date, value: JsonDb }> = {};
 
   constructor(dbName: string) {
     // Stops creating Multiple instances of Same Db
     const existingInstance = JsonDb.instances[dbName];
     if (existingInstance) {
-      return existingInstance;
+      return existingInstance.value;
     } else {
-      JsonDb.instances[dbName] = this;
+      JsonDb.instances[dbName] = { createdOn: new Date(), value: this };
     }
 
     // Resolve Path
@@ -113,26 +113,30 @@ class JsonDb {
     }
   }
 
-  public async load(): Promise<void> {
-    try {
-      const fileExists = await fs.access(this._filePath).then(() => true).catch(() => false);
-      if (!fileExists) {
-        await this.save();
+  public async load(force: boolean = false): Promise<void> {
+    if (force || !this._isDbLoaded) {
+      try {
+        const fileExists = await fs.access(this._filePath).then(() => true).catch(() => false);
+        if (!fileExists) {
+          await this.save();
+        }
+        const data = await fs.readFile(this._filePath, 'utf-8');
+        this._json = JSON.parse(data);
+        this._isDbLoaded = true;
+      } catch (error) {
+        this._json = {};
+        console.error('Error reading JSON file:', error);
+        throw error;
       }
-      const data = await fs.readFile(this._filePath, 'utf-8');
-      this._json = JSON.parse(data);
-      this._isDbLoaded = true;
-    } catch (error) {
-      this._json = {};
-      console.error('Error reading JSON file:', error);
-      throw error;
+    } else {
+      return;
     }
   }
   /**
    * Add Records to db, if duplicates exist and overwrite is true, updates them. Else duplicates will not be added.
    * @param records
    * @param overWriteExisting
-   * @returns Failed records, due to duplicate exists.
+   * @returns Added Records with their generated IDs.
    */
   public async add(records: Array<object>, overWriteExisting: boolean = false): Promise<Array<object>> {
     this.checkAndLoadDb();
@@ -144,6 +148,7 @@ class JsonDb {
       const existing = this.exists(id, r);
       if (existing) {
         if (overWriteExisting) {
+          delete r.id;
           this._json[(existing as any).id] = { ...r };
         } else {
           failed.push(r);
@@ -152,16 +157,17 @@ class JsonDb {
         delete r.id;
         this._json[id] = { ...r };
       }
+      r.id = id;
     });
 
-    this._eventEmitter.emit(CHANGED_EVENT);
-    return failed;
+    this._eventEmitter.emit(CHANGED_EVENT, records);
+    return records;
   }
 
   /**
    * Updates existing and creates add new ones if not existed.
    * @param records
-   * @returns list of added. Updated are silently updated.
+   * @returns Updated or Added Records, with their generated Ids, if added
    */
   public async update(records: Array<object>): Promise<Array<object>> {
     this.checkAndLoadDb();
@@ -177,10 +183,11 @@ class JsonDb {
 
       delete r.id;
       this._json[id] = { ...r };
+      r.id = id;
     });
 
-    this._eventEmitter.emit(CHANGED_EVENT);
-    return added;
+    this._eventEmitter.emit(CHANGED_EVENT, records);
+    return records;
   }
 
   public async delete(records: Array<object>): Promise<void> {
@@ -189,7 +196,7 @@ class JsonDb {
     records.forEach((r: any) => {
       r.id && delete this._json[r.id];
     });
-    this._eventEmitter.emit(CHANGED_EVENT);
+    this._eventEmitter.emit(CHANGED_EVENT, records);
   }
 
   public find(id: string): object | undefined {
@@ -252,6 +259,11 @@ class JsonDb {
     return results;
   }
 
+  public all(): Array<object> {
+    this.checkAndLoadDb();
+    const results: Array<object> = Object.entries(this._json).map(ent => ({ ...ent[1], [DB_ID]: ent[0] }));
+    return results;
+  }
 }
 
 export default JsonDb;

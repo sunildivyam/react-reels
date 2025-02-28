@@ -7,3 +7,6 @@ dist
 out
 processed data
 build
+
+build
+dist\remotion-bundle

@@ -1,34 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
+
 import './App.css'
+import AppFooter from './lib/AppFooter'
+import MainNav from './lib/MainNav'
+import { Container, CssBaseline } from '@mui/material'
+import React from 'react'
+import { navItems } from './config';
+import VideoEngine from './lib/VideoEngine'
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + Reactttt</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+const App: React.FC = () => {
+  return (<>
+    <CssBaseline />
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', width: '100%' }}>
+      <MainNav sticky={true} items={navItems} />
+      <Container component="main" style={{ flex: 1 }}>
+        <VideoEngine />
+      </Container>
+      <AppFooter />
+    </div >
+  </>
   )
 }
 

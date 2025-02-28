@@ -1,0 +1,336 @@
+{
+  "id-gfh6735": {
+    "compositionInfo": {
+      "id": "MantrasVideo",
+      "originalId": "RelaxingVideo",
+      "durationInSeconds": 30,
+      "fps": 30,
+      "width": 1920,
+      "height": 1080,
+      "rangeInSeconds": [],
+      "defaultProps": {
+        "images": [
+          "remotion-defaults/images/MantrasVideo (1).jpeg",
+          "remotion-defaults/images/MantrasVideo (2).jpeg",
+          "remotion-defaults/images/MantrasVideo (3).jpeg",
+          "remotion-defaults/images/MantrasVideo (4).jpeg",
+          "remotion-defaults/images/MantrasVideo (5).jpeg"
+        ],
+        "title": "महाकुंभ और माँ गंगा",
+        "subTitle": "Relaxing - Meditation - Peaceful",
+        "secondaryImage": "remotion-defaults/images/relaxingVideo-sec-image.png",
+        "logo": "remotion-defaults/images/logo.png",
+        "music": "remotion-defaults/music/MantrasVideo.mp3",
+        "imageSeconds": 10,
+        "bgGradient": {
+          "colors": [
+            "#903d02",
+            "#ff9823",
+            "#9e472a",
+            "#492d03"
+          ],
+          "angle": 45
+        },
+        "particles": {
+          "count": 1000,
+          "speed": {
+            "min": 10,
+            "max": 20
+          },
+          "opacity": 0.2,
+          "smoothness": 3,
+          "size": 0.5,
+          "color": "#ffae52",
+          "lightDistance": 0,
+          "lightIntensity": 1000,
+          "lightColor": "rgb(108, 0, 255)",
+          "cameraFov": 100,
+          "cameraNear": 0,
+          "cameraFar": 30,
+          "shininess": 100
+        }
+      }
+    },
+    "socialMedia": {
+      "tags": [],
+      "hashTags": []
+    },
+    "renderedOn": "2025-02-08T08:32:54.340Z",
+    "outFileName": "महाकुंभ और माँ गंगा-1739003359254.mp4"
+  },
+  "id-gfh6736": {
+    "compositionInfo": {
+      "id": "MantrasVideo",
+      "originalId": "RelaxingVideo",
+      "durationInSeconds": 310,
+      "fps": 30,
+      "width": 1920,
+      "height": 1080,
+      "rangeInSeconds": [],
+      "defaultProps": {
+        "images": [
+          "images/Shri Ganesh Ji (1).jpg",
+          "images/Shri Ganesh Ji (2).jpg",
+          "images/Shri Ganesh Ji (3).jpg",
+          "images/Shri Ganesh Ji (4).jpg",
+          "images/Shri Ganesh Ji (5).jpg",
+          "images/Shri Ganesh Ji (6).jpg",
+          "images/Shri Ganesh Ji (7).jpg",
+          "images/Shri Ganesh Ji (8).jpg",
+          "images/Shri Ganesh Ji (9).jpg",
+          "images/Shri Ganesh Ji (10).jpg",
+          "images/Shri Ganesh Ji (11).jpg",
+          "images/Shri Ganesh Ji (12).jpg",
+          "images/Shri Ganesh Ji (13).jpg",
+          "images/Shri Ganesh Ji (14).jpg",
+          "images/Shri Ganesh Ji (15).jpg",
+          "images/Shri Ganesh Ji (16).jpg",
+          "images/Shri Ganesh Ji (17).jpg",
+          "images/Shri Ganesh Ji (18).jpg",
+          "images/Shri Ganesh Ji (19).jpg",
+          "images/Shri Ganesh Ji (20).jpg",
+          "images/Shri Ganesh Ji (21).jpg",
+          "images/Shri Ganesh Ji (22).jpg",
+          "images/Shri Ganesh Ji (23).jpg",
+          "images/Shri Ganesh Ji (24).jpg",
+          "images/Shri Ganesh Ji (25).jpg",
+          "images/Shri Ganesh Ji (26).jpg",
+          "images/Shri Ganesh Ji (27).jpg",
+          "images/Shri Ganesh Ji (28).jpg"
+        ],
+        "title": "ॐ एकदन्ताय विद्महे, वक्रतुण्डाय धीमहि, तन्नो दन्ति प्रचोदयात्॥",
+        "subTitle": "Relaxing - Meditation - Mantras",
+        "secondaryImage": "remotion-defaults/images/relaxingVideo-sec-image.png",
+        "logo": "remotion-defaults/images/logo.png",
+        "music": "music/Shri Ganeshay - ॐ एकदन्ताय विद्महे, वक्रतुण्डाय धीमहि, तन्नो दन्ति प्रचोदयात्॥.mp3",
+        "imageSeconds": 10,
+        "bgGradient": {
+          "colors": [
+            "#903d02",
+            "#ff9823",
+            "#9e472a",
+            "#492d03"
+          ],
+          "angle": 45
+        },
+        "particles": {
+          "count": 1000,
+          "speed": {
+            "min": 10,
+            "max": 20
+          },
+          "opacity": 0.2,
+          "smoothness": 3,
+          "size": 0.5,
+          "color": "#ffae52",
+          "lightDistance": 0,
+          "lightIntensity": 1000,
+          "lightColor": "rgb(108, 0, 255)",
+          "cameraFov": 100,
+          "cameraNear": 0,
+          "cameraFar": 30,
+          "shininess": 100
+        }
+      }
+    },
+    "socialMedia": {
+      "tags": [],
+      "hashTags": []
+    },
+    "renderedOn": "2025-02-08T08:32:54.340Z",
+    "outFileName": "ॐ एकदन्ताय विद्महे, वक्रतुण्डाय धीमहि, तन्नो दन्ति प्रचोदयात्॥-7373737.mp4"
+  },
+  "id-gfh6737": {
+    "compositionInfo": {
+      "id": "MantrasVideo",
+      "originalId": "RelaxingVideo",
+      "durationInSeconds": 360,
+      "fps": 30,
+      "width": 1920,
+      "height": 1080,
+      "rangeInSeconds": [],
+      "defaultProps": {
+        "images": [
+          "images/Jai Shri Hanuman (1).jpeg",
+          "images/Jai Shri Hanuman (2).jpeg",
+          "images/Jai Shri Hanuman (3).jpeg",
+          "images/Jai Shri Hanuman (4).jpeg",
+          "images/Jai Shri Hanuman (5).jpeg",
+          "images/Jai Shri Hanuman (6).jpeg",
+          "images/Jai Shri Hanuman (7).jpeg",
+          "images/Jai Shri Hanuman (8).jpeg",
+          "images/Jai Shri Hanuman (9).jpeg",
+          "images/Jai Shri Hanuman (10).jpeg",
+          "images/Jai Shri Hanuman (11).jpeg",
+          "images/Jai Shri Hanuman (12).jpeg",
+          "images/Jai Shri Hanuman (13).jpeg",
+          "images/Jai Shri Hanuman (14).jpeg",
+          "images/Jai Shri Hanuman (15).jpeg",
+          "images/Jai Shri Hanuman (16).jpeg",
+          "images/Jai Shri Hanuman (17).jpeg"
+        ],
+        "title": "अतुलितबलधामं हेमशैलाभदेहं। दनुजवनकृशानुं ज्ञानिनामग्रगण्यम्। सकलगुणनिधानं वानराणामधीशं।",
+        "subTitle": "अतुलित बल धामं हनुमान जी मंत्र | Relaxing - Meditation - Mantras",
+        "secondaryImage": "",
+        "logo": "remotion-defaults/images/logo.png",
+        "music": "",
+        "imageSeconds": 25,
+        "bgGradient": {
+          "colors": [
+            "#903d02",
+            "#ff9823",
+            "#9e472a",
+            "#492d03"
+          ],
+          "angle": 45
+        },
+        "particles": {
+          "count": 1000,
+          "speed": {
+            "min": 10,
+            "max": 20
+          },
+          "opacity": 0.8,
+          "smoothness": 0,
+          "size": 0.08,
+          "color": "#ff00ae",
+          "lightDistance": 0,
+          "lightIntensity": 1000,
+          "lightColor": "#ffea00",
+          "cameraFov": 100,
+          "cameraNear": 0,
+          "cameraFar": 30,
+          "shininess": 100
+        }
+      }
+    },
+    "socialMedia": {
+      "tags": [],
+      "hashTags": []
+    },
+    "renderedOn": "2025-02-18T06:53:12.828Z",
+    "outFileName": "अतुलितबलधामं हेमशैलाभदेहं। दनुजवनकृशानुं ज्ञानिनामग्रगण्यम्। सकलगुणनिधानं वानराणामधीशं।-1739859166783.mp4"
+  },
+  "id-gqq74kp": {
+    "compositionInfo": {
+      "id": "MantrasVideo",
+      "originalId": "RelaxingVideo",
+      "durationInSeconds": 30,
+      "fps": 30,
+      "width": 1920,
+      "height": 1080,
+      "rangeInSeconds": [],
+      "defaultProps": {
+        "images": [
+          "images/1740224269645-Shri Ganesh Ji (1).jpg",
+          "images/1740224269646-Shri Ganesh Ji (2).jpg",
+          "images/1740224269650-Shri Ganesh Ji (3).jpg"
+        ],
+        "title": "अतुलितबलधामं हेमशैलाभदेहं। दनुजवनकृशानुं ज्ञानिनामग्रगण्यम्। सकलगुणनिधानं वानराणामधीशं।",
+        "subTitle": "अतुलित बल धामं हनुमान जी मंत्र | Relaxing - Meditation - Mantras ||",
+        "secondaryImage": "",
+        "logo": "remotion-defaults/images/logo.png",
+        "music": "music/1740224185959-om-namo-hanumate-rudravataraya.mp3",
+        "imageSeconds": 25,
+        "bgGradient": {
+          "colors": [
+            "#903d02",
+            "#ff9823",
+            "#9e472a",
+            "#492d03"
+          ],
+          "angle": 45
+        },
+        "particles": {
+          "count": 1000,
+          "speed": {
+            "min": 10,
+            "max": 20
+          },
+          "opacity": 0.8,
+          "smoothness": 0,
+          "size": 0.08,
+          "color": "#ff00ae",
+          "lightDistance": 0,
+          "lightIntensity": 1000,
+          "lightColor": "#ffea00",
+          "cameraFov": 100,
+          "cameraNear": 0,
+          "cameraFar": 30,
+          "shininess": 100
+        },
+        "videos": [],
+        "name": "JAi Shri Hanjuman Ji"
+      }
+    },
+    "socialMedia": {
+      "tags": [],
+      "hashTags": []
+    },
+    "renderedOn": "2025-02-18T06:53:12.828Z",
+    "outFileName": "अतुलितबलधामं हेमशैलाभदेहं। दनुजवनकृशानुं ज्ञानिनामग्रगण्यम्। सकलगुणनिधानं वानराणामधीशं।-1739859166783.mp4"
+  },
+  "id-ggoh20s": {
+    "compositionInfo": {
+      "id": "MantrasVideo",
+      "originalId": "RelaxingVideo",
+      "durationInSeconds": 30,
+      "fps": 30,
+      "width": 1920,
+      "height": 1080,
+      "rangeInSeconds": [],
+      "defaultProps": {
+        "images": [
+          "images/1740224269645-Shri Ganesh Ji (1).jpg",
+          "images/1740224269650-Shri Ganesh Ji (3).jpg",
+          "images/1740224269646-Shri Ganesh Ji (2).jpg"
+        ],
+        "title": "अतुलितबलधामं हेमशैलाभदेहं। दनुजवनकृशानुं ज्ञानिनामग्रगण्यम्। सकलगुणनिधानं वानराणामधीशं।",
+        "subTitle": "अतुलित बल धामं हनुमान जी मंत्र | Relaxing - Meditation - Mantras ||",
+        "secondaryImage": "",
+        "logo": "remotion-defaults/images/logo.png",
+        "music": "music/1740224185959-om-namo-hanumate-rudravataraya.mp3",
+        "imageSeconds": 10,
+        "bgGradient": {
+          "colors": [
+            "#903d02",
+            "#ff9823",
+            "#9e472a",
+            "#492d03"
+          ],
+          "angle": 45
+        },
+        "particles": {
+          "count": 1000,
+          "speed": {
+            "min": 10,
+            "max": 20
+          },
+          "opacity": 0.8,
+          "smoothness": 0,
+          "size": 0.08,
+          "color": "#32a9ff",
+          "lightDistance": 0,
+          "lightIntensity": 1000,
+          "lightColor": "#ffea00",
+          "cameraFov": 100,
+          "cameraNear": 0,
+          "cameraFar": 30,
+          "shininess": 100
+        },
+        "videos": [],
+        "name": "Jai Shri Hanuman Ji",
+        "filter": "ForestFilter"
+      }
+    },
+    "socialMedia": {
+      "tags": [],
+      "hashTags": []
+    },
+    "outFileName": "out/अतुलितबलधामं हेमशैलाभदेहं। दनुजवनकृशानुं ज्ञानिनामग्रगण्यम्। सकलगुणनिधानं वानराणामधीशं।-1740225558501.mp4",
+    "youTube": {
+      "videoId": ""
+    },
+    "renderedOn": "2025-02-22T12:02:12.949Z"
+  }
+}

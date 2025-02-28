@@ -6,8 +6,12 @@ import { OAuth2Client } from "google-auth-library";
 dotenv.config();
 
 export const YOUTUBE_API_SCOPES = [
-  "https://www.googleapis.com/auth/youtube.readonly",
+  // "https://www.googleapis.com/auth/youtube.readonly",
+  "https://www.googleapis.com/auth/youtubepartner",
+  "https://www.googleapis.com/auth/youtube",
+  "https://www.googleapis.com/auth/youtube.force-ssl",
   "https://www.googleapis.com/auth/youtube.upload",
+  "https://www.googleapis.com/auth/youtube.force-ssl",
 ];
 
 export const OAuth2 = google.auth.OAuth2;
@@ -17,6 +21,18 @@ export const oauth2Client = new OAuth2(
   process.env.SECRET_ID,
   process.env.REDIRECT_URL,
 );
+
+export const isUserLoggedIn = async (): Promise<boolean> => {
+  try {
+    const tokenInfo = await oauth2Client.getTokenInfo(
+      process.env.REFRESH_TOKEN || "",
+    );
+    return tokenInfo !== null;
+  } catch (error) {
+    console.log("User is not logged in or token is invalid", error);
+    return false;
+  }
+};
 
 export const getAuth = (): OAuth2Client => {
   oauth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
