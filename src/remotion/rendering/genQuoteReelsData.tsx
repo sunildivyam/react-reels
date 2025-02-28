@@ -5,7 +5,7 @@ import path from 'path';
 import { ASSETS_DIRS, HD_REEL, PUBLIC_DIR } from "../constants";
 import yargs from "yargs";
 import JsonDb from "../../jsondb/JsonDb";
-import { VideoRecord } from "../../jsondb/db.models";
+import { VideoRecord } from "../..//remotion/interfaces";
 
 const SOURCE_JSON_FILE = `${PUBLIC_DIR}`;
 
@@ -94,10 +94,13 @@ async function getUpdatedJson(json: Array<unknown>,
         images: rImages,
         music: rMusic,
         bgGradient: {
-          color1: "rgb(144, 61, 2)",
-          color2: "rgb(255, 152, 35)",
-          color3: "rgb(158, 71, 42)",
-          color4: "rgb(73, 45, 3)"
+          colors: [
+            "rgb(144, 61, 2)",
+            "rgb(255, 152, 35)",
+            "rgb(158, 71, 42)",
+            "rgb(73, 45, 3)"
+          ],
+          angle: 45
         }
       }
     }

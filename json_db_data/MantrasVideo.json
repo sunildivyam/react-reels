@@ -23,10 +23,13 @@
         "music": "remotion-defaults/music/MantrasVideo.mp3",
         "imageSeconds": 10,
         "bgGradient": {
-          "color1": "rgb(144, 61, 2)",
-          "color2": "rgb(255, 152, 35)",
-          "color3": "rgb(158, 71, 42)",
-          "color4": "rgb(73, 45, 3)"
+          "colors": [
+            "#903d02",
+            "#ff9823",
+            "#9e472a",
+            "#492d03"
+          ],
+          "angle": 45
         },
         "particles": {
           "count": 1000,
@@ -102,10 +105,13 @@
         "music": "music/Shri Ganeshay - ॐ एकदन्ताय विद्महे, वक्रतुण्डाय धीमहि, तन्नो दन्ति प्रचोदयात्॥.mp3",
         "imageSeconds": 10,
         "bgGradient": {
-          "color1": "rgb(144, 61, 2)",
-          "color2": "rgb(255, 152, 35)",
-          "color3": "rgb(158, 71, 42)",
-          "color4": "rgb(73, 45, 3)"
+          "colors": [
+            "#903d02",
+            "#ff9823",
+            "#9e472a",
+            "#492d03"
+          ],
+          "angle": 45
         },
         "particles": {
           "count": 1000,
@@ -170,10 +176,13 @@
         "music": "",
         "imageSeconds": 25,
         "bgGradient": {
-          "color1": "rgb(144, 61, 2)",
-          "color2": "rgb(255, 152, 35)",
-          "color3": "rgb(158, 71, 42)",
-          "color4": "rgb(73, 45, 3)"
+          "colors": [
+            "#903d02",
+            "#ff9823",
+            "#9e472a",
+            "#492d03"
+          ],
+          "angle": 45
         },
         "particles": {
           "count": 1000,
@@ -224,10 +233,13 @@
         "music": "music/1740224185959-om-namo-hanumate-rudravataraya.mp3",
         "imageSeconds": 25,
         "bgGradient": {
-          "color1": "rgb(144, 61, 2)",
-          "color2": "rgb(255, 152, 35)",
-          "color3": "rgb(158, 71, 42)",
-          "color4": "rgb(73, 45, 3)"
+          "colors": [
+            "#903d02",
+            "#ff9823",
+            "#9e472a",
+            "#492d03"
+          ],
+          "angle": 45
         },
         "particles": {
           "count": 1000,
@@ -280,10 +292,13 @@
         "music": "music/1740224185959-om-namo-hanumate-rudravataraya.mp3",
         "imageSeconds": 10,
         "bgGradient": {
-          "color1": "rgb(144, 61, 2)",
-          "color2": "rgb(255, 152, 35)",
-          "color3": "rgb(158, 71, 42)",
-          "color4": "rgb(73, 45, 3)"
+          "colors": [
+            "#903d02",
+            "#ff9823",
+            "#9e472a",
+            "#492d03"
+          ],
+          "angle": 45
         },
         "particles": {
           "count": 1000,

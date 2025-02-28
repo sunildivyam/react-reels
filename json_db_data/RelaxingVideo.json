@@ -21,10 +21,13 @@
         "music": "remotion-defaults/music/RelaxingVideo.mp3",
         "imageSeconds": 40,
         "bgGradient": {
-          "color1": "rgb(144, 61, 2)",
-          "color2": "rgb(255, 152, 35)",
-          "color3": "rgb(158, 71, 42)",
-          "color4": "rgb(73, 45, 3)"
+          "colors": [
+            "#903d02",
+            "#ff9823",
+            "#9e472a",
+            "#492d03"
+          ],
+          "angle": 45
         },
         "particles": {
           "count": 1000,

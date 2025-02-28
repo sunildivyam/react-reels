@@ -1,5 +1,5 @@
 import { StitchingState } from "@remotion/renderer";
-import { VideoRecord } from "../../jsondb/db.models";
+import { VideoRecord } from "../interfaces";
 
 export interface RenderProgressType {
   dbName: string;

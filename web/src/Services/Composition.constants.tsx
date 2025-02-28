@@ -15,10 +15,12 @@ export const DEFAULT_COMPSITION_PROPS: CompositionProps = {
   videos: [],
   imageSeconds: 10,
   bgGradient: {
-    color1: '#ffaacc',
-    color2: '#ffeecc',
-    color3: '#ffaaaa',
-    color4: '#ffaa11',
+    colors: [
+      '#ffaacc',
+      '#ffeecc',
+      '#ffaaaa',
+      '#ffaa11'],
+    angle: 45
   } as BgGradient,
   particles: undefined
 }

@@ -7,44 +7,24 @@ import { RotateImage } from "../../lib/RotateImage";
 import { SpaceDust } from "../../lib/Particles/SpaceDust";
 import ZoomInText from "../../lib/ZoomInText";
 import BoxText from "../../lib/BoxText";
-import { zColor } from "@remotion/zod-types";
+import { CompositionPropsSchema } from "../../interfaces";
+import { toGradientString } from "../../../client-core-lib/Core";
 
-export const RelaxingVideoSchema = z.object({
-  title: z.string(),
-  subTitle: z.string(),
-  images: z.array(z.string()),
-  secondaryImage: z.string(),
-  logo: z.string(),
-  music: z.string(),
-  imageSeconds: z.number(),
-  // Extra props
-  bgGradient: z.object({ color1: zColor(), color2: zColor(), color3: zColor(), color4: zColor() }).optional(),
-  particles: z.object({
-    count: z.number(),
-    speed: z.object({ min: z.number(), max: z.number() }),
-    opacity: z.number(),
-    smoothness: z.number(),
-    size: z.number(),
-    color: zColor(),
-    lightDistance: z.number(),
-    lightIntensity: z.number(),
-    lightColor: zColor(),
-    cameraFov: z.number(),
-    cameraNear: z.number(),
-    cameraFar: z.number(),
-    shininess: z.number()
-  })
-})
+export const RelaxingVideoSchema = CompositionPropsSchema;
 
 export type RelaxingVideoProps = z.infer<typeof RelaxingVideoSchema>;
 
 export const RelaxingVideo: React.FC<RelaxingVideoProps> = ({
+  name,
   title,
   subTitle,
+  summary,
+  translation,
   images,
-  secondaryImage,
-  logo,
+  videos,
   music,
+  categoryImage,
+  logo,
   imageSeconds,
   bgGradient,
   particles }) => {
@@ -62,25 +42,25 @@ export const RelaxingVideo: React.FC<RelaxingVideoProps> = ({
     cameraNear,
     cameraFar,
     shininess,
-  } = particles;
+  } = particles || {};
 
   const { fps, durationInFrames } = useVideoConfig();
-  const PER_IMAGE_DURATION = imageSeconds * fps;
+  const PER_IMAGE_DURATION = imageSeconds || 1 * fps;
 
   const allImages = useMemo(() => {
-    return fillImagesUptoFullDuration(images, PER_IMAGE_DURATION, durationInFrames);
+    return fillImagesUptoFullDuration(images || [], PER_IMAGE_DURATION, durationInFrames);
   }, [images, PER_IMAGE_DURATION, durationInFrames]);
 
   const len = allImages.length;
   const imagesSequenceDuration = PER_IMAGE_DURATION * len;
   const transitionDuration = Math.floor(imagesSequenceDuration / len / 2.5);
-  const background = bgGradient ? `linear-gradient(110deg, ${bgGradient?.color1} 0%, ${bgGradient?.color2} 30%, ${bgGradient?.color3} 50%, ${bgGradient?.color4} 90%)` : 'none';
+  const background = toGradientString(bgGradient) || 'none';
   return <AbsoluteFill
     style={{
       background,
     }}
   >
-    <ImageSequence images={allImages} filter="" durationInFrames={imagesSequenceDuration} transitionDuration={transitionDuration} />
+    {images?.length && <ImageSequence images={allImages} filter="" durationInFrames={imagesSequenceDuration} transitionDuration={transitionDuration} />}
 
     {/* <SpaceDust
       count={1000}
@@ -101,7 +81,7 @@ export const RelaxingVideo: React.FC<RelaxingVideoProps> = ({
     /> */}
 
     {/* Secondary Image */}
-    {secondaryImage && <AbsoluteFill style={
+    {categoryImage && <AbsoluteFill style={
       {
         display: 'flex',
         flexDirection: 'column',
@@ -110,7 +90,7 @@ export const RelaxingVideo: React.FC<RelaxingVideoProps> = ({
       }
     }
     >
-      <RotateImage img={secondaryImage} animationDuration={5 * fps} filter="FireFilter" loop={true}
+      <RotateImage img={categoryImage} animationDuration={5 * fps} filter="FireFilter" loop={true}
         style={{
           maxWidth: 'none',
           opacity: '0.2'
@@ -119,21 +99,21 @@ export const RelaxingVideo: React.FC<RelaxingVideoProps> = ({
 
     {/* Space Dust 1 */}
     <SpaceDust
-      count={count}
-      color={color}
-      lightDistance={lightDistance}
-      lightIntensity={lightIntensity}
-      lightColor={lightColor}
+      count={count ?? 1}
+      color={color ?? 'white'}
+      lightDistance={lightDistance ?? 100}
+      lightIntensity={lightIntensity ?? 1000}
+      lightColor={lightColor ?? 'white'}
       fov={cameraFov}
       aspect={0}
       near={cameraNear}
       far={cameraFar}
-      smoothness={smoothness}
-      particleSize={size}
-      opacity={opacity}
-      minSpeed={speed.min}
-      maxSpeed={speed.max}
-      shininess={shininess}
+      smoothness={smoothness ?? 0}
+      particleSize={size ?? 1}
+      opacity={opacity ?? 1}
+      minSpeed={speed?.min ?? 2}
+      maxSpeed={speed?.max ?? 10}
+      shininess={shininess ?? 100}
     />
 
 

@@ -9,8 +9,9 @@ import filelog from '../../core-lib/Logger';
 import { entryPoint, OUT_DIR, RENDER_MEDIA_CONFIG } from "../constants";
 import { appEvents, AppEventsEnum } from "../../core-lib/AppEvents";
 import JsonDb from "../../jsondb/JsonDb";
-import { LogicalOperatorEnum, RelationalOperatorEnum, VideoRecord } from "../../jsondb/db.models";
+import { LogicalOperatorEnum, RelationalOperatorEnum } from "../../jsondb/db.models";
 import { RenderProgressType, RenderProgressItemType } from "./rendering.interface";
+import { VideoRecord } from "../interfaces";
 
 const updatedProgress = (p: RenderProgressType): RenderProgressType => {
   p.timeEllapsedMS = Date.now() - p.timeStartedMS;

@@ -71,8 +71,6 @@ const CompositionsHome: React.FC = () => {
       <Typography style={{ textAlign: 'center' }} variant="h4" component="h1" gutterBottom>
         Compositions Home
       </Typography>
-
-      <FormControl fullWidth></FormControl>
       <FormControl fullWidth>
         <InputLabel id="dbName-select-label">Database Name</InputLabel>
         <Select

@@ -6,7 +6,7 @@ import { appEvents, AppEventsEnum } from "../core-lib/AppEvents";
 import { resolvedPath, toPercentage } from "../core-lib/Utils";
 import "../sockets/index";
 import JsonDb from "../jsondb/JsonDb";
-import { VideoRecord, YoutubeInfo } from "../jsondb/db.models";
+import { VideoRecord, YoutubeInfo } from "../remotion/interfaces";
 
 const updatedProgress = (p: YoutubeUploadProgress): YoutubeUploadProgress => {
   p.timeEllapsedMS = Date.now() - p.timeStartedMS;

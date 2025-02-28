@@ -4,6 +4,7 @@ import CompositionParticlesForm from './CompositionParticlesForm';
 import { CompositionParticles, CompositionProps } from '../Services/Composition.interface';
 import CodeBlock from './CodeBlock';
 import AssetsSelectInput from './AssetsSelectInput';
+import GradientInput from './GradientInput';
 
 interface CompositionPropsFormProps {
   initialProps: CompositionProps;
@@ -121,7 +122,12 @@ const CompositionPropsForm: React.FC<CompositionPropsFormProps> = ({ initialProp
         onChange={handleInputChange}
         fullWidth
       />
-
+      <GradientInput style={{ marginTop: '1em', marginBottom: '1em' }}
+        label="Background Gradient"
+        name="bgGradient"
+        value={props.bgGradient}
+        onChange={({ value, name, type }) => handleInputChange({ target: { name, type, value } })}
+      />
       <AssetsSelectInput singleSelect value={[props.categoryImage || '']} assetType='images' label='Category Image' name='categoryImage'
         onChange={(categoryImage) => handleInputChange({ target: { name: 'categoryImage', value: categoryImage as string, type: 'text' } })} />
 

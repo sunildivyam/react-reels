@@ -39,6 +39,7 @@ export interface VideoEngineType {
   videoMeta?: VideoMeta;
   videoRecords?: VideoRecord[];
 }
+
 export interface VideoInfo {
   src: string;
   duration?: number;
@@ -64,10 +65,8 @@ export interface CompositionProps {
 
 
 export interface BgGradient {
-  color1: string;
-  color2: string;
-  color3: string;
-  color4: string;
+  colors: string[];
+  angle: number;
 }
 
 export interface CompositionParticles {
