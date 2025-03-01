@@ -5,6 +5,7 @@ import { ZodObject } from 'zod';
 import { CalculateMetadataFunction } from 'remotion';
 import { DustVideo, DustVideoSchema } from './DustVideo/DustVideo';
 import { calculateMetadataQuote, Quote, QuoteSchema } from './Quote/Quote';
+import { calculateMetadataHoliReel, HoliReel, HoliReelSchema } from './HoliReel/HoliReel';
 
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -14,6 +15,7 @@ export const CompositionComponents: { [key: string]: React.FC<any> } = {
   MyAudio,
   DustVideo,
   Quote,
+  HoliReel
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -23,12 +25,14 @@ export const CompositionSchemas: { [key: string]: ZodObject<any> } = {
   MyAudio: MyAudioSchema,
   DustVideo: DustVideoSchema,
   Quote: QuoteSchema,
+  HoliReel: HoliReelSchema,
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const CompositionCalculateMetaDataFns: { [key: string]: CalculateMetadataFunction<any> } = {
   QuoteReel: calculateMetadataQuoteReel,
   Quote: calculateMetadataQuote,
+  HoliReel: calculateMetadataHoliReel,
 }
 
 export const compositionIds = Object.keys(CompositionComponents);

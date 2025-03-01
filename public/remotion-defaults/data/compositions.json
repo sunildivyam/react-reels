@@ -209,5 +209,43 @@
       "music": "remotion-defaults/music/Quote.mp3",
       "isVideoType": false
     }
+  },
+  {
+    "id": "HoliReel",
+    "originalId": "HoliReel",
+    "component": null,
+    "durationInFrames": 240,
+    "fps": 30,
+    "width": 1080,
+    "height": 1920,
+    "calculateMetadata": null,
+    "schema": null,
+    "defaultProps": {
+      "name": "होली की शुभकामनाएँ",
+      "title": "रंगों का त्योहार",
+      "subTitle": "होली की हार्दिक बधाई",
+      "summary": "रंगों से भरी होली की शुभकामनाएँ!  यह त्योहार आपके जीवन में खुशियाँ और प्यार लेकर आए।",
+      "translation": "Warm wishes for a Holi filled with colors! May this festival bring joy and love into your life.",
+      "isVideoType": false,
+      "filter": "ForestFilter",
+      "categoryImage": "",
+      "logo": "",
+      "music": "remotion-defaults/music/1740664458829-dhol-bajega-aur-taal-badhega-8s-b.mp3",
+      "images": [
+        "remotion-defaults/images/1740663326926-Holi 2025 (1).jpeg",
+        "remotion-defaults/images/1740663326933-Holi 2025 (2).jpeg"
+      ],
+      "videos": [],
+      "imageSeconds": 5,
+      "bgGradient": {
+        "colors": [
+          "#ffaacc",
+          "#ffeecc",
+          "#ffaaaa",
+          "#ffaa11"
+        ],
+        "angle": 45
+      }
+    }
   }
 ]
