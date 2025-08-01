@@ -2,7 +2,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import fs from 'fs';
 import path from 'path';
 
-const GEMINI_API_KEY = "AIzaSyBaITMDxrXX_sUNHkgqJSggps8BHeV_JOI";
+const GEMINI_API_KEY = "";
 
 const extractJsonFromMarkdown = (markdown: string): any => {
   const jsonStart = markdown.indexOf('[');
